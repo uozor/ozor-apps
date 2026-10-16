@@ -25,4 +25,5 @@ const t=[`${v[0][0]} ${o}${m?' ('+m+')':''}${r?', '+r:''}.`,
 r?`${v[1][0]} ${o}${m?' ('+m+')':''} with a focus on quality and speed, ${r}.`:`${v[1][0]} ${o} end to end${m?', covering '+m:''}.`,
 `Took ownership of ${o}${m?', handling '+m:''}${r?' and '+r:''}.`,
 `${v[3][0]} ${o}${m?' at a volume of '+m:''}${r?', '+r:''}.`];
-let tip=(!m||!r)?'\n\nTip: add a number and a result above. Bullets with concrete outcomes get noticeably more callbacks.':'';document.getElementById('out').innerText=t.map(x=>'• '+x).join('\n')+tip}gen();</script></body></html>
+let tip=(!m||!r)?'\n\nTip: add a number and a result above. Bullets with concrete outcomes get noticeably more callbacks.':'';document.getElementById('out').innerText=t.map(x=>'• '+x).join('\n')+tip}gen();
+/* URL prefill: ?id=value sets matching tool fields */new URLSearchParams(location.search).forEach((v,k)=>{const el=document.getElementById(k);if(!el||!el.closest('#tool')||!/^(INPUT|SELECT|TEXTAREA)$/.test(el.tagName)||el.type==='file')return;if(el.type==='checkbox')el.checked=v==='1';else el.value=v;['input','change'].forEach(t=>el.dispatchEvent(new Event(t,{bubbles:true})))});</script></body></html>

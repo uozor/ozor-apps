@@ -21,4 +21,5 @@
 function plan(){const c=perSec()*$('mins').value*60;$('plan').textContent=f(c);$('tip').textContent=`Weekly, this meeting costs ${f(c)} per occurrence, about ${f(c*52)} per year.`}
 function tick(){const s=acc+(t0?(Date.now()-t0)/1000:0);$('live').textContent=f(s*perSec());$('clock').textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(Math.floor(s%60)).padStart(2,'0')}
 function start(){if(!t0){t0=Date.now();iv=setInterval(tick,250)}}function stop(){if(t0){acc+=(Date.now()-t0)/1000;t0=null;clearInterval(iv);tick()}}function reset(){stop();acc=0;tick()}
-document.querySelectorAll('input').forEach(e=>e.addEventListener('input',plan));plan();</script></body></html>
+document.querySelectorAll('input').forEach(e=>e.addEventListener('input',plan));plan();
+/* URL prefill: ?id=value sets matching tool fields */new URLSearchParams(location.search).forEach((v,k)=>{const el=document.getElementById(k);if(!el||!el.closest('#tool')||!/^(INPUT|SELECT|TEXTAREA)$/.test(el.tagName)||el.type==='file')return;if(el.type==='checkbox')el.checked=v==='1';else el.value=v;['input','change'].forEach(t=>el.dispatchEvent(new Event(t,{bubbles:true})))});</script></body></html>

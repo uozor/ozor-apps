@@ -24,4 +24,5 @@ function calc(){const c=$('mc'),p=$('mp'),pr=p-c;o('mo',`Profit: ${f(pr)}\nMargi
 const a=$('ta'),r=$('tr')/100;if(document.getElementById('ti').checked){const pre=a/(1+r);o('to',`Pre-tax price: ${f(pre)}\nTax included: ${f(a-pre)}`)}else o('to',`Tax: ${f(a*r)}\nTotal: ${f(a*(1+r))}`);
 const L=$('la'),i=$('lr')/1200,n=$('ly')*12,m=i?L*i/(1-Math.pow(1+i,-n)):L/n;o('lo',`Monthly payment: ${f(m)}\nTotal paid: ${f(m*n)}\nTotal interest: ${f(m*n-L)}`);
 const u=$('bf')/($('bp')-$('bv'));o('bo',$('bp')>$('bv')?`Break-even: ${Math.ceil(u).toLocaleString()} units\nRevenue needed: ${f(Math.ceil(u)*$('bp'))}`:'Price must be higher than the variable cost per unit.')}
-document.querySelectorAll('#tool input').forEach(x=>x.addEventListener('input',calc));calc();</script></body></html>
+document.querySelectorAll('#tool input').forEach(x=>x.addEventListener('input',calc));calc();
+/* URL prefill: ?id=value sets matching tool fields */new URLSearchParams(location.search).forEach((v,k)=>{const el=document.getElementById(k);if(!el||!el.closest('#tool')||!/^(INPUT|SELECT|TEXTAREA)$/.test(el.tagName)||el.type==='file')return;if(el.type==='checkbox')el.checked=v==='1';else el.value=v;['input','change'].forEach(t=>el.dispatchEvent(new Event(t,{bubbles:true})))});</script></body></html>

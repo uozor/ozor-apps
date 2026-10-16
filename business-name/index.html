@@ -22,4 +22,5 @@ function gen(){const w=$('kw').value.toLowerCase().split(/[^a-z0-9]+/).filter(Bo
 while(set.size<18&&guard++<300){const a=r(w),b=r(w),s=r(t.suf),p=r(t.pre),k=Math.floor(Math.random()*6);let n;
 if(k==0)n=cap(a)+(s.length<4&&/^[a-z]/.test(s)?s:' '+s);else if(k==1)n=p+' '+cap(a);else if(k==2)n=cap(a.slice(0,Math.ceil(a.length*.6)))+(b!==a?b.slice(Math.floor(b.length/2)):r(['io','a','o','ly']));else if(k==3)n=cap(a)+' & '+cap(r(['Co.','Crumb','Leaf','Stone','Field','Lane']));else if(k==4)n='The '+cap(a)+' '+r(t.suf.filter(x=>/^[A-Z]/.test(x)));else n=p+cap(a);set.add(n.trim())}
 $('list').innerHTML='';[...set].forEach(n=>{const li=document.createElement('li');li.className='stat';li.textContent=n;$('list').append(li)})}
-$('go').onclick=gen;gen();</script></body></html>
+$('go').onclick=gen;$('kw').addEventListener('change',gen);$('tone').addEventListener('change',gen);gen();
+/* URL prefill: ?id=value sets matching tool fields */new URLSearchParams(location.search).forEach((v,k)=>{const el=document.getElementById(k);if(!el||!el.closest('#tool')||!/^(INPUT|SELECT|TEXTAREA)$/.test(el.tagName)||el.type==='file')return;if(el.type==='checkbox')el.checked=v==='1';else el.value=v;['input','change'].forEach(t=>el.dispatchEvent(new Event(t,{bubbles:true})))});</script></body></html>

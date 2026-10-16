@@ -18,8 +18,8 @@ a{color:var(--brand-d)}.skip{position:absolute;left:-999px;top:8px;background:#f
 .cat-business{--c1:#ff8a3d;--c2:#e8366b}.cat-image{--c1:#1fb89c;--c2:#1a7fd0}.cat-docs{--c1:#ff5e5e;--c2:#b8307f}.cat-media{--c1:#9a6bff;--c2:#4b3fd6}.cat-writing{--c1:#3fa2ff;--c2:#4b3fd6}.cat-security{--c1:#2bb673;--c2:#0d7a5f}
 .layout{position:relative;z-index:2;max-width:1200px;margin:-56px auto 0;padding:0 24px 48px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start}
 @media(max-width:1000px){.layout{grid-template-columns:1fr}}
-section.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 1px 2px rgba(20,18,43,.04),0 18px 50px -20px rgba(36,27,120,.25);padding:clamp(22px,4vw,44px);margin:0 0 28px;overflow:hidden}
-section.card::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,#ff8a3d,#e8366b,#7c5cff,#1fb89c)}
+section.card,aside.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 1px 2px rgba(20,18,43,.04),0 18px 50px -20px rgba(36,27,120,.25);padding:clamp(22px,4vw,44px);margin:0 0 28px;overflow:hidden}
+section.card::before,aside.card::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,#ff8a3d,#e8366b,#7c5cff,#1fb89c)}
 .eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.8rem;font-weight:700;color:var(--brand-d);margin:0 0 6px}.lead{color:var(--muted);max-width:680px}
 label,legend{display:block;font-weight:600;margin:14px 0 6px;font-size:.95rem}fieldset{border:1px solid var(--line);border-radius:14px;padding:6px 18px 18px;margin:0}
 input,textarea,select{width:100%;padding:12px 14px;border:1.5px solid #858ba3;border-radius:12px;font:inherit;background:#fff;color:var(--ink);transition:border-color .2s,box-shadow .2s}textarea{min-height:110px}
@@ -48,4 +48,14 @@ table{width:100%;border-collapse:collapse}td,th{padding:8px 6px;border-bottom:1p
 .swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:16px}.swatch{margin:0;height:120px;border-radius:16px;display:flex;align-items:flex-end;justify-content:flex-start;padding:12px;font-weight:700;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
 @media (prefers-reduced-motion:no-preference){section.card,.hero>*{animation:rise .6s ease both}section.card:nth-of-type(2){animation-delay:.08s}section.card:nth-of-type(3){animation-delay:.16s}@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+.layout.hub{grid-template-columns:minmax(0,1fr) 370px;grid-template-areas:"main help" "main ad";grid-template-rows:auto 1fr}.layout.hub>main{grid-area:main}.layout.hub>.helper{grid-area:help;margin:0}.layout.hub>.rail{grid-area:ad;align-self:start}
+@media(max-width:1000px){.layout.hub{grid-template-columns:1fr;grid-template-areas:"help" "main" "ad";grid-template-rows:auto}}
+.helper{padding:24px}.helper h2{font-size:1.4rem}.hrow{display:flex;gap:8px}.hrow input{border-radius:999px}.hrow button{margin:0;flex:none}
+.hchips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.hchips .chip{font-size:.85rem;padding:6px 12px}
+.hmsg.you{margin:12px 0 8px auto;max-width:90%;width:fit-content;background:var(--brand-d);color:#fff;padding:8px 14px;border-radius:16px 16px 4px 16px;font-size:.95rem}
+.hres{background:#f7f8fc;border:1px solid var(--line);border-radius:16px 16px 16px 4px;padding:16px;font-size:.95rem}
+.hsay{margin:0 0 12px}.hbest{display:flex;gap:12px;align-items:center}.hname{margin:0;font-weight:700;font-family:var(--serif);font-size:1.1rem}.hsmall{margin:0;color:var(--muted);font-size:.88rem}
+.hopen{width:100%;justify-content:center;margin:14px 0 4px;padding:14px 18px}.hsub{margin:12px 0 4px;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.htips,.hrel{margin:0;padding-left:20px}.htips li,.hrel li{margin:2px 0}
+@media (prefers-reduced-motion:no-preference){.hres,.hmsg{animation:rise .35s ease both}}
 @media print{.site,.noprint,footer,#pricing,.rail{display:none!important}.layout{display:block;margin:0}body{background:#fff}section.card{box-shadow:none;border:0}section.card::before{display:none}}
