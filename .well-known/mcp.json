@@ -1,0 +1,12 @@
+{
+ "_status": "PLACEHOLDER: the MCP server in mcp/ of the GitHub repo is NOT deployed yet; the endpoint below is planned and will not respond until it is.",
+ "name": "gwb-tools",
+ "description": "Find free, no-sign-up, in-browser small business tools on greaterworldmedia.tech.",
+ "transport": "streamable-http",
+ "endpoint": "https://gwb-tools-mcp.<your-subdomain>.workers.dev/mcp",
+ "tools": [
+  "list_tools",
+  "find_tool"
+ ],
+ "catalog": "https://greaterworldmedia.tech/tools.json"
+}

@@ -105,7 +105,7 @@ def page(title,tagline,how,tool,js,head="",**k):
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title} | GWB</title><meta name="description" content="{tagline}"><link rel="stylesheet" href="../style.css">{head}</head><body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="site"><nav class="bar noprint" aria-label="Main"><a href="../index.html" aria-label="GWB: Greater World Business, all tools">{BRAND}</a><ul><li><a href="../index.html#tools">All tools</a></li><li><a href="#tool">Use tool</a></li><li><a href="#pricing">Support</a></li></ul></nav>
+<header class="site"><nav class="bar noprint" aria-label="Main"><a href="../index.html">{BRAND}<span class="vh">, all tools</span></a><ul><li><a href="../index.html#tools">All tools</a></li><li><a href="#tool">Use tool</a></li><li><a href="#pricing">Support</a></li></ul></nav>
 <div class="hero"><div class="hero-ico {{{{CATCLS}}}}">{{{{ICON}}}}</div><nav aria-label="Breadcrumb" class="crumbs"><ol><li><a href="../index.html">Home</a></li><li><a href="../index.html#tools">All tools</a></li><li><a href="../index.html?cat={{{{CAT}}}}#tools">{{{{CATNAME}}}}</a></li><li aria-current="page">{title}</li></ol></nav><p class="eyebrow">{{{{CATNAME}}}} · Free · Private · No signup</p><h1>{title}</h1><p>{tagline}</p><a class="btn light" href="#tool">Use it now</a></div></header>
 <div class="layout"><main id="main"><section class="card noprint" aria-labelledby="h-how"><p class="eyebrow">How it works</p><h2 id="h-how">Simple, fast and private</h2><p class="lead">{how}</p><p class="lead"><strong>Private by design:</strong> everything runs in your browser. Your files and text never leave your device.</p></section>
 <section class="card" id="tool" aria-label="{title} tool">{tool}<p class="backlink noprint"><a href="../index.html#tools">← Browse all {len(TOOLS)} tools</a></p></section>
@@ -142,6 +142,10 @@ TOOLS=[('pdf-tools','PDF Merge, Split & JPG to PDF','Combine PDFs, extract pages
 ('policy','Policy Generator','Plain-English privacy, terms and refund policy drafts.','business'),
 ('resume','Resume Bullet Improver','Turn plain duties into clear, results-focused resume bullets.','writing')]
 CATOF={t[0]:t[3] for t in TOOLS}
+import seo
+for _k,_v in FAQ.items():
+    _q=[x for x in seo.extra_faq(_k,'') if not (_k=='invoice' and 'free' in x[0])]
+    FAQ[_k]=(_v[0],_q+[x for x in _v[1]])
 FEATURED=['pdf-tools','image-compress','invoice','audio']
 apps={}
 apps['invoice']=page("Invoice & Receipt Generator","Make a clean, professional invoice or receipt in under a minute, then save it as a PDF.",
@@ -359,6 +363,7 @@ ENC+r"""const $=id=>document.getElementById(id);let buf=null,name='audio';
 $('f').onchange=async e=>{const f=e.target.files[0];if(!f)return;name=f.name.replace(/\.[^.]+$/,'');$('st').textContent='Reading audio track…';try{const ctx=new (window.AudioContext||window.webkitAudioContext)();buf=await ctx.decodeAudioData(await f.arrayBuffer());$('st').textContent=`Audio found: ${buf.duration.toFixed(1)} s, ${buf.numberOfChannels} channel(s). Ready to export.`;$('go').disabled=false}catch(x){$('st').textContent='No audio track could be decoded from this file in your browser.';$('go').disabled=true}};
 $('go').onclick=()=>{$('st').textContent='Encoding… this can take a moment for long videos.';setTimeout(()=>{try{const out=[];for(let c=0;c<Math.min(2,buf.numberOfChannels);c++)out.push(buf.getChannelData(c));const fm=$('fmt').value,b=fm==='mp3'?mp3(out,buf.sampleRate,+$('kb').value):wav(out,buf.sampleRate);window.lastExport=b;$('dl').href=URL.createObjectURL(b);$('dl').download=name+'.'+fm;$('dl').textContent=`Download ${name}.${fm} (${(b.size/1048576).toFixed(2)} MB)`;$('dl').hidden=false;$('st').textContent='Done.'}catch(x){$('st').textContent='Export failed: '+x.message}},30)};""",head='<script src="../vendor/lame.min.js" defer></script>')
 
+CSS+='.gwb-ty{display:flex;align-items:flex-start;gap:12px;margin:14px 0 0;padding:12px 14px;border:1px solid var(--line);border-left:4px solid var(--brand);border-radius:14px;background:var(--soft);color:var(--ink);font-size:.95rem;line-height:1.5}.gwb-ty p{margin:0;flex:1}.gwb-ty a{color:var(--brand-d);font-weight:600;white-space:nowrap}.gwb-ty .gwb-ty-x{box-shadow:none;padding:0;margin:0;flex:none;min-width:32px;min-height:32px;border:0;border-radius:10px;background:transparent;color:var(--muted);font-size:1.2rem;cursor:pointer}.gwb-ty .gwb-ty-x:hover,.gwb-ty .gwb-ty-x:focus-visible{background:#fff;color:var(--ink)}@media print{.gwb-ty{display:none}}'
 open('style.css','w').write(CSS)
 for k,v in apps.items():
     v=v.replace('{{ICON}}',icon(k)).replace('{{CATCLS}}','cat-'+CATOF[k]).replace('{{CATNAME}}',CATS[CATOF[k]]).replace('{{CAT}}',CATOF[k]).replace('{{ADIN}}',ADIN).replace('{{FAQ}}',faqhtml(k));v=re.sub(r'<label>([^<]*)</label>(\s*)<(input|textarea|select) id="([^"]+)"',r'<label for="\4">\1</label>\2<\3 id="\4"',v);os.makedirs(k,exist_ok=True);open(f'{k}/index.html','w').write(v)
@@ -371,12 +376,12 @@ chips='<button class="chip" aria-pressed="true" data-cat="all">All tools</button
 HUBJS=r"""if(new URLSearchParams(location.search).get('thanks')==='1'){const t=document.getElementById('thanks');t.hidden=false;document.getElementById('thanks-x').onclick=()=>{t.hidden=true;history.replaceState(null,'',location.pathname+location.hash)}}
 const q=document.getElementById('q'),tiles=[...document.querySelectorAll('#all .tile')],chips=[...document.querySelectorAll('.chip')],cnt=document.getElementById('cnt');let cat='all';
 function f(){const s=q.value.trim().toLowerCase();let n=0;tiles.forEach(t=>{const ok=(cat==='all'||t.dataset.cat===cat)&&(!s||s.split(/\s+/).every(w=>t.dataset.name.includes(w)));t.hidden=!ok;if(ok)n++});cnt.textContent=n?`Showing ${n} tool${n>1?'s':''}`:'No tools match. Try another word or category.'}
-chips.forEach(c=>c.onclick=()=>{cat=c.dataset.cat;chips.forEach(x=>x.setAttribute('aria-pressed',x===c));f()});q.addEventListener('input',()=>{f();if(q.value&&location.hash!=='#tools')document.getElementById('tools').scrollIntoView({block:'start'})});const pc=new URLSearchParams(location.search).get('cat');if(pc){const c=chips.find(x=>x.dataset.cat===pc);if(c){cat=pc;chips.forEach(x=>x.setAttribute('aria-pressed',x===c))}}q.form&&(q.form.onsubmit=e=>{e.preventDefault();document.getElementById('tools').scrollIntoView()});f();
+chips.forEach(c=>c.onclick=()=>{cat=c.dataset.cat;chips.forEach(x=>x.setAttribute('aria-pressed',x===c));f()});q.addEventListener('input',()=>{f();if(q.value&&location.hash!=='#tools')document.getElementById('tools').scrollIntoView({block:'start'})});const pq=new URLSearchParams(location.search).get('q');if(pq)q.value=pq;const pc=new URLSearchParams(location.search).get('cat');if(pc){const c=chips.find(x=>x.dataset.cat===pc);if(c){cat=pc;chips.forEach(x=>x.setAttribute('aria-pressed',x===c))}}q.form&&(q.form.onsubmit=e=>{e.preventDefault();document.getElementById('tools').scrollIntoView()});f();
 /* Real reviews go in reviews.json: [{"tool":"Invoice Generator","rating":5,"text":"...","author":"optional"}] */
 fetch('reviews.json').then(r=>r.json()).then(a=>{if(!a.length)return;const e=s=>String(s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));document.getElementById('revlist').innerHTML=a.map(r=>`<figure class="out" style="white-space:normal;margin:0 0 14px"><figcaption><strong>${e(r.tool)}</strong> <span aria-label="${+r.rating||0} out of 5 stars">${'★'.repeat(+r.rating||0)}</span></figcaption><blockquote style="margin:8px 0">${e(r.text)}</blockquote>${r.author?'<small>— '+e(r.author)+'</small>':''}</figure>`).join('')}).catch(()=>{});"""
 HUB=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>x</title><meta name="description" content="x"><link rel="stylesheet" href="style.css"></head><body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="site"><nav class="bar" aria-label="Main"><a href="index.html" aria-label="GWB: Greater World Business, home">{BRAND}</a><ul><li><a href="#featured">Featured</a></li><li><a href="#tools">All tools</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#support">Support</a></li></ul></nav>
+<header class="site"><nav class="bar" aria-label="Main"><a href="index.html" >{BRAND}<span class="vh">, home</span></a><ul><li><a href="#featured">Featured</a></li><li><a href="#tools">All tools</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#support">Support</a></li></ul></nav>
 <div class="hero"><p class="eyebrow">{len(TOOLS)} free tools · Private · No signup</p><h1>Your one-stop shop for small business tools</h1><p>Invoices, PDFs, images, audio, calculators and more. Everything runs in your browser, so your files never leave your device.</p>
 <form class="search" role="search" onsubmit="return false"><label for="q" class="vh">Search tools</label><input id="q" type="search" placeholder="Search tools, e.g. PDF, invoice, ringtone" autocomplete="off"></form></div></header>
 <div class="thanks" id="thanks" hidden><div role="status"><span>Thank you for supporting GWB! Your tip keeps these tools free.</span><button type="button" id="thanks-x" aria-label="Dismiss thank-you message">Dismiss</button></div></div>
@@ -447,7 +452,15 @@ if(st.q){inp.value=st.q;ask(st.q);live.textContent=''}if(st.open)setOpen(true,fa
 const upd=()=>{top.hidden=scrollY<innerHeight*0.9};addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
 top.addEventListener('click',()=>{const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;scrollTo({top:0,behavior:rm?'auto':'smooth'});const t=document.getElementById('main')||document.querySelector('h1');if(t){if(!t.hasAttribute('tabindex'))t.setAttribute('tabindex','-1');t.focus({preventScroll:true})}});
 window.gwbAsk=ask;window.gwbOpen=setOpen})();""".replace('__TD__',_j.dumps(TD)).replace('__PANEL__',_j.dumps(HELPER))
-open('helper.js','w').write(HELPERJS)
+TYJS=r'''
+(()=>{const slug=location.pathname.split('/').filter(Boolean).pop()||'';if(!slug||!document.querySelector('main'))return;const K='gwb-ty-'+slug;
+const RX=/download|copy|generate|convert|export|save|create|merge|extract|compress|improve|make/i;
+document.addEventListener('click',e=>{const el=e.target.closest('button,a[download]');if(!el||el.closest('.gwb-help,.gwb-ty,nav,header,footer')||!RX.test(el.textContent+' '+(el.getAttribute('aria-label')||'')))return;
+try{if(sessionStorage.getItem(K))return;sessionStorage.setItem(K,'1')}catch(_){}
+setTimeout(()=>{const box=document.createElement('div');box.className='gwb-ty noprint';box.setAttribute('role','status');box.setAttribute('aria-live','polite');
+box.innerHTML='<p>Thanks for using GWB! If this helped, you can <a href="https://buy.stripe.com/7sY6oGgJR5Vh3MabNQ3F600" target="_blank" rel="noopener">leave a tip</a> or <a href="https://buy.stripe.com/4gM8wOeBJ5VhfuS9FI3F601" target="_blank" rel="noopener">become a supporter</a>.</p><button type="button" class="gwb-ty-x" aria-label="Dismiss thank-you note">\u00d7</button>';
+const host=el.closest('.card,section')||el.parentElement;host.appendChild(box);box.querySelector('.gwb-ty-x').onclick=()=>{box.remove();el.focus&&el.focus()}},600)},true)})();'''
+open('helper.js','w').write(HELPERJS+TYJS)
 HUB=HUB.replace('</body></html>','<script src="helper.js" data-base="" defer></script></body></html>')
 
 open('index.html','w').write(HUB)
@@ -455,7 +468,7 @@ open('index.html','w').write(HUB)
 def infopage(slug,title,lead,body):
     v=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>x</title><meta name="description" content="x"><link rel="stylesheet" href="../style.css"></head><body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="site"><nav class="bar" aria-label="Main"><a href="../index.html" aria-label="GWB: Greater World Business, home">{BRAND}</a><ul><li><a href="../index.html#tools">All tools</a></li><li><a href="../about/">About</a></li><li><a href="../contact/">Contact</a></li></ul></nav>
+<header class="site"><nav class="bar" aria-label="Main"><a href="../index.html" >{BRAND}<span class="vh">, home</span></a><ul><li><a href="../index.html#tools">All tools</a></li><li><a href="../about/">About</a></li><li><a href="../contact/">Contact</a></li></ul></nav>
 <div class="hero"><nav aria-label="Breadcrumb" class="crumbs"><ol><li><a href="../index.html">Home</a></li><li aria-current="page">{title}</li></ol></nav><h1>{title}</h1><p>{lead}</p></div></header>
 <div class="layout"><main id="main"><section class="card prose" aria-label="{title}">{body}</section></main><!--RAIL--></div>
 {FOOTER.replace('HREFBASE','../')}<script src="../helper.js" data-base="../" defer></script></body></html>"""
@@ -487,7 +500,7 @@ infopage('terms','Terms of Use','The rules for using GWB tools and this website.
 <h2>Changes and contact</h2><p>We may update these terms from time to time. Continued use of the site means you accept the updated terms. Questions: <a href="mailto:ozor.inc@gmail.com">ozor.inc@gmail.com</a>.</p>""")
 
 # ---- SEO + ad slot post-processing ----
-BASE="https://greaterworldmedia.com/"  # change if the final Pages URL differs
+BASE="https://greaterworldmedia.tech/"  # change if the final Pages URL differs
 META={'':('GWB | Free tools for small businesses','Free, private, in-browser tools for freelancers and small businesses: invoices, resume bullets, meeting costs, QR codes, policy templates and audio trimming.','BusinessApplication'),
 'invoice/':('Free Invoice & Receipt Generator (PDF) | GWB','Create professional invoices and receipts in your browser and save them as PDF. Free, private, no signup.','BusinessApplication'),
 'resume/':('Resume Bullet Improver: Free Achievement Bullet Writer | GWB','Turn plain job duties into clear, quantified resume bullets with recruiter-tested templates. Free and private.','BusinessApplication'),
@@ -509,29 +522,28 @@ NEWMETA={'':('GWB: Greater World Business | Free Small Business Tools','Your one
 NEWMETA={(k+'/' if k else k):v for k,v in NEWMETA.items()}
 
 META.update(NEWMETA)
+META.update(seo.META)
 INFO={'about/':('About GWB: Greater World Business','About GWB, the one-stop shop for free, private, in-browser small business tools.','x'),'contact/':('Contact GWB','Contact GWB with questions, feedback, tool ideas or bug reports at ozor.inc@gmail.com.','x'),'privacy/':('Privacy Policy | GWB','How GWB handles information, cookies, analytics, advertising and payments.','x'),'terms/':('Terms of Use | GWB','Terms of use for GWB tools and website.','x')}
 META.update(INFO)
 AD='''<aside class="rail noprint" aria-label="Advertisement (sidebar)"><span class="ad-label">Advertisement</span><div class="ad-slot">
 <!-- AD SLOT: paste the AdSense <ins class="adsbygoogle" ...> unit (or another network's code) here. Desktop: 300x600 right rail; mobile: 100px inline.
      Never trigger ads on clicks or downloads. Load the network script once in <head> where marked AD-SCRIPT. Add /ads.txt at the site root after approval. --></div></aside>'''
 import json
+exec(open('seo_build.py').read())
 for path,(t,d,cat) in META.items():
     f=(path or '')+'index.html';h=open(f).read();url=BASE+path
     h=re.sub(r'<title>.*?</title><meta name="description" content="[^"]*">','',h,count=1)
-    ld=[{"@context":"https://schema.org","@type":"WebApplication","name":t.split(' | ')[0],"url":url,"description":d,"applicationCategory":cat,"operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"GWB","email":"ozor.inc@gmail.com"}}]
-    if path in INFO: ld=[{"@context":"https://schema.org","@type":"WebPage","name":t,"url":url,"description":d,"publisher":{"@type":"Organization","name":"GWB: Greater World Business"}}]
-    elif path.rstrip('/') in FAQ: ld.append({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in FAQ[path.rstrip('/')][1]]})
-    if not path: ld=[{"@context":"https://schema.org","@type":"Organization","name":"GWB: Greater World Business","alternateName":"GWB","url":url,"email":"ozor.inc@gmail.com"},{"@context":"https://schema.org","@type":"WebSite","name":"GWB: Greater World Business","url":url}]
+    ld=seo_ld(path,t,d,cat,url)
     head=f'''<title>{t}</title><meta name="description" content="{d}"><link rel="canonical" href="{url}"><meta name="theme-color" content="#2a2190">
-<meta property="og:type" content="website"><meta property="og:site_name" content="GWB"><meta property="og:title" content="{t}"><meta property="og:description" content="{d}"><meta property="og:url" content="{url}">
-<meta name="twitter:card" content="summary"><meta name="twitter:title" content="{t}"><meta name="twitter:description" content="{d}">
-<script type="application/ld+json">{json.dumps(ld if len(ld)>1 else ld[0])}</script>
+<meta property="og:type" content="website"><meta property="og:site_name" content="GWB"><meta property="og:title" content="{t}"><meta property="og:description" content="{d}"><meta property="og:url" content="{url}"><meta property="og:image" content="{BASE}og/{path.rstrip('/') or 'home'}.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="{t}">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="{BASE}og/{path.rstrip('/') or 'home'}.png"><meta name="twitter:title" content="{t}"><meta name="twitter:description" content="{d}">
+<script type="application/ld+json">{json.dumps({'@context':'https://schema.org','@graph':ld},ensure_ascii=False)}</script>
 <!-- ANALYTICS: paste ONE analytics snippet here (recommended: GoatCounter, e.g. <script data-goatcounter="https://YOURCODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>) -->
 <!-- CONSENT: Google requires a certified CMP for EEA/UK/CH visitors. Use AdSense > Privacy & messaging (Google's CMP); it shows a small consent banner only in those regions. No custom popup needed. -->
 <!-- AD-SCRIPT --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9780755121157050" crossorigin="anonymous"></script>'''
     h=h.replace('<meta name="viewport" content="width=device-width,initial-scale=1">','<meta name="viewport" content="width=device-width,initial-scale=1">'+head,1)
     h=h.replace('<!--RAIL-->',AD,1)
     open(f,'w').write(h)
-open('sitemap.xml','w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{BASE+p}</loc><changefreq>monthly</changefreq></url>\n' for p in META)+'</urlset>\n')
-open('robots.txt','w').write(f'User-agent: *\nAllow: /\nSitemap: {BASE}sitemap.xml\n')
+open('sitemap.xml','w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{BASE+p}</loc><lastmod>{LASTMOD}</lastmod><changefreq>monthly</changefreq></url>\n' for p in META)+'</urlset>\n')
+write_extras()
 open('ads.txt','w').write('google.com, pub-9780755121157050, DIRECT, f08c47fec0942fa0\n')

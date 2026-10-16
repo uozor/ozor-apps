@@ -13,3 +13,6 @@ jobs:
         with: {path: .}
       - id: d
         uses: actions/deploy-pages@v4
+      - name: Ping IndexNow (Bing, Yandex) with sitemap URLs
+        continue-on-error: true
+        run: sleep 30 && python3 scripts/indexnow.py

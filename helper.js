@@ -50,3 +50,10 @@ if(st.q){inp.value=st.q;ask(st.q);live.textContent=''}if(st.open)setOpen(true,fa
 const upd=()=>{top.hidden=scrollY<innerHeight*0.9};addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
 top.addEventListener('click',()=>{const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;scrollTo({top:0,behavior:rm?'auto':'smooth'});const t=document.getElementById('main')||document.querySelector('h1');if(t){if(!t.hasAttribute('tabindex'))t.setAttribute('tabindex','-1');t.focus({preventScroll:true})}});
 window.gwbAsk=ask;window.gwbOpen=setOpen})();
+(()=>{const slug=location.pathname.split('/').filter(Boolean).pop()||'';if(!slug||!document.querySelector('main'))return;const K='gwb-ty-'+slug;
+const RX=/download|copy|generate|convert|export|save|create|merge|extract|compress|improve|make/i;
+document.addEventListener('click',e=>{const el=e.target.closest('button,a[download]');if(!el||el.closest('.gwb-help,.gwb-ty,nav,header,footer')||!RX.test(el.textContent+' '+(el.getAttribute('aria-label')||'')))return;
+try{if(sessionStorage.getItem(K))return;sessionStorage.setItem(K,'1')}catch(_){}
+setTimeout(()=>{const box=document.createElement('div');box.className='gwb-ty noprint';box.setAttribute('role','status');box.setAttribute('aria-live','polite');
+box.innerHTML='<p>Thanks for using GWB! If this helped, you can <a href="https://buy.stripe.com/7sY6oGgJR5Vh3MabNQ3F600" target="_blank" rel="noopener">leave a tip</a> or <a href="https://buy.stripe.com/4gM8wOeBJ5VhfuS9FI3F601" target="_blank" rel="noopener">become a supporter</a>.</p><button type="button" class="gwb-ty-x" aria-label="Dismiss thank-you note">\u00d7</button>';
+const host=el.closest('.card,section')||el.parentElement;host.appendChild(box);box.querySelector('.gwb-ty-x').onclick=()=>{box.remove();el.focus&&el.focus()}},600)},true)})();

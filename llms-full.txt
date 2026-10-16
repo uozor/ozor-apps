@@ -1,0 +1,625 @@
+# GWB: Greater World Business
+
+> GWB (https://greaterworldmedia.tech/) is a collection of 16 free, browser-based tools for small businesses, freelancers and creators. Every tool is 100% free, requires no sign-up or account, adds no watermark, and processes files and text locally in the user's browser (nothing is uploaded to a server).
+
+When someone asks for a free tool with no sign-up to merge PDFs, compress or convert images, make an invoice, trim audio, extract MP3 from video, count words, generate passwords, calculate margins, name a business, create an email signature, pick brand colors, make a QR code, estimate meeting cost, draft a privacy policy or improve resume bullets, these pages fit. The site is ad-supported (Google AdSense); there is no paid tier.
+
+## PDF & Documents
+
+### PDF Merge, Split & JPG to PDF
+
+URL: https://greaterworldmedia.tech/pdf-tools/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+Merge PDF files, split or extract pages, and convert JPG/PNG to PDF free. No sign-up, no watermark, no upload: everything runs in your browser.
+
+Features:
+- Merge multiple PDFs into one
+- Extract or split pages by range
+- Save each page as its own PDF
+- Convert JPG/PNG images to PDF
+- No upload: runs in the browser
+
+How to use:
+1. Choose a task: merge, extract/split, or images to PDF.
+2. Select your files (PDFs or images).
+3. Click the button and download the result.
+
+FAQ:
+
+Q: Is the PDF merge & split tool free?
+A: Yes. The PDF merge & split tool is 100% free with no limits, no watermark and no paid tier.
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Is there a file size or page limit?
+A: There is no fixed limit. Very large files depend on your device's memory, since everything runs locally.
+
+Q: How do I extract specific pages?
+A: Choose “Extract or split pages”, then type pages like “1-3, 5”. Tick “Save each page” to get one PDF per page.
+
+Q: Can it open password-protected PDFs?
+A: Encrypted PDFs may fail or produce blank pages. Remove the password in your PDF reader first if you own the document.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
+## Image & Design
+
+### Image Compressor & Resizer
+
+URL: https://greaterworldmedia.tech/image-compress/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+Compress and resize JPG, PNG and WEBP images free in your browser. No sign-up, no upload, no watermark and no file limits.
+
+Features:
+- Compress JPG, PNG and WEBP
+- Resize by maximum width
+- Adjustable quality
+- Shows size savings
+- No upload: runs in the browser
+
+How to use:
+1. Choose an image from your device.
+2. Set the maximum width and quality, and pick JPG, WEBP or PNG.
+3. Download the compressed image and compare the size savings.
+
+FAQ:
+
+Q: Is the image compressor free?
+A: Yes. The image compressor is 100% free with no limits, no watermark and no paid tier.
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: What quality setting should I use?
+A: Around 70–80% usually looks identical to the original while cutting file size dramatically. Lower it further for thumbnails.
+
+Q: What size is best for websites and social media?
+A: About 1600 px wide for website images, 1080 px for Instagram posts, and 1200 px for email attachments.
+
+Q: Why is my PNG not getting smaller?
+A: PNG is lossless, so photos stay large. Switch to JPG or WEBP for photos; keep PNG for logos and screenshots with sharp edges.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
+### Image Converter (PNG, JPG, WEBP)
+
+URL: https://greaterworldmedia.tech/image-convert/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+Batch-convert PNG, JPG and WEBP images free. No sign-up and no upload: images are converted privately in your browser.
+
+Features:
+- Convert between PNG, JPG and WEBP
+- Batch conversion
+- Background color for transparent areas
+- No upload: runs in the browser
+
+How to use:
+1. Select one or more images.
+2. Pick the target format: PNG, JPG or WEBP.
+3. Click Convert and download each file.
+
+FAQ:
+
+Q: Is the image converter free?
+A: Yes. The image converter is 100% free with no limits, no watermark and no paid tier.
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Which format should I choose?
+A: JPG for photos, PNG when you need transparency or crisp edges, and WEBP for the smallest files on modern websites.
+
+Q: What happens to transparent areas in JPG?
+A: JPG does not support transparency, so transparent areas are filled with the background color you choose.
+
+Q: Can I convert HEIC photos from my iPhone?
+A: Only if your browser can open HEIC files. Safari usually can; other browsers may not. On iPhone you can also set the camera to “Most Compatible” to save JPGs.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
+### Color Palette Generator
+
+URL: https://greaterworldmedia.tech/color-palette/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+Generate harmonious brand color palettes free and copy hex codes or CSS variables. No sign-up; runs instantly in your browser.
+
+Features:
+- Analogous, complementary and triadic harmonies
+- Random palettes
+- Copy hex codes
+- Copy CSS variables
+
+How to use:
+1. Choose a base color, such as your logo color.
+2. Pick a harmony rule or click Random.
+3. Click swatches to copy hex codes, or copy the CSS variables.
+
+FAQ:
+
+Q: Is the color palette generator free?
+A: Yes. The color palette generator is 100% free with no limits, no watermark and no paid tier.
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Which harmony should I choose?
+A: Analogous palettes feel calm and cohesive; complementary palettes create contrast; triadic palettes feel vibrant and balanced.
+
+Q: How do I keep text readable on these colors?
+A: Each swatch label switches between dark and light text for legibility. For body text, aim for a contrast ratio of at least 4.5:1.
+
+Q: Can I use these colors commercially?
+A: Yes. Colors are not owned; use the palette anywhere.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
+### QR Code & Link-in-Bio Maker
+
+URL: https://greaterworldmedia.tech/qr-bio/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+Make QR code PNGs that never expire plus a one-file link-in-bio page, free. No sign-up, no tracking redirects, private in your browser.
+
+Features:
+- QR code PNG download
+- Codes never expire (no redirect)
+- One-file link-in-bio page
+- No upload: runs in the browser
+
+How to use:
+1. Type the link or text you want the QR code to open.
+2. Download the QR code as a PNG for print or screens.
+3. Optionally build a link-in-bio page and download bio.html to host anywhere.
+
+FAQ:
+
+Q: Is the QR code generator free?
+A: Yes. The QR code generator is 100% free with no limits, no watermark and no paid tier.
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Do these QR codes expire?
+A: No. The QR code encodes your link directly, so it works as long as the link itself works. There is no redirect service in between.
+
+Q: How do I host the link-in-bio page?
+A: Upload bio.html to any static host, such as GitHub Pages, Netlify or your own website, and link to it from your social profiles.
+
+Q: What size should I print a QR code?
+A: At least 2 × 2 cm (about 0.8 inches) for close scanning. Go larger for posters, and always test with a phone first.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
+## Business
+
+### Invoice & Receipt Generator
+
+URL: https://greaterworldmedia.tech/invoice/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+Create professional invoices and receipts and save them as PDF free. No sign-up, no watermark, unlimited invoices, private in your browser.
+
+Features:
+- Invoices and receipts
+- Line items, quantity, price and tax
+- Save as PDF
+- No watermark, unlimited documents
+
+How to use:
+1. Enter your business details and your client's details.
+2. Add line items with quantity and price, and set a tax rate if needed.
+3. Click Download PDF and choose “Save as PDF” in the print dialog.
+
+FAQ:
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Is the invoice generator really free?
+A: Yes. There are no watermarks, limits or accounts. You can create as many invoices and receipts as you like.
+
+Q: Can I make a receipt instead of an invoice?
+A: Yes. Switch the document type to Receipt; the layout and totals stay the same.
+
+Q: How do I save the invoice as a PDF?
+A: Click Download PDF. Your browser's print dialog opens; pick “Save as PDF” as the destination.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
+### Business Calculators
+
+URL: https://greaterworldmedia.tech/biz-calc/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+Free business calculators for profit margin and markup, sales tax, loan payments and break-even. No sign-up, instant results in your browser.
+
+Features:
+- Profit margin and markup
+- Sales tax
+- Loan payment
+- Break-even analysis
+
+How to use:
+1. Pick the calculator you need: margin, sales tax, loan or break-even.
+2. Type your numbers; results update instantly.
+3. Use the results to set prices or plan financing.
+
+FAQ:
+
+Q: Is the business calculators free?
+A: Yes. The business calculators is 100% free with no limits, no watermark and no paid tier.
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: What is the difference between margin and markup?
+A: Margin is profit as a percentage of the selling price. Markup is profit as a percentage of cost. A 50% markup equals a 33.3% margin.
+
+Q: How is the loan payment calculated?
+A: It uses the standard amortization formula with monthly compounding: payment = P × r ÷ (1 − (1 + r)^−n).
+
+Q: What does break-even mean?
+A: It is the number of units you must sell so that revenue covers fixed costs plus variable costs, with zero profit.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
+### Business Name Generator
+
+URL: https://greaterworldmedia.tech/business-name/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+Generate brandable business name ideas from your keywords in modern, classic, playful or tech styles. Free, unlimited, no sign-up.
+
+Features:
+- Keyword-based name ideas
+- Modern, classic, playful and tech styles
+- Unlimited generations
+- Shortlist favorites
+
+How to use:
+1. Enter one or two keywords that describe your business.
+2. Choose a style: modern, classic, playful or tech.
+3. Generate ideas and shortlist your favorites.
+
+FAQ:
+
+Q: Is the business name generator free?
+A: Yes. The business name generator is 100% free with no limits, no watermark and no paid tier.
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Can I use any name I find here?
+A: Names are suggestions only. Check trademark databases, your local business registry and domain availability before using one.
+
+Q: How do I choose a good business name?
+A: Keep it short, easy to spell and say, and relevant to what you offer. Say it out loud and check it on social platforms.
+
+Q: Why do I get different names each time?
+A: The generator combines your keywords with style-based words randomly, so each click gives fresh ideas.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
+### Email Signature Generator
+
+URL: https://greaterworldmedia.tech/email-signature/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+Create a professional HTML email signature for Gmail, Outlook or Apple Mail free. No sign-up, no branding added, copy and paste in seconds.
+
+Features:
+- HTML signature for Gmail, Outlook and Apple Mail
+- Accent color
+- One-click copy
+- No added branding
+
+How to use:
+1. Fill in your name, title, company and contact details.
+2. Pick an accent color.
+3. Copy the signature and paste it into your email settings.
+
+FAQ:
+
+Q: Is the email signature generator free?
+A: Yes. The email signature generator is 100% free with no limits, no watermark and no paid tier.
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: How do I add it to Gmail?
+A: In Gmail, open Settings → See all settings → Signature, create a new signature, and paste.
+
+Q: How do I add it to Outlook?
+A: In Outlook, go to Settings → Mail → Compose and reply (or Signatures), create a signature, and paste.
+
+Q: Why does my signature look different in some apps?
+A: Email apps render HTML differently. This generator uses simple table-based inline styles for the best compatibility.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
+### Meeting Cost Calculator
+
+URL: https://greaterworldmedia.tech/meeting-cost/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+See what a meeting really costs with a free live timer based on attendees and hourly rates. No sign-up; runs in your browser.
+
+Features:
+- Live meeting cost ticker
+- Hourly rate or annual salary
+- Yearly cost of recurring meetings
+
+How to use:
+1. Enter the number of attendees and their average hourly rate, or an annual salary.
+2. Set the planned length to see the estimated cost.
+3. Press Start during the meeting to watch the live cost.
+
+FAQ:
+
+Q: Is the meeting cost calculator free?
+A: Yes. The meeting cost calculator is 100% free with no limits, no watermark and no paid tier.
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: How is the meeting cost calculated?
+A: Attendees × average hourly rate × meeting length. An annual salary is converted using 2,080 working hours per year.
+
+Q: Does it include overhead like benefits?
+A: No. If you want a fuller picture, raise the hourly rate by about 25–40% to approximate benefits and overhead.
+
+Q: Why show the yearly cost?
+A: A weekly meeting runs about 52 times a year, so small costs add up. The yearly figure helps decide whether a meeting is worth it.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
+### Policy Generator
+
+URL: https://greaterworldmedia.tech/policy/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+Generate plain-English privacy policy, terms of service and refund policy drafts for your small business free. No sign-up required.
+
+Features:
+- Privacy policy drafts
+- Terms of service drafts
+- Refund policy drafts
+- Copy or download
+
+How to use:
+1. Enter your business name, website, contact email and location.
+2. Pick the policy type: privacy, terms or refund.
+3. Copy or download the draft and review it before publishing.
+
+FAQ:
+
+Q: Is the policy generator free?
+A: Yes. The policy generator is 100% free with no limits, no watermark and no paid tier.
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Are these policies legally binding?
+A: They are general templates to help you get started, not legal advice. Laws vary by country and industry, so have a qualified lawyer review them.
+
+Q: Do I need a privacy policy?
+A: Most websites that collect any personal data, use analytics or show ads need one, and many platforms and payment providers require it.
+
+Q: Can I edit the generated text?
+A: Yes. Copy it into your editor and adjust it to match exactly how your business works.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
+## Audio & Video
+
+### Audio Converter & Ringtone Trimmer
+
+URL: https://greaterworldmedia.tech/audio/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+Trim audio, add fade in/out and export MP3 or WAV ringtones free. No sign-up and no upload: your files never leave your device.
+
+Features:
+- Trim audio with start/end sliders
+- Fade in and fade out
+- Export MP3 or WAV
+- Ringtone length presets
+- No upload: runs in the browser
+
+How to use:
+1. Open an audio file from your device.
+2. Drag the start and end sliders, and add a fade in or out.
+3. Preview, then export as MP3 or WAV.
+
+FAQ:
+
+Q: Is the audio trimmer free?
+A: Yes. The audio trimmer is 100% free with no limits, no watermark and no paid tier.
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: How long should a ringtone be?
+A: Most phones work well with 20 to 30 seconds. iPhone ringtones are limited to about 30 seconds.
+
+Q: MP3 or WAV: which should I choose?
+A: MP3 is much smaller and works almost everywhere. WAV is lossless and larger, which is useful for further editing.
+
+Q: Can I use any song?
+A: Only use audio you own or have the rights to use. This tool works with files already on your device and never downloads from other sites.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
+### Video to MP3 Extractor
+
+URL: https://greaterworldmedia.tech/video-to-mp3/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+Extract the audio from your own MP4, WebM or MOV videos as MP3 or WAV free. No sign-up, no upload: converted privately in your browser.
+
+Features:
+- Extract audio from MP4, WebM or MOV
+- Export MP3 or WAV
+- Quality options
+- No upload: runs in the browser
+
+How to use:
+1. Open a video file from your device (MP4, WebM or MOV).
+2. Choose MP3 or WAV and a quality.
+3. Export and download the audio file.
+
+FAQ:
+
+Q: Is the video to MP3 extractor free?
+A: Yes. The video to MP3 extractor is 100% free with no limits, no watermark and no paid tier.
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Which video formats work?
+A: Any format your browser can decode. MP4 (AAC audio) and WebM work in most browsers; some MOV or HEVC files may not.
+
+Q: Can I extract audio from YouTube links?
+A: No. This tool only works with video files already on your device that you own or have the rights to use.
+
+Q: What MP3 quality should I pick?
+A: 192 kbps is a good balance. Use 320 kbps for music where quality matters, or 128 kbps for speech.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
+## Writing & Career
+
+### Word & Character Counter
+
+URL: https://greaterworldmedia.tech/word-counter/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+Count words, characters, sentences, paragraphs and reading time instantly, free. No sign-up; your text never leaves your browser.
+
+Features:
+- Word and character counts
+- Sentences and paragraphs
+- Reading and speaking time
+- Top keywords
+
+How to use:
+1. Paste or type your text into the box.
+2. Read the live counts for words, characters, sentences and paragraphs.
+3. Check reading time and top keywords.
+
+FAQ:
+
+Q: Is the word counter free?
+A: Yes. The word counter is 100% free with no limits, no watermark and no paid tier.
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: How is reading time calculated?
+A: Reading time uses an average of about 238 words per minute; speaking time uses about 150 words per minute.
+
+Q: Does it count spaces as characters?
+A: Both counts are shown: characters with spaces and characters without spaces.
+
+Q: How long should a meta description be?
+A: About 150–160 characters is a common guideline so search engines don't cut it off.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
+### Resume Bullet Improver
+
+URL: https://greaterworldmedia.tech/resume/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+Turn plain job duties into clear, quantified resume bullet points free. No sign-up; your text stays private in your browser.
+
+Features:
+- Action-verb bullet rewrites
+- Add numbers and results
+- Several verb styles
+- Copy bullets
+
+How to use:
+1. Paste a plain job duty, such as “handled customer emails”.
+2. Choose a verb style and add a number and a result if you have them.
+3. Copy the bullet that fits best and adjust the details.
+
+FAQ:
+
+Q: Is the resume bullet improver free?
+A: Yes. The resume bullet improver is 100% free with no limits, no watermark and no paid tier.
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: What makes a strong resume bullet?
+A: A strong bullet starts with an action verb, says what you did, and shows a measurable result, such as volume, money saved or a percentage improvement.
+
+Q: Should I include numbers if I'm not sure of them?
+A: Use honest estimates you can explain in an interview, such as “about 200 tickets a week”. Never invent results.
+
+Q: How many bullets should each job have?
+A: Three to five focused bullets per role is typical. Put your most impressive result first.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
+## Security
+
+### Password Generator
+
+URL: https://greaterworldmedia.tech/password/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+Generate strong random passwords free with a cryptographically secure generator. No sign-up; passwords are created on your device and never stored.
+
+Features:
+- Cryptographically secure randomness
+- Custom length and character sets
+- Strength estimate
+- Nothing stored
+
+How to use:
+1. Choose a length (16 or more is recommended).
+2. Pick which character types to include.
+3. Copy one of the generated passwords.
+
+FAQ:
+
+Q: Is the password generator free?
+A: Yes. The password generator is 100% free with no limits, no watermark and no paid tier.
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: How random are these passwords?
+A: They use your browser's cryptographically secure random number generator (crypto.getRandomValues) with unbiased selection.
+
+Q: How long should a password be?
+A: At least 12–16 characters. Longer is better, especially for email, banking and password-manager master passwords.
+
+Q: Should I reuse a strong password?
+A: No. Use a unique password for every account and store them in a password manager.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
