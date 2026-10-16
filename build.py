@@ -1,49 +1,103 @@
 import os,re
 CSS="""
-:root{--ink:#16142b;--muted:#4a4f63;--brand:#3b30b8;--brand-d:#2a2190;--soft:#eef0fb;--line:#dfe2ee;--bg:#fafaf7;--card:#fff;--r:18px;
+:root{--ink:#14122b;--muted:#4b5065;--brand:#4b3fd6;--brand-d:#3324ad;--soft:#f0efff;--line:#e3e4ef;--bg:#f6f6fb;--card:#fff;--r:20px;--night:#15123a;
 --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;--serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.65;font-size:1.0625rem}
-h1,h2,h3{font-family:var(--serif);line-height:1.2;letter-spacing:-.01em;margin:0 0 .5em}h1{font-size:clamp(2.2rem,5vw,3.4rem)}h2{font-size:1.75rem}
-a{color:var(--brand)}.skip{position:absolute;left:-999px;top:8px;background:#fff;color:var(--ink);padding:10px 16px;border-radius:8px;z-index:10}.skip:focus{left:12px}
-:focus-visible{outline:3px solid #f59e0b;outline-offset:3px;border-radius:6px}
-.site{background:radial-gradient(1200px 500px at 80% -10%,#5b4fe0 0,transparent 60%),linear-gradient(160deg,#1b1748,#2a2190);color:#fff}
-.bar{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:18px 24px}.bar a{color:#fff;text-decoration:none;font-weight:600}
-.logo{font-family:var(--serif);font-size:1.4rem;letter-spacing:.02em}.bar ul{list-style:none;display:flex;gap:22px;margin:0;padding:0}.bar ul a{color:#e4e2ff}
-.hero{max-width:820px;margin:0 auto;padding:56px 24px 88px;text-align:center}.hero p{font-size:1.2rem;color:#ebeaff;margin:0 auto 28px;max-width:620px}
-main{max-width:1080px;margin:-48px auto 0;padding:0 24px 48px}section.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 10px 40px rgba(27,23,72,.07);padding:clamp(22px,4vw,44px);margin:0 0 32px}
-.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.8rem;font-weight:700;color:var(--brand);margin:0 0 6px}.lead{color:var(--muted);max-width:680px}
-label{display:block;font-weight:600;margin:14px 0 6px;font-size:.95rem}input,textarea,select{width:100%;padding:12px 14px;border:1.5px solid #8a90a6;border-radius:10px;font:inherit;background:#fff;color:var(--ink)}textarea{min-height:96px}
-input:focus,textarea:focus,select:focus{border-color:var(--brand)}.check{display:flex;gap:10px;align-items:center;font-weight:500}.check input{width:auto}
-button,.btn{display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:#fff;border:0;border-radius:999px;padding:12px 22px;font:inherit;font-weight:650;cursor:pointer;text-decoration:none;margin:14px 10px 0 0;transition:background .2s,transform .2s}
-button:hover,.btn:hover{background:var(--brand-d)}.btn.alt,button.alt{background:var(--soft);color:var(--brand-d)}.btn.alt:hover,button.alt:hover{background:#dfe2fb}.btn.light{background:#fff;color:var(--brand-d)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}.out{background:#f7f8fc;border:1px solid var(--line);border-radius:14px;padding:20px;white-space:pre-wrap;margin-top:18px}
-.price{border:1px solid var(--line);border-radius:16px;padding:26px;background:#fff}.price.feat{background:var(--soft);border-color:#c9cdf5}.big{font-family:var(--serif);font-size:2.2rem;font-weight:700;color:var(--brand-d)}
-.tile{border:1px solid var(--line);border-radius:16px;padding:24px;background:#fff;transition:transform .25s,box-shadow .25s}.tile:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(27,23,72,.1)}
-footer{text-align:center;padding:36px 24px;color:var(--muted);font-size:.95rem}
-/* reserved ad slot: fixed dimensions prevent layout shift */
-.ad{max-width:728px;margin:0 auto 32px;text-align:center}.ad-label{display:block;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}.ad-slot{width:100%;height:100px;border:1px dashed var(--line);border-radius:12px;background:#f3f4f8;overflow:hidden}
-@media(min-width:768px){.ad-slot{height:90px}}
+h1,h2,h3{font-family:var(--serif);line-height:1.18;letter-spacing:-.015em;margin:0 0 .5em}h1{font-size:clamp(2.2rem,5vw,3.5rem)}h2{font-size:1.8rem}h3{font-size:1.25rem}
+a{color:var(--brand-d)}.skip{position:absolute;left:-999px;top:8px;background:#fff;color:var(--ink);padding:10px 16px;border-radius:8px;z-index:10}.skip:focus{left:12px}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid #ffb020;outline-offset:3px;border-radius:6px}
+.site{position:relative;overflow:hidden;color:#fff;background-color:var(--night);background-image:radial-gradient(600px 320px at 8% -5%,rgba(255,106,61,.38),transparent 62%),radial-gradient(760px 420px at 92% 0%,rgba(124,92,255,.6),transparent 62%),radial-gradient(520px 300px at 50% 130%,rgba(0,190,200,.32),transparent 60%),linear-gradient(160deg,#15123a,#241b78)}
+.site::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1px);background-size:22px 22px;pointer-events:none;mask-image:linear-gradient(#000,transparent)}
+.bar{position:relative;z-index:1;max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 24px;flex-wrap:wrap}.bar a{color:#fff;text-decoration:none;font-weight:600}
+.brand{display:flex;gap:12px;align-items:center;line-height:1.1}.brand b{font-size:1.25rem;letter-spacing:.04em}.brand small{display:block;font-weight:500;font-size:.78rem;color:#dedbff}
+.bar ul{list-style:none;display:flex;gap:22px;margin:0;padding:0}.bar ul a{color:#ecebff}.bar ul a:hover{text-decoration:underline}
+.hero{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:44px 24px 96px;text-align:center}.hero p{font-size:1.18rem;color:#efeeff;margin:0 auto 26px;max-width:640px}
+.hero .eyebrow{color:#ffd9bf}.hero-ico{width:76px;height:76px;margin:0 auto 18px;border-radius:22px;display:grid;place-items:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);box-shadow:0 10px 30px rgba(0,0,0,.25)}.hero-ico svg{width:40px;height:40px}
+.ico svg,.hero-ico svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ico{flex:none;width:52px;height:52px;border-radius:16px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 8px 18px -6px var(--c2)}.ico svg{width:26px;height:26px}
+.cat-business{--c1:#ff8a3d;--c2:#e8366b}.cat-image{--c1:#1fb89c;--c2:#1a7fd0}.cat-docs{--c1:#ff5e5e;--c2:#b8307f}.cat-media{--c1:#9a6bff;--c2:#4b3fd6}.cat-writing{--c1:#3fa2ff;--c2:#4b3fd6}.cat-security{--c1:#2bb673;--c2:#0d7a5f}
+.layout{position:relative;z-index:2;max-width:1200px;margin:-56px auto 0;padding:0 24px 48px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start}
+@media(max-width:1000px){.layout{grid-template-columns:1fr}}
+section.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 1px 2px rgba(20,18,43,.04),0 18px 50px -20px rgba(36,27,120,.25);padding:clamp(22px,4vw,44px);margin:0 0 28px;overflow:hidden}
+section.card::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,#ff8a3d,#e8366b,#7c5cff,#1fb89c)}
+.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.8rem;font-weight:700;color:var(--brand-d);margin:0 0 6px}.lead{color:var(--muted);max-width:680px}
+label,legend{display:block;font-weight:600;margin:14px 0 6px;font-size:.95rem}fieldset{border:1px solid var(--line);border-radius:14px;padding:6px 18px 18px;margin:0}
+input,textarea,select{width:100%;padding:12px 14px;border:1.5px solid #858ba3;border-radius:12px;font:inherit;background:#fff;color:var(--ink);transition:border-color .2s,box-shadow .2s}textarea{min-height:110px}
+input:focus,textarea:focus,select:focus{border-color:var(--brand);box-shadow:0 0 0 4px rgba(75,63,214,.15)}input[type=range]{padding:0;border:0;box-shadow:none;accent-color:var(--brand)}input[type=color]{height:48px;padding:4px}
+.check{display:flex;gap:10px;align-items:center;font-weight:500}.check input{width:auto;accent-color:var(--brand)}
+button,.btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#5a4ce8,#3324ad);color:#fff;border:0;border-radius:999px;padding:12px 22px;font:inherit;font-weight:650;cursor:pointer;text-decoration:none;margin:14px 10px 0 0;box-shadow:0 8px 20px -10px #3324ad;transition:transform .2s,box-shadow .2s,background .2s}
+button:hover,.btn:hover{transform:translateY(-1px);box-shadow:0 12px 24px -10px #3324ad}button:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.btn.alt,button.alt{background:var(--soft);color:var(--brand-d);box-shadow:none}.btn.alt:hover,button.alt:hover{background:#e2e0ff}.btn.light{background:#fff;color:var(--brand-d)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}.out{background:#f7f8fc;border:1px solid var(--line);border-radius:14px;padding:20px;white-space:pre-wrap;margin-top:18px}
+.stat{background:#f7f8fc;border:1px solid var(--line);border-radius:14px;padding:14px 16px}.stat b{display:block;font-size:1.6rem;font-family:var(--serif);color:var(--brand-d)}
+.price{border:1px solid var(--line);border-radius:16px;padding:26px;background:#fff}.price.feat{background:linear-gradient(160deg,#f3f1ff,#fff2ec);border-color:#d6d1fb}.big{font-family:var(--serif);font-size:2.2rem;font-weight:700;color:var(--brand-d)}
+.tiles{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.tile{position:relative;display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);border-radius:18px;padding:22px;background:linear-gradient(180deg,#fff,#fbfbff);transition:transform .25s,box-shadow .25s,border-color .25s}
+.tile:hover,.tile:focus-within{transform:translateY(-4px);box-shadow:0 18px 40px -18px rgba(36,27,120,.35);border-color:#cfcaf7}.tile h3{margin:6px 0 0}.tile p{margin:0;color:var(--muted);font-size:.97rem}
+.tile a{text-decoration:none;color:var(--ink)}.tile a::after{content:"";position:absolute;inset:0;border-radius:18px}.tile .tag{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.featured{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;list-style:none;padding:0;margin:0}
+.feat-card{position:relative;border-radius:20px;padding:24px;color:#fff;background:radial-gradient(260px 160px at 100% 0%,var(--c1),transparent 70%),linear-gradient(160deg,#1d1752,#2b2190);overflow:hidden;transition:transform .25s}
+.feat-card:hover,.feat-card:focus-within{transform:translateY(-4px)}.feat-card h3{margin:14px 0 6px}.feat-card p{margin:0;color:#e6e4ff}.feat-card a{color:#fff;text-decoration:none}.feat-card a::after{content:"";position:absolute;inset:0}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 20px}.chip{margin:0;background:#fff;color:var(--ink);border:1.5px solid var(--line);box-shadow:none;padding:8px 16px}.chip[aria-pressed=true]{background:var(--brand-d);color:#fff;border-color:var(--brand-d)}
+.search{max-width:560px;margin:0 auto}.search input{border-radius:999px;padding:16px 22px;border:0;box-shadow:0 12px 30px rgba(0,0,0,.25)}.search label{color:#fff}
+.rail{position:sticky;top:20px}.ad-label{display:block;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;text-align:center}
+.ad-slot{width:300px;height:600px;margin:0 auto;border:1px dashed #c9cbe0;border-radius:14px;background:repeating-linear-gradient(45deg,#f3f3f9,#f3f3f9 10px,#f8f8fc 10px,#f8f8fc 20px);overflow:hidden}
+@media(max-width:1000px){.rail{position:static}.ad-slot{width:100%;max-width:728px;height:100px}}
+footer{text-align:center;padding:40px 24px;color:var(--muted);font-size:.95rem}footer .brand{justify-content:center;color:var(--ink);margin-bottom:8px}footer .brand small{color:var(--muted)}
 table{width:100%;border-collapse:collapse}td,th{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left}
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:16px}.swatch{margin:0;height:120px;border-radius:16px;display:flex;align-items:flex-end;justify-content:flex-start;padding:12px;font-weight:700;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
 @media (prefers-reduced-motion:no-preference){section.card,.hero>*{animation:rise .6s ease both}section.card:nth-of-type(2){animation-delay:.08s}section.card:nth-of-type(3){animation-delay:.16s}@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
-@media print{.site,.noprint,footer,#pricing{display:none!important}main{margin:0}body{background:#fff}section.card{box-shadow:none;border:0}}"""
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+@media print{.site,.noprint,footer,#pricing,.rail{display:none!important}.layout{display:block;margin:0}body{background:#fff}section.card{box-shadow:none;border:0}section.card::before{display:none}}"""
+LOGO='<svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><defs><linearGradient id="gwbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffa24c"/><stop offset=".55" stop-color="#e8366b"/><stop offset="1" stop-color="#7c5cff"/></linearGradient></defs><rect width="40" height="40" rx="12" fill="url(#gwbg)"/><circle cx="20" cy="20" r="11" fill="none" stroke="#fff" stroke-width="2.4"/><ellipse cx="20" cy="20" rx="4.8" ry="11" fill="none" stroke="#fff" stroke-width="2"/><path d="M9.5 16h21M9.5 24h21" stroke="#fff" stroke-width="1.8"/><circle cx="31" cy="9" r="3.2" fill="#fff"/></svg>'
+BRAND='<span class="brand">'+LOGO+'<span><b>GWB</b><small>Greater World Business</small></span></span>'
 def page(title,tagline,how,tool,js,head="",**k):
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{title} | Ozor</title><meta name="description" content="{tagline}"><link rel="stylesheet" href="../style.css">{head}</head><body>
+<title>{title} | GWB</title><meta name="description" content="{tagline}"><link rel="stylesheet" href="../style.css">{head}</head><body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="site"><nav class="bar noprint" aria-label="Main"><a class="logo" href="../index.html">Ozor</a><ul><li><a href="#tool">Tool</a></li><li><a href="#pricing">Pricing</a></li></ul></nav>
-<div class="hero"><p class="eyebrow" style="color:#d9d6ff">Free · Private · No signup</p><h1>{title}</h1><p>{tagline}</p><a class="btn light" href="#tool">Try it now</a></div></header>
-<main id="main"><section class="card noprint" aria-labelledby="h-how"><p class="eyebrow">How it works</p><h2 id="h-how">Three steps, zero setup</h2><p class="lead">{how}</p><p class="lead"><strong>Private by design:</strong> everything runs in your browser. Nothing is uploaded.</p></section>
+<header class="site"><nav class="bar noprint" aria-label="Main"><a href="../index.html" aria-label="GWB: Greater World Business, all tools">{BRAND}</a><ul><li><a href="../index.html#tools">All tools</a></li><li><a href="#tool">Use tool</a></li><li><a href="#pricing">Support</a></li></ul></nav>
+<div class="hero"><div class="hero-ico {{{{CATCLS}}}}">{{{{ICON}}}}</div><p class="eyebrow">{{{{CATNAME}}}} · Free · Private · No signup</p><h1>{title}</h1><p>{tagline}</p><a class="btn light" href="#tool">Use it now</a></div></header>
+<div class="layout"><main id="main"><section class="card noprint" aria-labelledby="h-how"><p class="eyebrow">How it works</p><h2 id="h-how">Simple, fast and private</h2><p class="lead">{how}</p><p class="lead"><strong>Private by design:</strong> everything runs in your browser. Your files and text never leave your device.</p></section>
 <section class="card" id="tool" aria-label="{title} tool">{tool}</section>
 <section class="card" id="pricing" aria-labelledby="h-price"><p class="eyebrow">Pricing</p><h2 id="h-price">Free forever. Tips welcome.</h2><div class="grid"><div class="price"><h3>Free forever</h3><div class="big">$0</div><p>Every feature, unlimited use, no account. That won't change.</p></div>
-<div class="price feat"><h3>Support this tool / Tip</h3><div class="big">Any amount</div><p>If this saved you time, a small tip helps keep it free, fast and ad-free.</p><a class="btn" id="support" href="#PAYMENT_LINK">Support this tool / Tip</a></div></div></section></main>
-<footer><p>&copy; 2026 Ozor · <a href="../index.html">All tools</a> · Contact: <a href="mailto:ozor.inc@gmail.com">ozor.inc@gmail.com</a></p></footer><script>{js}</script></body></html>"""
+<div class="price feat"><h3>Support this tool / Tip</h3><div class="big">Any amount</div><p>If this saved you time, a small tip helps keep GWB tools free and fast.</p><a class="btn" id="support" href="#PAYMENT_LINK">Support this tool / Tip</a></div></div></section></main>
+<!--RAIL--></div>
+<footer>{BRAND}<p>Your one-stop shop for small business tools · <a href="../index.html">All tools</a> · Contact: <a href="mailto:ozor.inc@gmail.com">ozor.inc@gmail.com</a></p><p>&copy; 2026 GWB: Greater World Business</p></footer><script>{js}</script></body></html>"""
+ICONS={'invoice':'<path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5M9 13h8M9 17h6"/>','resume':'<rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="9" r="3"/><path d="M7 18c1-3 9-3 10 0"/>',
+'meeting-cost':'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>','qr-bio':'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM21 14v7h-7"/>',
+'policy':'<path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/>','audio':'<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
+'image-compress':'<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/>','image-convert':'<path d="M4 8h14l-4-4M20 16H6l4 4"/>',
+'pdf-tools':'<path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5M9 14h6M12 11v6"/>','word-counter':'<path d="M4 7V5h16v2M12 5v14M9 19h6"/>','password':'<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4M12 15v2"/>',
+'biz-calc':'<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 6h8M8 11h1M12 11h1M16 11h0M8 15h1M12 15h1M16 15v4M8 19h1M12 19h1"/>','business-name':'<path d="M9 18h6M10 22h4M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/>',
+'email-signature':'<rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/>','color-palette':'<circle cx="12" cy="12" r="9"/><circle cx="8" cy="10" r="1.5"/><circle cx="12" cy="7" r="1.5"/><circle cx="16" cy="10" r="1.5"/><path d="M12 21a3 3 0 010-6h3"/>',
+'video-to-mp3':'<rect x="2" y="5" width="14" height="14" rx="2"/><path d="M16 10l6-3v10l-6-3"/>'}
+def icon(k): return '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">'+ICONS[k]+'</svg>'
+CATS={'business':'Business','image':'Image & Design','docs':'PDF & Documents','media':'Audio & Video','writing':'Writing & Career','security':'Security'}
+TOOLS=[('pdf-tools','PDF Merge, Split & JPG to PDF','Combine PDFs, extract pages, or turn images into a PDF.','docs'),
+('image-compress','Image Compressor & Resizer','Shrink JPG, PNG and WEBP images and resize them for the web.','image'),
+('image-convert','Image Converter (PNG, JPG, WEBP)','Batch-convert images between PNG, JPG and WEBP.','image'),
+('invoice','Invoice & Receipt Generator','Professional invoices and receipts, saved as PDF in a minute.','business'),
+('audio','Audio Converter & Ringtone Trimmer','Trim audio, add fades and export MP3 or WAV ringtones.','media'),
+('video-to-mp3','Video to MP3 Extractor','Pull the audio track out of your own video files as MP3 or WAV.','media'),
+('word-counter','Word & Character Counter','Count words, characters, sentences and reading time instantly.','writing'),
+('password','Password Generator','Strong, random passwords generated securely on your device.','security'),
+('biz-calc','Business Calculators','Profit margin, sales tax, loan payment and break-even in one place.','business'),
+('business-name','Business Name Generator','Brainstorm brandable business names from your keywords.','business'),
+('email-signature','Email Signature Generator','A clean, professional email signature you can paste anywhere.','business'),
+('color-palette','Color Palette Generator','Harmonious brand color palettes with ready-to-copy hex codes.','image'),
+('qr-bio','QR Code & Link-in-Bio Maker','QR codes plus a one-file link page you can host anywhere.','image'),
+('meeting-cost','Meeting Cost Calculator','A live ticker that shows what a meeting really costs.','business'),
+('policy','Policy Generator','Plain-English privacy, terms and refund policy drafts.','business'),
+('resume','Resume Bullet Improver','Turn plain duties into clear, results-focused resume bullets.','writing')]
+CATOF={t[0]:t[3] for t in TOOLS}
+FEATURED=['pdf-tools','image-compress','invoice','audio']
 apps={}
 apps['invoice']=page("Invoice & Receipt Generator","Make a clean, professional invoice or receipt in under a minute, then save it as a PDF.",
 "Fill in your business and client details, add line items, and click <i>Download PDF</i> (uses your browser's Save-as-PDF).",
 """<div class="grid noprint"><div><label>Document type</label><select id="dtype"><option>INVOICE</option><option>RECEIPT</option></select>
-<label>From (your business)</label><textarea id="from">Ozor Inc.
-ozor.inc@gmail.com</textarea></div><div><label>Bill to</label><textarea id="to">Client Name
+<label>From (your business)</label><textarea id="from">Your Business
+you@example.com</textarea></div><div><label>Bill to</label><textarea id="to">Client Name
 client@example.com</textarea>
 <label>Number</label><input id="num" value="INV-001"><label>Currency symbol</label><input id="cur" value="$"><label>Tax %</label><input id="tax" type="number" value="0"></div></div>
 <div class="noprint"><h3>Line items</h3><table id="items"><tr><th>Description</th><th>Qty</th><th>Price</th><th><span class="skip">Actions</span></th></tr></table><button class="alt" onclick="addRow()">+ Add item</button>
@@ -81,14 +135,14 @@ document.querySelectorAll('input').forEach(e=>e.addEventListener('input',plan));
 apps['qr-bio']=page("QR Code & Link-in-Bio Maker","Create a QR code and a shareable one-file link-in-bio page for your business, with no signup.",
 "Add your name, bio and links. Download a QR code PNG for any URL and a ready-to-host <code>bio.html</code> page.",
 """<h2>QR code</h2><label>URL or text</label><input id="qrtext" value="https://example.com"><div id="qr" style="margin-top:12px"></div><button onclick="qr()">Generate QR</button><button class="alt" onclick="dlQR()">Download PNG</button>
-<h2>Link-in-bio page</h2><div class="grid"><div><label>Name</label><input id="bname" value="Ozor"></div><div><label>Accent color</label><input id="bcol" type="color" value="#4338ca"></div></div><label>Bio</label><input id="bbio" value="Small tools for small businesses.">
+<h2>Link-in-bio page</h2><div class="grid"><div><label>Name</label><input id="bname" value="Your Brand"></div><div><label>Accent color</label><input id="bcol" type="color" value="#4338ca"></div></div><label>Bio</label><input id="bbio" value="Small tools for small businesses.">
 <label>Links (one per line: Label | URL)</label><textarea id="blinks">Website | https://example.com
 Email | mailto:ozor.inc@gmail.com</textarea><button onclick="bio(true)">Download bio.html</button><iframe title="Link-in-bio page preview" id="prev" style="width:100%;height:340px;border:1px solid #e2e8f0;border-radius:10px;margin-top:12px"></iframe>""",
 """function qr(){const q=qrcode(0,'M');q.addData(document.getElementById('qrtext').value);q.make();document.getElementById('qr').innerHTML=q.createImgTag(6,12,'QR code for '+document.getElementById('qrtext').value)}
 function dlQR(){qr();const img=document.querySelector('#qr img'),c=document.createElement('canvas');const go=()=>{c.width=img.width;c.height=img.height;c.getContext('2d').drawImage(img,0,0);const a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='qrcode.png';a.click()};img.complete?go():img.onload=go}
 const e=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function bio(dl){const g=id=>document.getElementById(id).value,col=g('bcol');const links=g('blinks').split('\\n').filter(l=>l.includes('|')).map(l=>{const[a,b]=l.split('|').map(s=>s.trim());return `<a href="${e(b)}" style="display:block;margin:10px auto;max-width:360px;padding:14px;border-radius:12px;background:${col};color:#fff;text-decoration:none;font-weight:600">${e(a)}</a>`}).join('');
-const h=`<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>${e(g('bname'))}</title></head><body style="font-family:system-ui;text-align:center;padding:40px 16px;background:#f6f7fb"><h1>${e(g('bname'))}</h1><p>${e(g('bbio'))}</p>${links}<p style="font-size:12px;color:#888;margin-top:30px">Made with Ozor</p></body></html>`;
+const h=`<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>${e(g('bname'))}</title></head><body style="font-family:system-ui;text-align:center;padding:40px 16px;background:#f6f7fb"><h1>${e(g('bname'))}</h1><p>${e(g('bbio'))}</p>${links}<p style="font-size:12px;color:#888;margin-top:30px">Made with GWB</p></body></html>`;
 document.getElementById('prev').srcdoc=h;if(dl){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([h],{type:'text/html'}));a.download='bio.html';a.click()}}
 document.querySelectorAll('#tool input,#tool textarea').forEach(x=>x.addEventListener('input',()=>bio(false)));qr();bio(false);""",head='<script src="vendor/qrcode.js"></script>')
 apps['policy']=page("Small-Business Policy Generator","Generate plain-English privacy policy, terms of service, and refund policy drafts for your small business.",
@@ -128,51 +182,201 @@ function wav({out,sr,n}){const ch=out.length,v=new DataView(new ArrayBuffer(44+n
 const p=out.map(i16);let o=44;for(let i=0;i<n;i++)for(let c=0;c<ch;c++){v.setInt16(o,p[c][i],true);o+=2}return new Blob([v],{type:'audio/wav'})}
 function mp3({out,sr,n}){const ch=out.length,enc=new lamejs.Mp3Encoder(ch,sr,128),p=out.map(i16),parts=[],B=1152;for(let i=0;i<n;i+=B){const l=p[0].subarray(i,i+B),r=ch>1?p[1].subarray(i,i+B):undefined;const m=ch>1?enc.encodeBuffer(l,r):enc.encodeBuffer(l);if(m.length)parts.push(new Uint8Array(m))}const f=enc.flush();if(f.length)parts.push(new Uint8Array(f));return new Blob(parts,{type:'audio/mpeg'})}
 $('exp').onclick=()=>{$('status').textContent='Encoding…';setTimeout(()=>{try{const r=render(),fmt=$('fmt').value,b=fmt==='mp3'?mp3(r):wav(r);window.lastExport=b;const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='trimmed.'+fmt;a.click();$('status').textContent=`Done: ${(b.size/1024).toFixed(0)} KB ${fmt.toUpperCase()} saved.`}catch(err){$('status').textContent='Export failed: '+err.message}},30)};
-draw();""",head='<script src="vendor/lame.min.js" defer></script>')
+draw();""",head='<script src="../vendor/lame.min.js" defer></script>')
+
+ENC=r"""const i16=d=>{const o=new Int16Array(d.length);for(let i=0;i<d.length;i++){const v=Math.max(-1,Math.min(1,d[i]));o[i]=v<0?v*32768:v*32767}return o};
+function wav(out,sr){const n=out[0].length,ch=out.length,v=new DataView(new ArrayBuffer(44+n*ch*2)),w=(o,s)=>[...s].forEach((c,i)=>v.setUint8(o+i,c.charCodeAt(0)));w(0,'RIFF');v.setUint32(4,36+n*ch*2,true);w(8,'WAVEfmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,ch,true);v.setUint32(24,sr,true);v.setUint32(28,sr*ch*2,true);v.setUint16(32,ch*2,true);v.setUint16(34,16,true);w(36,'data');v.setUint32(40,n*ch*2,true);const p=out.map(i16);let o=44;for(let i=0;i<n;i++)for(let c=0;c<ch;c++){v.setInt16(o,p[c][i],true);o+=2}return new Blob([v],{type:'audio/wav'})}
+function mp3(out,sr,kbps){const n=out[0].length,ch=out.length,enc=new lamejs.Mp3Encoder(ch,sr,kbps),p=out.map(i16),parts=[],B=1152;for(let i=0;i<n;i+=B){const m=ch>1?enc.encodeBuffer(p[0].subarray(i,i+B),p[1].subarray(i,i+B)):enc.encodeBuffer(p[0].subarray(i,i+B));if(m.length)parts.push(new Uint8Array(m))}const f=enc.flush();if(f.length)parts.push(new Uint8Array(f));return new Blob(parts,{type:'audio/mpeg'})}
+"""
+apps['image-compress']=page("Image Compressor & Resizer","Shrink JPG, PNG and WEBP images and resize them for websites, email and social media, without uploading them anywhere.",
+"Choose an image, set a maximum width and quality, and download the smaller version. A live size comparison shows how much you saved.",
+r"""<h2>Compress an image</h2><label for="f">Image file (JPG, PNG, WEBP)</label><input id="f" type="file" accept="image/*">
+<div class="grid"><div><label for="w">Maximum width (pixels)</label><input id="w" type="number" min="16" value="1600"></div><div><label for="q">Quality: <span id="qv">75%</span></label><input id="q" type="range" min="0.1" max="1" step="0.05" value="0.75"></div>
+<div><label for="o">Output format</label><select id="o"><option value="image/jpeg">JPG (smallest for photos)</option><option value="image/webp">WEBP (modern, small)</option><option value="image/png">PNG (lossless)</option></select></div></div>
+<button id="go" disabled>Compress image</button><p id="st" aria-live="polite">No image loaded yet.</p><img id="pv" alt="Preview of the compressed image" style="max-width:100%;display:none;border-radius:12px"><p><a id="dl" class="btn" hidden download>Download compressed image</a></p>""",
+r"""let img=null,name='image',orig=0;const $=id=>document.getElementById(id);
+$('f').onchange=e=>{const file=e.target.files[0];if(!file)return;name=file.name.replace(/\.[^.]+$/,'');orig=file.size;img=new Image();img.onload=()=>{$('go').disabled=false;run()};img.onerror=()=>$('st').textContent='This image format could not be read by your browser.';img.src=URL.createObjectURL(file)};
+function run(){const mw=+$('w').value||img.naturalWidth,s=Math.min(1,mw/img.naturalWidth),c=document.createElement('canvas');c.width=Math.round(img.naturalWidth*s);c.height=Math.round(img.naturalHeight*s);const g=c.getContext('2d'),t=$('o').value;if(t==='image/jpeg'){g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height)}g.drawImage(img,0,0,c.width,c.height);
+c.toBlob(b=>{window.lastOut=b;const ext=t.split('/')[1].replace('jpeg','jpg'),u=URL.createObjectURL(b);$('pv').src=u;$('pv').style.display='block';$('dl').href=u;$('dl').download=name+'-compressed.'+ext;$('dl').hidden=false;const pct=Math.round((1-b.size/orig)*100);
+$('st').textContent=`Original ${(orig/1024).toFixed(0)} KB (${img.naturalWidth}×${img.naturalHeight}) → ${(b.size/1024).toFixed(0)} KB (${c.width}×${c.height}). ${pct>=0?pct+'% smaller.':'Larger than the original; try JPG/WEBP or a lower quality.'}`},t,+$('q').value)}
+$('go').onclick=run;['w','q','o'].forEach(i=>$(i).addEventListener('change',()=>img&&run()));$('q').addEventListener('input',()=>$('qv').textContent=Math.round($('q').value*100)+'%');""")
+apps['image-convert']=page("Image Converter: PNG, JPG & WEBP","Convert images between PNG, JPG and WEBP in bulk, right in your browser. No uploads, no limits, no watermarks.",
+"Select one or more images, pick the target format, and download each converted file. Transparent areas get your chosen background color when converting to JPG.",
+r"""<h2>Convert images</h2><label for="f">Images (select one or more)</label><input id="f" type="file" accept="image/*" multiple>
+<div class="grid"><div><label for="to">Convert to</label><select id="to"><option value="image/png">PNG</option><option value="image/jpeg" selected>JPG</option><option value="image/webp">WEBP</option></select></div><div><label for="bg">Background for JPG (replaces transparency)</label><input id="bg" type="color" value="#ffffff"></div><div><label for="q">JPG/WEBP quality (0.1 to 1)</label><input id="q" type="number" min="0.1" max="1" step="0.05" value="0.9"></div></div>
+<button id="go">Convert</button><p id="st" aria-live="polite"></p><ul id="list"></ul>""",
+r"""const $=id=>document.getElementById(id);
+const load=f=>new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=rej;i.src=URL.createObjectURL(f)});
+$('go').onclick=async()=>{const files=[...$('f').files];if(!files.length){$('st').textContent='Choose at least one image first.';return}const t=$('to').value,ext=t.split('/')[1].replace('jpeg','jpg');$('list').innerHTML='';let ok=0;
+for(const f of files){try{const i=await load(f),c=document.createElement('canvas');c.width=i.naturalWidth;c.height=i.naturalHeight;const g=c.getContext('2d');if(t==='image/jpeg'){g.fillStyle=$('bg').value;g.fillRect(0,0,c.width,c.height)}g.drawImage(i,0,0);
+const b=await new Promise(r=>c.toBlob(r,t,+$('q').value));const a=document.createElement('a'),li=document.createElement('li'),n=f.name.replace(/\.[^.]+$/,'')+'.'+ext;a.href=URL.createObjectURL(b);a.download=n;a.textContent=`Download ${n} (${(b.size/1024).toFixed(0)} KB)`;li.append(a);$('list').append(li);ok++}catch(e){const li=document.createElement('li');li.textContent=f.name+': could not be read';$('list').append(li)}}
+window.convCount=ok;$('st').textContent=`Converted ${ok} of ${files.length} image(s).`};""")
+apps['pdf-tools']=page("PDF Merge, Split & JPG to PDF","Merge PDFs, extract or split pages, and turn JPG or PNG images into a PDF, all inside your browser, with no uploads.",
+"Pick a task, choose your files, and download the result. Files are processed on your device with the open-source pdf-lib library. Password-protected PDFs may not work.",
+r"""<h2>PDF tools</h2><label for="mode">What do you want to do?</label><select id="mode"><option value="merge">Merge several PDFs into one</option><option value="split">Extract or split pages</option><option value="img">Convert images (JPG/PNG) to PDF</option></select>
+<div id="p-merge"><label for="mf">PDF files (merged in the order selected)</label><input id="mf" type="file" accept="application/pdf" multiple><button id="bm">Merge PDFs</button></div>
+<div id="p-split" hidden><label for="sf">PDF file</label><input id="sf" type="file" accept="application/pdf"><label for="rng">Pages to keep (e.g. 1-3, 5). Leave empty for all pages</label><input id="rng" placeholder="1-3, 5"><label class="check"><input type="checkbox" id="each"> Save each page as a separate PDF</label><button id="bs">Extract pages</button></div>
+<div id="p-img" hidden><label for="if">Images (JPG, PNG, WEBP)</label><input id="if" type="file" accept="image/*" multiple><label for="ps">Page size</label><select id="ps"><option value="fit">Match each image</option><option value="a4">A4 with margins</option></select><button id="bi">Create PDF</button></div>
+<div id="res" class="out" aria-live="polite" style="white-space:normal">Results will appear here.</div>""",
+r"""const $=id=>document.getElementById(id),msg=t=>$('res').textContent=t;
+$('mode').onchange=()=>['merge','split','img'].forEach(m=>$('p-'+m).hidden=$('mode').value!==m);
+function save(bytes,name,pages,append){const b=new Blob([bytes],{type:'application/pdf'});window.lastPdf=b;if(!append)$('res').innerHTML='';const a=document.createElement('a');a.className='btn';a.href=URL.createObjectURL(b);a.download=name;a.textContent=`Download ${name} (${pages} page${pages>1?'s':''}, ${(b.size/1024).toFixed(0)} KB)`;$('res').append(a)}
+const load=async f=>PDFLib.PDFDocument.load(await f.arrayBuffer(),{ignoreEncryption:true});
+function parse(s,n){const r=[];s.split(',').forEach(p=>{const m=p.trim().match(/^(\d+)(?:\s*-\s*(\d+))?$/);if(!m)return;const a=+m[1],b=+(m[2]||m[1]);for(let i=Math.min(a,b);i<=Math.max(a,b);i++)if(i>=1&&i<=n&&!r.includes(i-1))r.push(i-1)});return r}
+async function merge(){const fs=[...$('mf').files];if(fs.length<2)return msg('Choose at least two PDF files.');const o=await PDFLib.PDFDocument.create();for(const f of fs){const d=await load(f);(await o.copyPages(d,d.getPageIndices())).forEach(p=>o.addPage(p))}save(await o.save(),'merged.pdf',o.getPageCount())}
+async function split(){const f=$('sf').files[0];if(!f)return msg('Choose a PDF file.');const d=await load(f),n=d.getPageCount(),idx=$('rng').value.trim()?parse($('rng').value,n):d.getPageIndices();if(!idx.length)return msg(`No valid pages in that range. This PDF has ${n} pages.`);
+if($('each').checked){$('res').innerHTML='';for(const i of idx){const o=await PDFLib.PDFDocument.create();o.addPage((await o.copyPages(d,[i]))[0]);save(await o.save(),`page-${i+1}.pdf`,1,true)}}else{const o=await PDFLib.PDFDocument.create();(await o.copyPages(d,idx)).forEach(p=>o.addPage(p));save(await o.save(),'extracted.pdf',idx.length)}}
+async function toJpg(f){const bm=await createImageBitmap(f),c=document.createElement('canvas');c.width=bm.width;c.height=bm.height;const g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);g.drawImage(bm,0,0);return new Promise(r=>c.toBlob(r,'image/jpeg',.92))}
+async function imgs(){const fs=[...$('if').files];if(!fs.length)return msg('Choose at least one image.');const o=await PDFLib.PDFDocument.create(),a4=$('ps').value==='a4';for(const f of fs){let im;if(f.type==='image/png')im=await o.embedPng(await f.arrayBuffer());else if(f.type==='image/jpeg')im=await o.embedJpg(await f.arrayBuffer());else im=await o.embedJpg(await (await toJpg(f)).arrayBuffer());
+const W=a4?595.28:im.width,H=a4?841.89:im.height,s=a4?Math.min((W-72)/im.width,(H-72)/im.height,1):1,p=o.addPage([W,H]);p.drawImage(im,{x:(W-im.width*s)/2,y:(H-im.height*s)/2,width:im.width*s,height:im.height*s})}save(await o.save(),'images.pdf',o.getPageCount())}
+const wrap=fn=>async()=>{msg('Working…');try{await fn()}catch(e){msg('Sorry, that file could not be processed ('+e.message+'). Encrypted or damaged PDFs may not work.')}};
+$('bm').onclick=wrap(merge);$('bs').onclick=wrap(split);$('bi').onclick=wrap(imgs);""",head='<script src="../vendor/pdf-lib.min.js" defer></script>')
+apps['word-counter']=page("Word & Character Counter","Count words, characters, sentences and paragraphs as you type, with reading time, speaking time and top keywords.",
+"Paste or type your text. Every number updates instantly, which is handy for essays, social posts, SEO meta descriptions and ad copy limits.",
+r"""<h2>Count your text</h2><label for="t">Your text</label><textarea id="t" style="min-height:220px">Paste or type your text here. GWB counts words, characters and sentences instantly, right in your browser.</textarea>
+<div class="grid" style="margin-top:18px" aria-live="polite"><div class="stat"><b id="w">0</b>Words</div><div class="stat"><b id="c">0</b>Characters</div><div class="stat"><b id="cn">0</b>Characters (no spaces)</div><div class="stat"><b id="s">0</b>Sentences</div><div class="stat"><b id="p">0</b>Paragraphs</div><div class="stat"><b id="rt">0 min</b>Reading time</div><div class="stat"><b id="sp">0 min</b>Speaking time</div></div>
+<h3 style="margin-top:22px">Top keywords</h3><p id="kw" class="lead">None yet.</p><button class="alt" id="clr">Clear text</button>""",
+r"""const $=id=>document.getElementById(id),STOP=new Set('the a an and or but of to in on for with at by from is are was were be been it this that as your you we our i they he she not can will just so if than then into about'.split(' '));
+function up(){const t=$('t').value,w=t.match(/[\p{L}\p{N}'’-]+/gu)||[];$('w').textContent=w.length;$('c').textContent=t.length;$('cn').textContent=t.replace(/\s/g,'').length;$('s').textContent=(t.match(/[^.!?…]+[.!?…]+/g)||(t.trim()?[t]:[])).length;$('p').textContent=t.split(/\n\s*\n/).filter(x=>x.trim()).length;
+const m=x=>x<1&&x>0?'< 1 min':Math.ceil(x)+' min';$('rt').textContent=m(w.length/238);$('sp').textContent=m(w.length/150);const f={};w.forEach(x=>{x=x.toLowerCase();if(x.length>2&&!STOP.has(x))f[x]=(f[x]||0)+1});const top=Object.entries(f).sort((a,b)=>b[1]-a[1]).slice(0,8);$('kw').textContent=top.length?top.map(([k,v])=>`${k} (${v})`).join(', '):'None yet.'}
+$('t').addEventListener('input',up);$('clr').onclick=()=>{$('t').value='';up();$('t').focus()};up();""")
+apps['password']=page("Password Generator","Generate strong, random passwords instantly using your browser's secure random number generator. Nothing is sent or stored.",
+"Choose a length and character types, then copy one of the generated passwords. We show an estimate of each password's strength in bits of entropy.",
+r"""<h2>Generate passwords</h2><div class="grid"><div><label for="len">Length: <span id="lv">16</span></label><input id="len" type="range" min="8" max="64" value="16"></div>
+<fieldset><legend>Include</legend><label class="check"><input type="checkbox" id="up" checked> Uppercase (A-Z)</label><label class="check"><input type="checkbox" id="lo" checked> Lowercase (a-z)</label><label class="check"><input type="checkbox" id="di" checked> Numbers (0-9)</label><label class="check"><input type="checkbox" id="sy" checked> Symbols (!@#…)</label><label class="check"><input type="checkbox" id="am"> Avoid look-alikes (O/0, l/1)</label></fieldset></div>
+<button id="gen">Generate new passwords</button><p id="str" aria-live="polite"></p><ol id="list" style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:1.05rem"></ol>""",
+r"""const $=id=>document.getElementById(id);
+function pick(n){const a=new Uint32Array(1),lim=Math.floor(4294967296/n)*n;do{crypto.getRandomValues(a)}while(a[0]>=lim);return a[0]%n}
+function gen(){let sets=[];if($('up').checked)sets.push('ABCDEFGHIJKLMNOPQRSTUVWXYZ');if($('lo').checked)sets.push('abcdefghijklmnopqrstuvwxyz');if($('di').checked)sets.push('0123456789');if($('sy').checked)sets.push('!@#$%^&*()-_=+[]{};:,.?/');if(!sets.length){$('lo').checked=true;return gen()}
+if($('am').checked)sets=sets.map(s=>s.replace(/[O0Il1|]/g,''));const all=sets.join(''),L=+$('len').value;$('list').innerHTML='';
+for(let k=0;k<5;k++){let p=sets.map(s=>s[pick(s.length)]);while(p.length<L)p.push(all[pick(all.length)]);for(let i=p.length-1;i>0;i--){const j=pick(i+1);[p[i],p[j]]=[p[j],p[i]]}p=p.join('');
+const li=document.createElement('li'),code=document.createElement('code'),b=document.createElement('button');code.textContent=p;b.className='alt';b.textContent='Copy';b.setAttribute('aria-label','Copy password '+(k+1));b.onclick=()=>{navigator.clipboard.writeText(p);b.textContent='Copied'};li.append(code,' ',b);$('list').append(li)}
+const bits=Math.round(L*Math.log2(all.length));$('str').textContent=`Strength: about ${bits} bits of entropy (${bits>=100?'excellent':bits>=72?'strong':bits>=50?'fair':'weak'}).`}
+$('len').addEventListener('input',()=>{$('lv').textContent=$('len').value;gen()});document.querySelectorAll('#tool input[type=checkbox]').forEach(c=>c.onchange=gen);$('gen').onclick=gen;gen();""")
+apps['biz-calc']=page("Business Calculators: Margin, Sales Tax, Loan & Break-Even","Four everyday small-business calculators in one place: profit margin and markup, sales tax, loan payments and break-even point.",
+"Type your numbers into any calculator. Results update instantly. Use any currency; amounts are shown with two decimals.",
+r"""<h2>Calculators</h2><div class="grid">
+<fieldset><legend>Profit margin &amp; markup</legend><label for="mc">Cost</label><input id="mc" type="number" value="40"><label for="mp">Selling price</label><input id="mp" type="number" value="65"><output id="mo" class="out" for="mc mp" aria-live="polite" style="display:block"></output></fieldset>
+<fieldset><legend>Sales tax</legend><label for="ta">Amount</label><input id="ta" type="number" value="100"><label for="tr">Tax rate (%)</label><input id="tr" type="number" value="8.875"><label class="check"><input type="checkbox" id="ti"> Amount already includes tax</label><output id="to" class="out" aria-live="polite" style="display:block"></output></fieldset>
+<fieldset><legend>Loan payment</legend><label for="la">Loan amount</label><input id="la" type="number" value="25000"><label for="lr">Annual interest rate (%)</label><input id="lr" type="number" value="7.5"><label for="ly">Term (years)</label><input id="ly" type="number" value="5"><output id="lo" class="out" aria-live="polite" style="display:block"></output></fieldset>
+<fieldset><legend>Break-even point</legend><label for="bf">Fixed costs (per month)</label><input id="bf" type="number" value="3000"><label for="bp">Price per unit</label><input id="bp" type="number" value="25"><label for="bv">Variable cost per unit</label><input id="bv" type="number" value="10"><output id="bo" class="out" aria-live="polite" style="display:block"></output></fieldset></div>""",
+r"""const $=id=>+document.getElementById(id).value,o=(id,t)=>document.getElementById(id).textContent=t,f=x=>isFinite(x)?x.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}):'—';
+function calc(){const c=$('mc'),p=$('mp'),pr=p-c;o('mo',`Profit: ${f(pr)}\nMargin: ${f(pr/p*100)}%\nMarkup: ${f(pr/c*100)}%`);
+const a=$('ta'),r=$('tr')/100;if(document.getElementById('ti').checked){const pre=a/(1+r);o('to',`Pre-tax price: ${f(pre)}\nTax included: ${f(a-pre)}`)}else o('to',`Tax: ${f(a*r)}\nTotal: ${f(a*(1+r))}`);
+const L=$('la'),i=$('lr')/1200,n=$('ly')*12,m=i?L*i/(1-Math.pow(1+i,-n)):L/n;o('lo',`Monthly payment: ${f(m)}\nTotal paid: ${f(m*n)}\nTotal interest: ${f(m*n-L)}`);
+const u=$('bf')/($('bp')-$('bv'));o('bo',$('bp')>$('bv')?`Break-even: ${Math.ceil(u).toLocaleString()} units\nRevenue needed: ${f(Math.ceil(u)*$('bp'))}`:'Price must be higher than the variable cost per unit.')}
+document.querySelectorAll('#tool input').forEach(x=>x.addEventListener('input',calc));calc();""")
+apps['business-name']=page("Business Name Generator","Brainstorm short, brandable business name ideas from your own keywords, then shortlist your favorites.",
+"Enter one or two keywords that describe your business, pick a style, and generate fresh ideas. Click Generate again for more. Always check trademark and domain availability before choosing.",
+r"""<h2>Generate names</h2><div class="grid"><div><label for="kw">Keyword(s)</label><input id="kw" value="bloom bakery"></div><div><label for="tone">Style</label><select id="tone"><option value="modern">Modern</option><option value="classic">Classic</option><option value="playful">Playful</option><option value="tech">Tech</option></select></div></div>
+<button id="go">Generate names</button><ul id="list" class="grid" style="list-style:none;padding:0;margin-top:18px" aria-live="polite"></ul><p class="lead"><small>Ideas only. Check trademark databases, business registries and domain availability before using a name.</small></p>""",
+r"""const $=id=>document.getElementById(id),T={modern:{pre:['Nova','Bright','True','Prime','Pure','Bold'],suf:['Co','Studio','Lab','House','Collective','Works']},classic:{pre:['Royal','Heritage','Golden','Oak','Crown','Sterling'],suf:['& Co.','Brothers','Guild','Company','Traders','Establishment']},playful:{pre:['Happy','Little','Jolly','Sunny','Lucky','Busy'],suf:['Spot','Nest','Pop','Party','Corner','Buddies']},tech:{pre:['Neo','Hyper','Smart','Quantum','Cloud','Pixel'],suf:['ify','ly','Hub','Stack','IQ','Base']}};
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1),r=a=>a[Math.floor(Math.random()*a.length)];
+function gen(){const w=$('kw').value.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);if(!w.length){$('list').innerHTML='<li>Enter a keyword first.</li>';return}const t=T[$('tone').value],set=new Set();let guard=0;
+while(set.size<18&&guard++<300){const a=r(w),b=r(w),s=r(t.suf),p=r(t.pre),k=Math.floor(Math.random()*6);let n;
+if(k==0)n=cap(a)+(s.length<4&&/^[a-z]/.test(s)?s:' '+s);else if(k==1)n=p+' '+cap(a);else if(k==2)n=cap(a.slice(0,Math.ceil(a.length*.6)))+(b!==a?b.slice(Math.floor(b.length/2)):r(['io','a','o','ly']));else if(k==3)n=cap(a)+' & '+cap(r(['Co.','Crumb','Leaf','Stone','Field','Lane']));else if(k==4)n='The '+cap(a)+' '+r(t.suf.filter(x=>/^[A-Z]/.test(x)));else n=p+cap(a);set.add(n.trim())}
+$('list').innerHTML='';[...set].forEach(n=>{const li=document.createElement('li');li.className='stat';li.textContent=n;$('list').append(li)})}
+$('go').onclick=gen;gen();""")
+apps['email-signature']=page("Email Signature Generator","Create a clean, professional email signature for Gmail, Outlook or Apple Mail in seconds, with no signup.",
+"Fill in your details, pick an accent color, and copy the signature straight into your email settings, or copy the HTML code.",
+r"""<h2>Build your signature</h2><div class="grid"><div><label for="n">Full name</label><input id="n" value="Your Name"></div><div><label for="ti">Job title</label><input id="ti" value="Founder"></div><div><label for="co">Company</label><input id="co" value="Your Company"></div><div><label for="ph">Phone</label><input id="ph" value="+1 555 010 0000"></div><div><label for="em">Email</label><input id="em" value="you@example.com"></div><div><label for="web">Website</label><input id="web" value="example.com"></div><div><label for="col">Accent color</label><input id="col" type="color" value="#3324ad"></div></div>
+<h3 style="margin-top:22px">Preview</h3><div id="pv" class="out" style="white-space:normal;background:#fff" aria-live="polite"></div><button id="cp">Copy signature</button><button class="alt" id="ch">Copy HTML code</button><p id="st" aria-live="polite"></p>""",
+r"""const $=id=>document.getElementById(id),e=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function html(){const c=$('col').value,w=$('web').value.replace(/^https?:\/\//,'');return `<table cellpadding="0" cellspacing="0" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#222"><tr><td style="border-left:4px solid ${c};padding-left:12px"><div style="font-size:17px;font-weight:bold;color:${c}">${e($('n').value)}</div><div>${e($('ti').value)}${$('co').value?' · '+e($('co').value):''}</div><div style="margin-top:6px">${$('ph').value?e($('ph').value)+' · ':''}<a href="mailto:${e($('em').value)}" style="color:${c}">${e($('em').value)}</a>${w?' · <a href="https://'+e(w)+'" style="color:'+c+'">'+e(w)+'</a>':''}</div></td></tr></table>`}
+function up(){$('pv').innerHTML=html()}document.querySelectorAll('#tool input').forEach(i=>i.addEventListener('input',up));
+$('cp').onclick=async()=>{try{await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html()],{type:'text/html'}),'text/plain':new Blob([$('pv').innerText],{type:'text/plain'})})]);$('st').textContent='Copied. Paste it into your email signature settings.'}catch(x){const r=document.createRange();r.selectNodeContents($('pv'));const s=getSelection();s.removeAllRanges();s.addRange(r);$('st').textContent='Signature selected. Press Ctrl+C (or Cmd+C) to copy.'}};
+$('ch').onclick=()=>{navigator.clipboard.writeText(html()).then(()=>$('st').textContent='HTML code copied.')};up();""")
+apps['color-palette']=page("Color Palette Generator","Generate harmonious color palettes for your brand, website or social posts, with hex codes and CSS variables ready to copy.",
+"Pick a base color and a harmony rule, or hit Random. Click any swatch to copy its hex code, or copy the whole palette as CSS variables.",
+r"""<h2>Create a palette</h2><div class="grid"><div><label for="base">Base color</label><input id="base" type="color" value="#4b3fd6"></div><div><label for="sch">Harmony</label><select id="sch"><option value="analogous">Analogous</option><option value="complementary">Complementary</option><option value="triadic">Triadic</option><option value="split">Split complementary</option><option value="mono">Monochrome</option></select></div></div>
+<button id="rnd">Random palette</button><div id="sw" class="swatches"></div><p id="st" aria-live="polite"></p><label for="css">CSS variables</label><textarea id="css" readonly style="font-family:ui-monospace,Menlo,Consolas,monospace"></textarea>""",
+r"""const $=id=>document.getElementById(id);
+function hsl2hex(h,s,l){h=((h%360)+360)%360;s/=100;l/=100;const k=n=>(n+h/30)%12,a=s*Math.min(l,1-l),f=n=>l-a*Math.max(-1,Math.min(k(n)-3,Math.min(9-k(n),1)));return '#'+[f(0),f(8),f(4)].map(x=>Math.round(x*255).toString(16).padStart(2,'0')).join('')}
+function hex2hsl(H){let r=parseInt(H.slice(1,3),16)/255,g=parseInt(H.slice(3,5),16)/255,b=parseInt(H.slice(5,7),16)/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),h=0,s=0,l=(mx+mn)/2;if(mx!==mn){const d=mx-mn;s=l>.5?d/(2-mx-mn):d/(mx+mn);h=mx==r?(g-b)/d+(g<b?6:0):mx==g?(b-r)/d+2:(r-g)/d+4;h*=60}return[h,s*100,l*100]}
+function lum(H){const c=[1,3,5].map(i=>{let v=parseInt(H.slice(i,i+2),16)/255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*c[0]+.7152*c[1]+.0722*c[2]}
+function draw(){const[h,s,l]=hex2hsl($('base').value),m=$('sch').value,O={analogous:[-30,-15,0,15,30],complementary:[0,0,180,180,0],triadic:[0,120,240,0,120],split:[0,150,210,0,150],mono:[0,0,0,0,0]}[m],L=m==='mono'?[20,35,l,70,88]:m==='analogous'?[l,l,l,l,l]:[l,Math.min(90,l+25),l,Math.max(15,l-20),Math.min(95,l+40)];
+const cols=O.map((o,i)=>hsl2hex(h+o,s,L[i]));$('sw').innerHTML='';cols.forEach((c,i)=>{const b=document.createElement('button');b.className='swatch';b.style.background=c;b.style.color=lum(c)>.18?'#111':'#fff';b.textContent=c.toUpperCase();b.setAttribute('aria-label','Copy color '+c.toUpperCase());b.onclick=()=>{navigator.clipboard.writeText(c);$('st').textContent='Copied '+c.toUpperCase()};$('sw').append(b)});
+$('css').value=':root {\n'+cols.map((c,i)=>`  --color-${i+1}: ${c};`).join('\n')+'\n}'}
+$('base').addEventListener('input',draw);$('sch').onchange=draw;$('rnd').onclick=()=>{$('base').value=hsl2hex(Math.random()*360,55+Math.random()*30,40+Math.random()*20);draw()};draw();""")
+apps['video-to-mp3']=page("Video to MP3 Extractor","Extract the audio track from your own video files (MP4, WebM, MOV) and save it as MP3 or WAV, without uploading anything.",
+"Choose a video file from your device, pick a format and quality, and export. Your browser decodes the audio locally. Very long videos need plenty of memory. <strong>Use only videos you own or have the rights to.</strong>",
+r"""<h2>Extract audio</h2><label for="f">Video file (MP4, WebM, MOV…)</label><input id="f" type="file" accept="video/*,audio/*">
+<div class="grid"><div><label for="fmt">Format</label><select id="fmt"><option value="mp3">MP3</option><option value="wav">WAV (lossless)</option></select></div><div><label for="kb">MP3 quality</label><select id="kb"><option value="128">128 kbps (smaller)</option><option value="192" selected>192 kbps</option><option value="320">320 kbps (best)</option></select></div></div>
+<button id="go" disabled>Extract audio</button><p id="st" aria-live="polite">No file loaded yet.</p><p><a id="dl" class="btn" hidden>Download audio</a></p>
+<p class="lead"><small>For videos you own or have rights to. No downloading from YouTube or other sites: this tool only works with files already on your device.</small></p>""",
+ENC+r"""const $=id=>document.getElementById(id);let buf=null,name='audio';
+$('f').onchange=async e=>{const f=e.target.files[0];if(!f)return;name=f.name.replace(/\.[^.]+$/,'');$('st').textContent='Reading audio track…';try{const ctx=new (window.AudioContext||window.webkitAudioContext)();buf=await ctx.decodeAudioData(await f.arrayBuffer());$('st').textContent=`Audio found: ${buf.duration.toFixed(1)} s, ${buf.numberOfChannels} channel(s). Ready to export.`;$('go').disabled=false}catch(x){$('st').textContent='No audio track could be decoded from this file in your browser.';$('go').disabled=true}};
+$('go').onclick=()=>{$('st').textContent='Encoding… this can take a moment for long videos.';setTimeout(()=>{try{const out=[];for(let c=0;c<Math.min(2,buf.numberOfChannels);c++)out.push(buf.getChannelData(c));const fm=$('fmt').value,b=fm==='mp3'?mp3(out,buf.sampleRate,+$('kb').value):wav(out,buf.sampleRate);window.lastExport=b;$('dl').href=URL.createObjectURL(b);$('dl').download=name+'.'+fm;$('dl').textContent=`Download ${name}.${fm} (${(b.size/1048576).toFixed(2)} MB)`;$('dl').hidden=false;$('st').textContent='Done.'}catch(x){$('st').textContent='Export failed: '+x.message}},30)};""",head='<script src="../vendor/lame.min.js" defer></script>')
 
 open('style.css','w').write(CSS)
 for k,v in apps.items():
-    v=re.sub(r'<label>([^<]*)</label>(\s*)<(input|textarea|select) id="([^"]+)"',r'<label for="\4">\1</label>\2<\3 id="\4"',v);os.makedirs(k,exist_ok=True);open(f'{k}/index.html','w').write(v)
-cards=[('invoice','Invoice & Receipt Generator','Professional invoices and receipts, saved as PDF in about a minute.'),('resume','Resume Bullet Improver','Turn plain duties into clear, results-focused resume bullets.'),('meeting-cost','Meeting Cost Calculator','A live cost ticker that shows what a meeting really costs.'),('qr-bio','QR & Link-in-Bio Maker','QR codes plus a one-file link page you can host anywhere.'),('policy','Policy Generator','Plain-English privacy, terms and refund policy drafts.'),('audio','Audio Converter & Ringtone Trimmer','Trim audio, add fades and export MP3 or WAV, all on your device.')]
-c=''.join(f'<li class="tile"><h3>{t}</h3><p class="lead">{d}</p><a class="btn alt" href="{k}/index.html">Open {t}<span aria-hidden="true"> →</span></a></li>' for k,t,d in cards)
-open('index.html','w').write(f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ozor | Free tools for small businesses</title><meta name="description" content="Free, private, in-browser tools for freelancers and small businesses."><link rel="stylesheet" href="style.css"></head><body>
+    v=v.replace('{{ICON}}',icon(k)).replace('{{CATCLS}}','cat-'+CATOF[k]).replace('{{CATNAME}}',CATS[CATOF[k]]);v=re.sub(r'<label>([^<]*)</label>(\s*)<(input|textarea|select) id="([^"]+)"',r'<label for="\4">\1</label>\2<\3 id="\4"',v);os.makedirs(k,exist_ok=True);open(f'{k}/index.html','w').write(v)
+def tile(k,t,d,c):
+    return f'<li class="tile" data-cat="{c}" data-name="{t.lower()} {d.lower()} {CATS[c].lower()}"><span class="ico cat-{c}">{icon(k)}</span><span class="tag">{CATS[c]}</span><h3><a href="{k}/index.html">{t}</a></h3><p>{d}</p></li>'
+TI={t[0]:t for t in TOOLS}
+feat=''.join(f'<li class="feat-card cat-{TI[k][3]}"><span class="ico cat-{TI[k][3]}">{icon(k)}</span><h3><a href="{k}/index.html">{TI[k][1]}</a></h3><p>{TI[k][2]}</p></li>' for k in FEATURED)
+tiles=''.join(tile(*t) for t in TOOLS)
+chips='<button class="chip" aria-pressed="true" data-cat="all">All tools</button>'+''.join(f'<button class="chip" aria-pressed="false" data-cat="{c}">{n}</button>' for c,n in CATS.items())
+HUBJS=r"""const q=document.getElementById('q'),tiles=[...document.querySelectorAll('#all .tile')],chips=[...document.querySelectorAll('.chip')],cnt=document.getElementById('cnt');let cat='all';
+function f(){const s=q.value.trim().toLowerCase();let n=0;tiles.forEach(t=>{const ok=(cat==='all'||t.dataset.cat===cat)&&(!s||s.split(/\s+/).every(w=>t.dataset.name.includes(w)));t.hidden=!ok;if(ok)n++});cnt.textContent=n?`Showing ${n} tool${n>1?'s':''}`:'No tools match. Try another word or category.'}
+chips.forEach(c=>c.onclick=()=>{cat=c.dataset.cat;chips.forEach(x=>x.setAttribute('aria-pressed',x===c));f()});q.addEventListener('input',()=>{f();if(q.value&&location.hash!=='#tools')document.getElementById('tools').scrollIntoView({block:'start'})});q.form&&(q.form.onsubmit=e=>{e.preventDefault();document.getElementById('tools').scrollIntoView()});f();
+/* Real reviews go in reviews.json: [{"tool":"Invoice Generator","rating":5,"text":"...","author":"optional"}] */
+fetch('reviews.json').then(r=>r.json()).then(a=>{if(!a.length)return;const e=s=>String(s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));document.getElementById('revlist').innerHTML=a.map(r=>`<figure class="out" style="white-space:normal;margin:0 0 14px"><figcaption><strong>${e(r.tool)}</strong> <span aria-label="${+r.rating||0} out of 5 stars">${'★'.repeat(+r.rating||0)}</span></figcaption><blockquote style="margin:8px 0">${e(r.text)}</blockquote>${r.author?'<small>— '+e(r.author)+'</small>':''}</figure>`).join('')}).catch(()=>{});"""
+HUB=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>x</title><meta name="description" content="x"><link rel="stylesheet" href="style.css"></head><body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="site"><nav class="bar" aria-label="Main"><a class="logo" href="index.html">Ozor</a><ul><li><a href="#tools">Tools</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#support">Support</a></li></ul></nav>
-<div class="hero"><p class="eyebrow" style="color:#d9d6ff">Free · Private · No signup</p><h1>Small tools for small businesses</h1><p>Practical, single-purpose tools that run entirely in your browser. No accounts, no uploads, no clutter.</p><a class="btn light" href="#tools">Browse tools</a></div></header>
-<main id="main"><section class="card" id="tools" aria-labelledby="h-tools"><p class="eyebrow">The toolkit</p><h2 id="h-tools">All tools</h2><ul class="grid" style="list-style:none;padding:0;margin:0">{c}</ul></section>
-<section class="card" id="reviews" aria-labelledby="h-rev"><p class="eyebrow">Reviews</p><h2 id="h-rev">What people say</h2><div id="revlist" aria-live="polite"><p class="lead">No reviews yet, be the first.</p></div><a class="btn alt" href="mailto:ozor.inc@gmail.com?subject=Ozor%20tool%20review">Leave a review</a></section>
-<section class="card" id="support" aria-labelledby="h-sup"><p class="eyebrow">Support</p><h2 id="h-sup">Free forever. Tips welcome.</h2><p class="lead">Every tool is free with no limits. If one saved you time, a tip helps keep them running.</p><a class="btn" href="#PAYMENT_LINK">Support this tool / Tip</a></section></main>
-<footer><p>&copy; 2026 Ozor · Contact: <a href="mailto:ozor.inc@gmail.com">ozor.inc@gmail.com</a></p></footer>
-<script>/* Real reviews go in reviews.json: [{{"tool":"Invoice Generator","rating":5,"text":"...","author":"optional"}}] */
-fetch('reviews.json').then(r=>r.json()).then(a=>{{if(!a.length)return;const e=s=>String(s||'').replace(/[&<>]/g,c=>({{'&':'&amp;','<':'&lt;','>':'&gt;'}}[c]));
-document.getElementById('revlist').innerHTML=a.map(r=>`<figure class="out" style="white-space:normal;margin:0 0 14px"><figcaption><strong>${{e(r.tool)}}</strong> <span aria-label="${{+r.rating||0}} out of 5 stars">${{'★'.repeat(+r.rating||0)}}</span></figcaption><blockquote style="margin:8px 0">${{e(r.text)}}</blockquote>${{r.author?'<small>— '+e(r.author)+'</small>':''}}</figure>`).join('')}}).catch(()=>{{}});</script></body></html>""")
+<header class="site"><nav class="bar" aria-label="Main"><a href="index.html" aria-label="GWB: Greater World Business, home">{BRAND}</a><ul><li><a href="#featured">Featured</a></li><li><a href="#tools">All tools</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#support">Support</a></li></ul></nav>
+<div class="hero"><p class="eyebrow">{len(TOOLS)} free tools · Private · No signup</p><h1>Your one-stop shop for small business tools</h1><p>Invoices, PDFs, images, audio, calculators and more. Everything runs in your browser, so your files never leave your device.</p>
+<form class="search" role="search" onsubmit="return false"><label for="q" class="vh">Search tools</label><input id="q" type="search" placeholder="Search tools, e.g. PDF, invoice, ringtone" autocomplete="off"></form></div></header>
+<div class="layout"><main id="main">
+<section class="card" id="featured" aria-labelledby="h-feat"><p class="eyebrow">Featured</p><h2 id="h-feat">Most popular right now</h2><ul class="featured">{feat}</ul></section>
+<section class="card" id="tools" aria-labelledby="h-tools"><p class="eyebrow">The toolkit</p><h2 id="h-tools">All tools</h2><div class="chips" role="group" aria-label="Filter by category">{chips}</div><p id="cnt" aria-live="polite" class="lead"></p><ul class="tiles" id="all">{tiles}</ul></section>
+<section class="card" id="reviews" aria-labelledby="h-rev"><p class="eyebrow">Reviews</p><h2 id="h-rev">What people say</h2><div id="revlist" aria-live="polite"><p class="lead">No reviews yet, be the first.</p></div><a class="btn alt" href="mailto:ozor.inc@gmail.com?subject=GWB%20tool%20review">Leave a review</a></section>
+<section class="card" id="support" aria-labelledby="h-sup"><p class="eyebrow">Support</p><h2 id="h-sup">Free forever. Tips welcome.</h2><p class="lead">Every tool is free with no limits. If one saved you time, a tip helps keep GWB running and growing.</p><a class="btn" href="#PAYMENT_LINK">Support this tool / Tip</a></section>
+</main><!--RAIL--></div>
+<footer>{BRAND}<p>Your one-stop shop for small business tools · Contact: <a href="mailto:ozor.inc@gmail.com">ozor.inc@gmail.com</a></p><p>&copy; 2026 GWB: Greater World Business</p></footer>
+<script>"""+HUBJS+"""</script></body></html>"""
+open('index.html','w').write(HUB)
 
 # ---- SEO + ad slot post-processing ----
 BASE="https://uozor.github.io/ozor-apps/"  # change if the final Pages URL differs
-META={'':('Ozor | Free tools for small businesses','Free, private, in-browser tools for freelancers and small businesses: invoices, resume bullets, meeting costs, QR codes, policy templates and audio trimming.','BusinessApplication'),
-'invoice/':('Free Invoice & Receipt Generator (PDF) | Ozor','Create professional invoices and receipts in your browser and save them as PDF. Free, private, no signup.','BusinessApplication'),
-'resume/':('Resume Bullet Improver: Free Achievement Bullet Writer | Ozor','Turn plain job duties into clear, quantified resume bullets with recruiter-tested templates. Free and private.','BusinessApplication'),
-'meeting-cost/':('Meeting Cost Calculator: Live Meeting Cost Timer | Ozor','See what a meeting really costs with a live timer based on attendees and hourly rates. Free, no signup.','BusinessApplication'),
-'qr-bio/':('Free QR Code Generator & Link-in-Bio Page Maker | Ozor','Generate QR code PNGs and a one-file link-in-bio page you can host anywhere. Free, private, no account.','DesignApplication'),
-'audio/':('Free Audio Trimmer, Ringtone Maker & MP3/WAV Converter | Ozor','Trim audio files, add fade in/out and export MP3 or WAV ringtones in your browser. Private: files never leave your device.','MultimediaApplication'),
-'policy/':('Free Privacy Policy, Terms & Refund Policy Generator | Ozor','Generate plain-English privacy policy, terms of service and refund policy drafts for your small business. Free.','BusinessApplication')}
-AD='''<aside class="ad noprint" aria-label="Advertisement"><span class="ad-label">Advertisement</span><div class="ad-slot">
-<!-- AD SLOT: paste the AdSense <ins class="adsbygoogle" ...> unit (or Carbon/EthicalAds code) here.
-     Load the network script once in <head> where marked AD-SCRIPT. Add /ads.txt at the site root after approval. --></div></aside>'''
+META={'':('GWB | Free tools for small businesses','Free, private, in-browser tools for freelancers and small businesses: invoices, resume bullets, meeting costs, QR codes, policy templates and audio trimming.','BusinessApplication'),
+'invoice/':('Free Invoice & Receipt Generator (PDF) | GWB','Create professional invoices and receipts in your browser and save them as PDF. Free, private, no signup.','BusinessApplication'),
+'resume/':('Resume Bullet Improver: Free Achievement Bullet Writer | GWB','Turn plain job duties into clear, quantified resume bullets with recruiter-tested templates. Free and private.','BusinessApplication'),
+'meeting-cost/':('Meeting Cost Calculator: Live Meeting Cost Timer | GWB','See what a meeting really costs with a live timer based on attendees and hourly rates. Free, no signup.','BusinessApplication'),
+'qr-bio/':('Free QR Code Generator & Link-in-Bio Page Maker | GWB','Generate QR code PNGs and a one-file link-in-bio page you can host anywhere. Free, private, no account.','DesignApplication'),
+'audio/':('Free Audio Trimmer, Ringtone Maker & MP3/WAV Converter | GWB','Trim audio files, add fade in/out and export MP3 or WAV ringtones in your browser. Private: files never leave your device.','MultimediaApplication'),
+'policy/':('Free Privacy Policy, Terms & Refund Policy Generator | GWB','Generate plain-English privacy policy, terms of service and refund policy drafts for your small business. Free.','BusinessApplication')}
+NEWMETA={'':('GWB: Greater World Business | Free Small Business Tools','Your one-stop shop for free small business tools: PDF merge, image compressor, invoices, calculators, password generator, audio trimmer and more. Private, in-browser, no signup.','BusinessApplication'),
+'image-compress':('Free Image Compressor & Resizer (JPG, PNG, WEBP) | GWB','Compress and resize JPG, PNG and WEBP images in your browser. No uploads, no limits, no watermark.','MultimediaApplication'),
+'image-convert':('Image Converter: PNG to JPG, JPG to PNG, WEBP | GWB','Batch-convert images between PNG, JPG and WEBP for free, privately in your browser.','MultimediaApplication'),
+'pdf-tools':('Merge PDF, Split PDF & JPG to PDF Free | GWB','Merge PDF files, extract or split pages, and convert JPG/PNG images to PDF. Free, private, nothing uploaded.','BusinessApplication'),
+'word-counter':('Word Counter & Character Counter | GWB','Free word and character counter with sentences, paragraphs, reading time and keyword density.','UtilitiesApplication'),
+'password':('Strong Password Generator | GWB','Generate strong random passwords securely in your browser with entropy strength estimates. Nothing is stored.','SecurityApplication'),
+'biz-calc':('Profit Margin, Sales Tax, Loan & Break-Even Calculators | GWB','Free business calculators for profit margin and markup, sales tax, loan payments and break-even analysis.','FinanceApplication'),
+'business-name':('Business Name Generator: Free Brandable Ideas | GWB','Generate brandable business name ideas from your keywords in modern, classic, playful or tech styles.','BusinessApplication'),
+'email-signature':('Free Email Signature Generator for Gmail & Outlook | GWB','Create a professional HTML email signature and copy it into Gmail, Outlook or Apple Mail. Free, no signup.','BusinessApplication'),
+'color-palette':('Color Palette Generator with Hex Codes | GWB','Generate harmonious color palettes and copy hex codes or CSS variables for your brand and website.','DesignApplication'),
+'video-to-mp3':('Video to MP3 Converter for Your Own Files (MP4 to MP3) | GWB','Extract audio from your own MP4, WebM or MOV videos as MP3 or WAV, privately in your browser.','MultimediaApplication')}
+NEWMETA={(k+'/' if k else k):v for k,v in NEWMETA.items()}
+
+META.update(NEWMETA)
+AD='''<aside class="rail noprint" aria-label="Advertisement"><span class="ad-label">Advertisement</span><div class="ad-slot">
+<!-- AD SLOT: paste the AdSense <ins class="adsbygoogle" ...> unit (or another network's code) here. Desktop: 300x600 right rail; mobile: 100px inline.
+     Never trigger ads on clicks or downloads. Load the network script once in <head> where marked AD-SCRIPT. Add /ads.txt at the site root after approval. --></div></aside>'''
 import json
 for path,(t,d,cat) in META.items():
     f=(path or '')+'index.html';h=open(f).read();url=BASE+path
     h=re.sub(r'<title>.*?</title><meta name="description" content="[^"]*">','',h,count=1)
-    ld=[{"@context":"https://schema.org","@type":"WebApplication","name":t.split(' | ')[0],"url":url,"description":d,"applicationCategory":cat,"operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Ozor","email":"ozor.inc@gmail.com"}}]
-    if not path: ld=[{"@context":"https://schema.org","@type":"Organization","name":"Ozor","url":url,"email":"ozor.inc@gmail.com"},{"@context":"https://schema.org","@type":"WebSite","name":"Ozor","url":url}]
+    ld=[{"@context":"https://schema.org","@type":"WebApplication","name":t.split(' | ')[0],"url":url,"description":d,"applicationCategory":cat,"operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"GWB","email":"ozor.inc@gmail.com"}}]
+    if not path: ld=[{"@context":"https://schema.org","@type":"Organization","name":"GWB: Greater World Business","alternateName":"GWB","url":url,"email":"ozor.inc@gmail.com"},{"@context":"https://schema.org","@type":"WebSite","name":"GWB: Greater World Business","url":url}]
     head=f'''<title>{t}</title><meta name="description" content="{d}"><link rel="canonical" href="{url}"><meta name="theme-color" content="#2a2190">
-<meta property="og:type" content="website"><meta property="og:site_name" content="Ozor"><meta property="og:title" content="{t}"><meta property="og:description" content="{d}"><meta property="og:url" content="{url}">
+<meta property="og:type" content="website"><meta property="og:site_name" content="GWB"><meta property="og:title" content="{t}"><meta property="og:description" content="{d}"><meta property="og:url" content="{url}">
 <meta name="twitter:card" content="summary"><meta name="twitter:title" content="{t}"><meta name="twitter:description" content="{d}">
 <script type="application/ld+json">{json.dumps(ld if len(ld)>1 else ld[0])}</script>
+<!-- ANALYTICS: paste ONE analytics snippet here (recommended: GoatCounter, e.g. <script data-goatcounter="https://YOURCODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>) -->
 <!-- AD-SCRIPT: after AdSense approval, add: <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXX" crossorigin="anonymous"></script> -->'''
     h=h.replace('<meta name="viewport" content="width=device-width,initial-scale=1">','<meta name="viewport" content="width=device-width,initial-scale=1">'+head,1)
-    anchor='<section class="card" id="pricing"' if path else '<section class="card" id="support"'
-    h=h.replace(anchor,AD+anchor,1)
+    h=h.replace('<!--RAIL-->',AD,1)
     open(f,'w').write(h)
 open('sitemap.xml','w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{BASE+p}</loc><changefreq>monthly</changefreq></url>\n' for p in META)+'</urlset>\n')
 open('robots.txt','w').write(f'User-agent: *\nAllow: /\nSitemap: {BASE}sitemap.xml\n')
