@@ -482,7 +482,7 @@ infopage('terms','Terms of Use','The rules for using GWB tools and this website.
 <h2>Changes and contact</h2><p>We may update these terms from time to time. Continued use of the site means you accept the updated terms. Questions: <a href="mailto:ozor.inc@gmail.com">ozor.inc@gmail.com</a>.</p>""")
 
 # ---- SEO + ad slot post-processing ----
-BASE="https://uozor.github.io/ozor-apps/"  # change if the final Pages URL differs
+BASE="https://greaterworldmedia.com/"  # change if the final Pages URL differs
 META={'':('GWB | Free tools for small businesses','Free, private, in-browser tools for freelancers and small businesses: invoices, resume bullets, meeting costs, QR codes, policy templates and audio trimming.','BusinessApplication'),
 'invoice/':('Free Invoice & Receipt Generator (PDF) | GWB','Create professional invoices and receipts in your browser and save them as PDF. Free, private, no signup.','BusinessApplication'),
 'resume/':('Resume Bullet Improver: Free Achievement Bullet Writer | GWB','Turn plain job duties into clear, quantified resume bullets with recruiter-tested templates. Free and private.','BusinessApplication'),
