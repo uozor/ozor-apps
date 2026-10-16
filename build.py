@@ -52,7 +52,9 @@ table{width:100%;border-collapse:collapse}#items{table-layout:fixed}#items th:nt
 .backlink{margin:22px 0 0;font-weight:600}
 /* reserved right gutter so the fixed helper button never overlaps content */
 :root{--gut:64px}.bar,.layout{padding-right:clamp(24px,calc(var(--gut) - (100vw - 1200px)/2),var(--gut))}.hero{padding-right:clamp(24px,calc(var(--gut) - (100vw - 860px)/2),var(--gut))}footer{padding-right:var(--gut)}
-.gwb-fab{position:fixed;right:10px;bottom:10px;z-index:50;margin:0;width:48px;height:48px;padding:0;justify-content:center;border-radius:50%;box-shadow:0 8px 20px -6px rgba(20,18,43,.55)}.gwb-fab svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round}
+.gwb-fab{position:fixed;right:10px;bottom:10px;z-index:50;margin:0;width:48px;height:48px;padding:0;justify-content:center;border-radius:50%;box-shadow:0 8px 20px -6px rgba(20,18,43,.55)}.gwb-fab svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2;stroke-linejoin:round}.fab-txt{display:none}
+@media(min-width:768px){:root{--gut:170px}.gwb-fab{width:auto;height:50px;padding:0 20px 0 16px;border-radius:999px;gap:8px;right:14px;bottom:14px;font-size:1rem;background:linear-gradient(135deg,#b23a10,#a8104a 50%,#4b2fc0);font-weight:700;box-shadow:0 10px 26px -8px rgba(232,54,107,.6),0 4px 10px rgba(20,18,43,.25)}.fab-txt{display:inline}.gwb-panel{bottom:76px;right:14px}}
+@media (prefers-reduced-motion:no-preference){.gwb-fab.pulse{animation:gwbpulse 1.6s ease-out 2}@keyframes gwbpulse{0%{box-shadow:0 0 0 0 rgba(232,54,107,.55)}100%{box-shadow:0 0 0 18px rgba(232,54,107,0)}}}
 .gwb-panel{position:fixed;right:10px;bottom:66px;z-index:51;width:min(320px,calc(100vw - 20px));max-height:60vh;display:flex;flex-direction:column;background:#fff;color:var(--ink);border:1px solid #d6d8e6;border-radius:16px;box-shadow:0 20px 50px -12px rgba(20,18,43,.45);overflow:hidden;font-size:.95rem}
 .gwb-panel[hidden]{display:none}.gwb-head{display:flex;justify-content:space-between;align-items:center;padding:10px 12px 8px 16px;border-bottom:1px solid var(--line)}.gwb-head h2{font-size:1.1rem;margin:0}
 .gwb-x{margin:0;width:36px;height:36px;padding:0;justify-content:center;font-size:1.4rem;line-height:1;background:var(--soft);color:var(--ink);box-shadow:none}.gwb-body{padding:12px 16px 14px;overflow:auto}
@@ -357,7 +359,7 @@ HUB=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="v
 <script>"""+HUBJS+"""</script></body></html>"""
 import json as _j
 TD={t[0]:{'n':t[1],'d':t[2],'c':t[3],'i':icon(t[0])} for t in TOOLS}
-HELPER='''<aside class="gwb-help noprint" aria-label="Find a tool"><button type="button" id="gwb-fab" class="gwb-fab" aria-expanded="false" aria-controls="gwb-panel" aria-label="Find a tool"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/></svg></button>
+HELPER='''<aside class="gwb-help noprint" aria-label="Find a tool"><button type="button" id="gwb-fab" class="gwb-fab" aria-expanded="false" aria-controls="gwb-panel" aria-label="Find a tool"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M11 3l1.9 5.1L18 10l-5.1 1.9L11 17l-1.9-5.1L4 10l5.1-1.9z"/><path d="M18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg><span class="fab-txt">Find a tool</span></button>
 <div id="gwb-panel" class="gwb-panel" role="dialog" aria-modal="true" aria-labelledby="gwb-h" hidden><div class="gwb-head"><h2 id="gwb-h">Find a tool</h2><button type="button" id="gwb-x" class="gwb-x" aria-label="Close">&times;</button></div>
 <div class="gwb-body"><form id="hform" autocomplete="off"><label for="hq" class="vh">What do you need?</label><div class="hrow"><input id="hq" type="text" placeholder="What do you need?"><button type="submit">Go</button></div></form>
 <div class="hchips" role="group" aria-label="Examples"><button type="button" class="chip">shrink photos</button><button type="button" class="chip">bill a client</button><button type="button" class="chip">merge PDFs</button></div>
@@ -410,7 +412,7 @@ fab.addEventListener('click',()=>setOpen(pan.hidden,true));document.getElementBy
 pan.addEventListener('keydown',ev=>{if(ev.key==='Escape'){ev.preventDefault();setOpen(false,true)}else if(ev.key==='Tab'){const f=[...pan.querySelectorAll('a[href],button,input')].filter(x=>!x.disabled&&x.offsetParent!==null);if(!f.length)return;const first=f[0],last=f[f.length-1];if(ev.shiftKey&&document.activeElement===first){ev.preventDefault();last.focus()}else if(!ev.shiftKey&&document.activeElement===last){ev.preventDefault();first.focus()}}});
 document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&!pan.hidden&&!pan.contains(ev.target))setOpen(false,true)});document.getElementById('hform').addEventListener('submit',ev=>{ev.preventDefault();ask(inp.value)});
 document.querySelectorAll('.hchips .chip').forEach(c=>c.addEventListener('click',()=>{inp.value=c.textContent;ask(c.textContent);inp.focus()}));
-if(st.q){inp.value=st.q;ask(st.q);live.textContent=''}if(st.open)setOpen(true,false);window.gwbAsk=ask;window.gwbOpen=setOpen})();""".replace('__TD__',_j.dumps(TD)).replace('__PANEL__',_j.dumps(HELPER))
+if(st.q){inp.value=st.q;ask(st.q);live.textContent=''}if(st.open)setOpen(true,false);try{if(!localStorage.getItem('gwb-seen')){fab.classList.add('pulse');localStorage.setItem('gwb-seen','1')}}catch(x){}window.gwbAsk=ask;window.gwbOpen=setOpen})();""".replace('__TD__',_j.dumps(TD)).replace('__PANEL__',_j.dumps(HELPER))
 open('helper.js','w').write(HELPERJS)
 HUB=HUB.replace('</body></html>','<script src="helper.js" data-base="" defer></script></body></html>')
 
