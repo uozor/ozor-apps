@@ -193,7 +193,7 @@ Email | mailto:ozor.inc@gmail.com</textarea><button onclick="bio(true)">Download
 function dlQR(){qr();const img=document.querySelector('#qr img'),c=document.createElement('canvas');const go=()=>{c.width=img.width;c.height=img.height;c.getContext('2d').drawImage(img,0,0);const a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='qrcode.png';a.click()};img.complete?go():img.onload=go}
 const e=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function bio(dl){const g=id=>document.getElementById(id).value,col=g('bcol');const links=g('blinks').split('\\n').filter(l=>l.includes('|')).map(l=>{const[a,b]=l.split('|').map(s=>s.trim());return `<a href="${e(b)}" style="display:block;margin:10px auto;max-width:360px;padding:14px;border-radius:12px;background:${col};color:#fff;text-decoration:none;font-weight:600">${e(a)}</a>`}).join('');
-const h=`<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>${e(g('bname'))}</title></head><body style="font-family:system-ui;text-align:center;padding:40px 16px;background:#f6f7fb"><h1>${e(g('bname'))}</h1><p>${e(g('bbio'))}</p>${links}<p style="font-size:12px;color:#888;margin-top:30px">Made with GWB</p></body></html>`;
+const h=`<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>${e(g('bname'))}</title></head><body style="font-family:system-ui;text-align:center;padding:40px 16px;background:#f6f7fb"><h1>${e(g('bname'))}</h1><p>${e(g('bbio'))}</p>${links}<p style="font-size:12px;color:#595959;margin-top:30px">Made with GWB</p></body></html>`;
 document.getElementById('prev').srcdoc=h;if(dl){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([h],{type:'text/html'}));a.download='bio.html';a.click()}}
 document.querySelectorAll('#tool input,#tool textarea').forEach(x=>x.addEventListener('input',()=>bio(false)));qr();bio(false);""",head='<script src="vendor/qrcode.js"></script>')
 apps['policy']=page("Small-Business Policy Generator","Generate plain-English privacy policy, terms of service, and refund policy drafts for your small business.",
@@ -528,10 +528,10 @@ for path,(t,d,cat) in META.items():
 <script type="application/ld+json">{json.dumps(ld if len(ld)>1 else ld[0])}</script>
 <!-- ANALYTICS: paste ONE analytics snippet here (recommended: GoatCounter, e.g. <script data-goatcounter="https://YOURCODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>) -->
 <!-- CONSENT: Google requires a certified CMP for EEA/UK/CH visitors. Use AdSense > Privacy & messaging (Google's CMP); it shows a small consent banner only in those regions. No custom popup needed. -->
-<!-- AD-SCRIPT: after AdSense approval, add: <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXX" crossorigin="anonymous"></script> -->'''
+<!-- AD-SCRIPT --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9780755121157050" crossorigin="anonymous"></script>'''
     h=h.replace('<meta name="viewport" content="width=device-width,initial-scale=1">','<meta name="viewport" content="width=device-width,initial-scale=1">'+head,1)
     h=h.replace('<!--RAIL-->',AD,1)
     open(f,'w').write(h)
 open('sitemap.xml','w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{BASE+p}</loc><changefreq>monthly</changefreq></url>\n' for p in META)+'</urlset>\n')
 open('robots.txt','w').write(f'User-agent: *\nAllow: /\nSitemap: {BASE}sitemap.xml\n')
-open('ads.txt.example','w').write('# Rename to ads.txt after ad-network approval, e.g.:\n# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0\n')
+open('ads.txt','w').write('google.com, pub-9780755121157050, DIRECT, f08c47fec0942fa0\n')
