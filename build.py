@@ -111,7 +111,7 @@ def page(title,tagline,how,tool,js,head="",**k):
 <div class="hero"><div class="hero-ico {{{{CATCLS}}}}">{{{{ICON}}}}</div><nav aria-label="Breadcrumb" class="crumbs"><ol><li><a href="../index.html">Home</a></li><li><a href="../index.html#tools">All tools</a></li><li><a href="../index.html?cat={{{{CAT}}}}#tools">{{{{CATNAME}}}}</a></li><li aria-current="page">{title}</li></ol></nav><p class="eyebrow">{{{{CATNAME}}}} · Free · Private · No signup</p><h1>{title}</h1><p>{tagline}</p><a class="btn light" href="#tool">Use it now</a></div></header>
 <div class="layout"><main id="main"><section class="card noprint" aria-labelledby="h-how"><p class="eyebrow">How it works</p><h2 id="h-how">Simple, fast and private</h2><p class="lead">{how}</p><p class="lead"><strong>Private by design:</strong> everything runs in your browser. Your files and text never leave your device.</p></section>
 <section class="card" id="tool" aria-label="{title} tool">{tool}<p class="backlink noprint"><a href="../index.html#tools">← Browse all {len(TOOLS)} tools</a></p></section>
-{{{{ADIN}}}}{{{{FAQ}}}}
+{{{{RECS}}}}{{{{ADIN}}}}{{{{FAQ}}}}
 <section class="card" id="pricing" aria-labelledby="h-price"><p class="eyebrow">Pricing</p><h2 id="h-price">Free forever. Tips welcome.</h2><div class="grid"><div class="price"><h3>Free forever</h3><div class="big">$0</div><p>Every feature, unlimited use, no account. That won't change.</p></div>
 <div class="price feat"><h3>Support this tool / Tip</h3><div class="big">Any amount</div><p>If this saved you time, a small tip helps keep GWB tools free and fast.</p><a class="btn" id="support" href="https://buy.stripe.com/7sY6oGgJR5Vh3MabNQ3F600" rel="noopener">Support this tool / Tip</a><p class="hsmall" style="margin-top:12px"><a href="https://buy.stripe.com/4gM8wOeBJ5VhfuS9FI3F601" rel="noopener">Become a supporter, $3/mo</a></p></div></div></section></main>
 <!--RAIL--></div>
@@ -442,13 +442,16 @@ from export_src import EXPCSS,EXPJS,EX,exprow
 FFX="no account. That won't change.</p>"
 from budget_src import BUDGET_CSS
 CSS+=BUDGET_CSS
+from recommendations import rechtml,RECCSS,REC
+CSS+=RECCSS
+assert set(REC)=={t[0] for t in TOOLS}
 CSS+=EXPCSS
 open('vendor/gwb-export.js','w').write(EXPJS)
 open('style.css','w').write(CSS)
 open('safe.js','w').write(SAFEJS)
 os.makedirs('tax-calculator',exist_ok=True);open('tax-calculator/tax.js','w').write(TAXJS)
 for k,v in apps.items():
-    v=v.replace('{{ICON}}',icon(k)).replace('{{CATCLS}}','cat-'+CATOF[k]).replace('{{CATNAME}}',CATS[CATOF[k]]).replace('{{CAT}}',CATOF[k]).replace('{{ADIN}}',ADIN).replace('{{FAQ}}',faqhtml(k));v=re.sub(r'<label>([^<]*)</label>(\s*)<(input|textarea|select) id="([^"]+)"',r'<label for="\4">\1</label>\2<\3 id="\4"',v);
+    v=v.replace('{{ICON}}',icon(k)).replace('{{CATCLS}}','cat-'+CATOF[k]).replace('{{CATNAME}}',CATS[CATOF[k]]).replace('{{CAT}}',CATOF[k]).replace('{{RECS}}',rechtml(k)).replace('{{ADIN}}',ADIN).replace('{{FAQ}}',faqhtml(k));v=re.sub(r'<label>([^<]*)</label>(\s*)<(input|textarea|select) id="([^"]+)"',r'<label for="\4">\1</label>\2<\3 id="\4"',v);
     if k in EX:
         fm,nt,sj=EX[k];assert FFX in v;v=v.replace(FFX,FFX+exprow(fm,nt),1).replace('</body></html>','<script src="../vendor/gwb-export.js" defer></script><script>'+sj+'</script></body></html>',1)
     os.makedirs(k,exist_ok=True);open(f'{k}/index.html','w').write(v)
@@ -583,7 +586,7 @@ infopage('about','About GWB','GWB: Greater World Business is your one-stop shop 
 infopage('contact','Contact','Questions, feedback, tool ideas or bug reports: we read every message.',"""<h2>Email us</h2><p>The best way to reach GWB is by email: <a href="mailto:gwm.tech@greaterworldmedia.tech">gwm.tech@greaterworldmedia.tech</a>. We aim to reply within a few business days.</p>
 <h2>What to include</h2><ul><li><strong>Bug reports:</strong> the tool name, your browser and device, and what happened.</li><li><strong>Tool ideas:</strong> what you are trying to get done and how you do it today.</li><li><strong>Reviews:</strong> tell us which tool you used and how it helped. With your permission, we may publish it on our home page.</li><li><strong>Privacy requests:</strong> see our <a href="../privacy/">Privacy Policy</a>.</li></ul>
 <p><a class="btn" href="mailto:gwm.tech@greaterworldmedia.tech?subject=GWB%20feedback">Email GWB</a></p>""")
-infopage('privacy','Privacy Policy','How GWB handles information, cookies, analytics and advertising.',"""<p><em>Last updated: October 16, 2026</em></p>
+infopage('privacy','Privacy Policy','How GWB handles information, cookies, analytics and advertising.',"""<p><em>Last updated: October 16, 2026</em></p><h2>Affiliate links</h2><p>Tool pages include a small “Recommended tools” section with links to third-party products and services (for example Amazon, QuickBooks, FreshBooks, Gusto, Canva and Namecheap). Some of these links may be affiliate links, which means GWB may earn a commission if you buy through them, at no extra cost to you. These links are marked as sponsored. Recommendations are chosen for relevance to each tool, and affiliate relationships never change how our free tools work. When you follow a link, the other site’s own privacy policy and terms apply.</p>
 <h2>Summary</h2><p>GWB's tools run in your browser. Files, text and numbers you use in a tool are processed on your device and are not uploaded to or stored by GWB. This policy explains the limited information that may be collected when you visit the site.</p>
 <h2>Information processed by the tools</h2><p>Content you open or type into a tool stays on your device. Some tools remember small preferences in your browser's local or session storage (for example, whether you have seen the “Find a tool” helper and your last helper search). You can clear this at any time in your browser settings.</p>
 <h2>Hosting and server logs</h2><p>The site is hosted on GitHub Pages. GitHub may collect technical information such as IP addresses in server logs for security and operations. See <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</p>
@@ -594,7 +597,7 @@ infopage('privacy','Privacy Policy','How GWB handles information, cookies, analy
 <h2>Payments</h2><p>Tips and supporter memberships are processed by Stripe. GWB does not receive or store your card details. See <a href="https://stripe.com/privacy">Stripe's privacy policy</a>.</p>
 <h2>Children</h2><p>The site is not directed to children under 13, and we do not knowingly collect personal information from children.</p>
 <h2>Your choices and contact</h2><p>You can block or delete cookies in your browser settings. For any privacy question or request, email <a href="mailto:gwm.tech@greaterworldmedia.tech">gwm.tech@greaterworldmedia.tech</a>.</p>""")
-infopage('terms','Terms of Use','The rules for using GWB tools and this website.',"""<p><em>Last updated: October 16, 2026</em></p>
+infopage('terms','Terms of Use','The rules for using GWB tools and this website.',"""<p><em>Last updated: October 16, 2026</em></p><h2>Affiliate links</h2><p>Tool pages include a small “Recommended tools” section with links to third-party products and services (for example Amazon, QuickBooks, FreshBooks, Gusto, Canva and Namecheap). Some of these links may be affiliate links, which means GWB may earn a commission if you buy through them, at no extra cost to you. These links are marked as sponsored. Recommendations are chosen for relevance to each tool, and affiliate relationships never change how our free tools work. When you follow a link, the other site’s own privacy policy and terms apply.</p>
 <h2>Using the tools</h2><p>GWB tools are provided free of charge for personal and commercial use. You agree to use them lawfully and only with files and content you own or have the rights to use. The audio and video tools must not be used to infringe copyright.</p>
 <h2>No warranty</h2><p>The tools and content are provided “as is”, without warranties of any kind. Results from calculators, generators and templates (including policy templates) are for general information and are not legal, financial or professional advice. Always review outputs before relying on them.</p>
 <h2>Limitation of liability</h2><p>To the extent permitted by law, GWB is not liable for any indirect, incidental or consequential damages, or for loss of data, arising from your use of the site or tools. Because files are processed on your device, keep your own backups.</p>
