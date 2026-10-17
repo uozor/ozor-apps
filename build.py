@@ -145,6 +145,9 @@ TOOLS=[('pdf-tools','PDF Merge, Split & JPG to PDF','Combine PDFs, extract pages
 ('meeting-cost','Meeting Cost Calculator','A live ticker that shows what a meeting really costs.','business'),
 ('policy','Policy Generator','Plain-English privacy, terms and refund policy drafts.','business'),
 ('resume','Resume Bullet Improver','Turn plain duties into clear, results-focused resume bullets.','writing')]
+import newtools as NT
+for _t in NT.NEW:
+    TOOLS.append((_t['slug'],_t['name'],_t['summary'],_t['cat']));FAQ[_t['slug']]=(_t['steps'],_t['qa']+([PRIV] if _t.get('priv',True) else []));ICONS[_t['slug']]=_t['icon']
 CATOF={t[0]:t[3] for t in TOOLS}
 import seo
 from safe_src import SAFEJS,SAFECSS
@@ -450,6 +453,9 @@ open('vendor/gwb-export.js','w').write(EXPJS)
 open('style.css','w').write(CSS)
 open('safe.js','w').write(SAFEJS)
 os.makedirs('tax-calculator',exist_ok=True);open('tax-calculator/tax.js','w').write(TAXJS)
+for _t in NT.NEW:
+    apps[_t['slug']]=page(_t['title'],_t['tagline'],_t['how'],_t['html'],_t['js'],head=_t.get('head',''))
+    CSS+=_t.get('css','')
 for k,v in apps.items():
     v=v.replace('{{ICON}}',icon(k)).replace('{{CATCLS}}','cat-'+CATOF[k]).replace('{{CATNAME}}',CATS[CATOF[k]]).replace('{{CAT}}',CATOF[k]).replace('{{RECS}}',rechtml(k)).replace('{{ADIN}}',ADIN).replace('{{FAQ}}',faqhtml(k));v=re.sub(r'<label>([^<]*)</label>(\s*)<(input|textarea|select) id="([^"]+)"',r'<label for="\4">\1</label>\2<\3 id="\4"',v);
     if k in EX:
@@ -566,6 +572,7 @@ try{if(sessionStorage.getItem(K))return;sessionStorage.setItem(K,'1')}catch(_){}
 setTimeout(()=>{const box=document.createElement('div');box.className='gwb-ty noprint';box.setAttribute('role','status');box.setAttribute('aria-live','polite');
 box.innerHTML='<p>Thanks for using GWB! If this helped, you can <a href="https://buy.stripe.com/7sY6oGgJR5Vh3MabNQ3F600" target="_blank" rel="noopener">leave a tip</a> or <a href="https://buy.stripe.com/4gM8wOeBJ5VhfuS9FI3F601" target="_blank" rel="noopener">become a supporter</a>.</p><button type="button" class="gwb-ty-x" aria-label="Dismiss thank-you note">\u00d7</button>';
 const host=el.closest('.card,section')||el.parentElement;host.appendChild(box);box.querySelector('.gwb-ty-x').onclick=()=>{box.remove();el.focus&&el.focus()}},600)},true)})();'''
+HELPERJS=HELPERJS.replace('const H=[\n','const H=[\n'+NT.helper_js(),1)
 open('helper.js','w').write(HELPERJS+TYJS)
 HUB=HUB.replace('</body></html>','<script src="helper.js" data-base="" defer></script></body></html>')
 

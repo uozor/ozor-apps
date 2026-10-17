@@ -13,6 +13,11 @@ AFFILIATE={
   'grammarly':  {'param':'ref','id':''},
   'termly':     {'param':'ref','id':''},
   'google':     {'param':'ref','id':''},
+  'xero':       {'param':'ref','id':''},
+  'melio':      {'param':'ref','id':''},
+  '1password':  {'param':'ref','id':''},
+  'monday':     {'param':'ref','id':''},
+  'webflow':    {'param':'ref','id':''},
   'zoom':       {'param':'ref','id':''},
 }
 def link(url,program):
@@ -44,6 +49,8 @@ REC={
 'audio':[('USB microphone (Amazon)','https://www.amazon.com/s?k=usb+microphone','Record cleaner voiceovers and podcasts than a laptop mic.','amazon'),('Studio headphones (Amazon)','https://www.amazon.com/s?k=studio+headphones','Hear edits and fades accurately while trimming.','amazon')],
 'video-to-mp3':[('Studio headphones (Amazon)','https://www.amazon.com/s?k=studio+headphones','Check extracted audio for noise and clipping.','amazon'),('USB microphone (Amazon)','https://www.amazon.com/s?k=usb+microphone','Re-record narration when the original audio isn\u2019t usable.','amazon'),CA],
 }
+import newtools as _NT
+for _t in _NT.NEW: REC[_t['slug']]=_t['recs']
 def rechtml(k):
     items=REC[k]
     li=''.join(f'<li class="rec"><a href="{link(u,p)}" rel="sponsored noopener" target="_blank" data-program="{p}">{n}<span class="vh"> (opens in a new tab)</span></a><p>{b}</p></li>' for n,u,b,p in items)

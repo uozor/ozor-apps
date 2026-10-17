@@ -127,3 +127,7 @@ notes:['Paste the HTML into your email client settings, or use Copy signature on
 
 from budget_src import BUDGET_SPEC
 EX['budget-calculator']=(['pdf','xlsx','csv'],'',BUDGET_SPEC)
+
+import newtools as _NT
+for _t in _NT.NEW:
+    if _t.get('exports'): EX[_t['slug']]=(_t['exports'],'',_t['spec'])

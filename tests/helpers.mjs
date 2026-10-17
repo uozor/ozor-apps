@@ -3,7 +3,7 @@ import fs from 'fs'; import path from 'path'; import { fileURLToPath } from 'url
 const here = path.dirname(fileURLToPath(import.meta.url));
 export const fx = n => path.join(here, 'fixtures', n);
 export const AXE = fs.readFileSync(path.join(here, 'node_modules/axe-core/axe.min.js'), 'utf8');
-export const TOOLS = ['invoice','resume','meeting-cost','qr-bio','policy','audio','pdf-tools','image-compress','image-convert','word-counter','password','biz-calc','business-name','email-signature','color-palette','video-to-mp3','tax-calculator','budget-calculator'];
+export const TOOLS = JSON.parse(fs.readFileSync(path.join(here, '..', 'tools.json'), 'utf8')).tools.map(t => t.id);
 /* a sparse 600 MB file for "very large file" checks (never actually read into memory if size checks work) */
 export function bigFile(name) { const p = path.join(here, 'fixtures', name); if (!fs.existsSync(p)) { const fd = fs.openSync(p, 'w'); fs.ftruncateSync(fd, 600 * 1048576); fs.closeSync(fd); } return p; }
 export const test = base.extend({

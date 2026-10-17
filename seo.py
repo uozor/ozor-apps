@@ -1,9 +1,10 @@
+import newtools as _NT
 # SEO / AI-search data shared by build.py. Free, no sign-up, in-browser claims are factual for every tool.
 SHORT={'budget-calculator':'the budget calculator','tax-calculator':'the tax calculator','pdf-tools':'the PDF merge & split tool','image-compress':'the image compressor','image-convert':'the image converter','invoice':'the invoice generator','audio':'the audio trimmer','video-to-mp3':'the video to MP3 extractor','word-counter':'the word counter','password':'the password generator','biz-calc':'the business calculators','business-name':'the business name generator','email-signature':'the email signature generator','color-palette':'the color palette generator','qr-bio':'the QR code generator','meeting-cost':'the meeting cost calculator','policy':'the policy generator','resume':'the resume bullet improver'}
 # path -> (title, meta description, applicationCategory)
 META={
 'budget-calculator/':('Free Monthly Budget Calculator & Planner (50/30/20), No Sign-Up | GWB','Plan a monthly budget free: income, expenses, what is left, % of income per category and a 50/30/20 comparison. Export PDF or Excel. No sign-up.','FinanceApplication'),
-'':('Free Small Business Tools, No Sign-Up | GWB: Greater World Business','18 free online tools for small businesses and creators: merge PDF, compress images, invoice generator, calculators and more. No sign-up; files stay in your browser.','BusinessApplication'),
+'':('Free Small Business Tools, No Sign-Up | GWB: Greater World Business',f'{18+len(_NT.NEW)} free online tools for small businesses and creators: merge PDF, compress images, invoice generator, calculators and more. No sign-up; files stay in your browser.','BusinessApplication'),
 'tax-calculator/':('Free US Income Tax Calculator 2026: Take-Home Pay by State | GWB','Estimate 2026 federal and state income tax, Social Security, Medicare and take-home pay for all 50 states and DC. Free, private, no sign-up.','FinanceApplication'),
 'pdf-tools/':('Merge PDF, Split PDF & JPG to PDF Free, No Sign-Up | GWB','Merge PDF files, split or extract pages, and convert JPG/PNG to PDF free. No sign-up, no watermark, no upload: everything runs in your browser.','BusinessApplication'),
 'image-compress/':('Free Image Compressor & Resizer (JPG, PNG, WEBP), No Sign-Up | GWB','Compress and resize JPG, PNG and WEBP images free in your browser. No sign-up, no upload, no watermark and no file limits.','MultimediaApplication'),
@@ -44,6 +45,9 @@ FEATURES={
 'resume':['Action-verb bullet rewrites','Add numbers and results','Several verb styles','Copy bullets'],
 }
 EXPORTS={'budget-calculator':['PDF','Excel (.xlsx)','CSV'],'tax-calculator':['PDF','Excel (.xlsx)','CSV'],'biz-calc':['PDF','Excel (.xlsx)','CSV'],'meeting-cost':['PDF','Excel (.xlsx)','CSV'],'invoice':['PDF','Excel (.xlsx)','CSV'],'word-counter':['PDF','Excel (.xlsx)','CSV'],'color-palette':['PDF','Excel (.xlsx)','CSV'],'business-name':['PDF','Excel (.xlsx)','CSV'],'resume':['PDF','Excel (.xlsx)'],'policy':['PDF','Excel (.xlsx)'],'email-signature':['PDF','Excel (.xlsx)']}
+for _t in _NT.NEW:
+    SHORT[_t['slug']]=_t['short'];META[_t['slug']+'/']=_t['meta'];FEATURES[_t['slug']]=list(_t['features'])
+    if _t.get('exports'): EXPORTS[_t['slug']]=[_NT.FN[x] for x in _t['exports']]
 def _fl(x): return ', '.join(x[:-1])+' or '+x[-1]
 for _k,_x in EXPORTS.items(): FEATURES[_k]=FEATURES[_k]+['Export results to '+_fl(_x)+' (in-browser)','Send to phone as a plain-text note (share, copy, .txt or QR)']
 def extra_faq(k,name):
