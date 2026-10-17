@@ -442,7 +442,7 @@ os.makedirs('tax-calculator',exist_ok=True);open('tax-calculator/tax.js','w').wr
 for k,v in apps.items():
     v=v.replace('{{ICON}}',icon(k)).replace('{{CATCLS}}','cat-'+CATOF[k]).replace('{{CATNAME}}',CATS[CATOF[k]]).replace('{{CAT}}',CATOF[k]).replace('{{ADIN}}',ADIN).replace('{{FAQ}}',faqhtml(k));v=re.sub(r'<label>([^<]*)</label>(\s*)<(input|textarea|select) id="([^"]+)"',r'<label for="\4">\1</label>\2<\3 id="\4"',v);
     if k in EX:
-        fm,nt,sj=EX[k];v=v.replace('<a class="btn" id="support"',exprow(fm,nt)+'<a class="btn" id="support"',1).replace('</body></html>','<script src="../vendor/gwb-export.js" defer></script><script>'+sj+'</script></body></html>',1)
+        fm,nt,sj=EX[k];v=re.sub(r'(<a class="btn" id="support".*?</a>)',lambda m:'<div class="gwbx-wrap">'+exprow(fm,nt)+m.group(1)+'</div>',v,count=1,flags=re.S).replace('</body></html>','<script src="../vendor/gwb-export.js" defer></script><script>'+sj+'</script></body></html>',1)
     os.makedirs(k,exist_ok=True);open(f'{k}/index.html','w').write(v)
 def tile(k,t,d,c):
     return f'<li class="tile" data-cat="{c}" data-name="{t.lower()} {d.lower()} {CATS[c].lower()}"><span class="ico cat-{c}">{icon(k)}</span><span class="tag">{CATS[c]}</span><h3><a href="{k}/index.html">{t}</a></h3><p>{d}</p></li>'
