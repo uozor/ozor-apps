@@ -4,7 +4,7 @@ const XLSX = require('xlsx');
 const today = (() => { const d = new Date(), p = n => String(n).padStart(2, '0'); return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`; })();
 // slug -> [file stem, formats, expected strings (in every format), setup]
 const CASES = {
-  'tax-calculator': ['tax-estimate-2026', ['pdf', 'xlsx', 'csv'], ['US Income Tax Estimate', 'Take-home pay', 'Tax year 2026, estimates only, not tax advice'], async p => { await p.fill('#sal', '100000'); await expect(p.locator('#res')).toContainText('$79,180.00'); }],
+  'tax-calculator': ['tax-estimate', ['pdf', 'xlsx', 'csv'], ['US Income Tax Estimate', 'Take-home pay', 'Tax year 2026, estimates only, not tax advice'], async p => { await p.fill('#sal', '100000'); await expect(p.locator('#res')).toContainText('$79,180.00'); }],
   'biz-calc': ['business-calculations', ['pdf', 'xlsx', 'csv'], ['Business Calculations', 'Monthly payment', 'Break-even']],
   'meeting-cost': ['meeting-cost', ['pdf', 'xlsx', 'csv'], ['Meeting Cost Estimate', 'Planned meeting cost']],
   'invoice': ['invoice', ['pdf', 'xlsx', 'csv'], ['Website design', 'Subtotal', 'Total']],

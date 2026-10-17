@@ -66,7 +66,7 @@ D.addEventListener('click',e=>{const b=e.target.closest('[data-gwbx]');if(b)X.ru
 })();"""
 # per-tool spec: (formats, note, js defining window.GWB_EXPORT)
 EX={}
-EX['tax-calculator']=(['pdf','xlsx','csv'],'',r"""window.GWB_EXPORT={slug:'tax-estimate-2026',title:'US Income Tax Estimate (Tax Year 2026)',get(){const X=GWB.X,ts=[...document.querySelectorAll('#res table')];if(!ts.length||GWB.hasErrors())return null;
+EX['tax-calculator']=(['pdf','xlsx','csv'],'',r"""window.GWB_EXPORT={slug:'tax-estimate',title:'US Income Tax Estimate (Tax Year 2026)',get(){const X=GWB.X,ts=[...document.querySelectorAll('#res table')];if(!ts.length||GWB.hasErrors())return null;
 return{inputs:X.inputs('#sal,#per,#hrs,#st,#fs,#k'),tables:[{name:'Tax breakdown',head:['Item','Amount'],rows:X.table(ts[0])},{name:'Take-home pay',head:['Period','Take-home pay'],rows:X.table(ts[1]||ts[0])}],
 notes:['Tax year 2026, estimates only, not tax advice.','Wages only; credits, itemized deductions and local taxes are not included.','Sources: IRS Rev. Proc. 2025-32 (2026 federal brackets and standard deduction), SSA 2026 wage base ($184,500), Tax Foundation 2026 state income tax table.']}}};""")
 EX['biz-calc']=(['pdf','xlsx','csv'],'',r"""window.GWB_EXPORT={slug:'business-calculations',title:'Business Calculations',get(){const X=GWB.X;if(GWB.hasErrors())return null;
