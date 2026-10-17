@@ -74,7 +74,15 @@ table{width:100%;border-collapse:collapse}#items{table-layout:fixed}#items th:nt
 .hopen{width:100%;justify-content:center;margin:14px 0 4px;padding:14px 18px}.hsub{margin:12px 0 4px;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
 .htips,.hrel{margin:0;padding-left:20px}.htips li,.hrel li{margin:2px 0}
 @media (prefers-reduced-motion:no-preference){.hres,.hmsg{animation:rise .35s ease both}}
-@media print{.site,.noprint,footer,#pricing,.rail{display:none!important}.layout{display:block;margin:0}body{background:#fff}section.card{box-shadow:none;border:0}section.card::before{display:none}}"""
+/* tool pages: guide in a right-hand column next to the tool (sticky, scrolls within itself); ad rail below it */
+.layout.tl{grid-template-columns:minmax(0,1fr)}
+.tmain{display:grid;grid-template-columns:minmax(0,1fr) 300px;column-gap:28px;align-items:start}.tmain>*{grid-column:1;min-width:0}
+.tmain>.guide{grid-column:2;grid-row:1/3;position:sticky;top:20px;max-height:calc(100vh - 40px);overflow-y:auto;overscroll-behavior:contain;padding:26px 22px;font-size:.95rem}
+.tmain>.rail{grid-column:2;grid-row:3/6}
+.guide h2{font-size:1.25rem;margin:.2em 0 .5em}.guide h2#h-faq{font-size:1.1rem;margin-top:1.3em}.guide h3{font-size:1rem;margin:1em 0 .3em}.guide .g-h{margin-top:.6em}.guide .lead{font-size:1rem}.guide ol{padding-left:1.3em}.guide li{margin:.35em 0}.guide p{margin:.4em 0}.guide .g-priv{margin-top:1.2em;padding-top:.9em;border-top:1px solid var(--line);font-size:.9rem}
+.guide:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+@media(max-width:1000px){.tmain{grid-template-columns:minmax(0,1fr)}.tmain>.guide,.tmain>.rail{grid-column:1;grid-row:auto;position:static;max-height:none;overflow:visible}.tmain>.guide{padding:clamp(22px,4vw,44px)}}
+@media print{.site,.noprint,footer,#pricing,.rail{display:none!important}.layout{display:block;margin:0}.tmain{display:block}.tmain>.guide{position:static;max-height:none;overflow:visible}body{background:#fff}section.card{box-shadow:none;border:0}section.card::before{display:none}}"""
 LOGO='<svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><defs><linearGradient id="gwbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffa24c"/><stop offset=".55" stop-color="#e8366b"/><stop offset="1" stop-color="#7c5cff"/></linearGradient></defs><rect width="40" height="40" rx="12" fill="url(#gwbg)"/><circle cx="20" cy="20" r="11" fill="none" stroke="#fff" stroke-width="2.4"/><ellipse cx="20" cy="20" rx="4.8" ry="11" fill="none" stroke="#fff" stroke-width="2"/><path d="M9.5 16h21M9.5 24h21" stroke="#fff" stroke-width="1.8"/><circle cx="31" cy="9" r="3.2" fill="#fff"/></svg>'
 BRAND='<span class="brand">'+LOGO+'<span><b>GWB</b><small>Greater World Business</small></span></span>'
 FOOTER='<footer>'+BRAND+'<p>Your one-stop shop for small business tools</p><nav aria-label="Site links"><ul class="flinks"><li><a href="HREFBASEindex.html#tools">All tools</a></li><li><a href="HREFBASEabout/">About</a></li><li><a href="HREFBASEcontact/">Contact</a></li><li><a href="HREFBASEprivacy/">Privacy Policy</a></li><li><a href="HREFBASEterms/">Terms</a></li><li><a href="https://buy.stripe.com/7sY6oGgJR5Vh3MabNQ3F600" rel="noopener">Tip GWB</a></li></ul></nav><p>Contact: <a href="mailto:gwm.tech@greaterworldmedia.tech">gwm.tech@greaterworldmedia.tech</a> · &copy; 2026 GWB: Greater World Business</p></footer>'
@@ -102,20 +110,24 @@ FAQ={
 ADIN='<aside class="ad-inline noprint" aria-label="Advertisement (in content)"><span class="ad-label">Advertisement</span><div class="ad-in-slot"><!-- IN-CONTENT AD SLOT (max one per page): paste one responsive AdSense unit here after approval. Fixed height reserved; no sticky/anchor/interstitial formats. --></div></aside>'
 def faqhtml(k):
     st,qa=FAQ[k]
-    return '<section class="card" aria-labelledby="h-faq"><p class="eyebrow">Guide</p><h2 id="h-faq">How to use it</h2><ol>'+''.join('<li>'+x+'</li>' for x in st)+'</ol><h2>Frequently asked questions</h2>'+''.join('<h3>'+q+'</h3><p>'+a+'</p>' for q,a in qa)+'</section>'
+    return '<h3 class="g-h">Steps</h3><ol>'+''.join('<li>'+x+'</li>' for x in st)+'</ol><h2 id="h-faq">Frequently asked questions</h2>'+''.join('<h3>'+q+'</h3><p>'+a+'</p>' for q,a in qa)
 def tcount(): return f"{len(TOOLS)//10*10}+"
+def _h2(tool,title):
+    m=re.search(r'<h([1-6])\b',tool)
+    return '' if m and m.group(1)=='2' else f'<h2 class="vh">{title}</h2>'
 def page(title,tagline,how,tool,js,head="",**k):
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title} | GWB</title><meta name="description" content="{tagline}"><link rel="stylesheet" href="../style.css"><script src="../safe.js"></script>{head}</head><body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><nav class="bar noprint" aria-label="Main"><a href="../index.html">{BRAND}<span class="vh">, all tools</span></a><ul><li><a href="../index.html#tools">All tools</a></li><li><a href="#tool">Use tool</a></li><li><a href="#pricing">Support</a></li></ul></nav>
 <div class="hero"><div class="hero-ico {{{{CATCLS}}}}">{{{{ICON}}}}</div><nav aria-label="Breadcrumb" class="crumbs"><ol><li><a href="../index.html">Home</a></li><li><a href="../index.html#tools">All tools</a></li><li><a href="../index.html?cat={{{{CAT}}}}#tools">{{{{CATNAME}}}}</a></li><li aria-current="page">{title}</li></ol></nav><p class="eyebrow">{{{{CATNAME}}}} · Free · Private · No signup</p><h1>{title}</h1><p>{tagline}</p><a class="btn light" href="#tool">Use it now</a></div></header>
-<div class="layout"><main id="main"><section class="card noprint" aria-labelledby="h-how"><p class="eyebrow">How it works</p><h2 id="h-how">Simple, fast and private</h2><p class="lead">{how}</p><p class="lead"><strong>Private by design:</strong> everything runs in your browser. Your files and text never leave your device.</p></section>
-<section class="card" id="tool" aria-label="{title} tool">{tool}<p class="backlink noprint"><a href="../index.html#tools">← Browse all {tcount()} tools</a></p></section>
-{{{{RECS}}}}{{{{ADIN}}}}{{{{FAQ}}}}
+<div class="layout tl"><main id="main" class="tmain">
+<section class="card" id="tool" aria-label="{title} tool">{_h2(tool,title)}{tool}<p class="backlink noprint"><a href="../index.html#tools">← Browse all {tcount()} tools</a></p></section>
+<section class="card guide" id="guide" aria-labelledby="h-guide" tabindex="0"><p class="eyebrow">Guide</p><h2 id="h-guide">How to use it</h2><p class="lead">{how}</p>{{{{FAQ}}}}<p class="g-priv"><strong>Private by design:</strong> everything runs in your browser. Your files and text never leave your device.</p></section>
+{{{{RECS}}}}{{{{ADIN}}}}
 <section class="card" id="pricing" aria-labelledby="h-price"><p class="eyebrow">Pricing</p><h2 id="h-price">Free forever. Tips welcome.</h2><div class="grid"><div class="price"><h3>Free forever</h3><div class="big">$0</div><p>Every feature, unlimited use, no account. That won't change.</p></div>
-<div class="price feat"><h3>Support this tool / Tip</h3><div class="big">Any amount</div><p>If this saved you time, a small tip helps keep GWB tools free and fast.</p><a class="btn" id="support" href="https://buy.stripe.com/7sY6oGgJR5Vh3MabNQ3F600" rel="noopener">Support this tool / Tip</a><p class="hsmall" style="margin-top:12px"><a href="https://buy.stripe.com/4gM8wOeBJ5VhfuS9FI3F601" rel="noopener">Become a supporter, $3/mo</a></p></div></div></section></main>
-<!--RAIL--></div>
+<div class="price feat"><h3>Support this tool / Tip</h3><div class="big">Any amount</div><p>If this saved you time, a small tip helps keep GWB tools free and fast.</p><a class="btn" id="support" href="https://buy.stripe.com/7sY6oGgJR5Vh3MabNQ3F600" rel="noopener">Support this tool / Tip</a><p class="hsmall" style="margin-top:12px"><a href="https://buy.stripe.com/4gM8wOeBJ5VhfuS9FI3F601" rel="noopener">Become a supporter, $3/mo</a></p></div></div></section><!--RAIL--></main>
+</div>
 {FOOTER.replace('HREFBASE','../')}<script>{js}
 /* URL prefill: ?id=value sets matching tool fields */new URLSearchParams(location.search).forEach((v,k)=>{{const el=document.getElementById(k);if(!el||!el.closest('#tool')||!/^(INPUT|SELECT|TEXTAREA)$/.test(el.tagName)||el.type==='file')return;if(el.type==='checkbox')el.checked=v==='1';else el.value=v;['input','change'].forEach(t=>el.dispatchEvent(new Event(t,{{bubbles:true}})))}});</script><script src="../helper.js" data-base="../" defer></script></body></html>"""
 ICONS={'budget-calculator':'<rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18M16 15h2"/><path d="M7 6V4h10v2"/>','invoice':'<path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5M9 13h8M9 17h6"/>','resume':'<rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="9" r="3"/><path d="M7 18c1-3 9-3 10 0"/>',
@@ -451,6 +463,9 @@ from recommendations import rechtml,RECCSS,REC
 CSS+=RECCSS
 assert set(REC)=={t[0] for t in TOOLS}
 CSS+=EXPCSS
+from fileshare_src import FILE_TOOLS,FSCSS,FSJS,fsrow
+CSS+=FSCSS
+open('vendor/gwb-fileshare.js','w').write(FSJS)
 open('vendor/gwb-export.js','w').write(EXPJS)
 open('style.css','w').write(CSS)
 open('safe.js','w').write(SAFEJS)
@@ -461,6 +476,8 @@ for k,v in apps.items():
     v=v.replace('{{ICON}}',icon(k)).replace('{{CATCLS}}','cat-'+CATOF[k]).replace('{{CATNAME}}',CATS[CATOF[k]]).replace('{{CAT}}',CATOF[k]).replace('{{RECS}}',rechtml(k)).replace('{{ADIN}}',ADIN).replace('{{FAQ}}',faqhtml(k));v=re.sub(r'<label>([^<]*)</label>(\s*)<(input|textarea|select) id="([^"]+)"',r'<label for="\4">\1</label>\2<\3 id="\4"',v);
     if k in EX:
         fm,nt,sj=EX[k];assert FFX in v;v=v.replace(FFX,FFX+exprow(fm,nt),1).replace('</body></html>','<script src="../vendor/gwb-export.js" defer></script><script>'+sj+'</script></body></html>',1)
+    if k in FILE_TOOLS:
+        a=FFX+(exprow(*EX[k][:2]) if k in EX else '');assert a in v;v=v.replace(a,a+fsrow(),1);_i=v.rindex('</body></html>');v=v[:_i]+'<script src="../vendor/gwb-fileshare.js"></script>'+v[_i:]
     os.makedirs(k,exist_ok=True);open(f'{k}/index.html','w').write(v)
 def tile(k,t,d,c):
     return f'<li class="tile" data-cat="{c}" data-name="{t.lower()} {d.lower()} {CATS[c].lower()}"><span class="ico cat-{c}">{icon(k)}</span><span class="tag">{CATS[c]}</span><h3><a href="{k}/index.html">{t}</a></h3><p>{d}</p></li>'
