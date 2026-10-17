@@ -1,11 +1,13 @@
 # GWB export: understated "Save results" row in the tip card + lazy-loaded jsPDF/autotable/SheetJS (self-hosted in vendor/).
-EXPCSS='.gwbx-wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;margin-top:16px}.gwbx-wrap .btn{margin:0;order:2;margin-left:auto}.gwbx{order:1;display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0;font-size:1rem;color:var(--brand-d);text-align:left}.gwbx-l{font-weight:700;flex-basis:100%;margin-bottom:-2px}.gwbx .gwbx-b{display:inline-flex;align-items:center;gap:5px;background:#fff;box-shadow:none;color:var(--brand-d);border:1.5px solid #b9b2f0;padding:8px 10px;min-height:44px;min-width:44px;margin:0;font-weight:650;font-size:.95rem;border-radius:999px;transform:none}.gwbx .gwbx-b svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.gwbx .gwbx-b:hover{background:var(--soft);border-color:var(--brand-d)}.gwbx .gwbx-b[aria-busy=true]{opacity:.7;cursor:progress}.gwbx-st{flex-basis:100%;margin:0;font-size:.85rem;color:var(--muted)}.gwbx-st:empty{display:none}.gwbx-note{flex-basis:100%;margin:0;font-size:.8rem;color:var(--muted)}@media(max-width:640px){.gwbx-wrap{flex-direction:column;align-items:flex-start}.gwbx-wrap .btn{margin-left:0}}'
+EXPCSS='.gwbx{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:18px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:1rem;color:var(--brand-d);text-align:left}.gwbx-l{font-weight:700;flex-basis:100%;margin-bottom:-2px}.gwbx .gwbx-b{display:inline-flex;align-items:center;gap:5px;background:#fff;box-shadow:none;color:var(--brand-d);border:1.5px solid #b9b2f0;padding:8px 11px;min-height:44px;min-width:44px;margin:0;font-weight:650;font-size:.95rem;border-radius:999px;transform:none}.gwbx .gwbx-b svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.gwbx .gwbx-b:hover{background:var(--soft);border-color:var(--brand-d)}.gwbx .gwbx-b[aria-busy=true]{opacity:.7;cursor:progress}.gwbx-st{flex-basis:100%;margin:0;font-size:.85rem;color:var(--muted)}.gwbx-st:empty{display:none}.gwbx-note{flex-basis:100%;margin:0;font-size:.8rem;color:var(--muted)}.gwbx-ph{flex-basis:100%;margin-top:6px;padding:12px;border:1px solid var(--line);border-radius:14px;background:var(--soft);color:var(--ink);font-size:.92rem}.gwbx-ph[hidden]{display:none}.gwbx-ph p{margin:0 0 8px}.gwbx-ph .gwbx-row{display:flex;flex-wrap:wrap;gap:6px}#gwbx-qr img{display:block;margin:10px 0 4px;width:180px;height:180px;image-rendering:pixelated;background:#fff;border-radius:8px}'
 FMTNAME={'pdf':('PDF','Download results as PDF'),'xlsx':('Excel','Download results as an Excel spreadsheet (.xlsx)'),'csv':('CSV','Download results as CSV')}
 def exprow(fmts,note=''):
     b=[]
     for f in fmts:
         n,l=FMTNAME[f]; b.append(f'<button type="button" class="gwbx-b" data-gwbx="{f}" aria-label="{l}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>{n}</button>')
     return ('<div class="gwbx noprint" role="group" aria-labelledby="gwbx-l"><span class="gwbx-l" id="gwbx-l">Save results:</span>'+''.join(b)
+            +'<button type="button" class="gwbx-b" data-gwbx-share aria-expanded="false" aria-controls="gwbx-ph" aria-label="Send to phone as a note"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18h2"/></svg>Send to phone</button>'
+            +'<div class="gwbx-ph" id="gwbx-ph" hidden><p>Send these results to your phone as a note. Nothing is uploaded.</p><div class="gwbx-row"><button type="button" class="gwbx-b" data-gwbx-note="copy">Copy as note</button><button type="button" class="gwbx-b" data-gwbx-note="txt">Download .txt note</button></div><div id="gwbx-qr"></div><p id="gwbx-qrt" class="hsmall" aria-live="polite"></p></div>'
             +'<p class="gwbx-st" id="gwbx-st" role="status" aria-live="polite"></p>'+(f'<p class="gwbx-note">{note}</p>' if note else '')+'</div>')
 EXPJS=r"""/* GWB export: client-side PDF / Excel / CSV. Libraries are self-hosted and loaded only on click. */
 (()=>{const D=document,G=window.GWB||(window.GWB={}),me=D.currentScript,BASE=me?me.src.replace(/[^/]*$/,''):'../vendor/';
@@ -62,7 +64,25 @@ sec('Notes');y+=6;doc.setFont('helvetica','normal');doc.setFontSize(9.5);doc.set
 const P=doc.getNumberOfPages();for(let i=1;i<=P;i++){doc.setPage(i);const H=doc.internal.pageSize.getHeight();doc.setFontSize(8.5);doc.setTextColor(120,124,140);doc.text('GWB: Greater World Business - greaterworldmedia.tech',M,H-24);doc.text('Page '+i+' of '+P,W-M,H-24,{align:'right'})}
 save(doc.output('blob'),fname(s,'pdf'))};
 X.run=(fmt,btn)=>G.busy(btn,async()=>{G.status('gwbx-st','');const s=X.spec();s.generated=X.stamp();await X[fmt](s);const n=fname(s,fmt);G.status('gwbx-st','Saved '+n+'.');window.__gwbLastExport=n},{status:'gwbx-st',busyText:'Preparing\u2026',retry:false,message:e=>G.msg(e)});
-D.addEventListener('click',e=>{const b=e.target.closest('[data-gwbx]');if(b)X.run(b.dataset.gwbx,b)});
+/* Send to phone: plain-text note via Web Share, else copy / .txt / QR */
+X.note=s=>{const L=[s.title,'GWB: Greater World Business (greaterworldmedia.tech)','Generated '+s.generated,''];if(s.inputs.length){L.push('INPUTS');s.inputs.forEach(r=>L.push('- '+r[0]+': '+r[1]));L.push('')}
+s.tables.forEach(t=>{if(t.noteSkip)return;L.push(String(t.name).toUpperCase());t.rows.forEach(r=>L.push('- '+r.filter(c=>c!==''&&c!=null).join(': ')));L.push('')});if(s.text&&s._pdfOnlyText){L.length=s.inputs.length?L.length:L.length;L.push(s.text,'')}
+s.notes.forEach(n=>L.push('Note: '+n));return L.join('\n').replace(/\n{3,}/g,'\n\n').trim()+'\n'};
+X.noteOf=()=>{const s=X.spec();s.generated=X.stamp();if(s._pdfOnlyText)s.tables=[];return{s,text:X.note(s),name:'gwb-'+s.slug+'-'+X.today()+'-note.txt'}};
+const QRMAX=1100;
+X.qr=async t=>{const box=D.getElementById('gwbx-qr'),msg=D.getElementById('gwbx-qrt');box.innerHTML='';const n=new TextEncoder().encode(t).length;
+if(n>QRMAX){msg.textContent=`This note is too long for a QR code (${n.toLocaleString()} characters; the limit is about ${QRMAX.toLocaleString()}). Use Copy as note or Download .txt note instead.`;return false}
+await X.load('qrcode.js');G.need('qrcode','QR code library');if(qrcode.stringToBytesFuncs&&qrcode.stringToBytesFuncs['UTF-8'])qrcode.stringToBytes=qrcode.stringToBytesFuncs['UTF-8'];
+const q=qrcode(0,'L');q.addData(t,'Byte');q.make();const img=new Image();img.src=q.createDataURL(4,4);img.alt='QR code containing the note text. Scan it with your phone camera to open the note.';img.id='gwbx-qrimg';box.append(img);
+msg.textContent='Scan with your phone camera to see the note, then copy it into Notes or Messages.';return true};
+const panel=open=>{const p=D.getElementById('gwbx-ph'),b=D.querySelector('[data-gwbx-share]');p.hidden=!open;if(b)b.setAttribute('aria-expanded',String(open))};
+X.share=btn=>G.busy(btn,async()=>{G.status('gwbx-st','');const p=D.getElementById('gwbx-ph');if(!p.hidden){panel(false);return}const{s,text,name}=X.noteOf();
+if(navigator.share){const data={title:s.title,text};try{const f=new File([text],name,{type:'text/plain'});if(navigator.canShare&&navigator.canShare({files:[f]}))data.files=[f]}catch(_){}
+try{await navigator.share(data);G.status('gwbx-st','Shared. Pick Notes, Messages or Mail on your phone to keep it.');return}catch(e){if(e&&e.name==='AbortError')return}}
+panel(true);await X.qr(text)},{status:'gwbx-st',retry:false,message:e=>G.msg(e)});
+X.noteAct=(kind,btn)=>G.busy(btn,async()=>{const{text,name}=X.noteOf();if(kind==='copy'){await G.copy(text,'gwbx-st','Note copied. Paste it into Notes, Messages or an email to yourself.')}
+else{save(new Blob([text],{type:'text/plain;charset=utf-8'}),name);G.status('gwbx-st','Saved '+name+'.')}},{status:'gwbx-st',retry:false,message:e=>G.msg(e)});
+D.addEventListener('click',e=>{const b=e.target.closest('[data-gwbx]');if(b)return X.run(b.dataset.gwbx,b);const sh=e.target.closest('[data-gwbx-share]');if(sh)return X.share(sh);const n=e.target.closest('[data-gwbx-note]');if(n)X.noteAct(n.dataset.gwbxNote,n)});
 })();"""
 # per-tool spec: (formats, note, js defining window.GWB_EXPORT)
 EX={}
@@ -102,5 +122,8 @@ notes:['Template only, not legal advice. Have a qualified lawyer review it for y
 /* spreadsheet: one paragraph line per row */
 (()=>{const g=window.GWB_EXPORT.get;window.GWB_EXPORT.get=function(){const d=g.call(this);if(d){d.tables=[{name:'Policy text',head:['Line','Text'],rows:d.text.split('\n').filter(s=>s.trim()).map((s,i)=>[i+1,s]),pdf:{}}];d._pdfOnlyText=true}return d}})();""")
 EX['email-signature']=(['pdf','xlsx'],'',r"""window.GWB_EXPORT={slug:'email-signature',title:'Email Signature',get(){const X=GWB.X;if(GWB.hasErrors())return null;
-return{inputs:X.inputs(),tables:[{name:'Signature preview (text)',head:['Line'],rows:X.lines('pv').map(l=>[l])},{name:'Signature HTML code',head:['HTML'],rows:[[html()]],pdf:{styles:{font:'courier',fontSize:7.5,cellPadding:5,overflow:'linebreak'}}}],
+return{inputs:X.inputs(),tables:[{name:'Signature preview (text)',head:['Line'],rows:X.lines('pv').map(l=>[l])},{name:'Signature HTML code',noteSkip:true,head:['HTML'],rows:[[html()]],pdf:{styles:{font:'courier',fontSize:7.5,cellPadding:5,overflow:'linebreak'}}}],
 notes:['Paste the HTML into your email client settings, or use Copy signature on the page for rich paste.']}}};""")
+
+from budget_src import BUDGET_SPEC
+EX['budget-calculator']=(['pdf','xlsx','csv'],'',BUDGET_SPEC)

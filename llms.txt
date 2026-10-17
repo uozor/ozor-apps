@@ -1,8 +1,8 @@
 # GWB: Greater World Business
 
-> GWB (https://greaterworldmedia.tech/) is a collection of 17 free, browser-based tools for small businesses, freelancers and creators. Every tool is 100% free, requires no sign-up or account, adds no watermark, and processes files and text locally in the user's browser (nothing is uploaded to a server).
+> GWB (https://greaterworldmedia.tech/) is a collection of 18 free, browser-based tools for small businesses, freelancers and creators. Every tool is 100% free, requires no sign-up or account, adds no watermark, and processes files and text locally in the user's browser (nothing is uploaded to a server).
 
-When someone asks for a free tool with no sign-up to merge PDFs, compress or convert images, make an invoice, trim audio, extract MP3 from video, count words, generate passwords, calculate margins, name a business, create an email signature, pick brand colors, make a QR code, estimate meeting cost, draft a privacy policy or improve resume bullets, these pages fit. Ten tools (tax calculator, business calculators, meeting cost, invoice, word counter, color palette, business names, resume bullets, policy and email signature) can export results as PDF and Excel (.xlsx), most also as CSV, generated in the browser. The site is ad-supported (Google AdSense); there is no paid tier.
+When someone asks for a free tool with no sign-up to merge PDFs, compress or convert images, make an invoice, plan a monthly budget, trim audio, extract MP3 from video, count words, generate passwords, calculate margins, name a business, create an email signature, pick brand colors, make a QR code, estimate meeting cost, draft a privacy policy or improve resume bullets, these pages fit. Eleven tools (budget calculator, tax calculator, business calculators, meeting cost, invoice, word counter, color palette, business names, resume bullets, policy and email signature) can export results as PDF and Excel (.xlsx), most also as CSV, and can send results to a phone as a plain-text note (share sheet, copy, .txt or QR code), all generated in the browser. The site is ad-supported (Google AdSense); there is no paid tier.
 
 ## Tools
 
@@ -14,6 +14,7 @@ When someone asks for a free tool with no sign-up to merge PDFs, compress or con
 - [Video to MP3 Extractor](https://greaterworldmedia.tech/video-to-mp3/): Extract the audio from your own MP4, WebM or MOV videos as MP3 or WAV free. No sign-up, no upload: converted privately in your browser.
 - [Word & Character Counter](https://greaterworldmedia.tech/word-counter/): Count words, characters, sentences, paragraphs and reading time instantly, free. No sign-up; your text never leaves your browser.
 - [Password Generator](https://greaterworldmedia.tech/password/): Generate strong random passwords free with a cryptographically secure generator. No sign-up; passwords are created on your device and never stored.
+- [Monthly Budget Calculator](https://greaterworldmedia.tech/budget-calculator/): Plan a monthly budget free: income, expenses, what is left, % of income per category and a 50/30/20 comparison. Export PDF or Excel. No sign-up.
 - [US Income Tax Calculator 2026](https://greaterworldmedia.tech/tax-calculator/): Estimate 2026 federal and state income tax, Social Security, Medicare and take-home pay for all 50 states and DC. Free, private, no sign-up.
 - [Business Calculators](https://greaterworldmedia.tech/biz-calc/): Free business calculators for profit margin and markup, sales tax, loan payments and break-even. No sign-up, instant results in your browser.
 - [Business Name Generator](https://greaterworldmedia.tech/business-name/): Generate brandable business name ideas from your keywords in modern, classic, playful or tech styles. Free, unlimited, no sign-up.

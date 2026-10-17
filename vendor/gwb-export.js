@@ -53,5 +53,23 @@ sec('Notes');y+=6;doc.setFont('helvetica','normal');doc.setFontSize(9.5);doc.set
 const P=doc.getNumberOfPages();for(let i=1;i<=P;i++){doc.setPage(i);const H=doc.internal.pageSize.getHeight();doc.setFontSize(8.5);doc.setTextColor(120,124,140);doc.text('GWB: Greater World Business - greaterworldmedia.tech',M,H-24);doc.text('Page '+i+' of '+P,W-M,H-24,{align:'right'})}
 save(doc.output('blob'),fname(s,'pdf'))};
 X.run=(fmt,btn)=>G.busy(btn,async()=>{G.status('gwbx-st','');const s=X.spec();s.generated=X.stamp();await X[fmt](s);const n=fname(s,fmt);G.status('gwbx-st','Saved '+n+'.');window.__gwbLastExport=n},{status:'gwbx-st',busyText:'Preparing\u2026',retry:false,message:e=>G.msg(e)});
-D.addEventListener('click',e=>{const b=e.target.closest('[data-gwbx]');if(b)X.run(b.dataset.gwbx,b)});
+/* Send to phone: plain-text note via Web Share, else copy / .txt / QR */
+X.note=s=>{const L=[s.title,'GWB: Greater World Business (greaterworldmedia.tech)','Generated '+s.generated,''];if(s.inputs.length){L.push('INPUTS');s.inputs.forEach(r=>L.push('- '+r[0]+': '+r[1]));L.push('')}
+s.tables.forEach(t=>{if(t.noteSkip)return;L.push(String(t.name).toUpperCase());t.rows.forEach(r=>L.push('- '+r.filter(c=>c!==''&&c!=null).join(': ')));L.push('')});if(s.text&&s._pdfOnlyText){L.length=s.inputs.length?L.length:L.length;L.push(s.text,'')}
+s.notes.forEach(n=>L.push('Note: '+n));return L.join('\n').replace(/\n{3,}/g,'\n\n').trim()+'\n'};
+X.noteOf=()=>{const s=X.spec();s.generated=X.stamp();if(s._pdfOnlyText)s.tables=[];return{s,text:X.note(s),name:'gwb-'+s.slug+'-'+X.today()+'-note.txt'}};
+const QRMAX=1100;
+X.qr=async t=>{const box=D.getElementById('gwbx-qr'),msg=D.getElementById('gwbx-qrt');box.innerHTML='';const n=new TextEncoder().encode(t).length;
+if(n>QRMAX){msg.textContent=`This note is too long for a QR code (${n.toLocaleString()} characters; the limit is about ${QRMAX.toLocaleString()}). Use Copy as note or Download .txt note instead.`;return false}
+await X.load('qrcode.js');G.need('qrcode','QR code library');if(qrcode.stringToBytesFuncs&&qrcode.stringToBytesFuncs['UTF-8'])qrcode.stringToBytes=qrcode.stringToBytesFuncs['UTF-8'];
+const q=qrcode(0,'L');q.addData(t,'Byte');q.make();const img=new Image();img.src=q.createDataURL(4,4);img.alt='QR code containing the note text. Scan it with your phone camera to open the note.';img.id='gwbx-qrimg';box.append(img);
+msg.textContent='Scan with your phone camera to see the note, then copy it into Notes or Messages.';return true};
+const panel=open=>{const p=D.getElementById('gwbx-ph'),b=D.querySelector('[data-gwbx-share]');p.hidden=!open;if(b)b.setAttribute('aria-expanded',String(open))};
+X.share=btn=>G.busy(btn,async()=>{G.status('gwbx-st','');const p=D.getElementById('gwbx-ph');if(!p.hidden){panel(false);return}const{s,text,name}=X.noteOf();
+if(navigator.share){const data={title:s.title,text};try{const f=new File([text],name,{type:'text/plain'});if(navigator.canShare&&navigator.canShare({files:[f]}))data.files=[f]}catch(_){}
+try{await navigator.share(data);G.status('gwbx-st','Shared. Pick Notes, Messages or Mail on your phone to keep it.');return}catch(e){if(e&&e.name==='AbortError')return}}
+panel(true);await X.qr(text)},{status:'gwbx-st',retry:false,message:e=>G.msg(e)});
+X.noteAct=(kind,btn)=>G.busy(btn,async()=>{const{text,name}=X.noteOf();if(kind==='copy'){await G.copy(text,'gwbx-st','Note copied. Paste it into Notes, Messages or an email to yourself.')}
+else{save(new Blob([text],{type:'text/plain;charset=utf-8'}),name);G.status('gwbx-st','Saved '+name+'.')}},{status:'gwbx-st',retry:false,message:e=>G.msg(e)});
+D.addEventListener('click',e=>{const b=e.target.closest('[data-gwbx]');if(b)return X.run(b.dataset.gwbx,b);const sh=e.target.closest('[data-gwbx-share]');if(sh)return X.share(sh);const n=e.target.closest('[data-gwbx-note]');if(n)X.noteAct(n.dataset.gwbxNote,n)});
 })();

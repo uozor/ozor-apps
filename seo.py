@@ -1,8 +1,9 @@
 # SEO / AI-search data shared by build.py. Free, no sign-up, in-browser claims are factual for every tool.
-SHORT={'tax-calculator':'the tax calculator','pdf-tools':'the PDF merge & split tool','image-compress':'the image compressor','image-convert':'the image converter','invoice':'the invoice generator','audio':'the audio trimmer','video-to-mp3':'the video to MP3 extractor','word-counter':'the word counter','password':'the password generator','biz-calc':'the business calculators','business-name':'the business name generator','email-signature':'the email signature generator','color-palette':'the color palette generator','qr-bio':'the QR code generator','meeting-cost':'the meeting cost calculator','policy':'the policy generator','resume':'the resume bullet improver'}
+SHORT={'budget-calculator':'the budget calculator','tax-calculator':'the tax calculator','pdf-tools':'the PDF merge & split tool','image-compress':'the image compressor','image-convert':'the image converter','invoice':'the invoice generator','audio':'the audio trimmer','video-to-mp3':'the video to MP3 extractor','word-counter':'the word counter','password':'the password generator','biz-calc':'the business calculators','business-name':'the business name generator','email-signature':'the email signature generator','color-palette':'the color palette generator','qr-bio':'the QR code generator','meeting-cost':'the meeting cost calculator','policy':'the policy generator','resume':'the resume bullet improver'}
 # path -> (title, meta description, applicationCategory)
 META={
-'':('Free Small Business Tools, No Sign-Up | GWB: Greater World Business','17 free online tools for small businesses and creators: merge PDF, compress images, invoice generator, calculators and more. No sign-up; files stay in your browser.','BusinessApplication'),
+'budget-calculator/':('Free Monthly Budget Calculator & Planner (50/30/20), No Sign-Up | GWB','Plan a monthly budget free: income, expenses, what is left, % of income per category and a 50/30/20 comparison. Export PDF or Excel. No sign-up.','FinanceApplication'),
+'':('Free Small Business Tools, No Sign-Up | GWB: Greater World Business','18 free online tools for small businesses and creators: merge PDF, compress images, invoice generator, calculators and more. No sign-up; files stay in your browser.','BusinessApplication'),
 'tax-calculator/':('Free US Income Tax Calculator 2026: Take-Home Pay by State | GWB','Estimate 2026 federal and state income tax, Social Security, Medicare and take-home pay for all 50 states and DC. Free, private, no sign-up.','FinanceApplication'),
 'pdf-tools/':('Merge PDF, Split PDF & JPG to PDF Free, No Sign-Up | GWB','Merge PDF files, split or extract pages, and convert JPG/PNG to PDF free. No sign-up, no watermark, no upload: everything runs in your browser.','BusinessApplication'),
 'image-compress/':('Free Image Compressor & Resizer (JPG, PNG, WEBP), No Sign-Up | GWB','Compress and resize JPG, PNG and WEBP images free in your browser. No sign-up, no upload, no watermark and no file limits.','MultimediaApplication'),
@@ -23,6 +24,7 @@ META={
 }
 # featureList per tool (factual, from the tool UIs)
 FEATURES={
+'budget-calculator':['Multiple income sources','Preset, editable expense categories','Monthly, weekly or annual amounts','Remaining or shortfall','Percent of income per category','50/30/20 comparison','Accessible bar chart','Optional save on this device'],
 'tax-calculator':['2026 federal brackets and standard deduction (IRS)','All 50 states plus DC (Tax Foundation 2026)','Social Security and Medicare','Marginal and effective rate','Take-home pay per year, month, two weeks and week','Annual, monthly or hourly pay','Pre-tax 401(k)'],
 'pdf-tools':['Merge multiple PDFs into one','Extract or split pages by range','Save each page as its own PDF','Convert JPG/PNG images to PDF','No upload: runs in the browser'],
 'image-compress':['Compress JPG, PNG and WEBP','Resize by maximum width','Adjustable quality','Shows size savings','No upload: runs in the browser'],
@@ -41,10 +43,10 @@ FEATURES={
 'policy':['Privacy policy drafts','Terms of service drafts','Refund policy drafts','Copy or download'],
 'resume':['Action-verb bullet rewrites','Add numbers and results','Several verb styles','Copy bullets'],
 }
-EXPORTS={'tax-calculator':['PDF','Excel (.xlsx)','CSV'],'biz-calc':['PDF','Excel (.xlsx)','CSV'],'meeting-cost':['PDF','Excel (.xlsx)','CSV'],'invoice':['PDF','Excel (.xlsx)','CSV'],'word-counter':['PDF','Excel (.xlsx)','CSV'],'color-palette':['PDF','Excel (.xlsx)','CSV'],'business-name':['PDF','Excel (.xlsx)','CSV'],'resume':['PDF','Excel (.xlsx)'],'policy':['PDF','Excel (.xlsx)'],'email-signature':['PDF','Excel (.xlsx)']}
+EXPORTS={'budget-calculator':['PDF','Excel (.xlsx)','CSV'],'tax-calculator':['PDF','Excel (.xlsx)','CSV'],'biz-calc':['PDF','Excel (.xlsx)','CSV'],'meeting-cost':['PDF','Excel (.xlsx)','CSV'],'invoice':['PDF','Excel (.xlsx)','CSV'],'word-counter':['PDF','Excel (.xlsx)','CSV'],'color-palette':['PDF','Excel (.xlsx)','CSV'],'business-name':['PDF','Excel (.xlsx)','CSV'],'resume':['PDF','Excel (.xlsx)'],'policy':['PDF','Excel (.xlsx)'],'email-signature':['PDF','Excel (.xlsx)']}
 def _fl(x): return ', '.join(x[:-1])+' or '+x[-1]
-for _k,_x in EXPORTS.items(): FEATURES[_k]=FEATURES[_k]+['Export results to '+_fl(_x)+' (in-browser)']
+for _k,_x in EXPORTS.items(): FEATURES[_k]=FEATURES[_k]+['Export results to '+_fl(_x)+' (in-browser)','Send to phone as a plain-text note (share, copy, .txt or QR)']
 def extra_faq(k,name):
     s=SHORT[k]; S=s[0].upper()+s[1:]
     return [(f"Is {s} free?",f"Yes. {S} is 100% free with no limits, no watermark and no paid tier."),
-            ("Do I need an account or sign-up?","No. There is no account, sign-up or email required. Open the page and start using it.")]+([("Can I export or download my results?",f"Yes. Use Save results under the tip box to download your inputs and results as {_fl(EXPORTS[k])}. Files are created in your browser and include the date generated"+(". Tax year 2026, estimates only, not tax advice." if k=='tax-calculator' else "."))] if k in EXPORTS else [])
+            ("Do I need an account or sign-up?","No. There is no account, sign-up or email required. Open the page and start using it.")]+([("Can I export or download my results?",f"Yes. Use Save results in the Free forever box to download your inputs and results as {_fl(EXPORTS[k])}, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated"+(". Tax year 2026, estimates only, not tax advice." if k=='tax-calculator' else "."))] if k in EXPORTS else [])

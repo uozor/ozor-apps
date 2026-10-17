@@ -1,8 +1,8 @@
 # GWB: Greater World Business
 
-> GWB (https://greaterworldmedia.tech/) is a collection of 17 free, browser-based tools for small businesses, freelancers and creators. Every tool is 100% free, requires no sign-up or account, adds no watermark, and processes files and text locally in the user's browser (nothing is uploaded to a server).
+> GWB (https://greaterworldmedia.tech/) is a collection of 18 free, browser-based tools for small businesses, freelancers and creators. Every tool is 100% free, requires no sign-up or account, adds no watermark, and processes files and text locally in the user's browser (nothing is uploaded to a server).
 
-When someone asks for a free tool with no sign-up to merge PDFs, compress or convert images, make an invoice, trim audio, extract MP3 from video, count words, generate passwords, calculate margins, name a business, create an email signature, pick brand colors, make a QR code, estimate meeting cost, draft a privacy policy or improve resume bullets, these pages fit. Ten tools (tax calculator, business calculators, meeting cost, invoice, word counter, color palette, business names, resume bullets, policy and email signature) can export results as PDF and Excel (.xlsx), most also as CSV, generated in the browser. The site is ad-supported (Google AdSense); there is no paid tier.
+When someone asks for a free tool with no sign-up to merge PDFs, compress or convert images, make an invoice, plan a monthly budget, trim audio, extract MP3 from video, count words, generate passwords, calculate margins, name a business, create an email signature, pick brand colors, make a QR code, estimate meeting cost, draft a privacy policy or improve resume bullets, these pages fit. Eleven tools (budget calculator, tax calculator, business calculators, meeting cost, invoice, word counter, color palette, business names, resume bullets, policy and email signature) can export results as PDF and Excel (.xlsx), most also as CSV, and can send results to a phone as a plain-text note (share sheet, copy, .txt or QR code), all generated in the browser. The site is ad-supported (Google AdSense); there is no paid tier.
 
 ## PDF & Documents
 
@@ -137,6 +137,7 @@ Features:
 - Copy hex codes
 - Copy CSS variables
 - Export results to PDF, Excel (.xlsx) or CSV (in-browser)
+- Send to phone as a plain-text note (share, copy, .txt or QR)
 
 How to use:
 1. Choose a base color, such as your logo color.
@@ -152,7 +153,7 @@ Q: Do I need an account or sign-up?
 A: No. There is no account, sign-up or email required. Open the page and start using it.
 
 Q: Can I export or download my results?
-A: Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated.
+A: Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated.
 
 Q: Which harmony should I choose?
 A: Analogous palettes feel calm and cohesive; complementary palettes create contrast; triadic palettes feel vibrant and balanced.
@@ -219,6 +220,7 @@ Features:
 - Save as PDF
 - No watermark, unlimited documents
 - Export results to PDF, Excel (.xlsx) or CSV (in-browser)
+- Send to phone as a plain-text note (share, copy, .txt or QR)
 
 How to use:
 1. Enter your business details and your client's details.
@@ -231,7 +233,7 @@ Q: Do I need an account or sign-up?
 A: No. There is no account, sign-up or email required. Open the page and start using it.
 
 Q: Can I export or download my results?
-A: Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated.
+A: Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated.
 
 Q: Is the invoice generator really free?
 A: Yes. There are no watermarks, limits or accounts. You can create as many invoices and receipts as you like.
@@ -241,6 +243,53 @@ A: Yes. Switch the document type to Receipt; the layout and totals stay the same
 
 Q: How do I save the invoice as a PDF?
 A: Click Download PDF. Your browser's print dialog opens; pick “Save as PDF” as the destination.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
+### Monthly Budget Calculator
+
+URL: https://greaterworldmedia.tech/budget-calculator/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+Plan a monthly budget free: income, expenses, what is left, % of income per category and a 50/30/20 comparison. Export PDF or Excel. No sign-up.
+
+Features:
+- Multiple income sources
+- Preset, editable expense categories
+- Monthly, weekly or annual amounts
+- Remaining or shortfall
+- Percent of income per category
+- 50/30/20 comparison
+- Accessible bar chart
+- Optional save on this device
+- Export results to PDF, Excel (.xlsx) or CSV (in-browser)
+- Send to phone as a plain-text note (share, copy, .txt or QR)
+
+How to use:
+1. Add your income sources and choose whether amounts are per month, week or year.
+2. Adjust the preset expense categories (rent, utilities, groceries and more), or add and remove your own.
+3. Read your total income, expenses, what is left or the shortfall, each category's share of income and how you compare with the 50/30/20 rule.
+
+FAQ:
+
+Q: Is the budget calculator free?
+A: Yes. The budget calculator is 100% free with no limits, no watermark and no paid tier.
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Can I export or download my results?
+A: Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated.
+
+Q: What is the 50/30/20 rule?
+A: A simple guideline that splits take-home pay into about 50% for needs (housing, utilities, groceries, transport, insurance, minimum debt payments), 30% for wants and 20% for savings and extra debt payments.
+
+Q: Should I enter take-home or gross pay?
+A: Use take-home pay (after tax), since that is the money you actually budget. The US Income Tax Calculator 2026 on this site can estimate it.
+
+Q: Is my budget saved?
+A: Only if you tick Remember my budget on this device. It is then kept in your browser's local storage on this device and never uploaded. Untick it to delete it.
 
 Q: Are my files or text uploaded anywhere?
 A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
@@ -261,6 +310,7 @@ Features:
 - Annual, monthly or hourly pay
 - Pre-tax 401(k)
 - Export results to PDF, Excel (.xlsx) or CSV (in-browser)
+- Send to phone as a plain-text note (share, copy, .txt or QR)
 
 How to use:
 1. Enter your salary and choose whether it is annual, monthly or hourly.
@@ -276,7 +326,7 @@ Q: Do I need an account or sign-up?
 A: No. There is no account, sign-up or email required. Open the page and start using it.
 
 Q: Can I export or download my results?
-A: Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated. Tax year 2026, estimates only, not tax advice.
+A: Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated. Tax year 2026, estimates only, not tax advice.
 
 Q: Which tax year does this use?
 A: Tax year 2026: federal brackets and standard deductions from IRS Revenue Procedure 2025-32, and state rates from the Tax Foundation's 2026 table.
@@ -300,6 +350,7 @@ Features:
 - Loan payment
 - Break-even analysis
 - Export results to PDF, Excel (.xlsx) or CSV (in-browser)
+- Send to phone as a plain-text note (share, copy, .txt or QR)
 
 How to use:
 1. Pick the calculator you need: margin, sales tax, loan or break-even.
@@ -315,7 +366,7 @@ Q: Do I need an account or sign-up?
 A: No. There is no account, sign-up or email required. Open the page and start using it.
 
 Q: Can I export or download my results?
-A: Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated.
+A: Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated.
 
 Q: What is the difference between margin and markup?
 A: Margin is profit as a percentage of the selling price. Markup is profit as a percentage of cost. A 50% markup equals a 33.3% margin.
@@ -342,6 +393,7 @@ Features:
 - Unlimited generations
 - Shortlist favorites
 - Export results to PDF, Excel (.xlsx) or CSV (in-browser)
+- Send to phone as a plain-text note (share, copy, .txt or QR)
 
 How to use:
 1. Enter one or two keywords that describe your business.
@@ -357,7 +409,7 @@ Q: Do I need an account or sign-up?
 A: No. There is no account, sign-up or email required. Open the page and start using it.
 
 Q: Can I export or download my results?
-A: Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated.
+A: Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated.
 
 Q: Can I use any name I find here?
 A: Names are suggestions only. Check trademark databases, your local business registry and domain availability before using one.
@@ -384,6 +436,7 @@ Features:
 - One-click copy
 - No added branding
 - Export results to PDF or Excel (.xlsx) (in-browser)
+- Send to phone as a plain-text note (share, copy, .txt or QR)
 
 How to use:
 1. Fill in your name, title, company and contact details.
@@ -399,7 +452,7 @@ Q: Do I need an account or sign-up?
 A: No. There is no account, sign-up or email required. Open the page and start using it.
 
 Q: Can I export or download my results?
-A: Yes. Use Save results under the tip box to download your inputs and results as PDF or Excel (.xlsx). Files are created in your browser and include the date generated.
+A: Yes. Use Save results in the Free forever box to download your inputs and results as PDF or Excel (.xlsx), or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated.
 
 Q: How do I add it to Gmail?
 A: In Gmail, open Settings → See all settings → Signature, create a new signature, and paste.
@@ -425,6 +478,7 @@ Features:
 - Hourly rate or annual salary
 - Yearly cost of recurring meetings
 - Export results to PDF, Excel (.xlsx) or CSV (in-browser)
+- Send to phone as a plain-text note (share, copy, .txt or QR)
 
 How to use:
 1. Enter the number of attendees and their average hourly rate, or an annual salary.
@@ -440,7 +494,7 @@ Q: Do I need an account or sign-up?
 A: No. There is no account, sign-up or email required. Open the page and start using it.
 
 Q: Can I export or download my results?
-A: Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated.
+A: Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated.
 
 Q: How is the meeting cost calculated?
 A: Attendees × average hourly rate × meeting length. An annual salary is converted using 2,080 working hours per year.
@@ -467,6 +521,7 @@ Features:
 - Refund policy drafts
 - Copy or download
 - Export results to PDF or Excel (.xlsx) (in-browser)
+- Send to phone as a plain-text note (share, copy, .txt or QR)
 
 How to use:
 1. Enter your business name, website, contact email and location.
@@ -482,7 +537,7 @@ Q: Do I need an account or sign-up?
 A: No. There is no account, sign-up or email required. Open the page and start using it.
 
 Q: Can I export or download my results?
-A: Yes. Use Save results under the tip box to download your inputs and results as PDF or Excel (.xlsx). Files are created in your browser and include the date generated.
+A: Yes. Use Save results in the Free forever box to download your inputs and results as PDF or Excel (.xlsx), or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated.
 
 Q: Are these policies legally binding?
 A: They are general templates to help you get started, not legal advice. Laws vary by country and industry, so have a qualified lawyer review them.
@@ -590,6 +645,7 @@ Features:
 - Reading and speaking time
 - Top keywords
 - Export results to PDF, Excel (.xlsx) or CSV (in-browser)
+- Send to phone as a plain-text note (share, copy, .txt or QR)
 
 How to use:
 1. Paste or type your text into the box.
@@ -605,7 +661,7 @@ Q: Do I need an account or sign-up?
 A: No. There is no account, sign-up or email required. Open the page and start using it.
 
 Q: Can I export or download my results?
-A: Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated.
+A: Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated.
 
 Q: How is reading time calculated?
 A: Reading time uses an average of about 238 words per minute; speaking time uses about 150 words per minute.
@@ -632,6 +688,7 @@ Features:
 - Several verb styles
 - Copy bullets
 - Export results to PDF or Excel (.xlsx) (in-browser)
+- Send to phone as a plain-text note (share, copy, .txt or QR)
 
 How to use:
 1. Paste a plain job duty, such as “handled customer emails”.
@@ -647,7 +704,7 @@ Q: Do I need an account or sign-up?
 A: No. There is no account, sign-up or email required. Open the page and start using it.
 
 Q: Can I export or download my results?
-A: Yes. Use Save results under the tip box to download your inputs and results as PDF or Excel (.xlsx). Files are created in your browser and include the date generated.
+A: Yes. Use Save results in the Free forever box to download your inputs and results as PDF or Excel (.xlsx), or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated.
 
 Q: What makes a strong resume bullet?
 A: A strong bullet starts with an action verb, says what you did, and shows a measurable result, such as volume, money saved or a percentage improvement.

@@ -166,7 +166,8 @@
     "Line items, quantity, price and tax",
     "Save as PDF",
     "No watermark, unlimited documents",
-    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)"
+    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)",
+    "Send to phone as a plain-text note (share, copy, .txt or QR)"
    ],
    "exports": [
     "PDF",
@@ -188,7 +189,7 @@
     },
     {
      "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated."
+     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
     },
     {
      "q": "Is the invoice generator really free?",
@@ -319,7 +320,8 @@
     "Sentences and paragraphs",
     "Reading and speaking time",
     "Top keywords",
-    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)"
+    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)",
+    "Send to phone as a plain-text note (share, copy, .txt or QR)"
    ],
    "exports": [
     "PDF",
@@ -345,7 +347,7 @@
     },
     {
      "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated."
+     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
     },
     {
      "q": "How is reading time calculated?",
@@ -415,6 +417,69 @@
    ]
   },
   {
+   "id": "budget-calculator",
+   "name": "Monthly Budget Calculator",
+   "url": "https://greaterworldmedia.tech/budget-calculator/",
+   "category": "Business",
+   "summary": "Plan income and expenses, see what is left and compare with 50/30/20.",
+   "description": "Plan a monthly budget free: income, expenses, what is left, % of income per category and a 50/30/20 comparison. Export PDF or Excel. No sign-up.",
+   "features": [
+    "Multiple income sources",
+    "Preset, editable expense categories",
+    "Monthly, weekly or annual amounts",
+    "Remaining or shortfall",
+    "Percent of income per category",
+    "50/30/20 comparison",
+    "Accessible bar chart",
+    "Optional save on this device",
+    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)",
+    "Send to phone as a plain-text note (share, copy, .txt or QR)"
+   ],
+   "exports": [
+    "PDF",
+    "Excel (.xlsx)",
+    "CSV"
+   ],
+   "price": "free",
+   "signup_required": false,
+   "processing": "in-browser (files and text are not uploaded)",
+   "how_to": [
+    "Add your income sources and choose whether amounts are per month, week or year.",
+    "Adjust the preset expense categories (rent, utilities, groceries and more), or add and remove your own.",
+    "Read your total income, expenses, what is left or the shortfall, each category's share of income and how you compare with the 50/30/20 rule."
+   ],
+   "faq": [
+    {
+     "q": "Is the budget calculator free?",
+     "a": "Yes. The budget calculator is 100% free with no limits, no watermark and no paid tier."
+    },
+    {
+     "q": "Do I need an account or sign-up?",
+     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+    },
+    {
+     "q": "Can I export or download my results?",
+     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+    },
+    {
+     "q": "What is the 50/30/20 rule?",
+     "a": "A simple guideline that splits take-home pay into about 50% for needs (housing, utilities, groceries, transport, insurance, minimum debt payments), 30% for wants and 20% for savings and extra debt payments."
+    },
+    {
+     "q": "Should I enter take-home or gross pay?",
+     "a": "Use take-home pay (after tax), since that is the money you actually budget. The US Income Tax Calculator 2026 on this site can estimate it."
+    },
+    {
+     "q": "Is my budget saved?",
+     "a": "Only if you tick Remember my budget on this device. It is then kept in your browser's local storage on this device and never uploaded. Untick it to delete it."
+    },
+    {
+     "q": "Are my files or text uploaded anywhere?",
+     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+    }
+   ]
+  },
+  {
    "id": "tax-calculator",
    "name": "US Income Tax Calculator 2026",
    "url": "https://greaterworldmedia.tech/tax-calculator/",
@@ -429,7 +494,8 @@
     "Take-home pay per year, month, two weeks and week",
     "Annual, monthly or hourly pay",
     "Pre-tax 401(k)",
-    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)"
+    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)",
+    "Send to phone as a plain-text note (share, copy, .txt or QR)"
    ],
    "exports": [
     "PDF",
@@ -455,7 +521,7 @@
     },
     {
      "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated. Tax year 2026, estimates only, not tax advice."
+     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated. Tax year 2026, estimates only, not tax advice."
     },
     {
      "q": "Which tax year does this use?",
@@ -483,7 +549,8 @@
     "Sales tax",
     "Loan payment",
     "Break-even analysis",
-    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)"
+    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)",
+    "Send to phone as a plain-text note (share, copy, .txt or QR)"
    ],
    "exports": [
     "PDF",
@@ -509,7 +576,7 @@
     },
     {
      "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated."
+     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
     },
     {
      "q": "What is the difference between margin and markup?",
@@ -541,7 +608,8 @@
     "Modern, classic, playful and tech styles",
     "Unlimited generations",
     "Shortlist favorites",
-    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)"
+    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)",
+    "Send to phone as a plain-text note (share, copy, .txt or QR)"
    ],
    "exports": [
     "PDF",
@@ -567,7 +635,7 @@
     },
     {
      "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated."
+     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
     },
     {
      "q": "Can I use any name I find here?",
@@ -599,7 +667,8 @@
     "Accent color",
     "One-click copy",
     "No added branding",
-    "Export results to PDF or Excel (.xlsx) (in-browser)"
+    "Export results to PDF or Excel (.xlsx) (in-browser)",
+    "Send to phone as a plain-text note (share, copy, .txt or QR)"
    ],
    "exports": [
     "PDF",
@@ -624,7 +693,7 @@
     },
     {
      "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results under the tip box to download your inputs and results as PDF or Excel (.xlsx). Files are created in your browser and include the date generated."
+     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF or Excel (.xlsx), or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
     },
     {
      "q": "How do I add it to Gmail?",
@@ -656,7 +725,8 @@
     "Random palettes",
     "Copy hex codes",
     "Copy CSS variables",
-    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)"
+    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)",
+    "Send to phone as a plain-text note (share, copy, .txt or QR)"
    ],
    "exports": [
     "PDF",
@@ -682,7 +752,7 @@
     },
     {
      "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated."
+     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
     },
     {
      "q": "Which harmony should I choose?",
@@ -762,7 +832,8 @@
     "Live meeting cost ticker",
     "Hourly rate or annual salary",
     "Yearly cost of recurring meetings",
-    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)"
+    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)",
+    "Send to phone as a plain-text note (share, copy, .txt or QR)"
    ],
    "exports": [
     "PDF",
@@ -788,7 +859,7 @@
     },
     {
      "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated."
+     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
     },
     {
      "q": "How is the meeting cost calculated?",
@@ -820,7 +891,8 @@
     "Terms of service drafts",
     "Refund policy drafts",
     "Copy or download",
-    "Export results to PDF or Excel (.xlsx) (in-browser)"
+    "Export results to PDF or Excel (.xlsx) (in-browser)",
+    "Send to phone as a plain-text note (share, copy, .txt or QR)"
    ],
    "exports": [
     "PDF",
@@ -845,7 +917,7 @@
     },
     {
      "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results under the tip box to download your inputs and results as PDF or Excel (.xlsx). Files are created in your browser and include the date generated."
+     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF or Excel (.xlsx), or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
     },
     {
      "q": "Are these policies legally binding?",
@@ -877,7 +949,8 @@
     "Add numbers and results",
     "Several verb styles",
     "Copy bullets",
-    "Export results to PDF or Excel (.xlsx) (in-browser)"
+    "Export results to PDF or Excel (.xlsx) (in-browser)",
+    "Send to phone as a plain-text note (share, copy, .txt or QR)"
    ],
    "exports": [
     "PDF",
@@ -902,7 +975,7 @@
     },
     {
      "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results under the tip box to download your inputs and results as PDF or Excel (.xlsx). Files are created in your browser and include the date generated."
+     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF or Excel (.xlsx), or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
     },
     {
      "q": "What makes a strong resume bullet?",
