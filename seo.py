@@ -4,7 +4,7 @@ SHORT={'budget-calculator':'the budget calculator','tax-calculator':'the tax cal
 # path -> (title, meta description, applicationCategory)
 META={
 'budget-calculator/':('Free Monthly Budget Calculator & Planner (50/30/20), No Sign-Up | GWB','Plan a monthly budget free: income, expenses, what is left, % of income per category and a 50/30/20 comparison. Export PDF or Excel. No sign-up.','FinanceApplication'),
-'':('Free Small Business Tools, No Sign-Up | GWB: Greater World Business',f'{18+len(_NT.NEW)} free online tools for small businesses and creators: merge PDF, compress images, invoice generator, calculators and more. No sign-up; files stay in your browser.','BusinessApplication'),
+'':('Free Small Business Tools, No Sign-Up | GWB: Greater World Business',f'{(18+len(_NT.NEW))//10*10}+ free online tools for small businesses and creators: merge PDF, compress images, invoice generator, calculators and more. No sign-up; files stay in your browser.','BusinessApplication'),
 'tax-calculator/':('Free US Income Tax Calculator 2026: Take-Home Pay by State | GWB','Estimate 2026 federal and state income tax, Social Security, Medicare and take-home pay for all 50 states and DC. Free, private, no sign-up.','FinanceApplication'),
 'pdf-tools/':('Merge PDF, Split PDF & JPG to PDF Free, No Sign-Up | GWB','Merge PDF files, split or extract pages, and convert JPG/PNG to PDF free. No sign-up, no watermark, no upload: everything runs in your browser.','BusinessApplication'),
 'image-compress/':('Free Image Compressor & Resizer (JPG, PNG, WEBP), No Sign-Up | GWB','Compress and resize JPG, PNG and WEBP images free in your browser. No sign-up, no upload, no watermark and no file limits.','MultimediaApplication'),

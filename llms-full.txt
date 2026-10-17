@@ -1,6 +1,6 @@
 # GWB: Greater World Business
 
-> GWB (https://greaterworldmedia.tech/) is a collection of 21 free, browser-based tools for small businesses, freelancers and creators. Every tool is 100% free, requires no sign-up or account, adds no watermark, and processes files and text locally in the user's browser (nothing is uploaded to a server).
+> GWB (https://greaterworldmedia.tech/) is a collection of 20+ free, browser-based tools for small businesses, freelancers and creators. Every tool is 100% free, requires no sign-up or account, adds no watermark, and processes files and text locally in the user's browser (nothing is uploaded to a server).
 
 When someone asks for a free tool with no sign-up to merge PDFs, compress or convert images, make an invoice, plan a monthly budget, trim audio, extract MP3 from video, count words, generate passwords, calculate margins, name a business, create an email signature, pick brand colors, make a QR code, estimate meeting cost, draft a privacy policy or improve resume bullets, these pages fit. Eleven tools (budget calculator, tax calculator, business calculators, meeting cost, invoice, word counter, color palette, business names, resume bullets, policy and email signature) can export results as PDF and Excel (.xlsx), most also as CSV, and can send results to a phone as a plain-text note (share sheet, copy, .txt or QR code), all generated in the browser. The site is ad-supported (Google AdSense); there is no paid tier.
 
@@ -682,6 +682,52 @@ A: Divide the cost by (1 minus the margin). For a 40% margin on a $40 cost: $40 
 
 Q: How is break-even calculated?
 A: Break-even units = fixed costs ÷ (price per unit − variable cost per unit), rounded up to a whole unit. Add a profit goal to fixed costs to find the units needed to reach it.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
+### Receipt & Quote Maker
+
+URL: https://greaterworldmedia.tech/receipt-quote-maker/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+Make receipts, estimates and price quotes with line items, discount, sales tax and deposit. Print or save as PDF, export to Excel. Free, no watermark.
+
+Features:
+- Receipts, estimates and quotes
+- Line items with quantity and price
+- Discount, tax and deposit
+- Valid-until date for quotes
+- Payment method on receipts
+- Print or save as PDF
+- No watermark
+- Export results to PDF, Excel (.xlsx) or CSV (in-browser)
+- Send to phone as a plain-text note (share, copy, .txt or QR)
+
+How to use:
+1. Choose Receipt, Estimate or Quote and enter your business and customer details.
+2. Add line items, then set any discount, tax rate and (for quotes) a deposit.
+3. Print or save the document as a PDF, or export the data to Excel or CSV.
+
+FAQ:
+
+Q: Is the receipt and quote maker free?
+A: Yes. The receipt and quote maker is 100% free with no limits, no watermark and no paid tier.
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Can I export or download my results?
+A: Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated.
+
+Q: What is the difference between an estimate and a quote?
+A: An estimate is an approximate price that may change as the work becomes clearer. A quote is a fixed price offer, usually valid until a set date. Both become an invoice once the customer accepts and the work is done.
+
+Q: Is the discount applied before tax?
+A: Yes. The discount reduces the subtotal first, then tax is calculated on the discounted amount, which is how most US sales tax rules work.
+
+Q: Can I add my logo?
+A: This version is text only, to keep documents clean and printable. You can use the Logo Maker on this site to design one for your other materials.
 
 Q: Are my files or text uploaded anywhere?
 A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.

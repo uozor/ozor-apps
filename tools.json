@@ -1177,6 +1177,68 @@
      "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
     }
    ]
+  },
+  {
+   "id": "receipt-quote-maker",
+   "name": "Receipt & Quote Maker",
+   "url": "https://greaterworldmedia.tech/receipt-quote-maker/",
+   "category": "Business",
+   "summary": "Make receipts, estimates and quotes with discounts, tax and deposits.",
+   "description": "Make receipts, estimates and price quotes with line items, discount, sales tax and deposit. Print or save as PDF, export to Excel. Free, no watermark.",
+   "features": [
+    "Receipts, estimates and quotes",
+    "Line items with quantity and price",
+    "Discount, tax and deposit",
+    "Valid-until date for quotes",
+    "Payment method on receipts",
+    "Print or save as PDF",
+    "No watermark",
+    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)",
+    "Send to phone as a plain-text note (share, copy, .txt or QR)"
+   ],
+   "exports": [
+    "PDF",
+    "Excel (.xlsx)",
+    "CSV"
+   ],
+   "price": "free",
+   "signup_required": false,
+   "processing": "in-browser (files and text are not uploaded)",
+   "how_to": [
+    "Choose Receipt, Estimate or Quote and enter your business and customer details.",
+    "Add line items, then set any discount, tax rate and (for quotes) a deposit.",
+    "Print or save the document as a PDF, or export the data to Excel or CSV."
+   ],
+   "faq": [
+    {
+     "q": "Is the receipt and quote maker free?",
+     "a": "Yes. The receipt and quote maker is 100% free with no limits, no watermark and no paid tier."
+    },
+    {
+     "q": "Do I need an account or sign-up?",
+     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+    },
+    {
+     "q": "Can I export or download my results?",
+     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+    },
+    {
+     "q": "What is the difference between an estimate and a quote?",
+     "a": "An estimate is an approximate price that may change as the work becomes clearer. A quote is a fixed price offer, usually valid until a set date. Both become an invoice once the customer accepts and the work is done."
+    },
+    {
+     "q": "Is the discount applied before tax?",
+     "a": "Yes. The discount reduces the subtotal first, then tax is calculated on the discounted amount, which is how most US sales tax rules work."
+    },
+    {
+     "q": "Can I add my logo?",
+     "a": "This version is text only, to keep documents clean and printable. You can use the Logo Maker on this site to design one for your other materials."
+    },
+    {
+     "q": "Are my files or text uploaded anywhere?",
+     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+    }
+   ]
   }
  ]
 }

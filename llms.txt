@@ -1,6 +1,6 @@
 # GWB: Greater World Business
 
-> GWB (https://greaterworldmedia.tech/) is a collection of 21 free, browser-based tools for small businesses, freelancers and creators. Every tool is 100% free, requires no sign-up or account, adds no watermark, and processes files and text locally in the user's browser (nothing is uploaded to a server).
+> GWB (https://greaterworldmedia.tech/) is a collection of 20+ free, browser-based tools for small businesses, freelancers and creators. Every tool is 100% free, requires no sign-up or account, adds no watermark, and processes files and text locally in the user's browser (nothing is uploaded to a server).
 
 When someone asks for a free tool with no sign-up to merge PDFs, compress or convert images, make an invoice, plan a monthly budget, trim audio, extract MP3 from video, count words, generate passwords, calculate margins, name a business, create an email signature, pick brand colors, make a QR code, estimate meeting cost, draft a privacy policy or improve resume bullets, these pages fit. Eleven tools (budget calculator, tax calculator, business calculators, meeting cost, invoice, word counter, color palette, business names, resume bullets, policy and email signature) can export results as PDF and Excel (.xlsx), most also as CSV, and can send results to a phone as a plain-text note (share sheet, copy, .txt or QR code), all generated in the browser. The site is ad-supported (Google AdSense); there is no paid tier.
 
@@ -27,6 +27,7 @@ When someone asks for a free tool with no sign-up to merge PDFs, compress or con
 - [Paycheck Calculator 2026](https://greaterworldmedia.tech/paycheck-calculator/): Convert hourly wage to annual salary and back, and estimate 2026 take-home pay per paycheck for any US state. Free, private, no sign-up.
 - [Loan Calculator](https://greaterworldmedia.tech/loan-calculator/): Calculate monthly payments, total interest and a full amortization schedule for business, equipment, SBA and mortgage loans. Extra payments supported. Free, no sign-up.
 - [Profit Margin Calculator](https://greaterworldmedia.tech/profit-margin/): Calculate profit margin and markup, the selling price for a target margin, and break-even units and revenue. Free, instant, no sign-up.
+- [Receipt & Quote Maker](https://greaterworldmedia.tech/receipt-quote-maker/): Make receipts, estimates and price quotes with line items, discount, sales tax and deposit. Print or save as PDF, export to Excel. Free, no watermark.
 
 ## Machine-readable
 

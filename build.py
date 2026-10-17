@@ -103,6 +103,7 @@ ADIN='<aside class="ad-inline noprint" aria-label="Advertisement (in content)"><
 def faqhtml(k):
     st,qa=FAQ[k]
     return '<section class="card" aria-labelledby="h-faq"><p class="eyebrow">Guide</p><h2 id="h-faq">How to use it</h2><ol>'+''.join('<li>'+x+'</li>' for x in st)+'</ol><h2>Frequently asked questions</h2>'+''.join('<h3>'+q+'</h3><p>'+a+'</p>' for q,a in qa)+'</section>'
+def tcount(): return f"{len(TOOLS)//10*10}+"
 def page(title,tagline,how,tool,js,head="",**k):
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title} | GWB</title><meta name="description" content="{tagline}"><link rel="stylesheet" href="../style.css"><script src="../safe.js"></script>{head}</head><body>
@@ -110,7 +111,7 @@ def page(title,tagline,how,tool,js,head="",**k):
 <header class="site"><nav class="bar noprint" aria-label="Main"><a href="../index.html">{BRAND}<span class="vh">, all tools</span></a><ul><li><a href="../index.html#tools">All tools</a></li><li><a href="#tool">Use tool</a></li><li><a href="#pricing">Support</a></li></ul></nav>
 <div class="hero"><div class="hero-ico {{{{CATCLS}}}}">{{{{ICON}}}}</div><nav aria-label="Breadcrumb" class="crumbs"><ol><li><a href="../index.html">Home</a></li><li><a href="../index.html#tools">All tools</a></li><li><a href="../index.html?cat={{{{CAT}}}}#tools">{{{{CATNAME}}}}</a></li><li aria-current="page">{title}</li></ol></nav><p class="eyebrow">{{{{CATNAME}}}} · Free · Private · No signup</p><h1>{title}</h1><p>{tagline}</p><a class="btn light" href="#tool">Use it now</a></div></header>
 <div class="layout"><main id="main"><section class="card noprint" aria-labelledby="h-how"><p class="eyebrow">How it works</p><h2 id="h-how">Simple, fast and private</h2><p class="lead">{how}</p><p class="lead"><strong>Private by design:</strong> everything runs in your browser. Your files and text never leave your device.</p></section>
-<section class="card" id="tool" aria-label="{title} tool">{tool}<p class="backlink noprint"><a href="../index.html#tools">← Browse all {len(TOOLS)} tools</a></p></section>
+<section class="card" id="tool" aria-label="{title} tool">{tool}<p class="backlink noprint"><a href="../index.html#tools">← Browse all {tcount()} tools</a></p></section>
 {{{{RECS}}}}{{{{ADIN}}}}{{{{FAQ}}}}
 <section class="card" id="pricing" aria-labelledby="h-price"><p class="eyebrow">Pricing</p><h2 id="h-price">Free forever. Tips welcome.</h2><div class="grid"><div class="price"><h3>Free forever</h3><div class="big">$0</div><p>Every feature, unlimited use, no account. That won't change.</p></div>
 <div class="price feat"><h3>Support this tool / Tip</h3><div class="big">Any amount</div><p>If this saved you time, a small tip helps keep GWB tools free and fast.</p><a class="btn" id="support" href="https://buy.stripe.com/7sY6oGgJR5Vh3MabNQ3F600" rel="noopener">Support this tool / Tip</a><p class="hsmall" style="margin-top:12px"><a href="https://buy.stripe.com/4gM8wOeBJ5VhfuS9FI3F601" rel="noopener">Become a supporter, $3/mo</a></p></div></div></section></main>
@@ -491,7 +492,7 @@ Promise.all(keys.map(k=>fetch(`${C.goatcounter}/counter/${encodeURIComponent('/'
 HUB=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>x</title><meta name="description" content="x"><link rel="stylesheet" href="style.css"></head><body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><nav class="bar" aria-label="Main"><a href="index.html" >{BRAND}<span class="vh">, home</span></a><ul><li><a href="#featured">Featured</a></li><li><a href="#tools">All tools</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#support">Support</a></li></ul></nav>
-<div class="hero"><p class="eyebrow">{len(TOOLS)} free tools · Private · No signup</p><h1>Your one-stop shop for small business tools</h1><p>Invoices, PDFs, images, audio, calculators and more. Everything runs in your browser, so your files never leave your device.</p>
+<div class="hero"><p class="eyebrow">{tcount()} free tools · Private · No signup</p><h1>Your one-stop shop for small business tools</h1><p>Invoices, PDFs, images, audio, calculators and more. Everything runs in your browser, so your files never leave your device.</p>
 <form class="search" role="search" onsubmit="return false"><label for="q" class="vh">Search tools</label><input id="q" type="search" placeholder="Search tools, e.g. PDF, invoice, ringtone" autocomplete="off"></form></div></header>
 <div class="thanks" id="thanks" hidden><div role="status"><span>Thank you for supporting GWB! Your tip keeps these tools free.</span><button type="button" id="thanks-x" aria-label="Dismiss thank-you message">Dismiss</button></div></div>
 <div class="layout"><main id="main">
@@ -586,7 +587,7 @@ def infopage(slug,title,lead,body):
 <div class="layout"><main id="main"><section class="card prose" aria-label="{title}">{body}</section></main><!--RAIL--></div>
 {FOOTER.replace('HREFBASE','../')}<script src="../helper.js" data-base="../" defer></script></body></html>"""
     os.makedirs(slug,exist_ok=True);open(slug+'/index.html','w').write(v)
-infopage('about','About GWB','GWB: Greater World Business is your one-stop shop for free small business tools.',f"""<h2>What we do</h2><p>GWB builds simple, single-purpose tools that help freelancers, small businesses and creators get everyday jobs done: making invoices, merging PDFs, compressing images, trimming ringtones, calculating margins and more. There are currently {len(TOOLS)} tools, and we add new ones based on what people ask for.</p>
+infopage('about','About GWB','GWB: Greater World Business is your one-stop shop for free small business tools.',f"""<h2>What we do</h2><p>GWB builds simple, single-purpose tools that help freelancers, small businesses and creators get everyday jobs done: making invoices, merging PDFs, compressing images, trimming ringtones, calculating margins and more. There are currently {tcount()} tools, and we add new ones based on what people ask for.</p>
 <h2>How our tools work</h2><p>Every tool runs entirely in your web browser. Your files, text and numbers are processed on your own device and are never uploaded to us. That makes the tools fast, private and free to run, which is why we can offer them without accounts or limits.</p>
 <h2>How GWB is funded</h2><p>The tools are free forever. We are supported by optional tips and supporter memberships, and we may show a small number of clearly labeled advertisements. We never use pop-ups, interstitials or ads that cover content.</p>
 <h2>Get in touch</h2><p>Have an idea for a tool, found a bug, or want to share feedback? Visit our <a href="../contact/">contact page</a> or email <a href="mailto:gwm.tech@greaterworldmedia.tech">gwm.tech@greaterworldmedia.tech</a>.</p>""")
