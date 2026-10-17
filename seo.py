@@ -1,8 +1,9 @@
 # SEO / AI-search data shared by build.py. Free, no sign-up, in-browser claims are factual for every tool.
-SHORT={'pdf-tools':'the PDF merge & split tool','image-compress':'the image compressor','image-convert':'the image converter','invoice':'the invoice generator','audio':'the audio trimmer','video-to-mp3':'the video to MP3 extractor','word-counter':'the word counter','password':'the password generator','biz-calc':'the business calculators','business-name':'the business name generator','email-signature':'the email signature generator','color-palette':'the color palette generator','qr-bio':'the QR code generator','meeting-cost':'the meeting cost calculator','policy':'the policy generator','resume':'the resume bullet improver'}
+SHORT={'tax-calculator':'the tax calculator','pdf-tools':'the PDF merge & split tool','image-compress':'the image compressor','image-convert':'the image converter','invoice':'the invoice generator','audio':'the audio trimmer','video-to-mp3':'the video to MP3 extractor','word-counter':'the word counter','password':'the password generator','biz-calc':'the business calculators','business-name':'the business name generator','email-signature':'the email signature generator','color-palette':'the color palette generator','qr-bio':'the QR code generator','meeting-cost':'the meeting cost calculator','policy':'the policy generator','resume':'the resume bullet improver'}
 # path -> (title, meta description, applicationCategory)
 META={
-'':('Free Small Business Tools, No Sign-Up | GWB: Greater World Business','16 free online tools for small businesses and creators: merge PDF, compress images, invoice generator, calculators and more. No sign-up; files stay in your browser.','BusinessApplication'),
+'':('Free Small Business Tools, No Sign-Up | GWB: Greater World Business','17 free online tools for small businesses and creators: merge PDF, compress images, invoice generator, calculators and more. No sign-up; files stay in your browser.','BusinessApplication'),
+'tax-calculator/':('Free US Income Tax Calculator 2026: Take-Home Pay by State | GWB','Estimate 2026 federal and state income tax, Social Security, Medicare and take-home pay for all 50 states and DC. Free, private, no sign-up.','FinanceApplication'),
 'pdf-tools/':('Merge PDF, Split PDF & JPG to PDF Free, No Sign-Up | GWB','Merge PDF files, split or extract pages, and convert JPG/PNG to PDF free. No sign-up, no watermark, no upload: everything runs in your browser.','BusinessApplication'),
 'image-compress/':('Free Image Compressor & Resizer (JPG, PNG, WEBP), No Sign-Up | GWB','Compress and resize JPG, PNG and WEBP images free in your browser. No sign-up, no upload, no watermark and no file limits.','MultimediaApplication'),
 'image-convert/':('Free Image Converter: PNG to JPG, JPG to PNG, WEBP, No Sign-Up | GWB','Batch-convert PNG, JPG and WEBP images free. No sign-up and no upload: images are converted privately in your browser.','MultimediaApplication'),
@@ -22,6 +23,7 @@ META={
 }
 # featureList per tool (factual, from the tool UIs)
 FEATURES={
+'tax-calculator':['2026 federal brackets and standard deduction (IRS)','All 50 states plus DC (Tax Foundation 2026)','Social Security and Medicare','Marginal and effective rate','Take-home pay per year, month, two weeks and week','Annual, monthly or hourly pay','Pre-tax 401(k)'],
 'pdf-tools':['Merge multiple PDFs into one','Extract or split pages by range','Save each page as its own PDF','Convert JPG/PNG images to PDF','No upload: runs in the browser'],
 'image-compress':['Compress JPG, PNG and WEBP','Resize by maximum width','Adjustable quality','Shows size savings','No upload: runs in the browser'],
 'image-convert':['Convert between PNG, JPG and WEBP','Batch conversion','Background color for transparent areas','No upload: runs in the browser'],

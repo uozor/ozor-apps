@@ -389,6 +389,53 @@
    ]
   },
   {
+   "id": "tax-calculator",
+   "name": "US Income Tax Calculator 2026",
+   "url": "https://greaterworldmedia.tech/tax-calculator/",
+   "category": "Business",
+   "summary": "Estimate federal, state and payroll taxes and your take-home pay.",
+   "description": "Estimate 2026 federal and state income tax, Social Security, Medicare and take-home pay for all 50 states and DC. Free, private, no sign-up.",
+   "features": [
+    "2026 federal brackets and standard deduction (IRS)",
+    "All 50 states plus DC (Tax Foundation 2026)",
+    "Social Security and Medicare",
+    "Marginal and effective rate",
+    "Take-home pay per year, month, two weeks and week",
+    "Annual, monthly or hourly pay",
+    "Pre-tax 401(k)"
+   ],
+   "price": "free",
+   "signup_required": false,
+   "processing": "in-browser (files and text are not uploaded)",
+   "how_to": [
+    "Enter your salary and choose whether it is annual, monthly or hourly.",
+    "Pick your state and filing status, and add any pre-tax 401(k) contributions.",
+    "Read your federal, state, Social Security and Medicare taxes and your take-home pay per year, month, two weeks and week."
+   ],
+   "faq": [
+    {
+     "q": "Is the tax calculator free?",
+     "a": "Yes. The tax calculator is 100% free with no limits, no watermark and no paid tier."
+    },
+    {
+     "q": "Do I need an account or sign-up?",
+     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+    },
+    {
+     "q": "Which tax year does this use?",
+     "a": "Tax year 2026: federal brackets and standard deductions from IRS Revenue Procedure 2025-32, and state rates from the Tax Foundation's 2026 table."
+    },
+    {
+     "q": "Is this tax advice?",
+     "a": "No. It is an estimate for wages only. It ignores credits, itemized deductions, local or city taxes and other income. Check with a tax professional or the IRS withholding estimator."
+    },
+    {
+     "q": "What is the difference between marginal and effective rate?",
+     "a": "Your marginal rate is the tax on your next dollar of income. Your effective rate is your total tax divided by your gross pay."
+    }
+   ]
+  },
+  {
    "id": "biz-calc",
    "name": "Business Calculators",
    "url": "https://greaterworldmedia.tech/biz-calc/",

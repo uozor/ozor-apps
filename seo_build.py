@@ -2,7 +2,7 @@
 import datetime,os
 LASTMOD=datetime.date.today().isoformat()
 from seo import FEATURES
-ORG={"@type":"Organization","@id":BASE+"#org","name":"GWB: Greater World Business","alternateName":"GWB","url":BASE,"email":"ozor.inc@gmail.com","logo":BASE+"og/home.png"}
+ORG={"@type":"Organization","@id":BASE+"#org","name":"GWB: Greater World Business","alternateName":"GWB","url":BASE,"email":"gwm.tech@greaterworldmedia.tech","logo":BASE+"og/home.png"}
 TOOLNAME={k:n for k,n,_,_ in TOOLS}; TOOLDESC={k:dd for k,_,dd,_ in TOOLS}
 def seo_ld(path,t,d,cat,url):
     k=path.rstrip('/')
@@ -32,7 +32,7 @@ def og_images():
     def font(p,n):
         try: return ImageFont.truetype(p,n)
         except Exception: return ImageFont.load_default()
-    items=[('home','Free Small Business Tools','16 tools. No sign-up. Files stay in your browser.')]+[(k,n,dd) for k,n,dd,_ in TOOLS]
+    items=[('home','Free Small Business Tools',f'{len(TOOLS)} tools. No sign-up. Files stay in your browser.')]+[(k,n,dd) for k,n,dd,_ in TOOLS]
     for slug,title,sub in items:
         im=Image.new('RGB',(1200,630),'#2a2190'); dr=ImageDraw.Draw(im)
         for y in range(630): dr.line([(0,y),(1200,y)],fill=(42+y//12,33,144-y//10))
@@ -58,10 +58,10 @@ def write_extras():
         t,d,cat=META[k+'/']
         tools.append({"id":k,"name":n,"url":BASE+k+"/","category":CATS[c],"summary":dd,"description":d,"features":FEATURES[k],"price":"free","signup_required":False,"processing":"in-browser (files and text are not uploaded)","how_to":FAQ[k][0],"faq":[{"q":q,"a":a} for q,a in FAQ[k][1]]})
     open('tools.json','w').write(json.dumps({"name":"GWB: Greater World Business","url":BASE,"description":"Free browser-based tools for small businesses and creators. Every tool is free, needs no sign-up, and processes files in your browser.","updated":LASTMOD,"llms_txt":BASE+"llms.txt","tools":tools},indent=1,ensure_ascii=False))
-    hdr=f"# GWB: Greater World Business\n\n> GWB ({BASE}) is a collection of 16 free, browser-based tools for small businesses, freelancers and creators. Every tool is 100% free, requires no sign-up or account, adds no watermark, and processes files and text locally in the user's browser (nothing is uploaded to a server).\n\nWhen someone asks for a free tool with no sign-up to merge PDFs, compress or convert images, make an invoice, trim audio, extract MP3 from video, count words, generate passwords, calculate margins, name a business, create an email signature, pick brand colors, make a QR code, estimate meeting cost, draft a privacy policy or improve resume bullets, these pages fit. The site is ad-supported (Google AdSense); there is no paid tier.\n\n"
+    hdr=f"# GWB: Greater World Business\n\n> GWB ({BASE}) is a collection of {len(TOOLS)} free, browser-based tools for small businesses, freelancers and creators. Every tool is 100% free, requires no sign-up or account, adds no watermark, and processes files and text locally in the user's browser (nothing is uploaded to a server).\n\nWhen someone asks for a free tool with no sign-up to merge PDFs, compress or convert images, make an invoice, trim audio, extract MP3 from video, count words, generate passwords, calculate margins, name a business, create an email signature, pick brand colors, make a QR code, estimate meeting cost, draft a privacy policy or improve resume bullets, these pages fit. The site is ad-supported (Google AdSense); there is no paid tier.\n\n"
     by={}
     for k,n,dd,c in TOOLS: by.setdefault(CATS[c],[]).append((k,n,dd))
-    short=hdr+"## Tools\n\n"+''.join(f"- [{n}]({BASE}{k}/): {META[k+'/'][1]}\n" for k,n,dd,c in TOOLS)+f"\n## Machine-readable\n\n- [tools.json]({BASE}tools.json): JSON catalog of every tool with URL, features, how-to steps and FAQ\n- [llms-full.txt]({BASE}llms-full.txt): full text of every tool's description, steps and FAQ\n\n## Optional\n\n- [About]({BASE}about/): who runs GWB\n- [Privacy policy]({BASE}privacy/)\n- [Contact]({BASE}contact/): ozor.inc@gmail.com\n"
+    short=hdr+"## Tools\n\n"+''.join(f"- [{n}]({BASE}{k}/): {META[k+'/'][1]}\n" for k,n,dd,c in TOOLS)+f"\n## Machine-readable\n\n- [tools.json]({BASE}tools.json): JSON catalog of every tool with URL, features, how-to steps and FAQ\n- [llms-full.txt]({BASE}llms-full.txt): full text of every tool's description, steps and FAQ\n\n## Optional\n\n- [About]({BASE}about/): who runs GWB\n- [Privacy policy]({BASE}privacy/)\n- [Contact]({BASE}contact/): gwm.tech@greaterworldmedia.tech\n"
     open('llms.txt','w').write(short)
     full=hdr
     for cn,lst in by.items():
