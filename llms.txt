@@ -1,6 +1,6 @@
 # GWB: Greater World Business
 
-> GWB (https://greaterworldmedia.tech/) is a collection of 19 free, browser-based tools for small businesses, freelancers and creators. Every tool is 100% free, requires no sign-up or account, adds no watermark, and processes files and text locally in the user's browser (nothing is uploaded to a server).
+> GWB (https://greaterworldmedia.tech/) is a collection of 20 free, browser-based tools for small businesses, freelancers and creators. Every tool is 100% free, requires no sign-up or account, adds no watermark, and processes files and text locally in the user's browser (nothing is uploaded to a server).
 
 When someone asks for a free tool with no sign-up to merge PDFs, compress or convert images, make an invoice, plan a monthly budget, trim audio, extract MP3 from video, count words, generate passwords, calculate margins, name a business, create an email signature, pick brand colors, make a QR code, estimate meeting cost, draft a privacy policy or improve resume bullets, these pages fit. Eleven tools (budget calculator, tax calculator, business calculators, meeting cost, invoice, word counter, color palette, business names, resume bullets, policy and email signature) can export results as PDF and Excel (.xlsx), most also as CSV, and can send results to a phone as a plain-text note (share sheet, copy, .txt or QR code), all generated in the browser. The site is ad-supported (Google AdSense); there is no paid tier.
 
@@ -25,6 +25,7 @@ When someone asks for a free tool with no sign-up to merge PDFs, compress or con
 - [Policy Generator](https://greaterworldmedia.tech/policy/): Generate plain-English privacy policy, terms of service and refund policy drafts for your small business free. No sign-up required.
 - [Resume Bullet Improver](https://greaterworldmedia.tech/resume/): Turn plain job duties into clear, quantified resume bullet points free. No sign-up; your text stays private in your browser.
 - [Paycheck Calculator 2026](https://greaterworldmedia.tech/paycheck-calculator/): Convert hourly wage to annual salary and back, and estimate 2026 take-home pay per paycheck for any US state. Free, private, no sign-up.
+- [Loan Calculator](https://greaterworldmedia.tech/loan-calculator/): Calculate monthly payments, total interest and a full amortization schedule for business, equipment, SBA and mortgage loans. Extra payments supported. Free, no sign-up.
 
 ## Machine-readable
 

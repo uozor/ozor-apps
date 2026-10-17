@@ -1,6 +1,6 @@
 # GWB: Greater World Business
 
-> GWB (https://greaterworldmedia.tech/) is a collection of 19 free, browser-based tools for small businesses, freelancers and creators. Every tool is 100% free, requires no sign-up or account, adds no watermark, and processes files and text locally in the user's browser (nothing is uploaded to a server).
+> GWB (https://greaterworldmedia.tech/) is a collection of 20 free, browser-based tools for small businesses, freelancers and creators. Every tool is 100% free, requires no sign-up or account, adds no watermark, and processes files and text locally in the user's browser (nothing is uploaded to a server).
 
 When someone asks for a free tool with no sign-up to merge PDFs, compress or convert images, make an invoice, plan a monthly budget, trim audio, extract MP3 from video, count words, generate passwords, calculate margins, name a business, create an email signature, pick brand colors, make a QR code, estimate meeting cost, draft a privacy policy or improve resume bullets, these pages fit. Eleven tools (budget calculator, tax calculator, business calculators, meeting cost, invoice, word counter, color palette, business names, resume bullets, policy and email signature) can export results as PDF and Excel (.xlsx), most also as CSV, and can send results to a phone as a plain-text note (share sheet, copy, .txt or QR code), all generated in the browser. The site is ad-supported (Google AdSense); there is no paid tier.
 
@@ -592,6 +592,51 @@ A: We apply the 2026 federal brackets and standard deduction, your state's 2026 
 
 Q: What is the difference between biweekly and semimonthly?
 A: Biweekly means every two weeks (26 paychecks a year). Semimonthly means twice a month (24 paychecks a year), so each semimonthly check is slightly larger.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
+### Loan Calculator
+
+URL: https://greaterworldmedia.tech/loan-calculator/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+Calculate monthly payments, total interest and a full amortization schedule for business, equipment, SBA and mortgage loans. Extra payments supported. Free, no sign-up.
+
+Features:
+- Business, equipment, SBA 7(a) and mortgage presets
+- Monthly payment and total interest
+- Down payment
+- Extra monthly payments and interest saved
+- Yearly summary and full monthly amortization schedule
+- Payoff date
+- Export results to PDF, Excel (.xlsx) or CSV (in-browser)
+- Send to phone as a plain-text note (share, copy, .txt or QR)
+
+How to use:
+1. Pick a loan type to load typical example values, then enter your own amount, rate and term.
+2. Add a down payment or an extra monthly payment if you plan to make one.
+3. Read the monthly payment, total interest and payoff date, and open the full schedule.
+
+FAQ:
+
+Q: Is the loan calculator free?
+A: Yes. The loan calculator is 100% free with no limits, no watermark and no paid tier.
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Can I export or download my results?
+A: Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated.
+
+Q: How is the monthly payment calculated?
+A: We use the standard amortization formula: payment = P × r ÷ (1 − (1 + r)^−n), where P is the amount borrowed, r is the monthly rate (APR ÷ 12) and n is the number of monthly payments.
+
+Q: How much do extra payments save?
+A: Extra principal payments shorten the loan and cut total interest. The calculator shows the new payoff date and how much interest you save compared with no extra payments.
+
+Q: Are the preset rates real offers?
+A: No. Presets are example values to get started. Your actual rate depends on the lender, your credit and the loan program, so enter the rate you were quoted. Estimates only, not financial advice.
 
 Q: Are my files or text uploaded anywhere?
 A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.

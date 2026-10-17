@@ -1055,6 +1055,67 @@
      "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
     }
    ]
+  },
+  {
+   "id": "loan-calculator",
+   "name": "Loan Calculator",
+   "url": "https://greaterworldmedia.tech/loan-calculator/",
+   "category": "Business",
+   "summary": "Business, equipment, SBA or mortgage loan payments with a full amortization schedule.",
+   "description": "Calculate monthly payments, total interest and a full amortization schedule for business, equipment, SBA and mortgage loans. Extra payments supported. Free, no sign-up.",
+   "features": [
+    "Business, equipment, SBA 7(a) and mortgage presets",
+    "Monthly payment and total interest",
+    "Down payment",
+    "Extra monthly payments and interest saved",
+    "Yearly summary and full monthly amortization schedule",
+    "Payoff date",
+    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)",
+    "Send to phone as a plain-text note (share, copy, .txt or QR)"
+   ],
+   "exports": [
+    "PDF",
+    "Excel (.xlsx)",
+    "CSV"
+   ],
+   "price": "free",
+   "signup_required": false,
+   "processing": "in-browser (files and text are not uploaded)",
+   "how_to": [
+    "Pick a loan type to load typical example values, then enter your own amount, rate and term.",
+    "Add a down payment or an extra monthly payment if you plan to make one.",
+    "Read the monthly payment, total interest and payoff date, and open the full schedule."
+   ],
+   "faq": [
+    {
+     "q": "Is the loan calculator free?",
+     "a": "Yes. The loan calculator is 100% free with no limits, no watermark and no paid tier."
+    },
+    {
+     "q": "Do I need an account or sign-up?",
+     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+    },
+    {
+     "q": "Can I export or download my results?",
+     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+    },
+    {
+     "q": "How is the monthly payment calculated?",
+     "a": "We use the standard amortization formula: payment = P × r ÷ (1 − (1 + r)^−n), where P is the amount borrowed, r is the monthly rate (APR ÷ 12) and n is the number of monthly payments."
+    },
+    {
+     "q": "How much do extra payments save?",
+     "a": "Extra principal payments shorten the loan and cut total interest. The calculator shows the new payoff date and how much interest you save compared with no extra payments."
+    },
+    {
+     "q": "Are the preset rates real offers?",
+     "a": "No. Presets are example values to get started. Your actual rate depends on the lender, your credit and the loan program, so enter the rate you were quoted. Estimates only, not financial advice."
+    },
+    {
+     "q": "Are my files or text uploaded anywhere?",
+     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+    }
+   ]
   }
  ]
 }
