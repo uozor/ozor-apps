@@ -35,3 +35,15 @@ test('How it works text is kept in the guide (sales-tax, audio)', async ({ page,
   await open(page, 'sales-tax'); await expect(page.locator('#guide .lead')).toContainText('Choose a state and the rate to use');
   await open(page, 'audio'); await expect(page.locator('#guide .lead')).not.toBeEmpty(); await expect(page.locator('#guide')).toContainText('Your files and text never leave your device');
 });
+test('wide guide column at 1101 / 1280 / 1440 / 1920; stacked at 1100; never under the helper button', async ({ page, errors }) => {
+  test.skip(page.viewportSize().width < 1280);
+  for (const slug of ['tax-calculator', 'image-compress']) for (const [w, gmin, tmin] of [[1101, 360, 600], [1280, 380, 740], [1440, 420, 860], [1920, 420, 980]]) {
+    await page.setViewportSize({ width: w, height: 900 }); await open(page, slug);
+    const r = await page.evaluate(() => { const b = s => document.querySelector(s).getBoundingClientRect(); return { t: b('#tool'), g: b('#guide'), f: b('#gwb-fab'), up: b('#gwb-top'), sw: document.documentElement.scrollWidth }; });
+    expect(r.g.width, `${slug} ${w} guide`).toBeGreaterThanOrEqual(gmin); expect(r.t.width, `${slug} ${w} tool`).toBeGreaterThanOrEqual(tmin);
+    expect(r.g.left).toBeGreaterThan(r.t.right); expect(r.g.right).toBeLessThanOrEqual(r.f.left); expect(r.sw).toBeLessThanOrEqual(w);
+  }
+  await page.setViewportSize({ width: 1100, height: 900 }); await open(page, 'tax-calculator');
+  const s = await page.evaluate(() => { const b = s => document.querySelector(s).getBoundingClientRect(); return [b('#tool').bottom, b('#guide').top, document.documentElement.scrollWidth]; });
+  expect(s[1]).toBeGreaterThanOrEqual(s[0]); expect(s[2]).toBeLessThanOrEqual(1100);
+});

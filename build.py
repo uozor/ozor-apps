@@ -75,13 +75,16 @@ table{width:100%;border-collapse:collapse}#items{table-layout:fixed}#items th:nt
 .htips,.hrel{margin:0;padding-left:20px}.htips li,.hrel li{margin:2px 0}
 @media (prefers-reduced-motion:no-preference){.hres,.hmsg{animation:rise .35s ease both}}
 /* tool pages: guide in a right-hand column next to the tool (sticky, scrolls within itself); ad rail below it */
-.layout.tl{grid-template-columns:minmax(0,1fr)}
-.tmain{display:grid;grid-template-columns:minmax(0,1fr) 300px;column-gap:28px;align-items:start}.tmain>*{grid-column:1;min-width:0}
-.tmain>.guide{grid-column:2;grid-row:1/3;position:sticky;top:20px;max-height:calc(100vh - 40px);overflow-y:auto;overscroll-behavior:contain;padding:26px 22px;font-size:.95rem}
-.tmain>.rail{grid-column:2;grid-row:3/6}
-.guide h2{font-size:1.25rem;margin:.2em 0 .5em}.guide h2#h-faq{font-size:1.1rem;margin-top:1.3em}.guide h3{font-size:1rem;margin:1em 0 .3em}.guide .g-h{margin-top:.6em}.guide .lead{font-size:1rem}.guide ol{padding-left:1.3em}.guide li{margin:.35em 0}.guide p{margin:.4em 0}.guide .g-priv{margin-top:1.2em;padding-top:.9em;border-top:1px solid var(--line);font-size:.9rem}
+.layout.tl{grid-template-columns:minmax(0,1fr);max-width:1500px;padding-right:clamp(24px,calc(var(--gut) - (100vw - 1500px)/2),var(--gut))}
+body:has(.layout.tl) .bar{max-width:1500px;padding-right:clamp(24px,calc(var(--gut) - (100vw - 1500px)/2),var(--gut))}
+.tmain{display:grid;grid-template-columns:minmax(0,1fr) clamp(360px,30vw,420px);column-gap:28px;align-items:start}.tmain>*{grid-column:1;min-width:0}
+.tmain>.guide{grid-column:2;grid-row:1/3;position:sticky;top:20px;max-height:calc(100vh - 40px);overflow-y:auto;overscroll-behavior:contain;padding:28px 26px;font-size:.98rem}
+.tmain>.rail{grid-column:2;grid-row:3/6;justify-self:center}
+.guide h2{font-size:1.3rem;margin:.2em 0 .5em}.guide h2#h-faq{font-size:1.15rem;margin-top:1.3em}.guide h3{font-size:1.02rem;margin:1em 0 .3em}.guide .g-h{margin-top:.6em}.guide .lead{font-size:1.02rem}.guide ol{padding-left:1.3em}.guide li{margin:.35em 0}.guide p{margin:.4em 0}.guide .g-priv{margin-top:1.2em;padding-top:.9em;border-top:1px solid var(--line);font-size:.92rem}
 .guide:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
-@media(max-width:1000px){.tmain{grid-template-columns:minmax(0,1fr)}.tmain>.guide,.tmain>.rail{grid-column:1;grid-row:auto;position:static;max-height:none;overflow:visible}.tmain>.guide{padding:clamp(22px,4vw,44px)}}
+/* tool pages 1101-1599px: compact round helper button so the guide can use the right-hand space */
+@media(min-width:1101px) and (max-width:1599px){body:has(.layout.tl){--gut:76px}body:has(.layout.tl) .gwb-fab{width:52px;height:52px;padding:0;border-radius:50%;gap:0}body:has(.layout.tl) .fab-txt{display:none}body:has(.layout.tl) .gwb-top{right:18px;bottom:76px}}
+@media(max-width:1100px){.tmain{grid-template-columns:minmax(0,1fr)}.tmain>.guide,.tmain>.rail{grid-column:1;grid-row:auto;position:static;max-height:none;overflow:visible}.tmain>.guide{padding:clamp(22px,4vw,44px)}.tmain>.rail{justify-self:stretch}}
 @media print{.site,.noprint,footer,#pricing,.rail{display:none!important}.layout{display:block;margin:0}.tmain{display:block}.tmain>.guide{position:static;max-height:none;overflow:visible}body{background:#fff}section.card{box-shadow:none;border:0}section.card::before{display:none}}"""
 LOGO='<svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><defs><linearGradient id="gwbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffa24c"/><stop offset=".55" stop-color="#e8366b"/><stop offset="1" stop-color="#7c5cff"/></linearGradient></defs><rect width="40" height="40" rx="12" fill="url(#gwbg)"/><circle cx="20" cy="20" r="11" fill="none" stroke="#fff" stroke-width="2.4"/><ellipse cx="20" cy="20" rx="4.8" ry="11" fill="none" stroke="#fff" stroke-width="2"/><path d="M9.5 16h21M9.5 24h21" stroke="#fff" stroke-width="1.8"/><circle cx="31" cy="9" r="3.2" fill="#fff"/></svg>'
 BRAND='<span class="brand">'+LOGO+'<span><b>GWB</b><small>Greater World Business</small></span></span>'
