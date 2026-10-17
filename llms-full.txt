@@ -868,6 +868,57 @@ A: In the US, self-employed people pay about 15.3% self-employment tax plus fede
 Q: Are my files or text uploaded anywhere?
 A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
 
+### Sales Tax Calculator
+
+URL: https://greaterworldmedia.tech/sales-tax/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+Calculate sales tax for any US state with 2026 state and average local rates. Reverse sales tax from a total, multiple items, non-taxable lines. Free, instant, no sign-up.
+
+Features:
+- 2026 state and average local rates for all 50 states and DC
+- Reverse sales tax: find the pre-tax price from a total
+- Multiple items with quantities
+- Non-taxable lines (for example gift cards or exempt goods)
+- Custom exact rate for your city or county
+- Compare tax on the same purchase across every state
+- Export results to PDF, Excel (.xlsx) or CSV (in-browser)
+- Send to phone as a plain-text note (share, copy, .txt or QR)
+
+How to use:
+1. Pick your state and the rate to use. For an exact rate, choose "My exact rate" and enter the combined rate from your receipt or your state revenue department.
+2. Choose whether the prices you enter are before tax or already include tax.
+3. List the items with quantity and price, untick "Taxable" for any exempt item, and read the tax and total.
+
+FAQ:
+
+Q: Is the sales tax calculator free?
+A: Yes. The sales tax calculator is 100% free with no limits, no watermark and no paid tier.
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Can I export or download my results?
+A: Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated.
+
+Q: How do I calculate sales tax?
+A: Multiply the taxable amount by the rate. At 8.25%, tax on $100.00 is $100.00 × 0.0825 = $8.25, so the total is $108.25.
+
+Q: How do I take sales tax out of a total (reverse sales tax)?
+A: Divide the total by 1 plus the rate. For a $108.25 total at 8.25%: $108.25 ÷ 1.0825 = $100.00 before tax, so the tax was $8.25.
+
+Q: Which states have no sales tax?
+A: Alaska, Delaware, Montana, New Hampshire and Oregon have no statewide sales tax. Alaska lets local governments charge one, averaging about 1.82%.
+
+Q: Are these the exact rates for my city?
+A: No. The state rate is exact, but the local figure is a population-weighted average from the Tax Foundation (as of July 1, 2026). Local rates vary by city, county and district, so use "My exact rate" with the rate from your receipt or state revenue department when you need to be precise.
+
+Q: Where do the rates come from?
+A: State and average local rates come from the Tax Foundation, "2026 Sales Tax Rates, Midyear Update" (rates as of July 1, 2026). Tax rules on what is taxable (food, clothing, services) also differ by state.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
 ## Audio & Video
 
 ### Audio Converter & Ringtone Trimmer
