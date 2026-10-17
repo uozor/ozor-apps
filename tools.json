@@ -1360,6 +1360,68 @@
      "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
     }
    ]
+  },
+  {
+   "id": "barcode-label",
+   "name": "Barcode & Label Maker",
+   "url": "https://greaterworldmedia.tech/barcode-label/",
+   "category": "Image & Design",
+   "summary": "Code 128, EAN-13, UPC-A and QR barcodes with printable Avery label sheets.",
+   "description": "Create Code 128, EAN-13, UPC-A and QR barcodes with automatic check digits and print them on Avery 5160, 5163 or 5167 label sheets. SVG, PNG and PDF. Free, no sign-up.",
+   "features": [
+    "Code 128, EAN-13, UPC-A and QR codes",
+    "Automatic check digits with validation",
+    "Batch: one code per line with name and price",
+    "Avery 5160, 5163 and 5167 label sheet templates",
+    "Label sheet PDF at exact sizes",
+    "SVG and PNG downloads",
+    "Self-hosted libraries; nothing uploaded",
+    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)",
+    "Send to phone as a plain-text note (share, copy, .txt or QR)"
+   ],
+   "exports": [
+    "PDF",
+    "Excel (.xlsx)",
+    "CSV"
+   ],
+   "price": "free",
+   "signup_required": false,
+   "processing": "in-browser (files and text are not uploaded)",
+   "how_to": [
+    "Choose a barcode type and enter one code per line, optionally followed by | product name | price.",
+    "Pick a label template and the number of copies of each code.",
+    "Download the label sheet PDF and print it at 100% scale (Actual size), or download single barcodes as SVG or PNG."
+   ],
+   "faq": [
+    {
+     "q": "Is the barcode and label maker free?",
+     "a": "Yes. The barcode and label maker is 100% free with no limits, no watermark and no paid tier."
+    },
+    {
+     "q": "Do I need an account or sign-up?",
+     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+    },
+    {
+     "q": "Can I export or download my results?",
+     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+    },
+    {
+     "q": "Can I make real retail UPC or EAN barcodes here?",
+     "a": "You can generate valid UPC-A and EAN-13 symbols with correct check digits. To sell in most retail stores the number itself must be licensed to your company from GS1, so use the number GS1 assigned you."
+    },
+    {
+     "q": "Which barcode type should I use?",
+     "a": "Use Code 128 for your own SKUs, shipping and inventory labels (letters and numbers). Use UPC-A (US/Canada) or EAN-13 (international) for retail products with a GS1 number. Use QR for links and longer text."
+    },
+    {
+     "q": "How do I print labels so they line up?",
+     "a": "Download the label sheet PDF, open it, and print at 100% or \"Actual size\" on US letter label sheets that match the template (for example Avery 5160). Print one test page on plain paper and hold it against a label sheet first."
+    },
+    {
+     "q": "Are my files or text uploaded anywhere?",
+     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+    }
+   ]
   }
  ]
 }

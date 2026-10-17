@@ -1,6 +1,6 @@
 # New tools are registered here, one module per tool. Each module defines T = dict(...)
 import importlib
-ORDER=['paycheck-calculator','loan-calculator','profit-margin','receipt-quote-maker','freelance-rate','logo-maker']
+ORDER=['paycheck-calculator','loan-calculator','profit-margin','receipt-quote-maker','freelance-rate','logo-maker','barcode-label']
 NEW=[importlib.import_module('newtools.'+m.replace('-','_')).T for m in ORDER]
 FN={'pdf':'PDF','xlsx':'Excel (.xlsx)','csv':'CSV'}
 def helper_js():

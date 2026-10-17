@@ -24,7 +24,7 @@ X.lines=id=>{const e=typeof id==='string'?D.getElementById(id):id;return(e?e.inn
 X.kv=lines=>lines.map(s=>{const i=s.indexOf(':');return i>0?[s.slice(0,i).trim(),s.slice(i+1).trim()]:[s,'']});
 /* "$1,234.50" -> number with format, so spreadsheets can sum it */
 const cell=v=>{if(typeof v==='number')return{v,t:'n'};const s=String(v==null?'':v).trim(),m=s.match(/^(-?)\$(-?[\d,]+(?:\.\d+)?)$/);if(m){return{v:+(m[1]+m[2].replace(/,/g,'')),t:'n',z:'$#,##0.00'}}
-const p=s.match(/^(-?[\d,]*\.?\d+)%$/);if(p)return{v:+p[1].replace(/,/g,'')/100,t:'n',z:'0.00%'};if(/^-?\d{1,3}(,\d{3})+(\.\d+)?$|^-?\d+(\.\d+)?$/.test(s)&&s.length<16)return{v:+s.replace(/,/g,''),t:'n'};return{v:s,t:'s'}};
+const p=s.match(/^(-?[\d,]*\.?\d+)%$/);if(p)return{v:+p[1].replace(/,/g,'')/100,t:'n',z:'0.00%'};if(/^0\d/.test(s)||/^\d{12,}$/.test(s))return{v:s,t:'s'};if(/^-?\d{1,3}(,\d{3})+(\.\d+)?$|^-?\d+(\.\d+)?$/.test(s)&&s.length<16)return{v:+s.replace(/,/g,''),t:'n'};return{v:s,t:'s'}};
 X.spec=()=>{const S=window.GWB_EXPORT;if(!S)throw Object.assign(new Error('no spec'),{friendly:'Nothing to export on this page.'});const d=S.get();if(!d)throw Object.assign(new Error('invalid'),{friendly:'Fix the highlighted fields first, then export again.'});
 return Object.assign({title:S.title,slug:S.slug,inputs:[],tables:[],notes:[]},d)};
 const fname=(s,ext)=>'gwb-'+s.slug+'-'+X.today()+'.'+ext;
