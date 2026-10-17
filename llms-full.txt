@@ -732,6 +732,51 @@ A: This version is text only, to keep documents clean and printable. You can use
 Q: Are my files or text uploaded anywhere?
 A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
 
+### Freelance Rate Calculator
+
+URL: https://greaterworldmedia.tech/freelance-rate/
+Price: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.
+
+Calculate your freelance hourly, day and project rate from target income, expenses, taxes, time off and billable hours. Free, private, no sign-up.
+
+Features:
+- Hourly, day, weekly and monthly rates
+- Project price from estimated hours
+- Target take-home income
+- Business expenses and tax estimate
+- Billable percentage and time off
+- Profit buffer
+- Export results to PDF, Excel (.xlsx) or CSV (in-browser)
+- Send to phone as a plain-text note (share, copy, .txt or QR)
+
+How to use:
+1. Enter the yearly income you want to take home and your yearly business expenses.
+2. Set your estimated tax rate, working weeks, hours per week and the share of hours you can bill.
+3. Read your minimum hourly, day and project rates, then round up when you quote.
+
+FAQ:
+
+Q: Is the freelance rate calculator free?
+A: Yes. The freelance rate calculator is 100% free with no limits, no watermark and no paid tier.
+
+Q: Do I need an account or sign-up?
+A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Can I export or download my results?
+A: Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated.
+
+Q: How do I calculate my freelance hourly rate?
+A: Add the income you want to keep (grossed up for taxes) to your yearly business costs and a profit buffer, then divide by the hours you can actually bill in a year. Example: $60,000 take-home at 25% tax is $80,000, plus $10,000 costs and a 10% buffer is $99,000; over 1,344 billable hours that is $73.66 an hour.
+
+Q: What billable percentage should I use?
+A: Most freelancers bill 60–75% of their working hours. The rest goes to admin, sales, invoicing and learning. 70% is a sensible starting point.
+
+Q: What tax rate should I enter?
+A: In the US, self-employed people pay about 15.3% self-employment tax plus federal and state income tax. 25–35% of profit is a common planning range, but your rate depends on your income and state. Estimates only, not tax advice.
+
+Q: Are my files or text uploaded anywhere?
+A: No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us.
+
 ## Audio & Video
 
 ### Audio Converter & Ringtone Trimmer
