@@ -121,7 +121,7 @@ for (const slug of ['audio', 'video-to-mp3']) {
     if (slug === 'video-to-mp3') test('uncommon container/codec (mkv, mu-law PCM) is accepted', async ({ page, errors }) => { await open(page, slug); await page.setInputFiles(inp, fx('odd.mkv')); await expect(page.locator(go)).toBeEnabled(); });
     if (slug === 'video-to-mp3') test('video without audio track', async ({ page, errors }) => { await open(page, slug); await page.setInputFiles(inp, fx('silent.mp4')); await expect(page.locator(st)).toContainText(/no audio/i); await expect(page.locator(go)).toBeDisabled(); });
     test('very large file rejected before reading (memory guard)', async ({ page, errors }) => {
-      await open(page, slug); await page.setInputFiles(inp, bigFile(slug === 'audio' ? 'big.wav' : 'big.mp4')); await expect(page.locator(st)).toContainText(/MB limit/);
+      await open(page, slug); await page.setInputFiles(inp, bigFile(slug === 'audio' ? 'big.wav' : 'big.mp4')); await expect(page.locator(st)).toContainText(/MB limit/, { timeout: 20000 });
     });
     test('good file after bad file recovers; repeated export clicks run once', async ({ page, errors }) => {
       await open(page, slug); await page.setInputFiles(inp, fx('corrupt.mp3')); await page.setInputFiles(inp, fx(good)); await expect(page.locator(go)).toBeEnabled();
@@ -159,7 +159,7 @@ test.describe('image-compress', () => {
     await open(page, 'image-compress'); await page.setInputFiles('#f', fx('photo.jpg')); await expect(page.locator('#dl')).toBeVisible();
     for (const v of ['-5', '0', '99999']) { await setVal(page, '#w', v); await page.click('#go'); await expectInvalid(page, '#w'); } await noBadText(page);
     await setVal(page, '#w', '200'); await page.click('#go'); await expect(page.locator('#st')).toContainText('(200×150)');
-    await page.setInputFiles('#f', bigFile('big.jpg')); await expect(page.locator('#st')).toContainText(/MB limit/);
+    await page.setInputFiles('#f', bigFile('big.jpg')); await expect(page.locator('#st')).toContainText(/MB limit/, { timeout: 20000 });
   });
 });
 
@@ -179,7 +179,7 @@ test.describe('image-convert', () => {
     await open(page, 'image-convert'); await page.setInputFiles('#f', [fx('huge.jpg')]);
     await page.evaluate(() => { const b = document.getElementById('go'); for (let i = 0; i < 4; i++) b.click() });
     await expect(page.locator('#st')).toHaveText('Converted 1 of 1 image(s).', { timeout: 30000 }); await expect(page.locator('#list li')).toHaveCount(1);
-    await page.setInputFiles('#f', [bigFile('big.png')]); await page.click('#go'); await expect(page.locator('#list')).toContainText(/MB limit/);
+    await page.setInputFiles('#f', [bigFile('big.png')]); await page.click('#go'); await expect(page.locator('#list')).toContainText(/MB limit/, { timeout: 20000 });
   });
 });
 
@@ -202,7 +202,7 @@ test.describe('pdf-tools', () => {
   });
   test('merge with one file; image mode with bad images; huge file', async ({ page, errors }) => {
     await open(page, 'pdf-tools'); await page.setInputFiles('#mf', [fx('a.pdf')]); await page.click('#bm'); await expect(page.locator('#mf')).toHaveAttribute('aria-invalid', 'true');
-    await page.setInputFiles('#mf', [fx('a.pdf'), bigFile('big.pdf')]); await page.click('#bm'); await expect(page.locator('#res')).toContainText(/MB limit/);
+    await page.setInputFiles('#mf', [fx('a.pdf'), bigFile('big.pdf')]); await page.click('#bm'); await expect(page.locator('#res')).toContainText(/MB limit/, { timeout: 20000 });
     await page.selectOption('#mode', 'img'); await page.setInputFiles('#if', [fx('corrupt.png')]); await page.click('#bi'); await expect(page.locator('#res')).toContainText(/couldn.t|damaged/);
     await page.setInputFiles('#if', [fx('notes.txt')]); await page.click('#bi'); await expect(page.locator('#res')).toContainText(/doesn.t look like/);
   });

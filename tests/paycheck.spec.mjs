@@ -40,5 +40,5 @@ test.describe('paycheck math', () => {
     await page.fill('#pk', ''); await page.fill('#amt', '1'); await page.fill('#pk', '20000'); await expectInvalid(page, '#pk'); await noBadText(page);
   });
 });
-standardSuite(S, { stem: 'paycheck-2026', fmts: ['pdf', 'xlsx', 'csv'], want: ['Paycheck Estimate', 'Take-home pay', 'Tax year 2026, estimates only, not tax advice'],
+standardSuite(S, { stem: 'paycheck', fmts: ['pdf', 'xlsx', 'csv'], want: ['Paycheck Estimate', 'Take-home pay', 'Tax year 2026, estimates only, not tax advice'],
   xlsxCheck: rows => { const y = rows.find(r => r[0] === 'Yearly'); expect(y[1]).toBe(52000); expect(y[2]).toBeCloseTo(43962, 2); } });
