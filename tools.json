@@ -1116,6 +1116,67 @@
      "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
     }
    ]
+  },
+  {
+   "id": "profit-margin",
+   "name": "Profit Margin Calculator",
+   "url": "https://greaterworldmedia.tech/profit-margin/",
+   "category": "Business",
+   "summary": "Margin, markup, price from cost and target margin, and break-even units.",
+   "description": "Calculate profit margin and markup, the selling price for a target margin, and break-even units and revenue. Free, instant, no sign-up.",
+   "features": [
+    "Margin and markup from cost and price",
+    "Selling price from target margin or markup",
+    "Price ladder for common margins",
+    "Break-even units and revenue",
+    "Units needed for a profit goal",
+    "Contribution margin",
+    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)",
+    "Send to phone as a plain-text note (share, copy, .txt or QR)"
+   ],
+   "exports": [
+    "PDF",
+    "Excel (.xlsx)",
+    "CSV"
+   ],
+   "price": "free",
+   "signup_required": false,
+   "processing": "in-browser (files and text are not uploaded)",
+   "how_to": [
+    "Enter a cost and a selling price to see profit, margin and markup.",
+    "Enter a cost and a target margin (or markup) to get the selling price you need.",
+    "Enter fixed costs, price and variable cost per unit to find your break-even point."
+   ],
+   "faq": [
+    {
+     "q": "Is the profit margin calculator free?",
+     "a": "Yes. The profit margin calculator is 100% free with no limits, no watermark and no paid tier."
+    },
+    {
+     "q": "Do I need an account or sign-up?",
+     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+    },
+    {
+     "q": "Can I export or download my results?",
+     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+    },
+    {
+     "q": "What is the difference between margin and markup?",
+     "a": "Margin is profit divided by the selling price. Markup is profit divided by cost. A product that costs $40 and sells for $65 has a 38.46% margin and a 62.5% markup."
+    },
+    {
+     "q": "How do I price for a target margin?",
+     "a": "Divide the cost by (1 minus the margin). For a 40% margin on a $40 cost: $40 ÷ 0.60 = $66.67."
+    },
+    {
+     "q": "How is break-even calculated?",
+     "a": "Break-even units = fixed costs ÷ (price per unit − variable cost per unit), rounded up to a whole unit. Add a profit goal to fixed costs to find the units needed to reach it."
+    },
+    {
+     "q": "Are my files or text uploaded anywhere?",
+     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+    }
+   ]
   }
  ]
 }
