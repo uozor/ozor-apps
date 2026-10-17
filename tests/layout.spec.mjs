@@ -15,7 +15,7 @@ for (const slug of TOOLS) test(`${slug}: guide column, merged How it works, JSON
     expect(gb.l).toBeGreaterThanOrEqual(t.r + 20); expect(Math.abs(gb.t - t.t)).toBeLessThan(2); expect(gb.r).toBeLessThanOrEqual(W);
     const mh = await g.evaluate(e => [parseFloat(getComputedStyle(e).maxHeight), getComputedStyle(e).overflowY, getComputedStyle(e).position, innerHeight]); expect(mh[0]).toBeLessThanOrEqual(mh[3]); expect(mh[1]).toBe('auto'); expect(mh[2]).toBe('sticky');
     const fab = await box(page, '#gwb-fab'), rail = await box(page, '.rail');
-    expect(hit(gb, rail)).toBe(false); expect(rail.t).toBeGreaterThanOrEqual(gb.b);
+    if (rail.h > 0) { expect(hit(gb, rail)).toBe(false); expect(rail.t).toBeGreaterThanOrEqual(gb.b); }
     for (const s of ['#tool', '#pricing', '.recs', '.ad-inline']) { const n = await page.locator(s).count(); if (n) expect(hit(gb, await box(page, s + ' >> nth=0'))).toBe(false); }
     for (const y of [0, 700, 1600]) { await page.evaluate(v => scrollTo(0, v), y); await page.waitForTimeout(50); const a = await box(page, '#guide'), f = await page.locator('#gwb-fab').evaluate(e => { const r = e.getBoundingClientRect(); return { l: r.left, r: r.right, t: r.top, b: r.bottom }; }); expect(hit(a, f)).toBe(false); }
     if (t.h > 1400) { await page.evaluate(() => scrollTo(0, document.getElementById('tool').getBoundingClientRect().top + scrollY + 600)); await expect.poll(async () => Math.round((await box(page, '#guide')).t)).toBe(20); }

@@ -43,7 +43,8 @@ button:hover,.btn:hover{transform:translateY(-1px);box-shadow:0 12px 24px -10px 
 .search{max-width:560px;margin:0 auto}.search input{border-radius:999px;padding:16px 22px;border:0;box-shadow:0 12px 30px rgba(0,0,0,.25)}.search label{color:#fff}
 .rail{position:sticky;top:20px}.ad-label{display:block;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;text-align:center}
 .ad-slot{width:300px;height:600px;margin:0 auto;border:1px dashed #c9cbe0;border-radius:14px;background:repeating-linear-gradient(45deg,#f3f3f9,#f3f3f9 10px,#f8f8fc 10px,#f8f8fc 20px);overflow:hidden}
-@media(max-width:1000px){.rail{position:static}.ad-slot{width:100%;max-width:728px;height:100px}}
+@media(max-width:1000px){.rail{display:none!important}}
+.rail.ad-off,.rail:has(ins.adsbygoogle[data-ad-status="unfilled"]){display:none!important}.ad-slot:has(ins.adsbygoogle){border:0;background:none;min-height:600px;height:auto}.ad-slot ins.adsbygoogle{min-height:600px}
 footer{text-align:center;padding:40px 24px;color:var(--muted);font-size:.95rem}footer .brand{justify-content:center;color:var(--ink);margin-bottom:8px}footer .brand small{color:var(--muted)}
 table{width:100%;border-collapse:collapse}#items{table-layout:fixed}#items th:nth-child(1){width:44%}#items th:nth-child(4){width:52px}#items td input{min-width:0;padding:8px}#items td button{padding:8px 10px;margin:0}#doc table{table-layout:fixed;word-break:break-word}main,section.card{min-width:0}td,th{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left}
 .swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(120px,100%),1fr));gap:12px;margin-top:16px}.swatch{margin:0;height:120px;border-radius:16px;display:flex;align-items:flex-end;justify-content:flex-start;padding:12px;font-weight:700;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
@@ -79,12 +80,12 @@ table{width:100%;border-collapse:collapse}#items{table-layout:fixed}#items th:nt
 body:has(.layout.tl) .bar{max-width:1500px;padding-right:clamp(24px,calc(var(--gut) - (100vw - 1500px)/2),var(--gut))}
 .tmain{display:grid;grid-template-columns:minmax(0,1fr) clamp(360px,30vw,420px);column-gap:28px;align-items:start}.tmain>*{grid-column:1;min-width:0}
 .tmain>.guide{grid-column:2;grid-row:1/3;position:sticky;top:20px;max-height:calc(100vh - 40px);overflow-y:auto;overscroll-behavior:contain;padding:28px 26px;font-size:.98rem}
-.tmain>.rail{grid-column:2;grid-row:3/6;justify-self:center}
+.tmain>.rail{grid-column:2;grid-row:3/5;justify-self:center}
 .guide h2{font-size:1.3rem;margin:.2em 0 .5em}.guide h2#h-faq{font-size:1.15rem;margin-top:1.3em}.guide h3{font-size:1.02rem;margin:1em 0 .3em}.guide .g-h{margin-top:.6em}.guide .lead{font-size:1.02rem}.guide ol{padding-left:1.3em}.guide li{margin:.35em 0}.guide p{margin:.4em 0}.guide .g-priv{margin-top:1.2em;padding-top:.9em;border-top:1px solid var(--line);font-size:.92rem}
 .guide:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
 /* tool pages 1101-1599px: compact round helper button so the guide can use the right-hand space */
 @media(min-width:1101px) and (max-width:1599px){body:has(.layout.tl){--gut:76px}body:has(.layout.tl) .gwb-fab{width:52px;height:52px;padding:0;border-radius:50%;gap:0}body:has(.layout.tl) .fab-txt{display:none}body:has(.layout.tl) .gwb-top{right:18px;bottom:76px}}
-@media(max-width:1100px){.tmain{grid-template-columns:minmax(0,1fr)}.tmain>.guide,.tmain>.rail{grid-column:1;grid-row:auto;position:static;max-height:none;overflow:visible}.tmain>.guide{padding:clamp(22px,4vw,44px)}.tmain>.rail{justify-self:stretch}}
+@media(max-width:1100px){.tmain{grid-template-columns:minmax(0,1fr)}.tmain>.guide{grid-column:1;grid-row:auto;position:static;max-height:none;overflow:visible;padding:clamp(22px,4vw,44px)}.tmain>.rail{display:none!important}}
 @media print{.site,.noprint,footer,#pricing,.rail{display:none!important}.layout{display:block;margin:0}.tmain{display:block}.tmain>.guide{position:static;max-height:none;overflow:visible}body{background:#fff}section.card{box-shadow:none;border:0}section.card::before{display:none}}"""
 LOGO='<svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><defs><linearGradient id="gwbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffa24c"/><stop offset=".55" stop-color="#e8366b"/><stop offset="1" stop-color="#7c5cff"/></linearGradient></defs><rect width="40" height="40" rx="12" fill="url(#gwbg)"/><circle cx="20" cy="20" r="11" fill="none" stroke="#fff" stroke-width="2.4"/><ellipse cx="20" cy="20" rx="4.8" ry="11" fill="none" stroke="#fff" stroke-width="2"/><path d="M9.5 16h21M9.5 24h21" stroke="#fff" stroke-width="1.8"/><circle cx="31" cy="9" r="3.2" fill="#fff"/></svg>'
 BRAND='<span class="brand">'+LOGO+'<span><b>GWB</b><small>Greater World Business</small></span></span>'
@@ -127,7 +128,7 @@ def page(title,tagline,how,tool,js,head="",**k):
 <div class="layout tl"><main id="main" class="tmain">
 <section class="card" id="tool" aria-label="{title} tool">{_h2(tool,title)}{tool}<p class="backlink noprint"><a href="../index.html#tools">← Browse all {tcount()} tools</a></p></section>
 <section class="card guide" id="guide" aria-labelledby="h-guide" tabindex="0"><p class="eyebrow">Guide</p><h2 id="h-guide">How to use it</h2><p class="lead">{how}</p>{{{{FAQ}}}}<p class="g-priv"><strong>Private by design:</strong> everything runs in your browser. Your files and text never leave your device.</p></section>
-{{{{RECS}}}}{{{{ADIN}}}}
+{{{{RECS}}}}
 <section class="card" id="pricing" aria-labelledby="h-price"><p class="eyebrow">Pricing</p><h2 id="h-price">Free forever. Tips welcome.</h2><div class="grid"><div class="price"><h3>Free forever</h3><div class="big">$0</div><p>Every feature, unlimited use, no account. That won't change.</p></div>
 <div class="price feat"><h3>Support this tool / Tip</h3><div class="big">Any amount</div><p>If this saved you time, a small tip helps keep GWB tools free and fast.</p><a class="btn" id="support" href="https://buy.stripe.com/7sY6oGgJR5Vh3MabNQ3F600" rel="noopener">Support this tool / Tip</a><p class="hsmall" style="margin-top:12px"><a href="https://buy.stripe.com/4gM8wOeBJ5VhfuS9FI3F601" rel="noopener">Become a supporter, $3/mo</a></p></div></div></section><!--RAIL--></main>
 </div>
@@ -659,9 +660,8 @@ META.update(NEWMETA)
 META.update(seo.META)
 INFO={'about/':('About GWB: Greater World Business','About GWB, the one-stop shop for free, private, in-browser small business tools.','x'),'contact/':('Contact GWB','Contact GWB with questions, feedback, tool ideas or bug reports at gwm.tech@greaterworldmedia.tech.','x'),'privacy/':('Privacy Policy | GWB','How GWB handles information, cookies, analytics, advertising and payments.','x'),'terms/':('Terms of Use | GWB','Terms of use for GWB tools and website.','x')}
 META.update(INFO)
-AD='''<aside class="rail noprint" aria-label="Advertisement (sidebar)"><span class="ad-label">Advertisement</span><div class="ad-slot">
-<!-- AD SLOT: paste the AdSense <ins class="adsbygoogle" ...> unit (or another network's code) here. Desktop: 300x600 right rail; mobile: 100px inline.
-     Never trigger ads on clicks or downloads. Load the network script once in <head> where marked AD-SCRIPT. Add /ads.txt at the site root after approval. --></div></aside>'''
+import ads_config as ADS
+AD=ADS.rail()
 import json
 exec(open('seo_build.py').read())
 for path,(t,d,cat) in META.items():
@@ -676,10 +676,11 @@ for path,(t,d,cat) in META.items():
 <script type="application/ld+json">{json.dumps({'@context':'https://schema.org','@graph':ld},ensure_ascii=False)}</script>
 <!-- ANALYTICS: GoatCounter (cookieless). Paths normalized so /x/index.html and /x/ count together. --><script>window.goatcounter={{path:function(p){{return p.replace(/index\.html$/,'')}}}}</script><script data-goatcounter="https://greaterworldmedia.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <!-- CONSENT: Google requires a certified CMP for EEA/UK/CH visitors. Use AdSense > Privacy & messaging (Google's CMP); it shows a small consent banner only in those regions. No custom popup needed. -->
-<!-- AD-SCRIPT --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9780755121157050" crossorigin="anonymous"></script>'''
+<!-- AD-SCRIPT -->'''+ADS.SCRIPT
     h=h.replace('<meta name="viewport" content="width=device-width,initial-scale=1">','<meta name="viewport" content="width=device-width,initial-scale=1">'+head,1)
     h=h.replace('<!--RAIL-->',AD,1)
+    if 'adsbygoogle" style' in h and ADS.LOADER not in h: h=h.replace('</body></html>',ADS.LOADER+'</body></html>',1) if h.count('</body></html>')==1 else h[:h.rindex('</body></html>')]+ADS.LOADER+h[h.rindex('</body></html>'):]
     open(f,'w').write(h)
 open('sitemap.xml','w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{BASE+p}</loc><lastmod>{LASTMOD}</lastmod><changefreq>monthly</changefreq></url>\n' for p in META)+'</urlset>\n')
 write_extras()
-open('ads.txt','w').write('google.com, pub-9780755121157050, DIRECT, f08c47fec0942fa0\n')
+open('ads.txt','w').write('\n'.join(ADS.ADS_TXT)+'\n')
