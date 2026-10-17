@@ -51,7 +51,7 @@ doc.setProperties({title:L1(s.title),author:'GWB: Greater World Business',creato
 doc.setFillColor(...BR);doc.rect(0,0,W,64,'F');doc.setFillColor(255,162,76);doc.roundedRect(M,16,32,32,8,8,'F');doc.setTextColor(51,36,173);doc.setFont('helvetica','bold');doc.setFontSize(18);doc.text('G',M+16,38,{align:'center'});
 doc.setTextColor(255,255,255);doc.setFontSize(15);doc.text('GWB',M+44,32);doc.setFont('helvetica','normal');doc.setFontSize(10);doc.text('Greater World Business',M+44,46);doc.text('greaterworldmedia.tech',W-M,38,{align:'right'});
 doc.setTextColor(20,18,43);doc.setFont('helvetica','bold');doc.setFontSize(20);const tl=doc.splitTextToSize(L1(s.title),W-2*M);doc.text(tl,M,98);let y=98+tl.length*22;
-doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(75,80,101);doc.text(L1('Generated '+s.generated),M,y);y+=18;
+doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(75,80,101);doc.text(L1('Generated '+s.generated),M,y);y+=18;if(s.image&&s.image.data){const iw=Math.min(W-2*M,s.image.maxW||300),ih=iw*s.image.h/s.image.w;doc.addImage(s.image.data,'PNG',M,y,iw,ih);y+=ih+20}
 const head={fillColor:BR,textColor:255,fontStyle:'bold'},base={font:'helvetica',fontSize:10,cellPadding:5,overflow:'linebreak',textColor:[20,18,43]};
 const sec=(t)=>{if(y>doc.internal.pageSize.getHeight()-90){doc.addPage();y=M}doc.setFont('helvetica','bold');doc.setFontSize(13);doc.setTextColor(20,18,43);doc.text(L1(t),M,y+10);y+=18};
 const tab=(h,rows,o={})=>{doc.autoTable(Object.assign({startY:y,head:h?[h.map(L1)]:undefined,body:rows.map(r=>r.map(L1)),margin:{left:M,right:M},styles:base,headStyles:head,alternateRowStyles:{fillColor:[246,246,251]},theme:'grid'},o));y=doc.lastAutoTable.finalY+20};

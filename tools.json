@@ -1300,6 +1300,66 @@
      "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
     }
    ]
+  },
+  {
+   "id": "logo-maker",
+   "name": "Logo & Favicon Maker",
+   "url": "https://greaterworldmedia.tech/logo-maker/",
+   "category": "Image & Design",
+   "summary": "Simple text-and-icon logos plus a favicon pack (PNG, SVG, ICO).",
+   "description": "Create a simple text-and-icon logo and download SVG, transparent PNG and a full favicon pack (favicon.ico, 16/32/180/192/512 px, manifest). Free, private, no sign-up.",
+   "features": [
+    "Text and icon logos",
+    "14 icons, 4 layouts, 4 font styles",
+    "Custom colors and transparent background",
+    "SVG and high-resolution PNG download",
+    "Favicon pack: favicon.ico, 16/32/48, 180, 192, 512 px and site.webmanifest",
+    "Brand sheet PDF with colors",
+    "Export results to PDF or CSV (in-browser)",
+    "Send to phone as a plain-text note (share, copy, .txt or QR)"
+   ],
+   "exports": [
+    "PDF",
+    "CSV"
+   ],
+   "price": "free",
+   "signup_required": false,
+   "processing": "in-browser (files and text are not uploaded)",
+   "how_to": [
+    "Type your business name and an optional tagline.",
+    "Pick an icon, layout, font, icon shape and colors.",
+    "Download the logo as SVG or PNG, or download the favicon pack for your website."
+   ],
+   "faq": [
+    {
+     "q": "Is the logo maker free?",
+     "a": "Yes. The logo maker is 100% free with no limits, no watermark and no paid tier."
+    },
+    {
+     "q": "Do I need an account or sign-up?",
+     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+    },
+    {
+     "q": "Can I export or download my results?",
+     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+    },
+    {
+     "q": "Can I use the logo commercially?",
+     "a": "Yes. The icons are simple original shapes made for this tool and the text is yours, so you can use the result for your business. Check that your business name does not infringe someone else's trademark."
+    },
+    {
+     "q": "What is in the favicon pack?",
+     "a": "A ZIP with favicon.ico (16, 32 and 48 px), favicon-16x16.png, favicon-32x32.png, apple-touch-icon.png (180 px), android-chrome 192 and 512 px PNGs, site.webmanifest and a snippet of HTML tags to paste into your site's head."
+    },
+    {
+     "q": "Why does the font look different on another computer?",
+     "a": "The logo uses common system fonts. For a pixel-perfect logo everywhere, use the PNG download, which bakes the text in as an image."
+    },
+    {
+     "q": "Are my files or text uploaded anywhere?",
+     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+    }
+   ]
   }
  ]
 }

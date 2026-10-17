@@ -446,6 +446,7 @@ from export_src import EXPCSS,EXPJS,EX,exprow
 FFX="no account. That won't change.</p>"
 from budget_src import BUDGET_CSS
 CSS+=BUDGET_CSS
+CSS+=''.join(_t.get('css','') for _t in NT.NEW)
 from recommendations import rechtml,RECCSS,REC
 CSS+=RECCSS
 assert set(REC)=={t[0] for t in TOOLS}
@@ -456,7 +457,6 @@ open('safe.js','w').write(SAFEJS)
 os.makedirs('tax-calculator',exist_ok=True);open('tax-calculator/tax.js','w').write(TAXJS)
 for _t in NT.NEW:
     apps[_t['slug']]=page(_t['title'],_t['tagline'],_t['how'],_t['html'],_t['js'],head=_t.get('head',''))
-    CSS+=_t.get('css','')
 for k,v in apps.items():
     v=v.replace('{{ICON}}',icon(k)).replace('{{CATCLS}}','cat-'+CATOF[k]).replace('{{CATNAME}}',CATS[CATOF[k]]).replace('{{CAT}}',CATOF[k]).replace('{{RECS}}',rechtml(k)).replace('{{ADIN}}',ADIN).replace('{{FAQ}}',faqhtml(k));v=re.sub(r'<label>([^<]*)</label>(\s*)<(input|textarea|select) id="([^"]+)"',r'<label for="\4">\1</label>\2<\3 id="\4"',v);
     if k in EX:
