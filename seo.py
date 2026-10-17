@@ -41,7 +41,10 @@ FEATURES={
 'policy':['Privacy policy drafts','Terms of service drafts','Refund policy drafts','Copy or download'],
 'resume':['Action-verb bullet rewrites','Add numbers and results','Several verb styles','Copy bullets'],
 }
+EXPORTS={'tax-calculator':['PDF','Excel (.xlsx)','CSV'],'biz-calc':['PDF','Excel (.xlsx)','CSV'],'meeting-cost':['PDF','Excel (.xlsx)','CSV'],'invoice':['PDF','Excel (.xlsx)','CSV'],'word-counter':['PDF','Excel (.xlsx)','CSV'],'color-palette':['PDF','Excel (.xlsx)','CSV'],'business-name':['PDF','Excel (.xlsx)','CSV'],'resume':['PDF','Excel (.xlsx)'],'policy':['PDF','Excel (.xlsx)'],'email-signature':['PDF','Excel (.xlsx)']}
+def _fl(x): return ', '.join(x[:-1])+' or '+x[-1]
+for _k,_x in EXPORTS.items(): FEATURES[_k]=FEATURES[_k]+['Export results to '+_fl(_x)+' (in-browser)']
 def extra_faq(k,name):
     s=SHORT[k]; S=s[0].upper()+s[1:]
     return [(f"Is {s} free?",f"Yes. {S} is 100% free with no limits, no watermark and no paid tier."),
-            ("Do I need an account or sign-up?","No. There is no account, sign-up or email required. Open the page and start using it.")]
+            ("Do I need an account or sign-up?","No. There is no account, sign-up or email required. Open the page and start using it.")]+([("Can I export or download my results?",f"Yes. Use Save results under the tip box to download your inputs and results as {_fl(EXPORTS[k])}. Files are created in your browser and include the date generated"+(". Tax year 2026, estimates only, not tax advice." if k=='tax-calculator' else "."))] if k in EXPORTS else [])

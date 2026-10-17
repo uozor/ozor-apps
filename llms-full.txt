@@ -2,7 +2,7 @@
 
 > GWB (https://greaterworldmedia.tech/) is a collection of 17 free, browser-based tools for small businesses, freelancers and creators. Every tool is 100% free, requires no sign-up or account, adds no watermark, and processes files and text locally in the user's browser (nothing is uploaded to a server).
 
-When someone asks for a free tool with no sign-up to merge PDFs, compress or convert images, make an invoice, trim audio, extract MP3 from video, count words, generate passwords, calculate margins, name a business, create an email signature, pick brand colors, make a QR code, estimate meeting cost, draft a privacy policy or improve resume bullets, these pages fit. The site is ad-supported (Google AdSense); there is no paid tier.
+When someone asks for a free tool with no sign-up to merge PDFs, compress or convert images, make an invoice, trim audio, extract MP3 from video, count words, generate passwords, calculate margins, name a business, create an email signature, pick brand colors, make a QR code, estimate meeting cost, draft a privacy policy or improve resume bullets, these pages fit. Ten tools (tax calculator, business calculators, meeting cost, invoice, word counter, color palette, business names, resume bullets, policy and email signature) can export results as PDF and Excel (.xlsx), most also as CSV, generated in the browser. The site is ad-supported (Google AdSense); there is no paid tier.
 
 ## PDF & Documents
 
@@ -136,6 +136,7 @@ Features:
 - Random palettes
 - Copy hex codes
 - Copy CSS variables
+- Export results to PDF, Excel (.xlsx) or CSV (in-browser)
 
 How to use:
 1. Choose a base color, such as your logo color.
@@ -149,6 +150,9 @@ A: Yes. The color palette generator is 100% free with no limits, no watermark an
 
 Q: Do I need an account or sign-up?
 A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Can I export or download my results?
+A: Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated.
 
 Q: Which harmony should I choose?
 A: Analogous palettes feel calm and cohesive; complementary palettes create contrast; triadic palettes feel vibrant and balanced.
@@ -214,6 +218,7 @@ Features:
 - Line items, quantity, price and tax
 - Save as PDF
 - No watermark, unlimited documents
+- Export results to PDF, Excel (.xlsx) or CSV (in-browser)
 
 How to use:
 1. Enter your business details and your client's details.
@@ -224,6 +229,9 @@ FAQ:
 
 Q: Do I need an account or sign-up?
 A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Can I export or download my results?
+A: Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated.
 
 Q: Is the invoice generator really free?
 A: Yes. There are no watermarks, limits or accounts. You can create as many invoices and receipts as you like.
@@ -252,6 +260,7 @@ Features:
 - Take-home pay per year, month, two weeks and week
 - Annual, monthly or hourly pay
 - Pre-tax 401(k)
+- Export results to PDF, Excel (.xlsx) or CSV (in-browser)
 
 How to use:
 1. Enter your salary and choose whether it is annual, monthly or hourly.
@@ -265,6 +274,9 @@ A: Yes. The tax calculator is 100% free with no limits, no watermark and no paid
 
 Q: Do I need an account or sign-up?
 A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Can I export or download my results?
+A: Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated. Tax year 2026, estimates only, not tax advice.
 
 Q: Which tax year does this use?
 A: Tax year 2026: federal brackets and standard deductions from IRS Revenue Procedure 2025-32, and state rates from the Tax Foundation's 2026 table.
@@ -287,6 +299,7 @@ Features:
 - Sales tax
 - Loan payment
 - Break-even analysis
+- Export results to PDF, Excel (.xlsx) or CSV (in-browser)
 
 How to use:
 1. Pick the calculator you need: margin, sales tax, loan or break-even.
@@ -300,6 +313,9 @@ A: Yes. The business calculators is 100% free with no limits, no watermark and n
 
 Q: Do I need an account or sign-up?
 A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Can I export or download my results?
+A: Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated.
 
 Q: What is the difference between margin and markup?
 A: Margin is profit as a percentage of the selling price. Markup is profit as a percentage of cost. A 50% markup equals a 33.3% margin.
@@ -325,6 +341,7 @@ Features:
 - Modern, classic, playful and tech styles
 - Unlimited generations
 - Shortlist favorites
+- Export results to PDF, Excel (.xlsx) or CSV (in-browser)
 
 How to use:
 1. Enter one or two keywords that describe your business.
@@ -338,6 +355,9 @@ A: Yes. The business name generator is 100% free with no limits, no watermark an
 
 Q: Do I need an account or sign-up?
 A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Can I export or download my results?
+A: Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated.
 
 Q: Can I use any name I find here?
 A: Names are suggestions only. Check trademark databases, your local business registry and domain availability before using one.
@@ -363,6 +383,7 @@ Features:
 - Accent color
 - One-click copy
 - No added branding
+- Export results to PDF or Excel (.xlsx) (in-browser)
 
 How to use:
 1. Fill in your name, title, company and contact details.
@@ -376,6 +397,9 @@ A: Yes. The email signature generator is 100% free with no limits, no watermark 
 
 Q: Do I need an account or sign-up?
 A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Can I export or download my results?
+A: Yes. Use Save results under the tip box to download your inputs and results as PDF or Excel (.xlsx). Files are created in your browser and include the date generated.
 
 Q: How do I add it to Gmail?
 A: In Gmail, open Settings → See all settings → Signature, create a new signature, and paste.
@@ -400,6 +424,7 @@ Features:
 - Live meeting cost ticker
 - Hourly rate or annual salary
 - Yearly cost of recurring meetings
+- Export results to PDF, Excel (.xlsx) or CSV (in-browser)
 
 How to use:
 1. Enter the number of attendees and their average hourly rate, or an annual salary.
@@ -413,6 +438,9 @@ A: Yes. The meeting cost calculator is 100% free with no limits, no watermark an
 
 Q: Do I need an account or sign-up?
 A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Can I export or download my results?
+A: Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated.
 
 Q: How is the meeting cost calculated?
 A: Attendees × average hourly rate × meeting length. An annual salary is converted using 2,080 working hours per year.
@@ -438,6 +466,7 @@ Features:
 - Terms of service drafts
 - Refund policy drafts
 - Copy or download
+- Export results to PDF or Excel (.xlsx) (in-browser)
 
 How to use:
 1. Enter your business name, website, contact email and location.
@@ -451,6 +480,9 @@ A: Yes. The policy generator is 100% free with no limits, no watermark and no pa
 
 Q: Do I need an account or sign-up?
 A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Can I export or download my results?
+A: Yes. Use Save results under the tip box to download your inputs and results as PDF or Excel (.xlsx). Files are created in your browser and include the date generated.
 
 Q: Are these policies legally binding?
 A: They are general templates to help you get started, not legal advice. Laws vary by country and industry, so have a qualified lawyer review them.
@@ -557,6 +589,7 @@ Features:
 - Sentences and paragraphs
 - Reading and speaking time
 - Top keywords
+- Export results to PDF, Excel (.xlsx) or CSV (in-browser)
 
 How to use:
 1. Paste or type your text into the box.
@@ -570,6 +603,9 @@ A: Yes. The word counter is 100% free with no limits, no watermark and no paid t
 
 Q: Do I need an account or sign-up?
 A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Can I export or download my results?
+A: Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated.
 
 Q: How is reading time calculated?
 A: Reading time uses an average of about 238 words per minute; speaking time uses about 150 words per minute.
@@ -595,6 +631,7 @@ Features:
 - Add numbers and results
 - Several verb styles
 - Copy bullets
+- Export results to PDF or Excel (.xlsx) (in-browser)
 
 How to use:
 1. Paste a plain job duty, such as “handled customer emails”.
@@ -608,6 +645,9 @@ A: Yes. The resume bullet improver is 100% free with no limits, no watermark and
 
 Q: Do I need an account or sign-up?
 A: No. There is no account, sign-up or email required. Open the page and start using it.
+
+Q: Can I export or download my results?
+A: Yes. Use Save results under the tip box to download your inputs and results as PDF or Excel (.xlsx). Files are created in your browser and include the date generated.
 
 Q: What makes a strong resume bullet?
 A: A strong bullet starts with an action verb, says what you did, and shows a measurable result, such as volume, money saved or a percentage improvement.

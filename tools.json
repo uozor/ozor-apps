@@ -19,6 +19,7 @@
     "Convert JPG/PNG images to PDF",
     "No upload: runs in the browser"
    ],
+   "exports": [],
    "price": "free",
    "signup_required": false,
    "processing": "in-browser (files and text are not uploaded)",
@@ -68,6 +69,7 @@
     "Shows size savings",
     "No upload: runs in the browser"
    ],
+   "exports": [],
    "price": "free",
    "signup_required": false,
    "processing": "in-browser (files and text are not uploaded)",
@@ -116,6 +118,7 @@
     "Background color for transparent areas",
     "No upload: runs in the browser"
    ],
+   "exports": [],
    "price": "free",
    "signup_required": false,
    "processing": "in-browser (files and text are not uploaded)",
@@ -162,7 +165,13 @@
     "Invoices and receipts",
     "Line items, quantity, price and tax",
     "Save as PDF",
-    "No watermark, unlimited documents"
+    "No watermark, unlimited documents",
+    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)"
+   ],
+   "exports": [
+    "PDF",
+    "Excel (.xlsx)",
+    "CSV"
    ],
    "price": "free",
    "signup_required": false,
@@ -176,6 +185,10 @@
     {
      "q": "Do I need an account or sign-up?",
      "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+    },
+    {
+     "q": "Can I export or download my results?",
+     "a": "Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated."
     },
     {
      "q": "Is the invoice generator really free?",
@@ -209,6 +222,7 @@
     "Ringtone length presets",
     "No upload: runs in the browser"
    ],
+   "exports": [],
    "price": "free",
    "signup_required": false,
    "processing": "in-browser (files and text are not uploaded)",
@@ -257,6 +271,7 @@
     "Quality options",
     "No upload: runs in the browser"
    ],
+   "exports": [],
    "price": "free",
    "signup_required": false,
    "processing": "in-browser (files and text are not uploaded)",
@@ -303,7 +318,13 @@
     "Word and character counts",
     "Sentences and paragraphs",
     "Reading and speaking time",
-    "Top keywords"
+    "Top keywords",
+    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)"
+   ],
+   "exports": [
+    "PDF",
+    "Excel (.xlsx)",
+    "CSV"
    ],
    "price": "free",
    "signup_required": false,
@@ -321,6 +342,10 @@
     {
      "q": "Do I need an account or sign-up?",
      "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+    },
+    {
+     "q": "Can I export or download my results?",
+     "a": "Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated."
     },
     {
      "q": "How is reading time calculated?",
@@ -353,6 +378,7 @@
     "Strength estimate",
     "Nothing stored"
    ],
+   "exports": [],
    "price": "free",
    "signup_required": false,
    "processing": "in-browser (files and text are not uploaded)",
@@ -402,7 +428,13 @@
     "Marginal and effective rate",
     "Take-home pay per year, month, two weeks and week",
     "Annual, monthly or hourly pay",
-    "Pre-tax 401(k)"
+    "Pre-tax 401(k)",
+    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)"
+   ],
+   "exports": [
+    "PDF",
+    "Excel (.xlsx)",
+    "CSV"
    ],
    "price": "free",
    "signup_required": false,
@@ -420,6 +452,10 @@
     {
      "q": "Do I need an account or sign-up?",
      "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+    },
+    {
+     "q": "Can I export or download my results?",
+     "a": "Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated. Tax year 2026, estimates only, not tax advice."
     },
     {
      "q": "Which tax year does this use?",
@@ -446,7 +482,13 @@
     "Profit margin and markup",
     "Sales tax",
     "Loan payment",
-    "Break-even analysis"
+    "Break-even analysis",
+    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)"
+   ],
+   "exports": [
+    "PDF",
+    "Excel (.xlsx)",
+    "CSV"
    ],
    "price": "free",
    "signup_required": false,
@@ -464,6 +506,10 @@
     {
      "q": "Do I need an account or sign-up?",
      "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+    },
+    {
+     "q": "Can I export or download my results?",
+     "a": "Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated."
     },
     {
      "q": "What is the difference between margin and markup?",
@@ -494,7 +540,13 @@
     "Keyword-based name ideas",
     "Modern, classic, playful and tech styles",
     "Unlimited generations",
-    "Shortlist favorites"
+    "Shortlist favorites",
+    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)"
+   ],
+   "exports": [
+    "PDF",
+    "Excel (.xlsx)",
+    "CSV"
    ],
    "price": "free",
    "signup_required": false,
@@ -512,6 +564,10 @@
     {
      "q": "Do I need an account or sign-up?",
      "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+    },
+    {
+     "q": "Can I export or download my results?",
+     "a": "Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated."
     },
     {
      "q": "Can I use any name I find here?",
@@ -542,7 +598,12 @@
     "HTML signature for Gmail, Outlook and Apple Mail",
     "Accent color",
     "One-click copy",
-    "No added branding"
+    "No added branding",
+    "Export results to PDF or Excel (.xlsx) (in-browser)"
+   ],
+   "exports": [
+    "PDF",
+    "Excel (.xlsx)"
    ],
    "price": "free",
    "signup_required": false,
@@ -560,6 +621,10 @@
     {
      "q": "Do I need an account or sign-up?",
      "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+    },
+    {
+     "q": "Can I export or download my results?",
+     "a": "Yes. Use Save results under the tip box to download your inputs and results as PDF or Excel (.xlsx). Files are created in your browser and include the date generated."
     },
     {
      "q": "How do I add it to Gmail?",
@@ -590,7 +655,13 @@
     "Analogous, complementary and triadic harmonies",
     "Random palettes",
     "Copy hex codes",
-    "Copy CSS variables"
+    "Copy CSS variables",
+    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)"
+   ],
+   "exports": [
+    "PDF",
+    "Excel (.xlsx)",
+    "CSV"
    ],
    "price": "free",
    "signup_required": false,
@@ -608,6 +679,10 @@
     {
      "q": "Do I need an account or sign-up?",
      "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+    },
+    {
+     "q": "Can I export or download my results?",
+     "a": "Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated."
     },
     {
      "q": "Which harmony should I choose?",
@@ -640,6 +715,7 @@
     "One-file link-in-bio page",
     "No upload: runs in the browser"
    ],
+   "exports": [],
    "price": "free",
    "signup_required": false,
    "processing": "in-browser (files and text are not uploaded)",
@@ -685,7 +761,13 @@
    "features": [
     "Live meeting cost ticker",
     "Hourly rate or annual salary",
-    "Yearly cost of recurring meetings"
+    "Yearly cost of recurring meetings",
+    "Export results to PDF, Excel (.xlsx) or CSV (in-browser)"
+   ],
+   "exports": [
+    "PDF",
+    "Excel (.xlsx)",
+    "CSV"
    ],
    "price": "free",
    "signup_required": false,
@@ -703,6 +785,10 @@
     {
      "q": "Do I need an account or sign-up?",
      "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+    },
+    {
+     "q": "Can I export or download my results?",
+     "a": "Yes. Use Save results under the tip box to download your inputs and results as PDF, Excel (.xlsx) or CSV. Files are created in your browser and include the date generated."
     },
     {
      "q": "How is the meeting cost calculated?",
@@ -733,7 +819,12 @@
     "Privacy policy drafts",
     "Terms of service drafts",
     "Refund policy drafts",
-    "Copy or download"
+    "Copy or download",
+    "Export results to PDF or Excel (.xlsx) (in-browser)"
+   ],
+   "exports": [
+    "PDF",
+    "Excel (.xlsx)"
    ],
    "price": "free",
    "signup_required": false,
@@ -751,6 +842,10 @@
     {
      "q": "Do I need an account or sign-up?",
      "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+    },
+    {
+     "q": "Can I export or download my results?",
+     "a": "Yes. Use Save results under the tip box to download your inputs and results as PDF or Excel (.xlsx). Files are created in your browser and include the date generated."
     },
     {
      "q": "Are these policies legally binding?",
@@ -781,7 +876,12 @@
     "Action-verb bullet rewrites",
     "Add numbers and results",
     "Several verb styles",
-    "Copy bullets"
+    "Copy bullets",
+    "Export results to PDF or Excel (.xlsx) (in-browser)"
+   ],
+   "exports": [
+    "PDF",
+    "Excel (.xlsx)"
    ],
    "price": "free",
    "signup_required": false,
@@ -799,6 +899,10 @@
     {
      "q": "Do I need an account or sign-up?",
      "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+    },
+    {
+     "q": "Can I export or download my results?",
+     "a": "Yes. Use Save results under the tip box to download your inputs and results as PDF or Excel (.xlsx). Files are created in your browser and include the date generated."
     },
     {
      "q": "What makes a strong resume bullet?",

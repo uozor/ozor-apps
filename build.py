@@ -433,11 +433,17 @@ const out=[];for(let c=0;c<Math.min(2,buf.numberOfChannels);c++)out.push(buf.get
 
 CSS+='.gwb-ty{display:flex;align-items:flex-start;gap:12px;margin:14px 0 0;padding:12px 14px;border:1px solid var(--line);border-left:4px solid var(--brand);border-radius:14px;background:var(--soft);color:var(--ink);font-size:.95rem;line-height:1.5}.gwb-ty p{margin:0;flex:1}.gwb-ty a{color:var(--brand-d);font-weight:600;white-space:nowrap}.gwb-ty .gwb-ty-x{box-shadow:none;padding:0;margin:0;flex:none;min-width:32px;min-height:32px;border:0;border-radius:10px;background:transparent;color:var(--muted);font-size:1.2rem;cursor:pointer}.gwb-ty .gwb-ty-x:hover,.gwb-ty .gwb-ty-x:focus-visible{background:#fff;color:var(--ink)}@media print{.gwb-ty{display:none}}'
 CSS+=SAFECSS
+from export_src import EXPCSS,EXPJS,EX,exprow
+CSS+=EXPCSS
+open('vendor/gwb-export.js','w').write(EXPJS)
 open('style.css','w').write(CSS)
 open('safe.js','w').write(SAFEJS)
 os.makedirs('tax-calculator',exist_ok=True);open('tax-calculator/tax.js','w').write(TAXJS)
 for k,v in apps.items():
-    v=v.replace('{{ICON}}',icon(k)).replace('{{CATCLS}}','cat-'+CATOF[k]).replace('{{CATNAME}}',CATS[CATOF[k]]).replace('{{CAT}}',CATOF[k]).replace('{{ADIN}}',ADIN).replace('{{FAQ}}',faqhtml(k));v=re.sub(r'<label>([^<]*)</label>(\s*)<(input|textarea|select) id="([^"]+)"',r'<label for="\4">\1</label>\2<\3 id="\4"',v);os.makedirs(k,exist_ok=True);open(f'{k}/index.html','w').write(v)
+    v=v.replace('{{ICON}}',icon(k)).replace('{{CATCLS}}','cat-'+CATOF[k]).replace('{{CATNAME}}',CATS[CATOF[k]]).replace('{{CAT}}',CATOF[k]).replace('{{ADIN}}',ADIN).replace('{{FAQ}}',faqhtml(k));v=re.sub(r'<label>([^<]*)</label>(\s*)<(input|textarea|select) id="([^"]+)"',r'<label for="\4">\1</label>\2<\3 id="\4"',v);
+    if k in EX:
+        fm,nt,sj=EX[k];v=v.replace('<a class="btn" id="support"',exprow(fm,nt)+'<a class="btn" id="support"',1).replace('</body></html>','<script src="../vendor/gwb-export.js" defer></script><script>'+sj+'</script></body></html>',1)
+    os.makedirs(k,exist_ok=True);open(f'{k}/index.html','w').write(v)
 def tile(k,t,d,c):
     return f'<li class="tile" data-cat="{c}" data-name="{t.lower()} {d.lower()} {CATS[c].lower()}"><span class="ico cat-{c}">{icon(k)}</span><span class="tag">{CATS[c]}</span><h3><a href="{k}/index.html">{t}</a></h3><p>{d}</p></li>'
 TI={t[0]:t for t in TOOLS}
