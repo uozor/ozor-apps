@@ -471,6 +471,8 @@ from fileshare_src import FILE_TOOLS,FSCSS,FSJS,fsrow
 CSS+=FSCSS
 open('vendor/gwb-fileshare.js','w').write(FSJS)
 open('vendor/gwb-export.js','w').write(EXPJS)
+import ads_config as _ADS
+CSS+=_ADS.MCSS
 open('style.css','w').write(CSS)
 open('safe.js','w').write(SAFEJS)
 os.makedirs('tax-calculator',exist_ok=True);open('tax-calculator/tax.js','w').write(TAXJS)
@@ -621,7 +623,7 @@ infopage('privacy','Privacy Policy','How GWB handles information, cookies, analy
 <h2>Hosting and server logs</h2><p>The site is hosted on GitHub Pages. GitHub may collect technical information such as IP addresses in server logs for security and operations. See <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</p>
 <h2>Analytics</h2><p>We use <a href="https://www.goatcounter.com/">GoatCounter</a>, a privacy-friendly, cookieless analytics service, to count page views and learn which tools are useful. It does not use cookies or track you across sites, and it collects only aggregated, non-identifying information such as the page visited, referrer, browser type, screen size and country. Per-page view totals are public, and our home page uses them to show the most popular tools. See <a href="https://www.goatcounter.com/help/privacy">GoatCounter's privacy policy</a>.</p><p>To show a “Recently used” list on the home page, your browser remembers which tools you opened in its local storage. This list never leaves your device, and you can clear it in your browser settings.</p>
 <h2>Advertising and cookies</h2><p>We may display ads from third-party vendors, including Google. Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites. Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to this site and/or other sites on the Internet.</p>
-<p>You may opt out of personalized advertising by visiting <a href="https://adssettings.google.com">Google Ads Settings</a> (My Ad Center). You can also opt out of some third-party vendors' use of cookies for personalized advertising at <a href="https://www.aboutads.info/choices/">www.aboutads.info/choices</a>. Learn more about <a href="https://policies.google.com/technologies/partner-sites">how Google uses information from sites that use its services</a>.</p>
+<p>You may opt out of personalized advertising by visiting <a href="https://adssettings.google.com">Google Ads Settings</a> (My Ad Center). You can also opt out of some third-party vendors' use of cookies for personalized advertising at <a href="https://optout.aboutads.info/">www.aboutads.info/choices</a>. Learn more about <a href="https://policies.google.com/technologies/partner-sites">how Google uses information from sites that use its services</a>.</p>
 <p>Visitors in the European Economic Area, the United Kingdom and Switzerland will be asked for consent through a Google-certified consent management platform before personalized ads or related cookies are used.</p>
 <h2>Payments</h2><p>Tips and supporter memberships are processed by Stripe. GWB does not receive or store your card details. See <a href="https://stripe.com/privacy">Stripe's privacy policy</a>.</p>
 <h2>Children</h2><p>The site is not directed to children under 13, and we do not knowingly collect personal information from children.</p>
@@ -679,6 +681,7 @@ for path,(t,d,cat) in META.items():
 <!-- AD-SCRIPT -->'''+ADS.SCRIPT
     h=h.replace('<meta name="viewport" content="width=device-width,initial-scale=1">','<meta name="viewport" content="width=device-width,initial-scale=1">'+head,1)
     h=h.replace('<!--RAIL-->',AD,1)
+    assert h.count('<footer>')==1,f; h=h.replace('<footer>',ADS.mobile()+'<footer>',1)
     if 'adsbygoogle" style' in h and ADS.LOADER not in h: h=h.replace('</body></html>',ADS.LOADER+'</body></html>',1) if h.count('</body></html>')==1 else h[:h.rindex('</body></html>')]+ADS.LOADER+h[h.rindex('</body></html>'):]
     open(f,'w').write(h)
 open('sitemap.xml','w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{BASE+p}</loc><lastmod>{LASTMOD}</lastmod><changefreq>monthly</changefreq></url>\n' for p in META)+'</urlset>\n')

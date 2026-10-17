@@ -14,7 +14,7 @@ helper={'s':'loan,loans,borrow,borrowing,mortgage,sba,equipment loan,business lo
 exports=['pdf','xlsx','csv'],
 recs=[('QuickBooks Online','https://quickbooks.intuit.com/','Track loan payments and interest expense in your books so they are ready for tax time.','quickbooks'),
       ('Xero','https://www.xero.com/','Accounting software with bank feeds to reconcile loan payments automatically.','xero'),
-      ('Melio','https://meliopayments.com/','Schedule and pay business bills, including lender payments, by bank transfer or card.','melio')],
+      ('Melio','https://melio.com/','Schedule and pay business bills, including lender payments, by bank transfer or card.','melio')],
 css='.lsched{max-height:420px;overflow:auto;border:1px solid var(--line);border-radius:12px;margin-top:8px}.lsched table{margin:0}.lsched th{position:sticky;top:0;background:#fff}details.lmore summary{cursor:pointer;font-weight:700;padding:12px 0;min-height:44px}',
 html=r"""<h2>Calculate your loan</h2>
 <div class="grid"><div><label for="ltype">Loan type</label><select id="ltype"><option value="business">Business term loan</option><option value="equipment">Equipment loan</option><option value="sba">SBA 7(a) loan</option><option value="mortgage">Mortgage</option><option value="custom">Other / custom</option></select></div>

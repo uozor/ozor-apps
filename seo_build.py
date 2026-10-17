@@ -51,7 +51,7 @@ def og_images():
 def write_extras():
     og_images()
     key=open('.indexnow-key').read().strip(); open(key+'.txt','w').write(key)
-    bots=['GPTBot','OAI-SearchBot','ChatGPT-User','PerplexityBot','Perplexity-User','ClaudeBot','Claude-SearchBot','Claude-User','Google-Extended','Googlebot','Bingbot','Applebot','Applebot-Extended','CCBot','DuckDuckBot']
+    bots=['GPTBot','OAI-SearchBot','ChatGPT-User','PerplexityBot','Perplexity-User','ClaudeBot','Claude-SearchBot','Claude-User','Google-Extended','Googlebot','Mediapartners-Google','AdsBot-Google','Bingbot','Applebot','Applebot-Extended','CCBot','DuckDuckBot']
     open('robots.txt','w').write('# AI assistants and search engines are welcome to crawl and cite these free tools.\n'+''.join(f'User-agent: {b}\nAllow: /\n\n' for b in bots)+f'User-agent: *\nAllow: /\n\nSitemap: {BASE}sitemap.xml\n')
     tools=[]
     for k,n,dd,c in TOOLS:

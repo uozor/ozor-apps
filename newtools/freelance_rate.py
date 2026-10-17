@@ -14,7 +14,7 @@ helper={'s':'freelance,freelancer,hourly rate,day rate,daily rate,what should i 
 exports=['pdf','xlsx','csv'],
 recs=[('FreshBooks','https://www.freshbooks.com/','Time tracking, proposals and invoicing built for freelancers and consultants.','freshbooks'),
       ('monday.com','https://monday.com/','Plan projects and track hours per client so your quotes match real effort.','monday'),
-      ('Melio','https://meliopayments.com/','Get paid and pay contractors by bank transfer or card without extra software.','melio')],
+      ('Melio','https://melio.com/','Get paid and pay contractors by bank transfer or card without extra software.','melio')],
 html=r"""<h2>Find your rate</h2><div class="grid">
 <div><label for="fti">Income you want to take home per year ($)</label><input id="fti" type="number" min="0" step="any" inputmode="decimal" value="60000"></div>
 <div><label for="fex">Business expenses per year ($)</label><input id="fex" type="number" min="0" step="any" inputmode="decimal" value="10000"></div>

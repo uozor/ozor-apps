@@ -65,7 +65,7 @@ const P=doc.getNumberOfPages();for(let i=1;i<=P;i++){doc.setPage(i);const H=doc.
 save(doc.output('blob'),fname(s,'pdf'))};
 X.run=(fmt,btn)=>G.busy(btn,async()=>{G.status('gwbx-st','');const s=X.spec();s.generated=X.stamp();await X[fmt](s);const n=fname(s,fmt);G.status('gwbx-st','Saved '+n+'.');window.__gwbLastExport=n},{status:'gwbx-st',busyText:'Preparing\u2026',retry:false,message:e=>G.msg(e)});
 /* Send to phone: plain-text note via Web Share, else copy / .txt / QR */
-X.note=s=>{const L=[s.title,'GWB: Greater World Business (greaterworldmedia.tech)','Generated '+s.generated,''];if(s.inputs.length){L.push('INPUTS');s.inputs.forEach(r=>L.push('- '+r[0]+': '+r[1]));L.push('')}
+X.note=s=>{const cn=document.querySelector('link[rel=canonical]'),L=[s.title,'GWB: Greater World Business (greaterworldmedia.tech)','Open this tool: '+(cn?cn.href:location.origin+location.pathname),'Generated '+s.generated,''];if(s.inputs.length){L.push('INPUTS');s.inputs.forEach(r=>L.push('- '+r[0]+': '+r[1]));L.push('')}
 s.tables.forEach(t=>{if(t.noteSkip)return;L.push(String(t.name).toUpperCase());t.rows.forEach(r=>L.push('- '+r.filter(c=>c!==''&&c!=null).join(': ')));L.push('')});if(s.text&&s._pdfOnlyText){L.length=s.inputs.length?L.length:L.length;L.push(s.text,'')}
 s.notes.forEach(n=>L.push('Note: '+n));return L.join('\n').replace(/\n{3,}/g,'\n\n').trim()+'\n'};
 X.noteOf=()=>{const s=X.spec();s.generated=X.stamp();if(s._pdfOnlyText)s.tables=[];return{s,text:X.note(s),name:'gwb-'+s.slug+'-'+X.today()+'-note.txt'}};
