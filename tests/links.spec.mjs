@@ -1,18 +1,18 @@
 // Link audit in the suite: internal links/anchors/tiles/listed URLs (linkcheck.mjs), helper + back-to-top + ?thanks=1, and send-to-phone QR contents.
-import { test, expect, open, fx, TOOLS } from './helpers.mjs';
+import { test, expect, open, fx, TOOLS, BASE } from './helpers.mjs';
 import { execFileSync } from 'child_process'; import path from 'path'; import { fileURLToPath } from 'url';
 const here = path.dirname(fileURLToPath(import.meta.url)), JSQR = path.join(here, 'node_modules/jsqr/dist/jsQR.js');
 const decode = (page, sel) => page.evaluate(async s => { const img = document.querySelector(s); await img.decode(); const c = document.createElement('canvas'); c.width = img.naturalWidth; c.height = img.naturalHeight; const x = c.getContext('2d'); x.drawImage(img, 0, 0); const d = x.getImageData(0, 0, c.width, c.height); const r = jsQR(d.data, c.width, c.height); return r && r.data; }, sel);
 test('internal link audit: every page, link, #anchor, hub tile, mailto and listed URL resolves', async ({}, ti) => {
   test.skip(ti.project.name !== 'desktop', 'network audit runs once'); test.setTimeout(240000);
-  let out = ''; try { out = execFileSync('node', [path.join(here, 'linkcheck.mjs'), 'http://127.0.0.1:8787'], { encoding: 'utf8', timeout: 230000 }); } catch (e) { out = (e.stdout || '') + (e.stderr || ''); }
+  let out = ''; try { out = execFileSync('node', [path.join(here, 'linkcheck.mjs'), BASE], { encoding: 'utf8', timeout: 230000 }); } catch (e) { out = (e.stdout || '') + (e.stderr || ''); }
   expect(out, out).toContain('NO PROBLEMS'); const s = JSON.parse(out.split('\n')[0]); expect(s.pages).toBe(31); expect(s.hubTiles).toBe(TOOLS.length); expect(s.internalLinks).toBeGreaterThan(300);
 });
 test('helper links open the right tool; every helper link resolves', async ({ page, request, errors }) => {
   await open(page, 'tax-calculator'); await page.click('#gwb-fab'); await expect(page.locator('#gwb-panel')).toBeVisible();
   await page.locator('#gwb-panel .chip', { hasText: 'merge PDFs' }).click(); const a = page.locator('#hlog a', { hasText: 'Open' }).last(); await expect(a).toHaveAttribute('href', /pdf-tools\/index\.html/);
   const hrefs = await page.locator('#gwb-panel a[href]').evaluateAll(x => x.map(e => e.href)); expect(hrefs.length).toBeGreaterThan(0);
-  for (const h of new Set(hrefs)) if (h.startsWith('http://127.0.0.1')) expect((await request.get(h)).status(), h).toBe(200);
+  for (const h of new Set(hrefs)) if (h.startsWith(BASE)) expect((await request.get(h)).status(), h).toBe(200);
   await a.click(); await expect(page).toHaveURL(/\/pdf-tools\/index\.html/); await expect(page.locator('h1')).toContainText('PDF');
 });
 test('back-to-top returns to the top', async ({ page, errors }) => {

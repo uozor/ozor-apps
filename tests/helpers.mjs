@@ -1,6 +1,9 @@
 import { test as base, expect } from '@playwright/test';
 import fs from 'fs'; import path from 'path'; import { fileURLToPath } from 'url';
 const here = path.dirname(fileURLToPath(import.meta.url));
+// BASE=https://greaterworldmedia.tech runs the whole suite against the live site (third-party scripts stay stubbed).
+export const BASE = (process.env.BASE || 'http://127.0.0.1:8787').replace(/\/$/, '');
+const ORIGIN = new URL(BASE).origin;
 export const fx = n => path.join(here, 'fixtures', n);
 export const AXE = fs.readFileSync(path.join(here, 'node_modules/axe-core/axe.min.js'), 'utf8');
 export const TOOLS = JSON.parse(fs.readFileSync(path.join(here, '..', 'tools.json'), 'utf8')).tools.map(t => t.id);
@@ -13,7 +16,7 @@ export const test = base.extend({
     page.on('console', m => { if (m.type() === 'error' && !/Failed to load resource|net::ERR_/.test(m.text())) errs.push('console: ' + m.text()); });
     page.on('dialog', d => { errs.push('dialog: ' + d.message()); d.dismiss(); });
     // third-party (AdSense etc.) stubbed so tests are hermetic
-    await page.route(u => !/^http:\/\/(localhost|127\.0\.0\.1):8787/.test(u.href), r => r.fulfill({ status: 200, contentType: 'application/javascript', body: '' }));
+    await page.route(u => u.origin !== ORIGIN, r => r.fulfill({ status: 200, contentType: 'application/javascript', body: '' }));
     await page.addInitScript(() => { window.print = () => { window.__printed = (window.__printed || 0) + 1 }; });
     await use(errs);
     expect(errs, 'console errors / uncaught exceptions').toEqual([]);

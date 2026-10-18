@@ -1,4 +1,4 @@
-import { test, expect, open, fx, bigFile, denyClipboard, expectInvalid, expectValid, noBadText } from './helpers.mjs';
+import { BASE, test, expect, open, fx, bigFile, denyClipboard, expectInvalid, expectValid, noBadText } from './helpers.mjs';
 const EMOJI = '🚀 Café ünïcødé — 日本語', RTL = 'مرحبا بالعالم שלום', XSS = '<img src=x onerror="window.__xss=1">"\'&';
 const huge = n => 'lorem ipsum dolor '.repeat(n);
 const setVal = (page, sel, v) => page.locator(sel).evaluate((e, v) => { e.value = v; e.dispatchEvent(new Event('input', { bubbles: true })); e.dispatchEvent(new Event('change', { bubbles: true })); }, v);
@@ -292,7 +292,7 @@ test.describe('color-palette', () => {
 });
 
 test('global handler shows a non-modal message for an uncaught error', async ({ page }) => {
-  const errs = []; page.on('dialog', d => { errs.push(d.message()); d.dismiss() }); await page.route(u => !/127\.0\.0\.1:8787/.test(u.href), r => r.fulfill({ status: 200, body: '' }));
+  const errs = []; page.on('dialog', d => { errs.push(d.message()); d.dismiss() }); await page.route(u => u.origin !== new URL(BASE).origin, r => r.fulfill({ status: 200, body: '' }));
   await open(page, 'word-counter'); await page.evaluate(() => setTimeout(() => { throw new Error('boom') }, 0)); await expect(page.locator('.gwb-toast')).toBeVisible();
   await expect(page.locator('.gwb-toast')).toHaveAttribute('role', 'status'); expect(errs).toEqual([]);
   await page.evaluate(() => { Promise.reject(new Error('async boom')); }); await expect(page.locator('.gwb-toast p')).toContainText(/input is still here/);
