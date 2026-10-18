@@ -670,6 +670,8 @@ for path,(t,d,cat) in META.items():
     f=(path or '')+'index.html';h=open(f).read();url=BASE+path
     IMPACT="<meta name='impact-site-verification' value='e72e20b1-cddd-4866-96ce-bc2e26b35368'>"
     if IMPACT not in h: h=h.replace('<meta charset="utf-8">','<meta charset="utf-8">'+IMPACT,1)
+    GSV='<meta name="google-site-verification" content="a_trf1N_NTYLqAoX0uL9V8Ecp7slrBl4NI1GDStobpg" />'
+    if GSV not in h: h=h.replace(IMPACT,IMPACT+GSV,1)
     h=re.sub(r'<title>.*?</title><meta name="description" content="[^"]*">','',h,count=1)
     ld=seo_ld(path,t,d,cat,url)
     head=f'''<title>{t}</title><meta name="description" content="{d}"><link rel="canonical" href="{url}"><meta name="theme-color" content="#2a2190">
