@@ -11,7 +11,7 @@ for (const slug of TOOLS) {
         for (let i = 0; i < els.length; i++) for (let j = i + 1; j < els.length; j++) { const a = els[i], c = els[j]; if (a.contains(c) || c.contains(a)) continue; const r = a.getBoundingClientRect(), s = c.getBoundingClientRect(); const ox = Math.min(r.right, s.right) - Math.max(r.left, s.left), oy = Math.min(r.bottom, s.bottom) - Math.max(r.top, s.top); if (ox > 2 && oy > 2) out.push(a.tagName + '/' + c.tagName + ':' + (a.textContent || a.id).trim().slice(0, 20) + '|' + (c.textContent || c.id).trim().slice(0, 20)) } return out });
       expect(ov).toEqual([]);
       // design/SEO/ads intact
-      await expect(page.locator('script[src*="adsbygoogle.js?client=ca-pub-6757646035709684"]')).toHaveCount(1);
+      await expect(page.locator('script[src*="adsbygoogle.js?client=ca-pub-9780755121157050"]')).toHaveCount(1);
       await expect(page.locator('link[rel=canonical]')).toHaveCount(1);
       await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1);
       await expect(page.locator('#gwb-fab')).toBeVisible();
