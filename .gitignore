@@ -1,3 +1,12 @@
 __pycache__/
 mcp/node_modules/
 mcp/.wrangler/
+extension/node_modules/
+extension/.output/
+extension/.wxt/
+extension/public/site/
+extension/public/vendor/
+extension/public/injected/
+extension/test-results/
+extension/playwright-report/
+extension/dist/
