@@ -539,9 +539,17 @@ function ToolRow({ tool, starred, onStar }: { tool: Tool; starred: boolean; onSt
       </button>
       <ToolIcon category={tool.category} />
       <div>
-        <p class="tool-name">{tool.name}</p>
+        <div class="name-line">
+          <p class="tool-name">{tool.name}</p>
+          <button type="button" class="icon-link" aria-label={`Website version of ${tool.name}`} onClick={() => openWebsite(tool.id)}>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M14 5h5v5" />
+              <path d="M19 5l-9 9" />
+              <path d="M17 13.5V18a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h4.5" />
+            </svg>
+          </button>
+        </div>
         <p>{tool.summary}</p>
-        <button type="button" class="linkish" onClick={() => openWebsite(tool.id)}>Website version</button>
       </div>
       <button type="button" class="open" data-open={tool.id} onClick={() => openTool(tool.id)}>Open</button>
     </li>

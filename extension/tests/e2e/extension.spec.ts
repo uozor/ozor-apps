@@ -28,14 +28,42 @@ function frameImage(pageFile: string, name: string, caption: string, popupFile =
   fs.copyFileSync(out, path.join(artifacts, name));
 }
 
-async function framePopup(background: Page, panel: Page, name: string, caption: string, scrollTo = '', height = 680) {
+async function expectNoHorizontalScroll(page: Page) {
+  await page.evaluate(() => window.scrollTo(0, 0));
+  const plans = await page.locator('#plans-link').boundingBox();
+  const width = page.viewportSize()?.width ?? 0;
+  expect(plans, 'Plans link is on screen').toBeTruthy();
+  expect(plans!.x).toBeGreaterThanOrEqual(0);
+  expect(plans!.x + plans!.width).toBeLessThanOrEqual(width + 1);
+  const fit = await page.evaluate(() => ({
+    scrollWidth: document.documentElement.scrollWidth,
+    clientWidth: document.documentElement.clientWidth,
+  }));
+  expect(fit.scrollWidth, `horizontal overflow ${fit.scrollWidth} > ${fit.clientWidth}`).toBeLessThanOrEqual(fit.clientWidth);
+}
+
+async function expectViewsFit(page: Page) {
+  const previous = page.viewportSize();
+  await page.setViewportSize({ width: 400, height: 700 });
+  try {
+    for (const id of ['#view-favorites', '#view-all', '#view-page']) {
+      await page.click(id);
+      await expectNoHorizontalScroll(page);
+    }
+  } finally {
+    if (previous) await page.setViewportSize(previous);
+  }
+}
+
+async function framePopup(panel: Page, name: string, caption: string, scrollTo = '', height = 680) {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'gwb-frame-'));
   const pageFile = path.join(tmp, 'page.png');
   const popFile = path.join(tmp, 'popup.png');
-  const previous = background.viewportSize();
-  await background.setViewportSize({ width: 1280, height: 800 });
-  await background.screenshot({ path: pageFile });
-  if (previous) await background.setViewportSize(previous);
+  const stage = await panel.context().newPage();
+  await stage.setViewportSize({ width: 1280, height: 800 });
+  await stage.setContent(fs.readFileSync(path.join(root, 'store', 'backdrop.html'), 'utf8'), { waitUntil: 'load' });
+  await stage.screenshot({ path: pageFile });
+  await stage.close();
   const panelPrevious = panel.viewportSize();
   await panel.setViewportSize({ width: 400, height });
   try {
@@ -183,17 +211,19 @@ test('popup, tools, three tiers, and page tips', async () => {
     await expect(popup.locator('#fav-list [data-tool="password"]')).toBeVisible();
 
     const panel = await context.newPage();
-    await panel.setViewportSize({ width: 1280, height: 800 });
+    await panel.setViewportSize({ width: 400, height: 700 });
     await panel.goto(`chrome-extension://${extId}/panel.html`);
     await expect(panel.locator('#fav-list [data-tool="invoice"]')).toBeVisible();
+    await expectViewsFit(popup);
+    await popup.click('#view-favorites');
+    await expectViewsFit(panel);
     await panel.close();
 
-    await web.goto('http://127.0.0.1:8799/sample.html');
-    await framePopup(web, popup, '01-favorites.png', 'Favorites stay in this browser.');
+    await framePopup(popup, '01-favorites.png', 'Favorites stay in this browser.');
     await popup.click('#view-all');
     await popup.locator('#tool-search').fill('invoice');
     await expect(popup.locator('#all-list [data-tool="invoice"]')).toBeVisible();
-    await framePopup(web, popup, '02-all-tools.png', 'Search every tool, then filter by category.', '#all-heading');
+    await framePopup(popup, '02-all-tools.png', 'Search every tool, then filter by category.', '#all-heading');
   });
 
   await test.step('search finds the ringtone tool', async () => {
@@ -263,8 +293,7 @@ test('popup, tools, three tiers, and page tips', async () => {
     await expectTip('long.html', 'Long document');
     await expectTip('invoice.html', 'Looks like an invoice');
     await expectTip('pdf.html', 'PDF on this page');
-    await web.goto('http://127.0.0.1:8799/sample.html');
-    await framePopup(web, popup, '06-plans.png', 'Free, Pro, and Pro Plus.', '#upgrade', 560);
+    await framePopup(popup, '06-plans.png', 'Free, Pro, and Pro Plus.', '#upgrade', 560);
   });
 
   await test.step('Pro reads only the chosen text on this device', async () => {
@@ -279,10 +308,10 @@ test('popup, tools, three tiers, and page tips', async () => {
     await popup.locator('#scan-page').click();
     await expect(popup.locator('#tips')).toContainText('Export this table');
     await expect(popup.locator('#status')).toContainText('Page tips are below.');
-    await framePopup(web, popup, '03-this-page.png', 'A relevant tip for the page you are on.', '#tips-heading');
+    await framePopup(popup, '03-this-page.png', 'A relevant tip for the page you are on.', '#tips-heading');
     await popup.locator('#ai-summarize').click();
     await expect(popup.locator('#status')).toContainText('On-device AI is not available');
-    await framePopup(web, popup, '07-ai-summarize.png', 'Summarize a selection on this device.', '#ai-heading');
+    await framePopup(popup, '07-ai-summarize.png', 'Summarize a selection on this device.', '#ai-heading');
 
     await popup.locator('#act-md').click();
     await expect(popup.locator('#md-out')).toHaveValue(/widgets/, { timeout: 20000 });
