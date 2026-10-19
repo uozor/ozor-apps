@@ -1,0 +1,10 @@
+node_modules/
+.output/
+.wxt/
+public/site/
+public/vendor/
+public/injected/
+test-results/
+playwright-report/
+dist/
+*.log

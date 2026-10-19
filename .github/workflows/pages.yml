@@ -9,6 +9,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      # The browser extension lives in extension/ and is sold in the stores.
+      # It is not part of the public website, so it never goes into the Pages artifact.
+      - name: Leave the extension out of the public site
+        run: rm -rf extension
       - uses: actions/upload-pages-artifact@v3
         with: {path: .}
       - id: d
