@@ -26,7 +26,7 @@ function stripTrackers(html) {
 
 function banner(tool) {
   const url = tool.url || `https://greaterworldmedia.tech/${tool.id}/`;
-  return `<p class="gwb-ext-banner noprint" style="margin:0;padding:10px 16px;background:#15123a;color:#fff;text-align:center;font:600 15px system-ui,sans-serif">Running inside GWB Tools. <a href="${url}" style="color:#fff;font-weight:800" target="_blank" rel="noopener">Open the full website version</a></p>`;
+  return `<p class="gwb-ext-banner noprint" style="margin:0;padding:10px 16px;background:#15123a;color:#fff;text-align:center;font:600 15px system-ui,sans-serif">Running inside GWB Tools. <a href="${url}" style="color:#fff;font-weight:800">Open the full website version</a></p>`;
 }
 
 fs.rmSync(siteOut, { recursive: true, force: true });
@@ -37,6 +37,7 @@ fs.mkdirSync(vendorOut, { recursive: true });
 for (const file of ['style.css', 'safe.js', 'helper.js']) {
   fs.copyFileSync(path.join(siteRoot, file), path.join(siteOut, file));
 }
+fs.appendFileSync(path.join(siteOut, 'style.css'), '\nhtml{color-scheme:light}\n');
 fs.cpSync(path.join(siteRoot, 'vendor'), path.join(siteOut, 'vendor'), { recursive: true });
 for (const file of ['qrcode.js', 'jspdf.umd.min.js', 'xlsx.mini.min.js', 'pdf-lib.min.js']) {
   fs.copyFileSync(path.join(siteRoot, 'vendor', file), path.join(vendorOut, file));
@@ -63,7 +64,13 @@ for (const tool of catalog.tools) {
   const htmlPath = path.join(to, 'index.html');
   if (!fs.existsSync(htmlPath)) continue;
   let html = stripTrackers(fs.readFileSync(htmlPath, 'utf8'));
-  html = html.replace(/<body>/i, `<body>${banner(tool)}`);
+  const note = banner(tool);
+  if (/<header\b/i.test(html)) {
+    html = html.replace(/<a class="skip"[^>]*>[\s\S]*?<\/a>/i, '');
+    html = html.replace(/<header\b[^>]*>/i, (tag) => `${tag}<a class="skip" href="#main">Skip to content</a>${note}`);
+  } else {
+    html = html.replace(/<body>/i, `<body>${note}`);
+  }
   if (tool.id === 'invoice') {
     fs.writeFileSync(path.join(to, 'gwb-bridge.js'), bridge);
     html = html.replace(/<\/body>/i, '<script src="gwb-bridge.js"></script></body>');

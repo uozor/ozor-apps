@@ -288,11 +288,11 @@ export function App({ surface }: { surface: 'popup' | 'sidepanel' | 'panel' }) {
           <button type="button" class="linkish" id="plans-link" onClick={() => setView('page')}>Plans</button>
         </div>
       </header>
-      <div class="views" role="group" aria-label="Views">
+      <nav class="views" aria-label="Views">
         <button type="button" id="view-favorites" aria-pressed={view === 'favorites'} onClick={() => setView('favorites')}>Favorites</button>
         <button type="button" id="view-all" aria-pressed={view === 'all'} onClick={() => setView('all')}>All tools</button>
         <button type="button" id="view-page" aria-pressed={view === 'page'} onClick={() => { setView('page'); void scanTips(); void aiCapabilities().then((list) => setCaps(list.length ? `On-device AI: ${list.map((item) => item.id).join(', ')}.` : 'On-device AI is not available in this browser. Page text still stays on this device.')); }}>This page</button>
-      </div>
+      </nav>
       <main id="main">
         <p id="status" class="status" role="status" aria-live="polite">{status}</p>
         {view === 'favorites' && (

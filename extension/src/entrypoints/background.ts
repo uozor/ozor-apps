@@ -36,7 +36,6 @@ const FEATURE_FOR_ACTION: Record<string, FeatureId> = {
   images: 'send-images',
   pdfs: 'send-pdfs',
   invoice: 'prefill-invoice',
-  signals: 'tips',
   summarize: 'ai-summarize',
   rewrite: 'ai-rewrite',
   translate: 'ai-translate',

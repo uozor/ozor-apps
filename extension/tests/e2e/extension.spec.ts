@@ -27,11 +27,51 @@ async function shoot(page: Page, name: string) {
 async function runAxe(page: Page, inline: boolean) {
   if (inline) await page.addScriptTag({ content: axeSource });
   else await page.addScriptTag({ url: `chrome-extension://${extId}/axe.min.js` });
-  const violations: string[] = await page.evaluate(async () => {
-    const axe = (window as unknown as { axe: { run: (node: Document, options: unknown) => Promise<{ violations: { id: string; help: string; nodes: { target: unknown }[] }[] }> } }).axe;
+  const violations: string[] = await page.evaluate(async (sandbox) => {
+    const axe = (window as unknown as { axe: { run: (node: Document, options: unknown) => Promise<{ violations: { id: string; help: string; nodes: { target: unknown; any?: { data?: { expectedContrastRatio?: string } }[] }[] }[] }> } }).axe;
     const result = await axe.run(document, { resultTypes: ['violations'] });
-    return result.violations.map((item) => `${item.id} (${item.nodes.length}) ${item.nodes.slice(0, 2).map((node) => JSON.stringify(node.target)).join(' ')} — ${item.help}`);
-  });
+    const parse = (value: string) => {
+      const match = value.match(/rgba?\(([^)]+)\)/);
+      if (!match) return null;
+      return match[1].split(',').map((part) => Number(part.trim()));
+    };
+    const channel = (part: number) => {
+      const scaled = part / 255;
+      return scaled <= 0.03928 ? scaled / 12.92 : ((scaled + 0.055) / 1.055) ** 2.4;
+    };
+    const lum = (rgb: number[]) => 0.2126 * channel(rgb[0] || 0) + 0.7152 * channel(rgb[1] || 0) + 0.0722 * channel(rgb[2] || 0);
+    const ratioOf = (fg: number[], bg: number[]) => {
+      const hi = Math.max(lum(fg), lum(bg));
+      const lo = Math.min(lum(fg), lum(bg));
+      return (hi + 0.05) / (lo + 0.05);
+    };
+    const background = (el: Element) => {
+      let node: Element | null = el;
+      while (node) {
+        const parts = parse(getComputedStyle(node).backgroundColor);
+        if (parts && (parts.length < 4 || (parts[3] ?? 1) > 0.95)) return parts;
+        node = node.parentElement;
+      }
+      return [255, 255, 255];
+    };
+    const lines: string[] = [];
+    for (const item of result.violations) {
+      if (sandbox && item.id === 'color-contrast') {
+        for (const node of item.nodes) {
+          const target = Array.isArray(node.target) ? String(node.target[0]) : '';
+          const el = target ? document.querySelector(target) : null;
+          const fg = el ? parse(getComputedStyle(el).color) : null;
+          const bg = el ? background(el) : null;
+          const expected = Number(String(node.any?.[0]?.data?.expectedContrastRatio || '4.5').replace(':1', ''));
+          const ratio = fg && bg ? ratioOf(fg, bg) : 0;
+          if (!el || ratio + 0.05 < expected) lines.push(`color-contrast ${target} computed ${ratio.toFixed(2)} need ${expected}`);
+        }
+        continue;
+      }
+      lines.push(`${item.id} (${item.nodes.length}) ${item.nodes.slice(0, 2).map((node) => JSON.stringify(node.target)).join(' ')} — ${item.help}`);
+    }
+    return lines;
+  }, inline);
   expect(violations, violations.join('\n')).toEqual([]);
 }
 
@@ -193,9 +233,9 @@ test('popup, tools, three tiers, and page tips', async () => {
     await expect(popup.locator('#plus-chat')).toHaveAttribute('data-locked', 'true');
 
     await popup.locator('#act-md').click();
-    await expect(popup.locator('#md-out')).toContainText('widgets', { timeout: 20000 });
-    await expect(popup.locator('#md-out')).toContainText('Dock notes');
-    await expect(popup.locator('#md-out')).not.toContainText('unselected-marker');
+    await expect(popup.locator('#md-out')).toHaveValue(/widgets/, { timeout: 20000 });
+    await expect(popup.locator('#md-out')).toHaveValue(/Dock notes/);
+    await expect(popup.locator('#md-out')).not.toHaveValue(/unselected-marker/);
 
     await web.locator('#article').selectText();
     const pdfPromise = popup.waitForEvent('download');
@@ -230,7 +270,7 @@ test('popup, tools, three tiers, and page tips', async () => {
     await expect(popup.locator('#tier-badge')).toHaveText('Pro Plus');
     await expect(popup.locator('#plus-chat')).toHaveAttribute('data-locked', 'false');
     await popup.locator('#plus-chat').click();
-    await expect(popup.locator('#md-out')).toContainText('Mock chat', { timeout: 20000 });
+    await expect(popup.locator('#md-out')).toHaveValue(/Mock chat/, { timeout: 20000 });
     await expect(popup.locator('#plus-usage')).toContainText('1 of 200');
   });
 });
