@@ -1,4 +1,5 @@
 import { chromium, expect, test, type BrowserContext, type Page } from '@playwright/test';
+import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -16,12 +17,43 @@ let extId = '';
 let popup: Page;
 let web: Page;
 
-async function shoot(page: Page, name: string) {
+function frameImage(pageFile: string, name: string, caption: string, popupFile = '') {
   fs.mkdirSync(shots, { recursive: true });
   fs.mkdirSync(artifacts, { recursive: true });
-  const file = path.join(shots, name);
-  await page.screenshot({ path: file });
-  fs.copyFileSync(file, path.join(artifacts, name));
+  const out = path.join(shots, name);
+  const args = [path.join(root, 'scripts', 'frame-store.py'), '--page', pageFile, '--caption', caption, '--out', out];
+  if (popupFile) args.push('--popup', popupFile);
+  const result = spawnSync('python3', args, { encoding: 'utf8' });
+  if (result.status !== 0) throw new Error(result.stderr || result.stdout || 'Could not frame the store screenshot.');
+  fs.copyFileSync(out, path.join(artifacts, name));
+}
+
+async function framePopup(background: Page, panel: Page, name: string, caption: string, scrollTo = '', height = 680) {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'gwb-frame-'));
+  const pageFile = path.join(tmp, 'page.png');
+  const popFile = path.join(tmp, 'popup.png');
+  const previous = background.viewportSize();
+  await background.setViewportSize({ width: 1280, height: 800 });
+  await background.screenshot({ path: pageFile });
+  if (previous) await background.setViewportSize(previous);
+  const panelPrevious = panel.viewportSize();
+  await panel.setViewportSize({ width: 400, height });
+  try {
+    if (scrollTo) await panel.locator(scrollTo).evaluate((el) => el.scrollIntoView({ block: 'start' }));
+    else await panel.evaluate(() => window.scrollTo(0, 0));
+    await panel.screenshot({ path: popFile });
+  } finally {
+    await panel.setViewportSize(panelPrevious || { width: 1280, height: 800 });
+  }
+  frameImage(pageFile, name, caption, popFile);
+}
+
+async function framePage(page: Page, name: string, caption: string) {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'gwb-frame-'));
+  const pageFile = path.join(tmp, 'page.png');
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.screenshot({ path: pageFile });
+  frameImage(pageFile, name, caption);
 }
 
 async function runAxe(page: Page, inline: boolean) {
@@ -128,6 +160,15 @@ test.afterAll(async () => {
 test('popup, tools, three tiers, and page tips', async () => {
   await test.step('axe on the popup', async () => {
     await runAxe(popup, false);
+    await popup.emulateMedia({ colorScheme: 'dark' });
+    await runAxe(popup, false);
+    await popup.click('#view-all');
+    await runAxe(popup, false);
+    await popup.click('#view-page');
+    await expect(popup.locator('#tips-heading')).toBeVisible();
+    await runAxe(popup, false);
+    await popup.click('#view-favorites');
+    await popup.emulateMedia({ colorScheme: 'light' });
   });
 
   await test.step('favorites persist', async () => {
@@ -145,12 +186,14 @@ test('popup, tools, three tiers, and page tips', async () => {
     await panel.setViewportSize({ width: 1280, height: 800 });
     await panel.goto(`chrome-extension://${extId}/panel.html`);
     await expect(panel.locator('#fav-list [data-tool="invoice"]')).toBeVisible();
-    await shoot(panel, '01-favorites.png');
-    await panel.click('#view-all');
-    await panel.locator('#tool-search').fill('invoice');
-    await expect(panel.locator('#all-list [data-tool="invoice"]')).toBeVisible();
-    await shoot(panel, '02-all-tools.png');
     await panel.close();
+
+    await web.goto('http://127.0.0.1:8799/sample.html');
+    await framePopup(web, popup, '01-favorites.png', 'Favorites stay in this browser.');
+    await popup.click('#view-all');
+    await popup.locator('#tool-search').fill('invoice');
+    await expect(popup.locator('#all-list [data-tool="invoice"]')).toBeVisible();
+    await framePopup(web, popup, '02-all-tools.png', 'Search every tool, then filter by category.', '#all-heading');
   });
 
   await test.step('search finds the ringtone tool', async () => {
@@ -169,7 +212,7 @@ test('popup, tools, three tiers, and page tips', async () => {
     await invoice.setViewportSize({ width: 1280, height: 800 });
     await expect(invoice.locator('#doc')).toContainText('Website', { timeout: 20000 });
     await runAxe(invoice, true);
-    await shoot(invoice, '04-invoice.png');
+    await framePage(invoice, '04-invoice.png', 'Invoice, estimate, and receipt, ready to send.');
     const csvPromise = invoice.waitForEvent('download');
     await invoice.locator('[data-gwbx="csv"]').click();
     const csv = await csvPromise;
@@ -187,7 +230,7 @@ test('popup, tools, three tiers, and page tips', async () => {
     await qr.getByRole('button', { name: 'Download PNG' }).click();
     expect((await pngPromise).suggestedFilename()).toMatch(/\.png$/i);
     await runAxe(qr, true);
-    await shoot(qr, '05-qr.png');
+    await framePage(qr, '05-qr.png', 'A QR code for a link, logo, or Wi-Fi.');
 
     const imagePromise = context.waitForEvent('page');
     await popup.locator('#fav-list [data-open="image-compress"]').click();
@@ -220,6 +263,8 @@ test('popup, tools, three tiers, and page tips', async () => {
     await expectTip('long.html', 'Long document');
     await expectTip('invoice.html', 'Looks like an invoice');
     await expectTip('pdf.html', 'PDF on this page');
+    await web.goto('http://127.0.0.1:8799/sample.html');
+    await framePopup(web, popup, '06-plans.png', 'Free, Pro, and Pro Plus.', '#upgrade', 560);
   });
 
   await test.step('Pro reads only the chosen text on this device', async () => {
@@ -231,6 +276,13 @@ test('popup, tools, three tiers, and page tips', async () => {
     await expect(popup.locator('#act-pdf')).toHaveAttribute('data-locked', 'false');
     await expect(popup.locator('#ai-summarize')).toHaveAttribute('data-locked', 'false');
     await expect(popup.locator('#plus-chat')).toHaveAttribute('data-locked', 'true');
+    await popup.locator('#scan-page').click();
+    await expect(popup.locator('#tips')).toContainText('Export this table');
+    await expect(popup.locator('#status')).toContainText('Page tips are below.');
+    await framePopup(web, popup, '03-this-page.png', 'A relevant tip for the page you are on.', '#tips-heading');
+    await popup.locator('#ai-summarize').click();
+    await expect(popup.locator('#status')).toContainText('On-device AI is not available');
+    await framePopup(web, popup, '07-ai-summarize.png', 'Summarize a selection on this device.', '#ai-heading');
 
     await popup.locator('#act-md').click();
     await expect(popup.locator('#md-out')).toHaveValue(/widgets/, { timeout: 20000 });
@@ -260,7 +312,6 @@ test('popup, tools, three tiers, and page tips', async () => {
     await panel.click('#view-page');
     await panel.locator('#scan-page').click();
     await expect(panel.locator('#tips')).toContainText('Export this table', { timeout: 20000 });
-    await shoot(panel, '03-this-page.png');
     await panel.close();
   });
 

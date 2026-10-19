@@ -50,6 +50,51 @@ function billingBrowser(): string {
   return import.meta.env.BROWSER || 'chrome';
 }
 
+function catKind(category: string): string {
+  if (category.startsWith('Image')) return 'image';
+  if (category.startsWith('PDF')) return 'docs';
+  if (category.startsWith('Audio')) return 'media';
+  if (category.startsWith('Writing')) return 'writing';
+  if (category.startsWith('Security')) return 'security';
+  return 'business';
+}
+
+function ToolIcon({ category }: { category: string }) {
+  const kind = catKind(category);
+  return (
+    <span class={`ico cat-${kind}`} aria-hidden="true">
+      <svg viewBox="0 0 24 24">
+        {kind === 'docs' && <><path d="M6 2h9l5 5v15H6z" /><path d="M15 2v5h5M9 14h6M12 11v6" /></>}
+        {kind === 'image' && <><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="9" cy="9" r="2" /><path d="M21 15l-5-5L5 21" /></>}
+        {kind === 'media' && <path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2" />}
+        {kind === 'writing' && <><path d="M4 20h4L18 10l-4-4L4 16z" /><path d="M13 7l4 4" /></>}
+        {kind === 'security' && <path d="M12 3l8 3v6c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V6z" />}
+        {kind === 'business' && <><path d="M4 19V9l8-5 8 5v10" /><path d="M9 19v-6h6v6" /></>}
+      </svg>
+    </span>
+  );
+}
+
+function StarIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+      <path d="M12 3.4l2.35 5.05 5.55.62-4.15 3.72 1.2 5.48L12 15.9l-4.95 2.37 1.2-5.48L4.1 9.07l5.55-.62z" />
+    </svg>
+  );
+}
+
+function LockBadge({ label }: { label: string }) {
+  return (
+    <span class="lock">
+      <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true">
+        <rect x="5" y="11" width="14" height="9" rx="2" />
+        <path d="M8 11V8a4 4 0 0 1 8 0v3" />
+      </svg>
+      {label}
+    </span>
+  );
+}
+
 export function App({ surface }: { surface: 'popup' | 'sidepanel' | 'panel' }) {
   const devMode = providerIdFor(currentBillingEnv(billingBrowser())) === 'dev';
   const [view, setView] = useState<View>('favorites');
@@ -255,6 +300,11 @@ export function App({ surface }: { surface: 'popup' | 'sidepanel' | 'panel' }) {
     }
   }
 
+  function openPlans() {
+    setView('page');
+    window.setTimeout(() => document.getElementById('upgrade')?.scrollIntoView({ block: 'start' }), 0);
+  }
+
   const shownTips = visibleTips(tips, { disabled: tipsDisabled, dismissed });
   const results = searchTools(query, category);
   const favoriteTools = favorites.map((id) => tools.find((tool) => tool.id === id)).filter((tool): tool is Tool => !!tool);
@@ -285,7 +335,7 @@ export function App({ surface }: { surface: 'popup' | 'sidepanel' | 'panel' }) {
         </div>
         <div class="tier-row">
           <span class={`badge ${tier}`} id="tier-badge">{tier === 'plus' ? 'Pro Plus' : tier === 'pro' ? 'Pro' : 'Free'}</span>
-          <button type="button" class="linkish" id="plans-link" onClick={() => setView('page')}>Plans</button>
+          <button type="button" class="linkish" id="plans-link" onClick={() => openPlans()}>Plans</button>
         </div>
       </header>
       <nav class="views" aria-label="Views">
@@ -312,7 +362,13 @@ export function App({ surface }: { surface: 'popup' | 'sidepanel' | 'panel' }) {
           <section class="card" aria-labelledby="all-heading">
             <h1 id="all-heading">All tools</h1>
             <label class="search-label" for="tool-search">Search tools</label>
-            <input id="tool-search" type="search" placeholder="Search, for example invoice, PDF, tax" value={query} onInput={(event) => setQuery((event.currentTarget as HTMLInputElement).value)} />
+            <div class="searchbox">
+              <svg class="search-ico" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="2" />
+                <path d="M16 16l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+              <input id="tool-search" type="search" placeholder="Search, for example invoice, PDF, tax" value={query} onInput={(event) => setQuery((event.currentTarget as HTMLInputElement).value)} />
+            </div>
             <div class="chips" role="group" aria-label="Filter by category">
               <button type="button" class="chip" aria-pressed={category === 'all'} onClick={() => setCategory('all')}>All</button>
               {categories.map((cat) => (
@@ -341,8 +397,8 @@ export function App({ surface }: { surface: 'popup' | 'sidepanel' | 'panel' }) {
                     <p>{tip.detail}</p>
                     <div class="row-actions">
                       {tip.action && <button type="button" class="tiny" id={`tip-open-${tip.id}`} onClick={() => perform(tip.feature, tip.action || 'signals')}>Use this</button>}
-                      {tip.toolId && <button type="button" class="tiny" onClick={() => openTool(tip.toolId || '')}>Open tool</button>}
-                      <button type="button" class="tiny" id={`tip-dismiss-${tip.id}`} onClick={() => {
+                      {tip.toolId && <button type="button" class="tiny alt" onClick={() => openTool(tip.toolId || '')}>Open tool</button>}
+                      <button type="button" class="tiny alt" id={`tip-dismiss-${tip.id}`} onClick={() => {
                         const next = [...dismissed, tip.id];
                         setDismissed(next);
                         void writeLocal({ [KEYS.tipsDismissed]: next });
@@ -367,12 +423,12 @@ export function App({ surface }: { surface: 'popup' | 'sidepanel' | 'panel' }) {
                 {PAGE_ACTIONS.map((item) => (
                   <button type="button" class="action" id={item.id} key={item.id} data-locked={locked(item.feature) ? 'true' : 'false'} onClick={() => perform(item.feature, item.action)}>
                     <span>{item.label}</span>
-                    {locked(item.feature) && <span class="lock">{item.feature.startsWith('ai-') ? 'Pro' : 'Pro'}</span>}
+                    {locked(item.feature) && <LockBadge label="Pro" />}
                   </button>
                 ))}
               </div>
             </section>
-            <section class="card" aria-labelledby="ai-heading">
+            <section class="card ai-card" aria-labelledby="ai-heading">
               <h2 id="ai-heading">On-device AI</h2>
               <p class="muted" id="ai-caps">{caps}</p>
               <p class="muted">Included with Pro. Uses Chrome’s built-in model when this browser has it. If it does not, you get a plain message and nothing is sent to a server.</p>
@@ -385,14 +441,14 @@ export function App({ surface }: { surface: 'popup' | 'sidepanel' | 'panel' }) {
               </select>
               <div class="actions">
                 {BASIC_AI.map((item) => (
-                  <button type="button" class="action" id={item.id} key={item.id} data-locked={locked(item.feature) ? 'true' : 'false'} onClick={() => perform(item.feature, item.action)}>
+                  <button type="button" class="action ai" id={item.id} key={item.id} data-locked={locked(item.feature) ? 'true' : 'false'} onClick={() => perform(item.feature, item.action)}>
                     <span>{item.label}</span>
-                    {locked(item.feature) && <span class="lock">Pro</span>}
+                    {locked(item.feature) && <LockBadge label="Pro" />}
                   </button>
                 ))}
               </div>
             </section>
-            <section class="card" aria-labelledby="plus-heading">
+            <section class="card plus-card" aria-labelledby="plus-heading">
               <h2 id="plus-heading">Pro Plus cloud AI</h2>
               <p class="muted" id="plus-usage">{usageText}</p>
               <p class="muted">A subscription. Only the text you choose is sent to the owner’s server, which calls the model. The extension does not contain an API key. Browsing history is not sent.</p>
@@ -400,9 +456,9 @@ export function App({ surface }: { surface: 'popup' | 'sidepanel' | 'panel' }) {
               <textarea id="extra-docs" value={extraDocs} onInput={(event) => setExtraDocs((event.currentTarget as HTMLTextAreaElement).value)} placeholder="Paste another document here if you want a multi-document summary." />
               <div class="actions">
                 {PLUS_AI.map((item) => (
-                  <button type="button" class="action" id={item.id} key={item.id} data-locked={locked(item.feature) ? 'true' : 'false'} onClick={() => perform(item.feature, item.action)}>
+                  <button type="button" class="action ai plus" id={item.id} key={item.id} data-locked={locked(item.feature) ? 'true' : 'false'} onClick={() => perform(item.feature, item.action)}>
                     <span>{item.label}</span>
-                    {locked(item.feature) && <span class="lock">Plus</span>}
+                    {locked(item.feature) && <LockBadge label="Plus" />}
                   </button>
                 ))}
               </div>
@@ -421,31 +477,39 @@ export function App({ surface }: { surface: 'popup' | 'sidepanel' | 'panel' }) {
               )}
               <div class="row-actions">
                 <button type="button" id="copy-out" onClick={() => { void navigator.clipboard?.writeText(output).then(() => setStatus('Copied.')).catch(() => setStatus('Select the result and copy it with the keyboard.')); }}>Copy result</button>
-                <button type="button" onClick={() => openTool('image-compress')}>Open full compressor</button>
-                <button type="button" onClick={() => openTool('pdf-tools')}>Open full PDF tool</button>
+                <button type="button" class="alt" onClick={() => openTool('image-compress')}>Open full compressor</button>
+                <button type="button" class="alt" onClick={() => openTool('pdf-tools')}>Open full PDF tool</button>
               </div>
             </section>
             <section class="card plans" id="upgrade" tabindex={-1} aria-labelledby="upgrade-title">
+              <p class="eyebrow">Upgrade</p>
               <h2 id="upgrade-title">Plans</h2>
-              <div class="grid2">
-                <div>
-                  <h3>Free</h3>
+              <p class="muted">Free keeps every business tool on this device. Pro adds page tools and on-device AI. Pro Plus adds cloud AI for the text you choose.</p>
+              <ul class="plan-list">
+                <li class="plan">
+                  <div>
+                    <h3>Free</h3>
+                    <p>Every business tool, favorites, and search. No account.</p>
+                  </div>
                   <p class="price">{formatUsd(0)}</p>
-                  <p>Every business tool, favorites, and search. No account.</p>
-                </div>
-                <div>
-                  <h3>Pro</h3>
+                </li>
+                <li class="plan feat">
+                  <div>
+                    <h3>Pro</h3>
+                    <p>One-time unlock for page tools and on-device AI.</p>
+                  </div>
                   <p class="price">{formatUsd(CONFIG.prices.proLifetimeUsd)}</p>
-                  <p>One-time unlock for page tools and on-device AI.</p>
                   <button type="button" id="buy-pro" onClick={() => { if (devMode) void changeTier('pro'); else setStatus('Connect ExtensionPay in the extension config, then rebuild.'); }}>Unlock Pro</button>
-                </div>
-                <div>
-                  <h3>Pro Plus</h3>
-                  <p class="price">{formatUsd(CONFIG.prices.plusMonthlyUsd)}<span style="font-size:.9rem">/month</span></p>
-                  <p>Cloud AI for chat, drafts, and structured Excel. Cancel any time with the provider.</p>
+                </li>
+                <li class="plan">
+                  <div>
+                    <h3>Pro Plus</h3>
+                    <p>Cloud AI for chat, drafts, and structured Excel. Cancel any time with the provider.</p>
+                  </div>
+                  <p class="price">{formatUsd(CONFIG.prices.plusMonthlyUsd)}<span class="per">/month</span></p>
                   <button type="button" id="buy-plus" onClick={() => { if (devMode) void changeTier('plus'); else setStatus('Connect ExtensionPay in the extension config, then rebuild.'); }}>Subscribe to Pro Plus</button>
-                </div>
-              </div>
+                </li>
+              </ul>
               {devMode && (
                 <fieldset>
                   <legend>Test mode</legend>
@@ -471,8 +535,9 @@ function ToolRow({ tool, starred, onStar }: { tool: Tool; starred: boolean; onSt
   return (
     <li class="row" data-tool={tool.id}>
       <button type="button" class="star" data-star={tool.id} aria-pressed={starred} aria-label={starred ? `Unstar ${tool.name}` : `Star ${tool.name}`} onClick={() => onStar(tool.id)}>
-        <span aria-hidden="true">{starred ? '★' : '☆'}</span>
+        <StarIcon />
       </button>
+      <ToolIcon category={tool.category} />
       <div>
         <p class="tool-name">{tool.name}</p>
         <p>{tool.summary}</p>

@@ -71,7 +71,7 @@ Host permissions: none in the review build. Turning on live ExtensionPay adds `h
 ## Icons and screenshots
 
 - Icons: `extension/store/icons/` at 16, 19, 32, 38, 48, 64, 96, 128, 256, 512, and 1024.
-- Chrome/Edge screenshots: 1280×800 PNGs in `extension/store/screenshots/` (favorites, all tools, this page, invoice, QR).
+- Chrome/Edge screenshots: 1280×800 PNGs in `extension/store/screenshots/` (favorites, all tools, this page, invoice, QR, plans, and on-device summarize). Each one is the popup or tool over a sample page, with a short caption.
 
 ## Suggested prices (config, not charged by this repository)
 
