@@ -1,0 +1,38 @@
+{
+  "name": "gwb-tools",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "GWB Tools browser extension. Free small-business tools, with optional Pro and Pro Plus.",
+  "scripts": {
+    "icons": "python3 scripts/make-icons.py",
+    "vendor": "node scripts/vendor-site.mjs",
+    "prepare": "wxt prepare",
+    "dev": "wxt",
+    "build:chrome": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "build:safari": "wxt build -b safari",
+    "zip:chrome": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox",
+    "build": "npm run icons && npm run vendor && wxt build && wxt build -b firefox && wxt zip && wxt zip -b firefox",
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test",
+    "test": "vitest run && playwright test",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "extpay": "^3.1.2",
+    "preact": "^10.26.9"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/chrome": "^0.1.24",
+    "@types/node": "^22.20.5",
+    "axe-core": "^4.14.0",
+    "esbuild": "^0.28.0",
+    "linkedom": "^0.18.12",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4",
+    "wxt": "^0.21.4"
+  }
+}

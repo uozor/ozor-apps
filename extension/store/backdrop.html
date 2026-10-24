@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Northline Supply — Spring price list</title>
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #eef0f8;
+      color: #14122b;
+    }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 48px;
+      background: #15123a;
+      color: #fff;
+    }
+    .top b { font-size: 1.15rem; letter-spacing: 0.01em; }
+    .top span { display: block; color: #dedbff; font-size: 0.8rem; font-weight: 500; }
+    .top a { color: #ffd9bf; font-weight: 700; text-decoration: none; }
+    main { padding: 36px 48px 80px; }
+    article {
+      max-width: 760px;
+      background: #fff;
+      border: 1px solid #e3e4ef;
+      border-radius: 20px;
+      padding: 32px 36px 28px;
+      box-shadow: 0 18px 40px -28px rgba(36, 27, 120, 0.45);
+    }
+    .eyebrow {
+      margin: 0 0 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.75rem;
+      font-weight: 750;
+      color: #3324ad;
+    }
+    h1 { margin: 0 0 12px; font-size: 2rem; letter-spacing: -0.02em; font-weight: 750; }
+    p { margin: 0 0 18px; color: #4b5065; line-height: 1.55; max-width: 62ch; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 12px 10px; text-align: left; border-bottom: 1px solid #e3e4ef; }
+    th { font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: #4b5065; }
+    td:last-child, th:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+    tr:last-child td { border-bottom: 0; }
+    .note { margin: 16px 0 0; font-size: 0.92rem; }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div>
+      <b>Northline Supply</b>
+      <span>Trade counter · Portland</span>
+    </div>
+    <a href="#list">Price list</a>
+  </header>
+  <main>
+    <article id="list">
+      <p class="eyebrow">Spring 2026</p>
+      <h1>Cabinet hardware</h1>
+      <p>Prices are for trade accounts and include packing. Most items ship the next business day. Finish samples are available at the counter.</p>
+      <table>
+        <thead>
+          <tr><th>Item</th><th>SKU</th><th>Pack</th><th>Price</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Brass butt hinge</td><td>H-220</td><td>Pair</td><td>$8.40</td></tr>
+          <tr><td>Oak dowel, 1/2 in</td><td>D-14</td><td>10</td><td>$6.25</td></tr>
+          <tr><td>Soft-close slide, 14 in</td><td>S-14</td><td>Pair</td><td>$18.90</td></tr>
+          <tr><td>Felt pads</td><td>F-08</td><td>24</td><td>$3.40</td></tr>
+          <tr><td>Cup pull, 3 in</td><td>C-96</td><td>Each</td><td>$7.15</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Ask the counter for a quote on orders over $500. Returns are accepted within 30 days in original packaging.</p>
+    </article>
+  </main>
+</body>
+</html>
