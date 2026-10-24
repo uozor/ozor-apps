@@ -33,14 +33,19 @@ test.describe('tax-calculator UI', () => {
   test('tax tables missing -> friendly message', async ({ page, errors }) => { await page.route('**/tax.js', r => r.abort()); await open(page, 'tax-calculator'); await expect(page.locator('#res')).toContainText(/didn.t load/); await expect(page.locator('#libfail')).toBeVisible(); });
 });
 test.describe('hub popularity + recently used', () => {
-  test('ranks Most popular from GoatCounter counts', async ({ page, errors }) => {
-    await page.route(/goatcounter\.com\/counter\//, r => { const p = decodeURIComponent(r.request().url().split('/counter/')[1].replace('.json', '')); const c = { '/tax-calculator/': 900, '/password/': 500, '/qr-bio/': 300, '/resume/': 200 }[p] || 1; r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ count: c.toLocaleString() }) }); });
-    await open(page, ''); await expect(page.locator('#featlist')).toHaveAttribute('data-source', 'goatcounter');
-    await expect(page.locator('#featlist h3')).toHaveText(['US Income Tax Calculator 2026', 'Password Generator', 'QR Code & Link-in-Bio Maker', 'Resume Bullet Improver']);
+  test('Most popular stays on the curated list and does not poll GoatCounter', async ({ page, errors }) => {
+    const hits = [];
+    page.on('request', r => { if (/goatcounter\.com\/counter\//.test(r.url())) hits.push(r.url()); });
+    await open(page, ''); await page.waitForTimeout(400);
+    expect(hits).toEqual([]);
+    await expect(page.locator('#featlist')).toHaveAttribute('data-source', 'static');
+    await expect(page.locator('#featlist h3')).toHaveText(['PDF Merge, Split & JPG to PDF', 'Image Compressor & Resizer', 'Invoice & Receipt Generator', 'Audio Converter & Ringtone Trimmer']);
+    expect(await page.content()).not.toContain('/counter/');
   });
-  test('falls back to static order on failure / low counts', async ({ page, errors }) => {
-    await page.route(/goatcounter\.com\/counter\//, r => r.fulfill({ status: 200, contentType: 'application/json', body: '{"count":"0"}' }));
-    await open(page, ''); await page.waitForTimeout(500); await expect(page.locator('#featlist')).toHaveAttribute('data-source', 'static'); await expect(page.locator('#featlist li')).toHaveCount(4);
+  test('curated list stays put even if counter endpoints would 404', async ({ page, errors }) => {
+    await page.route(/goatcounter\.com\/counter\//, r => r.fulfill({ status: 404, contentType: 'application/json', body: '{}' }));
+    await open(page, ''); await page.waitForTimeout(400);
+    await expect(page.locator('#featlist')).toHaveAttribute('data-source', 'static'); await expect(page.locator('#featlist li')).toHaveCount(4);
   });
   test('Recently used appears after visiting tools', async ({ page, errors }) => {
     await open(page, ''); await expect(page.locator('#recent')).toBeHidden();
