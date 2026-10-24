@@ -7,16 +7,71 @@ jobs:
     runs-on: ubuntu-latest
     environment: {name: github-pages, url: "${{ steps.d.outputs.page_url }}"}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      # The browser extension lives in extension/ and is sold in the stores.
-      # It is not part of the public website, so it never goes into the Pages artifact.
-      - name: Leave the extension out of the public site
-        run: rm -rf extension
-      - uses: actions/upload-pages-artifact@v3
-        with: {path: .}
-      - id: d
-        uses: actions/deploy-pages@v4
-      - name: Ping IndexNow (Bing, Yandex) with sitemap URLs
-        continue-on-error: true
-        run: sleep 30 && python3 scripts/indexnow.py
+    - uses: actions/checkout@v4
+    - uses: actions/configure-pages@v5
+    # Publish the public website only. Build scripts, tests, the browser extension,
+    # the MCP worker, and the unfinished .well-known/mcp.json stay in the repository.
+    - name: Stage the public site
+      run: |
+        set -euo pipefail
+        rm -rf _site
+        mkdir -p _site
+        dirs=(
+          about contact privacy terms og vendor
+          audio barcode-label biz-calc budget-calculator business-name color-palette
+          email-signature freelance-rate image-compress image-convert invoice
+          loan-calculator logo-maker meeting-cost password paycheck-calculator
+          pdf-tools policy profit-margin qr-bio receipt-quote-maker resume
+          sales-tax tax-calculator video-to-mp3 word-counter
+        )
+        for d in "${dirs[@]}"; do
+          cp -a "$d" "_site/"
+        done
+        files=(
+          index.html style.css helper.js safe.js
+          tools.json reviews.json sitemap.xml robots.txt
+          llms.txt llms-full.txt ads.txt CNAME
+          favicon.svg favicon.ico .nojekyll
+        )
+        for f in "${files[@]}"; do
+          cp -a "$f" "_site/"
+        done
+        if [ -f .indexnow-key ]; then
+          key=$(tr -d '[:space:]' < .indexnow-key)
+          if [ -n "$key" ] && [ -f "$key.txt" ]; then
+            cp -a "$key.txt" "_site/"
+          fi
+        fi
+        test ! -e _site/build.py
+        test ! -e _site/seo_build.py
+        test ! -e _site/seo.py
+        test ! -e _site/tests
+        test ! -e _site/mcp
+        test ! -e _site/extension
+        test ! -e _site/newtools
+        test ! -e _site/scripts
+        test ! -e _site/.well-known
+        test ! -e _site/package.json
+        test ! -e _site/playwright.config.mjs
+        test ! -e _site/node_modules
+        test -f _site/index.html
+        test -f _site/style.css
+        test -f _site/helper.js
+        test -f _site/safe.js
+        test -f _site/favicon.ico
+        test -f _site/favicon.svg
+        test -f _site/CNAME
+        test -d _site/og
+        test -d _site/about
+        test -d _site/contact
+        test -d _site/privacy
+        test -d _site/terms
+        test -d _site/pdf-tools
+        test -d _site/vendor
+    - uses: actions/upload-pages-artifact@v3
+      with: {path: _site}
+    - id: d
+      uses: actions/deploy-pages@v4
+    - name: Ping IndexNow (Bing, Yandex) with sitemap URLs
+      continue-on-error: true
+      run: sleep 30 && python3 scripts/indexnow.py
