@@ -509,7 +509,7 @@ chips.forEach(c=>c.onclick=()=>{setCat(c.dataset.cat);f();const hash=cat==='all'
 /* Real reviews go in reviews.json: [{"tool":"Invoice Generator","rating":5,"text":"...","author":"optional"}] */
 fetch('reviews.json').then(r=>r.json()).then(a=>{if(!a.length)return;const e=s=>String(s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));document.getElementById('revlist').innerHTML=a.map(r=>`<figure class="out" style="white-space:normal;margin:0 0 14px"><figcaption><strong>${e(r.tool)}</strong> <span aria-label="${+r.rating||0} out of 5 stars">${'★'.repeat(+r.rating||0)}</span></figcaption><blockquote style="margin:8px 0">${e(r.text)}</blockquote>${r.author?'<small>— '+e(r.author)+'</small>':''}</figure>`).join('')}).catch(()=>{});"""
 POPJS=r"""
-/* Featured tools stay on the curated static list in #featlist. Do not poll GoatCounter /counter/*.json from the browser: paths with no recorded hits return HTTP 404. */
+/* Featured tools stay on the curated static list in #featlist. Do not poll GoatCounter counter JSON from the browser: paths with no recorded hits return HTTP 404. */
 /* Recently used (this browser only, stored in localStorage by helper.js; never sent anywhere) */
 (()=>{let r=[];try{r=JSON.parse(localStorage.getItem('gwb-recent')||'[]')}catch(_){}r=r.filter(k=>FEAT[k]).slice(0,4);if(!r.length)return;document.getElementById('recentlist').innerHTML=r.map(k=>FEAT[k]).join('');document.getElementById('recent').hidden=false})();"""
 HUB=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>x</title><meta name="description" content="x"><link rel="stylesheet" href="style.css"></head><body>
