@@ -7,8 +7,9 @@ for (const slug of TOOLS) {
       const v = await page.evaluate(async () => (await axe.run(document, { resultTypes: ['violations'] })).violations.map(x => x.id + ':' + x.nodes.length));
       expect(v).toEqual([]);
       const ov = await page.evaluate(() => { const W = document.documentElement.clientWidth, out = []; if (document.documentElement.scrollWidth > W + 1) out.push('hscroll');
-        const els = [...document.querySelectorAll('h1,h2,h3,p,li,label,button,a,input,select,textarea,summary')].filter(e => { const r = e.getBoundingClientRect(), s = getComputedStyle(e); return r.width > 0 && r.height > 0 && s.visibility !== 'hidden' && !e.closest('[hidden],.vh') });
-        for (let i = 0; i < els.length; i++) for (let j = i + 1; j < els.length; j++) { const a = els[i], c = els[j]; if (a.contains(c) || c.contains(a)) continue; const r = a.getBoundingClientRect(), s = c.getBoundingClientRect(); const ox = Math.min(r.right, s.right) - Math.max(r.left, s.left), oy = Math.min(r.bottom, s.bottom) - Math.max(r.top, s.top); if (ox > 2 && oy > 2) out.push(a.tagName + '/' + c.tagName + ':' + (a.textContent || a.id).trim().slice(0, 20) + '|' + (c.textContent || c.id).trim().slice(0, 20)) } return out });
+        const clip = e => { let r = e.getBoundingClientRect(); for (let p = e.parentElement; p && p !== document.documentElement; p = p.parentElement) { const s = getComputedStyle(p); if (!/auto|scroll|hidden|clip/.test(s.overflowY + s.overflowX + s.overflow)) continue; const b = p.getBoundingClientRect(); const left = Math.max(r.left, b.left), top = Math.max(r.top, b.top), right = Math.min(r.right, b.right), bottom = Math.min(r.bottom, b.bottom); r = { left, top, right, bottom, width: right - left, height: bottom - top }; if (r.width <= 2 || r.height <= 2) return null; } return r; };
+        const els = [...document.querySelectorAll('h1,h2,h3,p,li,label,button,a,input,select,textarea,summary')].map(e => ({ e, r: clip(e) })).filter(x => x.r && x.r.width > 2 && x.r.height > 2 && getComputedStyle(x.e).visibility !== 'hidden' && !x.e.closest('[hidden],.vh'));
+        for (let i = 0; i < els.length; i++) for (let j = i + 1; j < els.length; j++) { const a = els[i], c = els[j]; if (a.e.contains(c.e) || c.e.contains(a.e)) continue; const r = a.r, s = c.r; const ox = Math.min(r.right, s.right) - Math.max(r.left, s.left), oy = Math.min(r.bottom, s.bottom) - Math.max(r.top, s.top); if (ox > 2 && oy > 2) out.push(a.e.tagName + '/' + c.e.tagName + ':' + (a.e.textContent || a.e.id).trim().slice(0, 24) + '|' + (c.e.textContent || c.e.id).trim().slice(0, 24)); } return out.slice(0, 8); });
       expect(ov).toEqual([]);
       // design/SEO/ads intact
       await expect(page.locator('script[src*="adsbygoogle.js?client=ca-pub-9780755121157050"]')).toHaveCount(1);
@@ -42,5 +43,19 @@ for (const [slug, lib, file] of [['pdf-tools', 'PDFLib', 'pdf-lib.min.js'], ['au
     await expect(page.locator('#libfail')).toBeVisible();
     await expect(page.locator('#libfail')).toContainText(/couldn.t load/);
     await expect(page.locator('#libfail button')).toHaveText('Reload page');
+  });
+}
+for (const slug of ['', 'about', 'contact', 'privacy', 'terms']) {
+  test(`${slug || 'home'}: axe 0, no hscroll, company links in nav and footer`, async ({ page, errors }) => {
+    await open(page, slug); await page.waitForTimeout(400);
+    await page.addScriptTag({ content: AXE });
+    const v = await page.evaluate(async () => (await axe.run(document, { resultTypes: ['violations'] })).violations.map(x => x.id + ':' + x.nodes.length));
+    expect(v).toEqual([]);
+    const sw = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, w: innerWidth }));
+    expect(sw.sw).toBeLessThanOrEqual(sw.w);
+    for (const name of ['About', 'Contact', 'Privacy', 'Terms']) {
+      await expect(page.locator('nav[aria-label="Main"] a', { hasText: name }).first()).toBeVisible();
+      await expect(page.locator('footer a', { hasText: name }).first()).toBeVisible();
+    }
   });
 }

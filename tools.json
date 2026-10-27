@@ -2,7 +2,7 @@
  "name": "GWB: Greater World Business",
  "url": "https://greaterworldmedia.tech/",
  "description": "Free browser-based tools for small businesses and creators. Every tool is free, needs no sign-up, and processes files in your browser.",
- "updated": "2026-10-18",
+ "updated": "2026-10-27",
  "llms_txt": "https://greaterworldmedia.tech/llms.txt",
  "tools": [
   {
@@ -30,28 +30,28 @@
    ],
    "faq": [
     {
-     "q": "Is the PDF merge & split tool free?",
-     "a": "Yes. The PDF merge & split tool is 100% free with no limits, no watermark and no paid tier."
+     "q": "How should I merge, split, or turn scans into a PDF for a real job?",
+     "a": "Merge joins files in the order you select them, so name the pieces or select them from first page to last. A contract plus an exhibit should be the contract file first. Split uses a page list such as 1-3, 5 to keep those pages, and Save each page writes one PDF per page when you need to file them separately. Images to PDF places each JPG or PNG on its own page in selection order, which is the right path for phone photos of a receipt stack. There is no fixed page cap. Very large files are limited by the memory of the device because the bytes never go to a server."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "Which PDF jobs belong together, and which do not?",
+     "a": "Merging is for documents that should travel as one file: a proposal and its appendix, or a set of signed pages. Splitting is for the opposite, when a portal wants one page or you must remove a page you did not mean to scan. Image-to-PDF is for pictures, not for editing the words inside an existing PDF. This tool does not reorder pages inside a file with a drag handle, rewrite text, OCR a scan into selectable words, or compress a PDF the way the image compressor shrinks a photo. If you need a smaller PDF, shrink the images first, then build the PDF."
     },
     {
-     "q": "Is there a file size or page limit?",
-     "a": "There is no fixed limit. Very large files depend on your device's memory, since everything runs locally."
+     "q": "Why do some PDFs fail or come out blank?",
+     "a": "Password-protected files fail or produce blank pages because the page cannot decrypt them. Remove the password in a reader you are allowed to use, then merge the unlocked file. A truncated download or a file that is only named .pdf will also fail; the page tells you when the file does not look like a PDF. Browser memory is the other limit. Close extra tabs and merge in batches if a few hundred photo pages stall. The result is a normal PDF, not a PDF/A archival file and not a certified signed original. Printing to PDF again can flatten annotations."
     },
     {
-     "q": "How do I extract specific pages?",
-     "a": "Choose “Extract or split pages”, then type pages like “1-3, 5”. Tick “Save each page” to get one PDF per page."
+     "q": "What are practical file-size and print targets?",
+     "a": "A packet you will email should usually stay under a few megabytes. Phone photos dropped straight into a PDF are often several megabytes each. Compress those images to about 1600 pixels on the long side at roughly 75 percent JPEG quality before you convert them to PDF, and a ten-page receipt packet becomes something you can attach. For a packet you will print, 200 to 300 pixels per inch at the printed size is enough for text and ordinary photos. A full-page photo at 300 DPI is about 2550 by 3300 pixels; you do not need a 48-megapixel original in the PDF."
     },
     {
-     "q": "Can it open password-protected PDFs?",
-     "a": "Encrypted PDFs may fail or produce blank pages. Remove the password in your PDF reader first if you own the document."
+     "q": "How do I keep client documents private and in order?",
+     "a": "The work runs in the browser with pdf-lib. Files are not uploaded to GWB and there is no account. That also means there is no cloud trash can: download the result before you close the tab, and keep your own copy of the originals. Do not merge documents you are not allowed to combine, and do not assume a merged file is still the signed original if you changed page order. A checksum or the file size in your download folder is a simple way to confirm the file finished writing."
     },
     {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "What should I do when the page list does not match the document?",
+     "a": "Page numbers in the box are PDF page indexes starting at 1, not the printed number in a footer. A file whose first page is numbered 12 is still page 1 in the box. Open the source and count if the footer and the index disagree. Ranges cannot invent pages past the end of the file. If you need pages from two files, merge first or split each file and then merge the pieces. The tool will not silently drop a password prompt and pretend the merge worked."
     }
    ]
   },
@@ -80,28 +80,28 @@
    ],
    "faq": [
     {
-     "q": "Is the image compressor free?",
-     "a": "Yes. The image compressor is 100% free with no limits, no watermark and no paid tier."
+     "q": "What width and quality should I use for web, email, and print?",
+     "a": "The width box is a maximum. A 6000-pixel photo set to 1600 pixels wide is scaled down and the height follows, so a 3:2 photo becomes about 1600 by 1067. The default quality is 75 percent, which is the right start for photographs on a website. At 1600 pixels and 75 percent JPEG, a multi-megabyte camera file often lands between about 150 and 400 KB. Use about 1080 pixels for an Instagram post, about 1200 for an email body, and about 400 for a thumbnail. For a hero image you will also print, keep a separate full-size original. This compressor is for screens. A logo you will print belongs in SVG or a PNG at the print size, not a 75 percent JPEG."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "Why did the file get larger, or why did a PNG barely shrink?",
+     "a": "PNG is lossless. Photographs stored as PNG stay large because the format cannot throw away the detail JPEG and WEBP discard. Switch the output to JPG or WEBP for photos. Logos, screenshots, and images with flat color and sharp edges should stay PNG or WEBP lossless so text does not grow halos. If a JPEG comes out larger than the original, the original was already compressed harder than your quality setting. Lower the quality or the width. The status line shows original size, new size, and the percent change so you can compare before you download."
     },
     {
-     "q": "What quality setting should I use?",
-     "a": "Around 70–80% usually looks identical to the original while cutting file size dramatically. Lower it further for thumbnails."
+     "q": "What happens to transparency, color, and EXIF?",
+     "a": "Choosing JPG fills transparent pixels with white before encoding, because JPEG has no alpha channel. A logo on a transparent background will grow a white box. Use PNG or WEBP if you need the transparency. The browser encoder also drops most camera metadata, including GPS, as a side effect of redrawing the pixels onto a canvas. That is useful when you do not want a location in a file you post, and it is a reason to keep the original if you still need the metadata. Animated GIFs are not preserved as animations; the page draws a bitmap."
     },
     {
-     "q": "What size is best for websites and social media?",
-     "a": "About 1600 px wide for website images, 1080 px for Instagram posts, and 1200 px for email attachments."
+     "q": "How do I hit a real target, such as a 200 KB product photo?",
+     "a": "Start at 1600 pixels and 75 percent. If you are still over the target, drop quality in 5 to 10 point steps or cut the width to 1200. Product photos on a white background often compress further than foliage or night scenes. Do not upscale. If the original is 800 pixels wide, a 1600 maximum leaves it at 800. Upscaling would invent pixels and usually a larger file. The preview is the file you will download. Judge edges and skin tones there, not by the percentage alone."
     },
     {
-     "q": "Why is my PNG not getting smaller?",
-     "a": "PNG is lossless, so photos stay large. Switch to JPG or WEBP for photos; keep PNG for logos and screenshots with sharp edges."
+     "q": "Is this safe for client photos?",
+     "a": "Yes for privacy: the file is decoded and encoded in your browser and is not uploaded. There is no account and no library of your past images on our side. The limit is your device. An image whose pixel count is extreme is refused so the tab does not crash, and a 50 MB cap rejects a file that is unlikely to be a normal photo. Download the result; the object URL disappears when you leave. Keep the camera original somewhere else before you overwrite it."
     },
     {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "WEBP or JPG for a small-business site?",
+     "a": "WEBP is usually smaller than JPEG at the same visual quality and is supported by current browsers. JPEG is the safer attachment when the recipient is a mail program or a marketplace that rejects WEBP. A practical pair is WEBP for the site and JPEG for the marketplace upload. This page writes one format per run. Run it twice if you need both, and do not serve a WEBP file with a .jpg name."
     }
    ]
   },
@@ -129,28 +129,28 @@
    ],
    "faq": [
     {
-     "q": "Is the image converter free?",
-     "a": "Yes. The image converter is 100% free with no limits, no watermark and no paid tier."
+     "q": "Which format should a business actually pick?",
+     "a": "JPG for photographs you will upload to a marketplace, an email, or a tool that rejects newer formats. PNG when you need transparency or hard edges: logos, stamps, screenshots with text. WEBP when the image lives on a modern website and size matters. A logo exported only as a small JPEG will look soft on a retina screen and will show a box wherever the background is not white. Convert that asset to PNG or keep the SVG from the logo maker. Photographs converted to PNG get larger, not clearer."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "What happens to transparency, and what does quality 0.9 mean?",
+     "a": "JPG cannot store transparency. Transparent pixels are painted with the background color you pick, white by default. Set that color to your page color if the logo will sit on a tint, or do not convert that file to JPG. Quality runs from 0.1 to 1 for JPG and WEBP. 0.9 is a light touch and keeps more detail than the compressor's 75 percent default. 1 is still a lossy JPEG, not a mathematical copy. PNG ignores the quality number because it is lossless. Batch conversion uses the same format, background, and quality for every file you selected."
     },
     {
-     "q": "Which format should I choose?",
-     "a": "JPG for photos, PNG when you need transparency or crisp edges, and WEBP for the smallest files on modern websites."
+     "q": "Can I convert HEIC, and what fails?",
+     "a": "Only if the browser can decode the file. Safari often opens iPhone HEIC photos. Many desktop browsers cannot, and the page will say it could not read the image. On the phone you can set the camera to Most Compatible so new shots are JPEG, or export a JPEG from the Photos app and then convert. AVIF and some CMYK files fail the same way. Rename a .jpg that is actually a PDF and it will fail decode. The extension is not trusted; the browser has to draw the pixels."
     },
     {
-     "q": "What happens to transparent areas in JPG?",
-     "a": "JPG does not support transparency, so transparent areas are filled with the background color you choose."
+     "q": "How do I convert a folder of product shots without mixing them up?",
+     "a": "Select the batch, pick JPG or WEBP, and download each result. Keep the original file name in your own folder so the SKU in the name survives. Do not convert the only copy of a transparent PNG to JPG and delete the PNG. Color shifts are possible when a wide-gamut photo is drawn to a standard canvas. For catalog work, compare one image at 100 percent zoom before you convert hundreds. There is no upload queue and no account, so a closed tab is a lost batch if you have not downloaded."
     },
     {
-     "q": "Can I convert HEIC photos from my iPhone?",
-     "a": "Only if your browser can open HEIC files. Safari usually can; other browsers may not. On iPhone you can also set the camera to “Most Compatible” to save JPGs."
+     "q": "What size should the converted file be?",
+     "a": "Conversion here does not resize. A 6000-pixel PNG becomes a 6000-pixel JPG, which may still be too large to email. Compress after you convert, or compress first if you already know the target width. A reasonable product image for the web is 1600 to 2000 pixels on the long side. A social avatar can be 512. Print shops often want the original pixels or a PDF, not a twice-converted JPEG. Each conversion that is lossy throws away a little more detail, so convert once from the master."
     },
     {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Are the images uploaded?",
+     "a": "No. Decoding and encoding happen in the browser. Nothing is stored by GWB and there is no sign-up. You download each file locally. The same privacy boundary is why a failed file cannot be recovered from our side: we never had it."
     }
    ]
   },
@@ -184,28 +184,28 @@
    ],
    "faq": [
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "What should an invoice contain so it gets paid?",
+     "a": "Your legal or trade name, the client, a unique number, the invoice date, a due date, each line with quantity and price, the tax rate if any, the total, and how to pay. INV-001 is fine until you issue the next one; skipping numbers is a bookkeeping smell, duplicates are worse. A receipt is the same layout after you have been paid: switch the document type so the heading matches. This generator does not add a watermark and does not cap how many documents you make. It also does not send the invoice or reconcile the bank. Download the PDF from the print dialog by choosing Save as PDF."
     },
     {
-     "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+     "q": "How should tax and discounts be shown?",
+     "a": "If you charge sales tax, the line amounts are the pre-tax price and the tax percent is applied to the subtotal. A $1,000 subtotal at 8.25 percent shows $82.50 of tax and a $1,082.50 total. Do not also bury tax inside the line price unless you say the lines are tax-inclusive, because the client and your sales-tax return will not match. This invoice form applies one tax rate to the whole document. For a mix of taxable and exempt lines, or a discount before tax, use the receipt and quote maker, which discounts first and can leave a line non-taxable, then invoice the accepted total."
     },
     {
-     "q": "Is the invoice generator really free?",
-     "a": "Yes. There are no watermarks, limits or accounts. You can create as many invoices and receipts as you like."
+     "q": "How do I keep invoice numbers and books straight?",
+     "a": "Store the PDF with a file name that includes the number and client. Export Excel or CSV if you want the lines in a sheet. Record income when you earn it if you are on accrual, or when you are paid if you are on cash, and be consistent. A deposit is not the full invoice: invoice the deposit or use a quote with a deposit line, then invoice the balance. Write off a bad debt in the books; do not renumber the invoice. The tool remembers nothing on a server, so your own folder is the archive."
     },
     {
-     "q": "Can I make a receipt instead of an invoice?",
-     "a": "Yes. Switch the document type to Receipt; the layout and totals stay the same."
+     "q": "Can I reuse it for a receipt after payment?",
+     "a": "Yes. Change the document type to Receipt, keep the same line items, and save a second PDF. Use a receipt number if your sequence is separate from invoices. The payment method belongs in the notes if you need it on the face of the document; the dedicated receipt maker has a payment-method field if you want that on every copy. Do not edit a PDF you already sent in order to hide a late fee without sending a corrected invoice the client can reconcile."
     },
     {
-     "q": "How do I save the invoice as a PDF?",
-     "a": "Click Download PDF. Your browser's print dialog opens; pick “Save as PDF” as the destination."
+     "q": "Is there a watermark, a limit, or an account?",
+     "a": "No watermark, no monthly cap, and no account. The page is free. PDF, Excel, and CSV exports and Send to phone run in the browser. If you want online acceptance, reminders, and a ledger, a paid invoicing product in the recommended list does that job. This page is the document itself. You are responsible for whether the tax rate and the legal name are right."
     },
     {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Do client names get uploaded?",
+     "a": "No. Business name, client, and line items stay on the device and in the file you download. There is no GWB invoice account. Email the PDF yourself. The recommended-tool links are ordinary outbound links, labeled as partner recommendations, and they do not receive the invoice text unless you later type it into that product."
     }
    ]
   },
@@ -234,28 +234,28 @@
    ],
    "faq": [
     {
-     "q": "Is the audio trimmer free?",
-     "a": "Yes. The audio trimmer is 100% free with no limits, no watermark and no paid tier."
+     "q": "MP3 or WAV, and what does this trimmer actually export?",
+     "a": "WAV is the uncompressed PCM of the selection, stereo or mono as in the file, at the file's own sample rate, 16-bit. It is the right export when you will edit again. MP3 is encoded in the browser at a fixed 128 kbps with the bundled LAME encoder, which is a small file and plenty for a ringtone or a voice memo. This page does not offer 192 or 320 kbps. If you need a higher-bitrate MP3, export WAV and encode elsewhere, or use the video-to-MP3 tool when the source is a video and you want 192 or 320. A one-minute stereo WAV at 44.1 kHz is about 10 MB. The same minute as 128 kbps MP3 is about 1 MB."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "How long should a ringtone or alert be, and how do fades work?",
+     "a": "Most phones are happy with 20 to 30 seconds. iPhone ringtone files are limited to about 30 seconds, so set the end point at or before 30 if that is the destination. A 1 to 2 second fade-out keeps the clip from clicking at the end. Fade-in can be shorter, often under a second, unless you are softening a loud attack. The fade is a gain ramp on the samples you selected, not a separate effect track. Preview before you export. The selection cannot be shorter than a tenth of a second."
     },
     {
-     "q": "How long should a ringtone be?",
-     "a": "Most phones work well with 20 to 30 seconds. iPhone ringtones are limited to about 30 seconds."
+     "q": "Which files open, and what if decode fails?",
+     "a": "The browser's audio decoder has to understand the file. MP3, WAV, M4A, AAC, OGG, and FLAC open in current browsers when the codec is supported. A file over about 200 MB is rejected so the tab does not run out of memory. If decode fails, the audio may be corrupt or use a codec the browser cannot play. Convert that file to WAV or MP3 on a machine that can play it, then trim here. The page does not download audio from a URL, a streaming site, or YouTube. It only reads a file you already have."
     },
     {
-     "q": "MP3 or WAV: which should I choose?",
-     "a": "MP3 is much smaller and works almost everywhere. WAV is lossless and larger, which is useful for further editing."
+     "q": "What are the rights and the privacy limits?",
+     "a": "Trim audio you own or have a license to use. A purchased song is often licensed for personal listening, not for a remix you publish. This tool will not stop you, and it also will not fetch the song for you. Processing is local. The waveform is drawn from the samples on your device. There is no account and no upload. Export before you close the tab. Memory errors on long files are solved by a shorter selection or by exporting WAV in smaller pieces, not by sending the file to us."
     },
     {
-     "q": "Can I use any song?",
-     "a": "Only use audio you own or have the rights to use. This tool works with files already on your device and never downloads from other sites."
+     "q": "How do I make a clean clip for a podcast or a hold message?",
+     "a": "Set the start just before the first word and the end just after the last, then add a short fade so you do not cut a breath in half. Voice is intelligible at 128 kbps mono or stereo. Leave the original untrimmed file in your archive. Do not normalize or remove noise here; this page trims and fades only. If the level is too low, fix it in an editor before you export the master. The sample rate of the export matches the source, so a 48 kHz interview stays 48 kHz."
     },
     {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Why does the MP3 sound duller than the WAV?",
+     "a": "128 kbps throws away some high-frequency detail. On a phone speaker you will rarely hear it. On studio monitors, a music clip will sound tighter in the WAV. Choose WAV when the next step is editing or a master, and MP3 when the file has to be small. Re-encoding an MP3 to MP3 again makes the loss worse. Trim from WAV or from the original when you can."
     }
    ]
   },
@@ -283,28 +283,28 @@
    ],
    "faq": [
     {
-     "q": "Is the video to MP3 extractor free?",
-     "a": "Yes. The video to MP3 extractor is 100% free with no limits, no watermark and no paid tier."
+     "q": "Which video files work, and what do the bitrates mean?",
+     "a": "The browser must be able to decode the video. MP4 with AAC audio and WebM work in most current browsers. Some MOV files and HEVC or HDR phone videos do not, and the page will say it could not decode them. Export MP3 at 128 kbps for speech, 192 kbps as the default balance for music, or 320 kbps when you want the largest MP3 this page makes. WAV is lossless PCM of the decoded audio and is much larger. A five-minute stereo program at 192 kbps is about 7 MB. The same stretch as WAV at 48 kHz is on the order of 55 MB."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "Can I paste a YouTube or other link?",
+     "a": "No. The tool reads a video file that is already on your device. It does not accept a URL, and it is not a downloader. Use it for a screen recording, a voice memo you filmed, a project export, or other video you have the rights to use. Ripping a stream you do not own is not what this page is for and the page cannot do it. If the file will not open, export a standard H.264 MP4 with AAC audio from the app that created it and try that file."
     },
     {
-     "q": "Which video formats work?",
-     "a": "Any format your browser can decode. MP4 (AAC audio) and WebM work in most browsers; some MOV or HEVC files may not."
+     "q": "Why does a long video fail or stall?",
+     "a": "The browser decodes the audio into memory. A long, high-resolution video can exhaust a laptop or a phone even though we only keep the audio. Close other tabs, try a shorter file, or export WAV only for the section you need from a shorter source. The failure is local. There is no server-side encoder to fall back to, which is the privacy tradeoff: your video is not uploaded, so we also cannot finish the job on a bigger machine. A progress or memory message means you should use a smaller file, not refresh and hope."
     },
     {
-     "q": "Can I extract audio from YouTube links?",
-     "a": "No. This tool only works with video files already on your device that you own or have the rights to use."
+     "q": "How do I get a usable voice track?",
+     "a": "Film or export the video with the microphone you actually want. This page does not split stems, remove music, or boost a quiet voice. 128 kbps is enough for a spoken track you will send by email. 192 kbps is a better default if the track includes music. Keep the video until you have listened to the export. Phase and sync are not an issue because you are taking the whole audio program, not relocking it to picture."
     },
     {
-     "q": "What MP3 quality should I pick?",
-     "a": "192 kbps is a good balance. Use 320 kbps for music where quality matters, or 128 kbps for speech."
+     "q": "What should I check before I publish the audio?",
+     "a": "Listen to the start and the end, confirm you exported the right event, and confirm you have the right to publish it. A screen recording can include notification sounds you did not mean to keep; trim those in the audio trimmer after you extract. Do not upload a client's meeting recording to a public host because the extraction was easy. The WAV is the archive copy. The MP3 is the copy you send."
     },
     {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Is the video uploaded?",
+     "a": "No. Demuxing and encoding run in the browser. There is no account and no retained file. If the tab crashes, the video is still only on your device. Download the audio before you close the page."
     }
    ]
   },
@@ -338,32 +338,28 @@
    ],
    "faq": [
     {
-     "q": "Is the word counter free?",
-     "a": "Yes. The word counter is 100% free with no limits, no watermark and no paid tier."
+     "q": "How are words, characters, and time counted?",
+     "a": "Words are split on whitespace, so a hyphenated word is one word and a number is a word. Characters are shown with spaces and without them. Sentences are split on end punctuation. Paragraphs are blocks separated by blank lines. Reading time uses about 238 words per minute. Speaking time uses about 150 words per minute. A 600-word product description is about 2.5 minutes to read and about 4 minutes to read aloud. Those rates are averages for adult English, not a promise about your reader. The top-keyword list skips very common function words so you can see what you actually repeat."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "What lengths matter for real business writing?",
+     "a": "A search snippet is often cut near 150 to 160 characters, so write the meta description in this box and watch the character count with spaces. Many ad headlines are tighter than 30 characters. A short email people will finish is often under 200 words. A blog post that teaches something real is commonly 800 to 1,500 words, which is a reading time of roughly 4 to 7 minutes at 238 words per minute. The counter does not judge quality. It stops you from discovering the limit after you have pasted into an ad platform."
     },
     {
-     "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+     "q": "What does keyword repetition tell you, and what does it not?",
+     "a": "If one product name is 8 percent of the words, the paragraph may be stuffing rather than explaining. If the name never appears, the page may be vague. The list is a frequency count, not a ranking score and not a guarantee that a search engine will treat the phrase as a topic. Proper names and SKUs count. The same word with different capitalization is grouped in the usual way the counter normalizes. Use it to edit, then read the paragraph aloud."
     },
     {
-     "q": "How is reading time calculated?",
-     "a": "Reading time uses an average of about 238 words per minute; speaking time uses about 150 words per minute."
+     "q": "How should I use it with the resume and policy tools?",
+     "a": "Resume bullets should usually be one or two lines, roughly 15 to 30 words. Paste a bullet here if you cannot tell whether it is bloated. Policy drafts from the policy generator run long because they have to cover topics; the counter tells you the length so you can see whether a section became a wall of text. Neither tool sends the text to the other. Copy and paste is the handoff, and it stays on the device."
     },
     {
-     "q": "Does it count spaces as characters?",
-     "a": "Both counts are shown: characters with spaces and characters without spaces."
+     "q": "Are there limits on length?",
+     "a": "Very large pastes are counted locally and can take a moment. The page is built to handle a long document without uploading it. If the tab becomes slow, split the text. There is no account and no stored document. Export PDF, Excel, or CSV if you want the counts and the keyword list in a file, or send a note to your phone. The export is the counts, not a backup of a novel, unless the text is included in that export's inputs."
     },
     {
-     "q": "How long should a meta description be?",
-     "a": "About 150–160 characters is a common guideline so search engines don't cut it off."
-    },
-    {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Does it count HTML, code, or languages other than English?",
+     "a": "Tags and code are counted as they appear. A page of HTML will show a high word count that includes tags, which is not the reading length of the visible article. Paste the visible text if that is what you care about. Languages without spaces between words will not match an English word count; the character count is still meaningful. Emoji and accents count as characters. The reading-time constant is still the English average."
     }
    ]
   },
@@ -391,28 +387,28 @@
    ],
    "faq": [
     {
-     "q": "Is the password generator free?",
-     "a": "Yes. The password generator is 100% free with no limits, no watermark and no paid tier."
+     "q": "How random is a password from this page?",
+     "a": "Each character is chosen with the browser's crypto.getRandomValues, which is a cryptographic generator, not Math.random. Selection is unbiased across the set you turned on. A 16-character password drawn from about 95 printable characters has on the order of 100 bits of entropy, because each character adds about 6.6 bits. Turn off symbols and you reduce the bits per character. Turn the length down to 8 and you cut the space in half in bit terms, which is a large cut, not a small one. The strength line is an entropy estimate of the settings, not a check against a list of leaked passwords."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "How long should it be, and should I reuse it?",
+     "a": "Use at least 12 to 16 characters for ordinary accounts and longer for email, banking, and the password manager itself. A unique password per account matters more than a clever word. Reuse means one leak opens every site that shares the password. This page does not store the password, does not put it in an export, and does not offer Send to phone, because a notes file or a QR code of a password is a copy you will forget you made. Put it in a password manager. The manager is the memory."
     },
     {
-     "q": "How random are these passwords?",
-     "a": "They use your browser's cryptographically secure random number generator (crypto.getRandomValues) with unbiased selection."
+     "q": "What should I do with the result?",
+     "a": "Copy it once into the account you are creating and into the password manager. Do not email it to yourself. Do not paste it into a chat with a vendor. If a site rejects symbols, turn symbols off and add length until the strength line is still in the strong range, rather than shortening a complex password to 8 characters. A passphrase of several random words can be appropriate where you must type it often; this generator builds a random string, which is the better shape for a manager-filled login."
     },
     {
-     "q": "How long should a password be?",
-     "a": "At least 12–16 characters. Longer is better, especially for email, banking and password-manager master passwords."
+     "q": "What does the page refuse to do?",
+     "a": "It will not generate a password if every character set is off, because there is nothing to draw from. It does not invent a memorable sentence. It does not check whether a particular site's rules require a number. If a site demands a number, leave digits on. The password is shown so you can copy it. Anyone who can see your screen can see it. Generate it when you are ready to store it, then clear the page if you are on a shared machine."
     },
     {
-     "q": "Should I reuse a strong password?",
-     "a": "No. Use a unique password for every account and store them in a password manager."
+     "q": "How does this compare with a website's own generator?",
+     "a": "A generator on a sign-up form may be fine, and it may also be a script you cannot read. This one is local and does not send the result to GWB. That does not make the password stronger than the math of its length and alphabet. A 6-character password generated perfectly is still short. Prefer this page or your manager's generator over a password built from a pet name and a year."
     },
     {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Is anything stored?",
+     "a": "No password is written to local storage, to an export file, or to a server. There is no account. Reloading the page gives a new set. If you needed the previous one and did not save it in your manager, it is gone, which is the intended failure mode."
     }
    ]
   },
@@ -450,32 +446,28 @@
    ],
    "faq": [
     {
-     "q": "Is the budget calculator free?",
-     "a": "Yes. The budget calculator is 100% free with no limits, no watermark and no paid tier."
+     "q": "How do I apply 50/30/20 to a real take-home paycheck?",
+     "a": "Use monthly take-home pay, not gross salary. On $4,000 a month, needs are about $2,000, wants about $1,200, and savings or extra debt payments about $800. Needs are housing, utilities, groceries, insurance, basic transport, and minimum debt payments. Wants are eating out, subscriptions, and travel. Savings include an emergency fund and retirement contributions beyond a payroll 401(k) that already left the paycheck. If rent alone is $1,800, the 50 percent needs band is already tight; the rule is a checkpoint, not a reason to skip rent. The calculator tags each category and shows how far you are from those shares."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "Should the income box be gross, and how do weekly bills convert?",
+     "a": "Type take-home pay. A biweekly net of $1,690.85 is not $3,381.70 every month. $1,690.85 times 26 divided by 12 is $3,663.51 as a monthly average. Enter that monthly average, or enter the check and tell the tool the amount is per paycheck period it offers (month, week, or year) so it annualizes consistently. The 2026 tax and paycheck calculators on this site estimate take-home if you do not have a stub yet. Do not budget the gross $80,000 and then also subtract tax inside the expenses or you will show a shortfall that is not real."
     },
     {
-     "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+     "q": "What does a shortfall mean for the next month?",
+     "a": "If expenses exceed income, the result is a shortfall, not a remaining balance you can spend. Cut wants first, then renegotiate a need you control, such as a phone plan, before you cut a minimum debt payment. A one-month shortfall covered by savings should be labeled a transfer from savings, not new income, or next month's plan will assume the transfer repeats. The percent-of-income column shows which single category is doing the damage. A category over 100 percent of income is a data error or a bill that belongs in a different month."
     },
     {
-     "q": "What is the 50/30/20 rule?",
-     "a": "A simple guideline that splits take-home pay into about 50% for needs (housing, utilities, groceries, transport, insurance, minimum debt payments), 30% for wants and 20% for savings and extra debt payments."
+     "q": "How do I use this with irregular freelance income?",
+     "a": "Budget a baseline month from your lowest reliable month, and put surplus months into a tax and slow-month reserve rather than into wants. Self-employed people should treat the tax reserve as a need. If the freelance rate calculator says you should set aside 25 percent, that transfer is not optional spending. Annual expenses such as insurance can be entered as a yearly amount so the month you pay them does not look like a crisis and the other months do not look richer than they are."
     },
     {
-     "q": "Should I enter take-home or gross pay?",
-     "a": "Use take-home pay (after tax), since that is the money you actually budget. The US Income Tax Calculator 2026 on this site can estimate it."
+     "q": "Is the budget saved on a server?",
+     "a": "Only if you tick Remember my budget on this device. That copy lives in this browser's local storage and is never uploaded. Untick it to delete it. Another browser or phone will not see it. Export PDF, Excel, or CSV when you want a copy you control, or send a plain-text note to your phone. There is no account. Anyone who uses this browser profile can open the saved budget, so do not use Remember on a shared computer."
     },
     {
-     "q": "Is my budget saved?",
-     "a": "Only if you tick Remember my budget on this device. It is then kept in your browser's local storage on this device and never uploaded. Untick it to delete it."
-    },
-    {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "How often should I revise the plan?",
+     "a": "Redo it when take-home pay changes, when a rent or insurance bill changes, and at least once a quarter. A budget that matched January will lie in December if annual gifts and insurance were never entered. The 50/30/20 comparison is a guide for consumer cash flow. A business with inventory should also track gross margin on the profit margin calculator and keep business and household money in separate columns so a good sales month does not look like personal spending money."
     }
    ]
   },
@@ -512,28 +504,28 @@
    ],
    "faq": [
     {
-     "q": "Is the tax calculator free?",
-     "a": "Yes. The tax calculator is 100% free with no limits, no watermark and no paid tier."
+     "q": "Which 2026 figures does this calculator use?",
+     "a": "Federal brackets and standard deductions follow IRS Revenue Procedure 2025-32 for tax year 2026, including the inflation adjustments described in the IRS newsroom note on the One Big Beautiful Bill Act. The standard deduction used here is $16,100 single or married filing separately, $32,200 married filing jointly, and $24,150 head of household. Social Security is 6.2 percent of wages up to the 2026 wage base of $184,500. Medicare is 1.45 percent of all wages, plus the 0.9 percent Additional Medicare Tax on wages above $200,000 single or head of household, $250,000 married filing jointly, or $125,000 married filing separately. Employee 401(k) deferrals are capped in the model at the 2026 elective deferral limit of $24,500. State brackets, standard deductions, and personal exemptions or credits follow the Tax Foundation compilation of state individual income tax rates and brackets for 2026. We re-check those published tables when we update the tax year and do not invent rates."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "Walk me through an $80,000 single filer in Texas.",
+     "a": "Texas has no wage income tax in this model. Gross wages $80,000 minus the $16,100 standard deduction leaves $63,900 of federal taxable income. Tax is $1,240 on the first $12,400 at 10 percent, $4,560 on the next $38,000 at 12 percent, and $2,970 on the remaining $13,500 at 22 percent, which is $8,770 of federal income tax. Social Security is $80,000 times 0.062 = $4,960. Medicare is $80,000 times 0.0145 = $1,160. Combined tax is $14,890, so take-home pay is $65,110 before any benefit premiums. The marginal federal rate on the next dollar is 22 percent, but the effective rate on gross pay is 18.61 percent because of the standard deduction, the lower brackets, and payroll taxes. A pre-tax 401(k) of $5,000 stays inside the 22 percent bracket and lowers federal income tax by exactly $1,100, to $7,670. Payroll taxes do not fall, because 401(k) deferrals are still FICA wages. Cash in hand becomes $61,210, and $5,000 sits in the retirement account."
     },
     {
-     "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated. Tax year 2026, estimates only, not tax advice."
+     "q": "How is a state with a flat tax different, such as Georgia?",
+     "a": "Georgia's 2026 table in this tool is a flat 5.19 percent after a standard deduction of $12,000 single or $24,000 married filing jointly, with no personal exemption in the simplified table. On $80,000 of single wages the state tax is (80,000 minus 12,000) times 0.0519 = $3,529.20. Federal income tax and FICA stay the same as the Texas example, so total tax is about $18,419 and take-home pay is about $61,581. States with graduated brackets, exemptions, or credits will not match a flat percentage of gross pay. The calculator applies the state's standard deduction and, where the Tax Foundation table records one, a personal exemption or credit. It does not apply city taxes, school-district taxes, or state disability insurance such as California SDI."
     },
     {
-     "q": "Which tax year does this use?",
-     "a": "Tax year 2026: federal brackets and standard deductions from IRS Revenue Procedure 2025-32, and state rates from the Tax Foundation's 2026 table."
+     "q": "What does the calculator leave out on purpose?",
+     "a": "It estimates wage income only. It does not apply the Child Tax Credit, Earned Income Credit, education credits, itemized deductions, the qualified business income deduction, capital gains, unemployment, or local wage taxes. Head of household and married filing separately use the published schedules in the engine; they are not a substitute for a return that has dependents or community-property rules. Self-employed people also owe self-employment tax of 15.3 percent on 92.35 percent of net earnings, half of which is deductible, and they usually make quarterly estimates. Use the freelance rate calculator for pricing and a tax professional or the IRS withholding estimator before you change a W-4. Washington taxes certain capital gains but not wages, so this tool shows zero state income tax on wages there."
     },
     {
-     "q": "Is this tax advice?",
-     "a": "No. It is an estimate for wages only. It ignores credits, itemized deductions, local or city taxes and other income. Check with a tax professional or the IRS withholding estimator."
+     "q": "How should a small business use the result in its books?",
+     "a": "Compare the federal income tax, state income tax, Social Security, and Medicare lines with a recent pay stub before you rely on the annual figure. If you are an S corporation owner, wages and distributions are not the same number: only reasonable compensation runs through this wage calculator. Sole proprietors should not type profit into the salary box and treat the result as their full tax. Record employee withholdings as liabilities until you deposit them. When you export PDF, Excel, or CSV, the file is built in the browser and labeled as a 2026 estimate, not a filing. Pair the take-home figure with the monthly budget calculator so the household budget starts from cash you actually receive."
     },
     {
-     "q": "What is the difference between marginal and effective rate?",
-     "a": "Your marginal rate is the tax on your next dollar of income. Your effective rate is your total tax divided by your gross pay."
+     "q": "Are my numbers uploaded, and can I save them?",
+     "a": "No upload. The brackets are a JavaScript table in your browser. Salary, state, filing status, and 401(k) amount stay on the device. Nothing is written to a GWB account because there is no account. Save results downloads a PDF, Excel workbook, or CSV that you generate locally, or Send to phone shares a plain-text note. Those files include the date and a reminder that the figures are estimates, not tax advice. Clearing the page or your browser storage removes the inputs."
     }
    ]
   },
@@ -567,32 +559,28 @@
    ],
    "faq": [
     {
-     "q": "Is the business calculators free?",
-     "a": "Yes. The business calculators is 100% free with no limits, no watermark and no paid tier."
+     "q": "Margin, markup, and a quick price check.",
+     "a": "On a cost of 40 and a price of 65, profit is 25, margin is 38.46 percent, and markup is 62.5 percent. Margin divides by price. Markup divides by cost. The dedicated profit margin page adds a target-price formula, a price ladder, and a profit goal. This box is the same two-line math for when you only need the three numbers. Zero cost makes markup undefined, and the box says so instead of showing a fake percent."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "Sales tax on 100 at 8.875 percent, added or removed.",
+     "a": "Added: tax is 8.88 and the total is 108.88, with cent rounding. Removed: if 108.88 already includes 8.875 percent tax, the pre-tax price is 108.88 divided by 1.08875, which lands back on 100, and the embedded tax is 8.88. Tick Amount already includes tax only for the second case. This box is one amount and one rate. For several items, exempt lines, and 2026 state average rates, use the sales tax calculator. Do not add tax on top of a price that already includes it."
     },
     {
-     "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+     "q": "A $25,000 loan at 7.5 percent for 5 years.",
+     "a": "Monthly rate is 0.075 divided by 12. Over 60 months the payment is $500.95. Total paid is about $30,056.92 and total interest is about $5,056.92. The formula is the standard fully amortizing payment. There is no extra-payment field and no schedule on this page. When you need the month-by-month split or a down payment, open the loan calculator. Interest here is not a tax deduction by itself; business-interest limits and personal mortgage rules are separate and are not applied."
     },
     {
-     "q": "What is the difference between margin and markup?",
-     "a": "Margin is profit as a percentage of the selling price. Markup is profit as a percentage of cost. A 50% markup equals a 33.3% margin."
+     "q": "Break-even at $3,000 a month of fixed costs.",
+     "a": "Fixed costs in this box are per month. Contribution per unit at a $25 price and a $10 variable cost is $15. $3,000 divided by 15 is 200 units exactly, and revenue at break-even is $5,000. If your fixed costs were typed as a yearly number, divide by 12 first or you will think you need 2,400 units a month. The profit margin page can take a profit goal above break-even. A price that is not above variable cost has no break-even."
     },
     {
-     "q": "How is the loan payment calculated?",
-     "a": "It uses the standard amortization formula with monthly compounding: payment = P × r ÷ (1 − (1 + r)^−n)."
+     "q": "A simple ROI beside these four boxes.",
+     "a": "Return on a spend is gain minus cost, divided by cost. A $2,000 ad campaign that produces $2,600 of gross profit is ($2,600 minus $2,000) divided by $2,000 = 30 percent ROI. Do not divide by revenue or you will call a weak campaign a success. Margin tells you what each sale keeps. ROI tells you what a specific outlay returned. They answer different questions. This page does not discount future cash flows or compute an internal rate of return."
     },
     {
-     "q": "What does break-even mean?",
-     "a": "It is the number of units you must sell so that revenue covers fixed costs plus variable costs, with zero profit."
-    },
-    {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Are the amounts uploaded?",
+     "a": "No. Every box runs in the browser. You can export PDF, Excel, or CSV or send a text note to your phone. There is no account. Results are arithmetic, not tax, legal, or lending advice."
     }
    ]
   },
@@ -626,32 +614,28 @@
    ],
    "faq": [
     {
-     "q": "Is the business name generator free?",
-     "a": "Yes. The business name generator is 100% free with no limits, no watermark and no paid tier."
+     "q": "How does the generator build a name, and why do results change?",
+     "a": "It combines the keyword you type with a style list. Modern, classic, playful, and tech each have their own prefix and suffix pools. Each click draws again, so the list is not a ranked search and it is not exhaustive. A keyword such as bloom bakery can surface compounds and style words around those tokens. The generator does not check whether the name is already a company, a domain, or a trademark. Two people in different cities can be shown the same idea. Treat every line as a starting point you still have to clear."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "What makes a name usable for a small business?",
+     "a": "Say it aloud, spell it to someone over the phone, and see whether the obvious .com or a sensible alternative is something you can register. Short names are easier to put on a sign and a favicon. A playful suffix can undersell a firm that wants to look established, and a classic suffix can make a software product sound like a law office. The style control is there so you can steer that tone. Avoid names that are only a generic word plus Co if you will be impossible to find, and avoid names that describe a regulated profession you are not licensed for."
     },
     {
-     "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+     "q": "What do I check before I print cards?",
+     "a": "Search the USPTO trademark database or your country's equivalent for the exact name and for close spellings in your class of goods. Search your state or national business registry for the legal entity name. Search the domain and the major social handles. A name that is free as an LLC in one state can still infringe a federal trademark. This page does not perform those searches. Budget an hour for clearance before you buy packaging. If you will operate under a name that is not your personal name, file the assumed-name or entity paperwork your state requires."
     },
     {
-     "q": "Can I use any name I find here?",
-     "a": "Names are suggestions only. Check trademark databases, your local business registry and domain availability before using one."
+     "q": "How should I shortlist?",
+     "a": "Generate several batches, copy the five you can still remember an hour later, and discard any you hesitate to spell. Check them in the logo maker at a small size. A name that only works in a long script will fail as an app icon. Ask someone outside the business to repeat the name back after hearing it once. Export the shortlist to PDF or a spreadsheet so you can mark which domains you checked. The export is a list you made, not a legal opinion."
     },
     {
-     "q": "How do I choose a good business name?",
-     "a": "Keep it short, easy to spell and say, and relevant to what you offer. Say it out loud and check it on social platforms."
+     "q": "Can I use a name the tool suggested?",
+     "a": "Only after you clear it. The words in the style lists are ordinary English, and your keyword is yours to type, but the combination can still match an existing brand. We do not grant a license to a name, and we do not claim the ideas are unique. If you want a name that is also a registered domain, check the registrar before you fall in love with the spelling. International use needs a check in each country where you will sell."
     },
     {
-     "q": "Why do I get different names each time?",
-     "a": "The generator combines your keywords with style-based words randomly, so each click gives fresh ideas."
-    },
-    {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Are my keywords uploaded?",
+     "a": "No. Generation runs in the browser. There is no account and no server-side model. PDF, Excel, and CSV exports are local. The keyword is still visible on your screen and in any file you download."
     }
    ]
   },
@@ -684,32 +668,28 @@
    ],
    "faq": [
     {
-     "q": "Is the email signature generator free?",
-     "a": "Yes. The email signature generator is 100% free with no limits, no watermark and no paid tier."
+     "q": "How do I install the signature in Gmail, Outlook, and Apple Mail?",
+     "a": "Copy the signature, then paste it into the mail client's signature editor rather than into an individual message. In Gmail that is Settings, See all settings, General, Signature. Create a signature and paste. In Outlook on the web it is Settings, Mail, Compose and reply. Apple Mail uses Settings, Signatures. Paste as rich text if the client asks. A plain-text paste drops the color and the links. Send yourself a test message and read it on a phone, because some apps simplify HTML."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "What should the signature contain, and what should it leave out?",
+     "a": "Name, role, company, one phone number, one email, and one website is enough. A long list of awards, a confidentiality novel, and several social icons makes the signature longer than a short reply. This generator builds a compact HTML block with an accent color and does not upload a photo. If you add a photo in some other tool, host it on a site you control and keep it small, or the image will be blocked and the message will look broken. Do not put a full mailing address in every reply unless you need it for a regulated notice."
     },
     {
-     "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF or Excel (.xlsx), or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+     "q": "Why does it look different in some inboxes?",
+     "a": "Email HTML is not the web. Clients strip styles, change fonts, and ignore some layout. This generator uses simple inline styles so the important text survives. Dark-mode clients may recolor text. A background color that looked precise on the page can shift. The accent is a guide, not a brand-guidelines proof. If a client must match a brand book exactly, test in that client. Links should be full https URLs. A naked www address is more likely to arrive as dead text."
     },
     {
-     "q": "How do I add it to Gmail?",
-     "a": "In Gmail, open Settings → See all settings → Signature, create a new signature, and paste."
+     "q": "How do I keep it professional when several people share a brand?",
+     "a": "Agree the order of lines and the accent color once, then let each person change only their name, title, and phone. Inconsistent signatures look like a forwarded scam. The color palette tool can supply the hex value. Do not include a personal gmail address on a company signature if you want replies in the company system. Quotes and slogans date quickly; leave them off unless they are the actual brand line."
     },
     {
-     "q": "How do I add it to Outlook?",
-     "a": "In Outlook, go to Settings → Mail → Compose and reply (or Signatures), create a signature, and paste."
+     "q": "Can I export it?",
+     "a": "Yes. PDF or Excel keeps a copy of the details for your records. The thing you paste into the mail app is the HTML copy button, not the PDF. The PDF will not install itself as a signature. There is no hosted signature service and no tracking pixel. If you later use a product that hosts signatures, that is a different tool and a different privacy policy."
     },
     {
-     "q": "Why does my signature look different in some apps?",
-     "a": "Email apps render HTML differently. This generator uses simple table-based inline styles for the best compatibility."
-    },
-    {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Are my phone number and email uploaded?",
+     "a": "No. The preview is built in the browser. There is no account. Copy and paste is a local clipboard action. The details are on your screen and in any file you export, so do not export a personal mobile number into a shared folder by mistake."
     }
    ]
   },
@@ -743,32 +723,28 @@
    ],
    "faq": [
     {
-     "q": "Is the color palette generator free?",
-     "a": "Yes. The color palette generator is 100% free with no limits, no watermark and no paid tier."
+     "q": "Which harmony should I start from?",
+     "a": "Analogous colors sit next to each other on the wheel and look calm, which suits a bakery, a clinic, or a long-form site. Complementary colors sit opposite and create a clear accent for buttons and links, at the cost of more tension. Triadic colors are three evenly spaced hues and feel lively if you let one dominate and use the others in small areas. Random is a way to escape a rut, not a brand strategy. Start from the logo color if you have one, then pick the harmony that still looks like you when you desaturate it in your head."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "How do I keep text readable?",
+     "a": "Body text needs a contrast ratio of at least 4.5 to 1 against its background under ordinary WCAG rules, and large text needs at least 3 to 1. A bright accent that looks wonderful as a button can fail as small gray-blue type on white. Use the accent for buttons and lines, and use a near-black or near-white for paragraphs. The swatch label on this page switches between dark and light so the hex stays readable on the chip. That is not a full contrast audit of your site. Check the actual pair you will ship."
     },
     {
-     "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+     "q": "How do I use the hex values and CSS variables?",
+     "a": "Click a swatch to copy the hex. Copy CSS variables when you want the same names in a stylesheet. Put the variables on a single root rule and refer to them so a rebrand is one edit. Do not hard-code five slightly different blues because you sampled them by eye from a screenshot. Record the hex values in the brand sheet export next to the logo file. Colors are not protected as colors, but a distinctive combination used as a brand can still be part of trade dress. The generator does not clear that."
     },
     {
-     "q": "Which harmony should I choose?",
-     "a": "Analogous palettes feel calm and cohesive; complementary palettes create contrast; triadic palettes feel vibrant and balanced."
+     "q": "What fails in print and in dark mode?",
+     "a": "A color that is bright on a screen can be dull or unprintable in CMYK. If you will print packaging, ask the printer for a proof and do not assume the hex is the ink. Very light colors disappear on cheap paper. For dark mode, you usually need a second background and a lighter text color, not the same hex with the lights off. This page generates one palette at a time. Save both if you need a light and a dark pair, and test the button color on both."
     },
     {
-     "q": "How do I keep text readable on these colors?",
-     "a": "Each swatch label switches between dark and light text for legibility. For body text, aim for a contrast ratio of at least 4.5:1."
+     "q": "How many colors should a small brand use?",
+     "a": "One background, one text color, one accent, and one optional support color is enough for a site, a signature, and a simple logo. Five equally loud colors make a menu look like a toy. The logo maker only needs a mark color and a background. The email signature needs a single accent. Extra swatches are for illustrations and charts, not for every heading."
     },
     {
-     "q": "Can I use these colors commercially?",
-     "a": "Yes. Colors are not owned; use the palette anywhere."
-    },
-    {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Are palettes uploaded?",
+     "a": "No. The wheel math runs in the browser. There is no account. PDF, Excel, and CSV exports and the phone note are local. A palette is not a logo and not a trademark registration."
     }
    ]
   },
@@ -796,28 +772,28 @@
    ],
    "faq": [
     {
-     "q": "Is the QR code generator free?",
-     "a": "Yes. The QR code generator is 100% free with no limits, no watermark and no paid tier."
+     "q": "Do these QR codes expire, and what is actually inside them?",
+     "a": "The code stores the URL or the text you typed. There is no GWB redirect, no click counter, and no subscription that can turn the code off. The code works for as long as the destination still works and the ink is readable. If you encode a link shortener you do not control, that shortener can expire even though our code did not. For a menu or a card you will print, encode the final https address. Error correction is the library default used by the page, which can recover a modest amount of damage, not a code that has been torn in half."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "What size should I print, and how do I test it?",
+     "a": "For a business card or a table tent, keep the code at least about 2 centimeters (about 0.8 inches) on a side, with a quiet margin of white modules around it. Posters and window stickers should be larger so a phone can read them from the distance people actually stand. Always print one proof and scan it with a phone camera in the lighting you will really have. Dark-on-light works. Light-on-dark and low-contrast brand colors fail. Do not put a logo in the center unless you know the error correction can spare those modules. This generator draws the code, not a branded overlay."
     },
     {
-     "q": "Do these QR codes expire?",
-     "a": "No. The QR code encodes your link directly, so it works as long as the link itself works. There is no redirect service in between."
+     "q": "How does the link-in-bio file work?",
+     "a": "You can download a single bio.html that lists the links you entered. Host that file on any static host, including the same host as your site. The page is yours. It does not phone home to GWB and it does not insert a tracking redirect. Point the QR code at the hosted file if you want one code that can change when you edit the file, or point the QR code at a single URL if you want the code itself to be permanent. Those are different maintenance plans. If the QR points at a file you later delete, the code is fine and the destination is not."
     },
     {
-     "q": "How do I host the link-in-bio page?",
-     "a": "Upload bio.html to any static host, such as GitHub Pages, Netlify or your own website, and link to it from your social profiles."
+     "q": "What should a shop, a cafe, or a freelancer encode?",
+     "a": "A cafe can encode the menu PDF or a page on its own site, not a social profile it might rename. A freelancer can encode a booking page or a vCard-style text block of the details they want public. Do not encode a private invoice link or a password. Anyone who can see the code can open the destination. A Wi-Fi password in a QR code on a window is convenient and also visible to the street. The code is not access control."
     },
     {
-     "q": "What size should I print a QR code?",
-     "a": "At least 2 × 2 cm (about 0.8 inches) for close scanning. Go larger for posters, and always test with a phone first."
+     "q": "Why will a code not scan?",
+     "a": "The usual causes are too little contrast, too small a print, a missing quiet zone, a glossy lamination glare, or a URL that is so long the modules became tiny. Shorten the URL, increase the print size, and leave white space around the code. Test with a second phone. A code that only scans in the preview and not on paper was printed with scaling that blurred the modules. Print at 100 percent from a PDF or PNG that is not being fit-to-page by the printer dialog."
     },
     {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Is the link uploaded?",
+     "a": "No. The PNG and the bio file are built in the browser. There is no account, no analytics on the code, and no hosted landing page unless you upload bio.html to a host you choose. That host, not GWB, then sees ordinary web traffic."
     }
    ]
   },
@@ -850,32 +826,28 @@
    ],
    "faq": [
     {
-     "q": "Is the meeting cost calculator free?",
-     "a": "Yes. The meeting cost calculator is 100% free with no limits, no watermark and no paid tier."
+     "q": "How is the live cost calculated?",
+     "a": "Cost equals the number of attendees times the average hourly rate times the length of the meeting in hours. Six people at $45 an hour for one hour is $270. A 30-minute meeting is half of that, $135. If you type an annual salary, the tool converts it with 2,080 working hours, which is 40 hours times 52 weeks. A $90,000 salary is $43.27 an hour. It does not subtract vacation from the 2,080, so the hourly figure is a salary allocation, not a billed rate. The timer uses the same rate while it runs so the number on the screen is the cost so far, not a separate estimate."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "What does overhead do to that $270?",
+     "a": "The base figure is wages only. Benefits, payroll tax, and tools often add 25 to 40 percent. At 30 percent, the $45 rate becomes $58.50 and the one-hour meeting of six people costs $351. Type the loaded rate if you want that picture, because the tool does not have a separate burden field. Do not load the rate and also add a benefits line in your head or you will double count. For a freelancer the right rate is the billable rate from the freelance calculator, not their take-home divided by 2,080."
     },
     {
-     "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+     "q": "Why show a yearly number?",
+     "a": "A weekly one-hour meeting at $270 happens about 52 times and costs about $14,040 a year. A daily 15-minute standup of eight people at $60 an hour is 0.25 times 8 times 60 = $120 a day, about $600 a week, and on the order of $30,000 a year if it runs every weekday. The yearly figure is there so a recurring hold on the calendar has to justify itself. It assumes the meeting actually repeats and that the same people attend. Cancelled meetings cost nothing in this model."
     },
     {
-     "q": "How is the meeting cost calculated?",
-     "a": "Attendees × average hourly rate × meeting length. An annual salary is converted using 2,080 working hours per year."
+     "q": "How do I use it in a budget conversation?",
+     "a": "Put the yearly number next to the decision the meeting is supposed to make. A $14,000 meeting that saves a $50,000 rework is cheap. The same meeting that only shares status that could be a written note is not. The timer is useful in the room because the cost arriving in real time changes whether you keep a topic alive. It is not a timesheet and it does not bill the client. Export the assumptions if you want them in a planning deck."
     },
     {
-     "q": "Does it include overhead like benefits?",
-     "a": "No. If you want a fuller picture, raise the hourly rate by about 25–40% to approximate benefits and overhead."
+     "q": "What should I not type into the attendee rate?",
+     "a": "Do not average in a client's billable rate unless the client is paying for the meeting, or you will show an internal cost you are not incurring. Do not include people who were optional and did not come. A zero rate hides a person who was actually there. Contractors should be entered at what you pay them, including agency markup if that is the cash cost. The tool uses one average rate. If rates differ a lot, compute two groups and add them."
     },
     {
-     "q": "Why show the yearly cost?",
-     "a": "A weekly meeting runs about 52 times a year, so small costs add up. The yearly figure helps decide whether a meeting is worth it."
-    },
-    {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Is the timer session uploaded?",
+     "a": "No. Attendees, rate, and the running total stay on the device. PDF, Excel, and CSV exports and the phone note are local. There is no account. The timer stops being meaningful if the laptop sleeps; check the length before you export."
     }
    ]
   },
@@ -908,32 +880,28 @@
    ],
    "faq": [
     {
-     "q": "Is the policy generator free?",
-     "a": "Yes. The policy generator is 100% free with no limits, no watermark and no paid tier."
+     "q": "Are these policies legal, and what do I still have to do?",
+     "a": "They are plain-English drafts for a small business, not legal advice and not a filing. Laws differ by country, state, and industry. A shop that sells to California residents, takes cards, and runs ads has different duties than a hobby page. Have a lawyer review the draft before you rely on it, especially if you handle health data, children's data, or customers in the EU or UK. The generator fills in the business name, site, email, and location you type and the topics you tick, such as cookies or payments. You must edit anything that does not describe how you actually work."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "What should a privacy draft cover for a typical small site?",
+     "a": "Say what you collect, why, who you share it with, how long you keep it, and how a person can reach you. If you use a card processor, name that role and say you do not store full card numbers if that is true. If you use analytics or ads, say so. If you sell only to businesses in one state and collect nothing but an email, do not claim a global compliance program you do not run. Accuracy matters more than length. A short true policy is better than a long copied one."
     },
     {
-     "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF or Excel (.xlsx), or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+     "q": "How should I think about terms and refunds?",
+     "a": "Terms of service say what the customer may do, how purchases work, and that the law of a place you name will govern. A refund policy should match what your payment processor and your advertising platforms require, and it should match what you will actually do at the counter. A 30-day window you will not honor is worse than a 7-day window you will. Digital goods, custom work, and perishable food are often treated differently. Write the exception in the draft rather than hoping no one notices."
     },
     {
-     "q": "Are these policies legally binding?",
-     "a": "They are general templates to help you get started, not legal advice. Laws vary by country and industry, so have a qualified lawyer review them."
+     "q": "How do I publish and maintain the draft?",
+     "a": "Copy the text into a page you control, or download the file and convert it to the format your site uses. Date it. When you add a new tool, a newsletter, or a pixel, update the policy before you turn the feature on. Keep the old date in your own notes so you know what changed. This generator does not host the policy and does not update it when your business changes. The export to PDF or Excel is a snapshot of the draft on the day you made it."
     },
     {
-     "q": "Do I need a privacy policy?",
-     "a": "Most websites that collect any personal data, use analytics or show ads need one, and many platforms and payment providers require it."
+     "q": "What is out of scope?",
+     "a": "The drafts are not a GDPR record of processing, a PCI attestation, a HIPAA notice, an employee handbook, or a shareholder agreement. They do not choose your entity type. They do not register you for sales tax. If a sentence feels broader than your business, delete it. If a sentence feels missing, that is a question for counsel, not a reason to invent a legal rule in the text box."
     },
     {
-     "q": "Can I edit the generated text?",
-     "a": "Yes. Copy it into your editor and adjust it to match exactly how your business works."
-    },
-    {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Are my business details uploaded?",
+     "a": "No. The draft is assembled in the browser. There is no account. PDF and Excel exports are local. You are still about to publish the text on your own site, and that published page is public on purpose."
     }
    ]
   },
@@ -966,32 +934,28 @@
    ],
    "faq": [
     {
-     "q": "Is the resume bullet improver free?",
-     "a": "Yes. The resume bullet improver is 100% free with no limits, no watermark and no paid tier."
+     "q": "What does a strong bullet contain?",
+     "a": "A strong bullet starts with an action verb, names the work, and ends with a result a stranger can picture. Handled customer emails is a duty. Answered about 40 customer emails a day and cut the average reply time from a day to under four hours is a bullet. The number can be volume, money, time, or a percent. If you do not have a measured result, use an honest scope: a team of four, a territory of 30 accounts, a class of 25. Do not invent a percentage. Interviewers ask, and a fabricated metric is worse than a plain true sentence."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "How many bullets, and in what order?",
+     "a": "Three to five bullets for a recent role is typical. Older roles can have fewer. Put the result that best matches the job you want first, not the task you did most often. A one-page resume for early career and a two-page resume for a long career are both normal. This tool rewrites one duty at a time so you can paste the best line back into your document. It does not design the page, and it does not invent employers."
     },
     {
-     "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF or Excel (.xlsx), or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+     "q": "How do I use numbers I am not sure of?",
+     "a": "Use ranges you can defend: about 200 tickets a week, roughly $40,000 in renewals, a queue that fell by around a third. If you cannot defend it, leave the number out. Look at old reports, a CRM export, or a calendar before you guess. The word counter will tell you if a bullet has grown past two lines. A bullet that needs a semicolon and three clauses is usually two bullets."
     },
     {
-     "q": "What makes a strong resume bullet?",
-     "a": "A strong bullet starts with an action verb, says what you did, and shows a measurable result, such as volume, money saved or a percentage improvement."
+     "q": "What should stay out of the bullet?",
+     "a": "Pronouns, soft skills with no evidence, and the company's marketing slogan. References available upon request is wasted space. Graphics and photos are a liability in many US hiring pipelines and can confuse applicant-tracking systems that read text. Keep the file as text. Do not put a password, a social security number, or a client's confidential metric in a bullet you will upload to a job site."
     },
     {
-     "q": "Should I include numbers if I'm not sure of them?",
-     "a": "Use honest estimates you can explain in an interview, such as “about 200 tickets a week”. Never invent results."
+     "q": "How do the verb styles differ?",
+     "a": "The styles change the opening verb so you can hear more than one tone. Pick the one that sounds like the work, then edit the rest of the sentence so the verb agrees with the facts. A louder verb does not make a weak result strong. If none of the lines are true, rewrite the duty more specifically and run it again. The tool is a prompt for clarity, not a biography."
     },
     {
-     "q": "How many bullets should each job have?",
-     "a": "Three to five focused bullets per role is typical. Put your most impressive result first."
-    },
-    {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Is my work history uploaded?",
+     "a": "No. The duty you paste is rewritten in the browser. There is no account and no profile. PDF and Excel exports are local. Clear the box when you are done on a shared computer. The text is only as private as the device and the file you download."
     }
    ]
   },
@@ -1027,32 +991,28 @@
    ],
    "faq": [
     {
-     "q": "Is the paycheck calculator free?",
-     "a": "Yes. The paycheck calculator is 100% free with no limits, no watermark and no paid tier."
+     "q": "How do hourly, overtime, and salary convert for 2026?",
+     "a": "Straight time is hourly rate times hours per week times weeks worked. A $25 rate at 40 hours and 52 weeks is $52,000 a year, $1,000 a week, and $4,333.33 a month before tax. Overtime hours in this tool are paid at 1.5 times the hourly rate and are added before tax. Five overtime hours a week are 5 times $37.50 times 52 = $9,750, so gross becomes $61,750. A salary entered as a yearly amount is divided by the pay-period count you pick. The tool does not assume a bonus, shift differential, or a different overtime base. If your state or contract uses a weighted average for blended rates, calculate that hourly rate first and type it in."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "What does a $25-an-hour single paycheck look like in Texas?",
+     "a": "Gross is $52,000. Federal taxable income after the 2026 standard deduction of $16,100 is $35,900. Tax is $1,240 plus 12 percent of $23,500, which is $2,820, for $4,060 of federal income tax. Social Security is $3,224 and Medicare is $754. Take-home pay for the year is $43,962 before health insurance or other deductions, or about $1,690.85 on each of 26 biweekly checks. The same gross paid semimonthly is 24 checks of about $1,831.75. Weekly is 52 checks of about $845.42. The annual tax does not change with frequency; only the size of each check does."
     },
     {
-     "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+     "q": "Why is biweekly different from twice a month?",
+     "a": "Biweekly means every two weeks, 26 pays in a normal year and 27 pays in some calendar years when a payday falls on January 1 or a leap pattern adds a check. Semimonthly means the 15th and the last day, always 24 pays. People who budget monthly often multiply a biweekly check by two and then feel short in the two months that have three checks. Multiply the biweekly net by 26 and divide by 12 to see a true monthly average. This calculator uses 26, 52, 24, or 12 exactly, and it does not move holidays to the previous business day."
     },
     {
-     "q": "How do I convert hourly pay to a yearly salary?",
-     "a": "Multiply the hourly rate by hours per week and by weeks worked per year. For example, $25 an hour × 40 hours × 52 weeks = $52,000 a year."
+     "q": "Which taxes come out, and which do not?",
+     "a": "The engine uses the same 2026 federal brackets, standard deduction, state tables, Social Security wage base of $184,500, and Medicare rules as the income tax calculator. Pre-tax 401(k) contributions reduce income tax but not Social Security or Medicare, up to the $24,500 elective deferral cap modeled here. Health insurance, HSA contributions, garnishments, union dues, local taxes, and state paid-leave or disability premiums are not deducted. A W-2 employee should not also subtract self-employment tax. If you are both an owner and an employee, run wages here and estimate profit separately."
     },
     {
-     "q": "How is take-home pay estimated?",
-     "a": "We apply the 2026 federal brackets and standard deduction, your state's 2026 income tax, Social Security (6.2% up to $184,500) and Medicare (1.45%, plus 0.9% above the threshold). Credits, local taxes and other deductions are not included. Estimates only, not tax advice."
+     "q": "How do I check the result against a pay stub?",
+     "a": "Divide the year-to-date Social Security on a stub by 0.062. That implied wage base should be close to year-to-date gross if you are under $184,500 and have no pre-tax cafeteria plan that is exempt from FICA. Compare federal withholding with this estimate only after you account for the W-4: extra withholding, dependents, and a spouse's job move the stub away from a simple standard-deduction model. Use the calculator to plan a raise or a move between states, then confirm the first live stub. Export the schedule to Excel if you want the gross-to-net lines next to your budget."
     },
     {
-     "q": "What is the difference between biweekly and semimonthly?",
-     "a": "Biweekly means every two weeks (26 paychecks a year). Semimonthly means twice a month (24 paychecks a year), so each semimonthly check is slightly larger."
-    },
-    {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Does any of this leave my browser?",
+     "a": "No. Hours, rate, state, and filing status are calculated locally. There is no sign-up and no payroll account. PDF, Excel, and CSV exports and the Send to phone note are created on your device. Do not send a note that includes a coworker's pay to a shared chat unless you mean to. The figures are planning estimates, not a paystub, a W-2, or tax advice."
     }
    ]
   },
@@ -1088,32 +1048,28 @@
    ],
    "faq": [
     {
-     "q": "Is the loan calculator free?",
-     "a": "Yes. The loan calculator is 100% free with no limits, no watermark and no paid tier."
+     "q": "Show the payment on a $50,000 business loan at 9 percent for 5 years.",
+     "a": "The fixed monthly payment is P times r divided by 1 minus (1 plus r) to the minus n, where r is the annual rate divided by 12 and n is the number of months. Here r is 0.09 divided by 12 = 0.0075 and n is 60. The payment is $1,037.92. Over 60 months you pay about $62,275, of which about $12,275 is interest. The first month's interest is $50,000 times 0.0075 = $375.00, so about $662.92 of that first payment is principal. Interest falls each month as the balance falls. This is nominal monthly compounding of a fixed APR. It is not an interest-only period, a balloon, or a daily-accrual loan."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "What does an extra $100 a month change?",
+     "a": "Adding $100 to the contractual payment on that same loan pays the loan off in 54 months instead of 60. Total interest falls to about $10,887.63, which is about $1,387.44 less than the original interest. The calculator applies the extra amount to principal after interest each month and stops when the balance is gone. It does not model a prepayment penalty. If your lender applies extra payments only once a year, the savings will be a little smaller than a monthly extra. Type the extra amount you will actually send, not an amount you hope to send."
     },
     {
-     "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+     "q": "How do the presets differ from a quote?",
+     "a": "Business, equipment, SBA 7(a), and mortgage presets only fill example price, down payment, rate, and term so you can see the shape of a schedule. They are not offers. A sample mortgage of a $400,000 price with $80,000 down is a $320,000 loan. At 6.5 percent for 30 years the principal-and-interest payment is about $2,022.62 and total interest is about $408,142. That payment excludes property tax, insurance, and mortgage insurance. An equipment preset with a down payment borrows price minus down payment. Replace the rate with the APR on your term sheet before you decide."
     },
     {
-     "q": "How is the monthly payment calculated?",
-     "a": "We use the standard amortization formula: payment = P × r ÷ (1 − (1 + r)^−n), where P is the amount borrowed, r is the monthly rate (APR ÷ 12) and n is the number of monthly payments."
+     "q": "What should I book, and what is missing?",
+     "a": "Each payment splits into interest expense and a reduction of the loan liability. The yearly summary is a practical way to match a 12-month book close. The monthly schedule is the subledger. The tool does not add origination fees, points, or a separate amortization of closing costs, so the APR you were quoted may already differ from the note rate. Type the note rate if you want cash interest, or the APR if you want a single figure that folds some fees into the rate, and label which one you used in the export. Payments are assumed to start the month you pick and to stay fixed."
     },
     {
-     "q": "How much do extra payments save?",
-     "a": "Extra principal payments shorten the loan and cut total interest. The calculator shows the new payoff date and how much interest you save compared with no extra payments."
+     "q": "Where does this differ from the small loan box on the business calculators page?",
+     "a": "The business calculators page gives a payment, total paid, and total interest for a quick price. This page adds a down payment, extra principal, a payoff month, a yearly rollup, and every month of the schedule, and it exports that schedule. Use the quick box while you are guessing a term. Use this page when you are ready to show a lender, a partner, or your bookkeeper the month-by-month split. Both use the same standard formula."
     },
     {
-     "q": "Are the preset rates real offers?",
-     "a": "No. Presets are example values to get started. Your actual rate depends on the lender, your credit and the loan program, so enter the rate you were quoted. Estimates only, not financial advice."
-    },
-    {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Are the loan details uploaded?",
+     "a": "No. Amount, rate, term, and extra payment stay in the browser. PDF, Excel, and CSV files and the phone note are generated locally and include a line that fees, taxes, and insurance are excluded and that the result is not financial advice. There is no application and no credit check."
     }
    ]
   },
@@ -1149,32 +1105,28 @@
    ],
    "faq": [
     {
-     "q": "Is the profit margin calculator free?",
-     "a": "Yes. The profit margin calculator is 100% free with no limits, no watermark and no paid tier."
+     "q": "What is the difference between margin and markup on a $40 cost and a $65 price?",
+     "a": "Profit is $25. Margin is profit divided by the selling price: 25 divided by 65 = 38.46 percent. Markup is profit divided by cost: 25 divided by 40 = 62.5 percent. A 50 percent markup on a $40 cost is a $60 price and only a 33.33 percent margin, because 20 divided by 60 is one third. Quoting markup when a buyer asked for margin is a common way to underprice. This page shows both from the same two numbers so you can answer either question without converting in your head."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "How do I set a price from a target margin, and what is a simple ROI check?",
+     "a": "Price equals cost divided by 1 minus the target margin. A 40 percent margin on a $40 cost is 40 divided by 0.60 = $66.67. The same cost at a 40 percent markup is 40 times 1.40 = $56.00, which is only a 28.6 percent margin. A simple return on the inventory dollar, sometimes called markup ROI, is profit divided by cost, which is the markup itself: $26.67 profit on $66.67 is a 66.7 percent return on the $40 cost, not a 40 percent return. If you also spend $10 of shipping and fees that are not in cost, put them in cost before you divide or the margin will not survive the order."
     },
     {
-     "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+     "q": "How many units cover $5,000 of fixed costs?",
+     "a": "Break-even units equal fixed costs divided by price minus variable cost per unit, rounded up to a whole unit. At a $25 price and a $10 variable cost, contribution is $15. $5,000 divided by 15 is 333.33, so you need 334 units. Revenue at that point is 334 times $25 = $8,350. Contribution margin ratio is 15 divided by 25 = 60 percent. To clear an extra $3,000 profit goal, divide 8,000 by 15 and round up to 534 units. If price is not above variable cost, there is no break-even: every sale loses money."
     },
     {
-     "q": "What is the difference between margin and markup?",
-     "a": "Margin is profit divided by the selling price. Markup is profit divided by cost. A product that costs $40 and sells for $65 has a 38.46% margin and a 62.5% markup."
+     "q": "How should a product business use margin in its books?",
+     "a": "Gross margin in the accounts is net sales minus cost of goods sold, divided by net sales. Cost of goods includes the unit you typed plus inbound freight and packaging if you cannot sell without them. Payment processing, marketplace fees, and discounts are often outside the unit cost people type here. A 38 percent calculator margin can become a 20 percent accounting margin after a 15 percent discount and a 3 percent card fee. Run the price on the discounted net and put the fee in variable cost. Review the ladder of common margins when a supplier raises cost so you can see the new price before you reprint labels."
     },
     {
-     "q": "How do I price for a target margin?",
-     "a": "Divide the cost by (1 minus the margin). For a 40% margin on a $40 cost: $40 ÷ 0.60 = $66.67."
+     "q": "When should I use the combined business calculators instead?",
+     "a": "Use the four-in-one business calculators page for a fast margin, a single sales-tax line, a loan payment, or a monthly break-even while you are in a meeting. Use this page when you need the price for a target markup, the price ladder, a profit goal above break-even, and an export you can attach to a pricing memo. The formulas match. The dedicated page keeps the three questions side by side so changing cost updates the ladder."
     },
     {
-     "q": "How is break-even calculated?",
-     "a": "Break-even units = fixed costs ÷ (price per unit − variable cost per unit), rounded up to a whole unit. Add a profit goal to fixed costs to find the units needed to reach it."
-    },
-    {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Do my costs get stored?",
+     "a": "No. Cost, price, and fixed costs are calculated on the device. You can download PDF, Excel, or CSV or send a text note to your phone. There is no account. The result is a pricing aid, not a financial statement or tax advice."
     }
    ]
   },
@@ -1211,32 +1163,28 @@
    ],
    "faq": [
     {
-     "q": "Is the receipt and quote maker free?",
-     "a": "Yes. The receipt and quote maker is 100% free with no limits, no watermark and no paid tier."
+     "q": "What is the difference between a receipt, an estimate, and a quote?",
+     "a": "A receipt records money you already took, including the payment method. An estimate is an approximate price that can move when the scope becomes clearer. A quote is a fixed offer, usually with a valid-until date. After the client accepts, you invoice the work; this page does not convert the file automatically, so create the invoice from the same lines. Putting Estimate on a fixed price, or Quote on a guess, causes arguments. The heading on the PDF follows the type you pick."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "How are discount, tax, and deposit calculated?",
+     "a": "The discount reduces the subtotal first. Tax is calculated on the discounted amount, which matches how most US sales-tax rules treat a cash discount. A $500 subtotal with a 10 percent discount is $450, and 8 percent tax is $36, for $486. A deposit on a quote is an amount due to start, not a second tax. The balance is the total minus the deposit. Do not tax the deposit again when you invoice the balance. If a line is exempt, handle the tax rate so you do not tax that whole document, or split the exempt work onto its own document."
     },
     {
-     "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+     "q": "What dates and numbers should I print?",
+     "a": "Quotes need a valid-until date so the price can expire when your supplier's price expires. Estimates should say they are approximate if the job can change. Receipts need the date paid and the method, such as card or bank transfer, so the client's books and yours match. Keep a separate sequence from invoices if you must, but do not reuse a number. The PDF is the copy you send; the Excel or CSV export is the copy you file."
     },
     {
-     "q": "What is the difference between an estimate and a quote?",
-     "a": "An estimate is an approximate price that may change as the work becomes clearer. A quote is a fixed price offer, usually valid until a set date. Both become an invoice once the customer accepts and the work is done."
+     "q": "How do I move from a quote to money in the bank?",
+     "a": "Send the quote PDF. When the client accepts, take the deposit you stated, then invoice the remainder with the invoice generator using the same line descriptions. On the day you are paid in full, a receipt closes the loop. None of these documents file sales tax for you. The sales tax calculator is where you check the rate and the exempt lines before you type the percent. A quote is not revenue. Book a deposit as a liability until you do the work if you keep accrual records."
     },
     {
-     "q": "Is the discount applied before tax?",
-     "a": "Yes. The discount reduces the subtotal first, then tax is calculated on the discounted amount, which is how most US sales tax rules work."
+     "q": "Can I add a logo?",
+     "a": "This version is text on purpose so it prints cleanly and does not depend on a hosted image. Make a logo in the logo maker and use it on your site and cards. If you later paste a logo into another template, host the image yourself or the client's mail app will show a broken picture. There is no watermark on these PDFs."
     },
     {
-     "q": "Can I add my logo?",
-     "a": "This version is text only, to keep documents clean and printable. You can use the Logo Maker on this site to design one for your other materials."
-    },
-    {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Are customer details uploaded?",
+     "a": "No. Names, prices, and notes stay in the browser until you download or print. PDF, Excel, and CSV and the phone note are created locally. There is no account. Do not use Send to phone on a shared device if the note contains a customer's address."
     }
    ]
   },
@@ -1272,32 +1220,28 @@
    ],
    "faq": [
     {
-     "q": "Is the freelance rate calculator free?",
-     "a": "Yes. The freelance rate calculator is 100% free with no limits, no watermark and no paid tier."
+     "q": "Walk through the default rate: $60,000 take-home, 25 percent tax, $10,000 costs.",
+     "a": "First gross the take-home up for tax: $60,000 divided by 1 minus 0.25 = $80,000 you must bill before tax. Add $10,000 of business expenses to get $90,000. A 10 percent profit buffer multiplies that by 1.10, so you need $99,000 of revenue. Working 48 weeks at 40 hours is 1,920 hours. At a 70 percent billable share you can invoice 1,344 hours. $99,000 divided by 1,344 is $73.66 an hour. An 8-hour day is about $589. A 20-hour project is about $1,473 before you round. Round up to a number you will actually quote, such as $75 or $80, because scope grows and some hours will not be billed."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "What does the 25 percent tax box represent, and what does it miss?",
+     "a": "It is a planning reserve, not a filed return. US self-employed people generally pay self-employment tax of 15.3 percent on 92.35 percent of net profit, plus federal income tax and often state income tax. On $80,000 of net profit, self-employment tax alone is about $11,304 before the deduction for half of it. A 25 to 35 percent combined reserve is a common planning range, but a high-earning filer in a high-tax state can need more, and a low-profit year can need less. The box does not compute the qualified business income deduction, the home-office deduction, or quarterly vouchers. Revisit it after you see last year's effective rate, and use the 2026 wage calculator only for W-2 pay, not for this profit."
     },
     {
-     "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+     "q": "Why is 100 percent of my week not billable?",
+     "a": "Proposals, email, invoicing, bookkeeping, and learning are real work and they are usually not on the invoice. 60 to 75 percent billable is a realistic band for an independent who also sells the work. 70 percent of a 40-hour week is 28 billable hours. If you type 100 percent, the hourly rate looks comfortingly low and you will miss the income target as soon as a week includes a sales call. Time off is handled by working weeks: 48 weeks leaves about four weeks for holidays, illness, and a short break. If you take eight weeks off, drop working weeks to 44 and let the rate rise."
     },
     {
-     "q": "How do I calculate my freelance hourly rate?",
-     "a": "Add the income you want to keep (grossed up for taxes) to your yearly business costs and a profit buffer, then divide by the hours you can actually bill in a year. Example: $60,000 take-home at 25% tax is $80,000, plus $10,000 costs and a 10% buffer is $99,000; over 1,344 billable hours that is $73.66 an hour."
+     "q": "How do I turn the hourly rate into a project quote?",
+     "a": "Estimate the hours honestly, including revisions and project management, then multiply by the hourly rate. A job you think is 20 hours at $73.66 is about $1,473, and a 15 percent revision buffer makes it about $1,694. Fixed bids should use the buffered number, not the best case. Day rates assume a full day; if the client only books two hours, the day rate divided by eight underprices the context-switching. The tool shows hourly, day, weekly, and project figures from the same revenue target so you do not invent a second rate."
     },
     {
-     "q": "What billable percentage should I use?",
-     "a": "Most freelancers bill 60–75% of their working hours. The rest goes to admin, sales, invoicing and learning. 70% is a sensible starting point."
+     "q": "What expenses belong in the yearly cost box?",
+     "a": "Software, insurance, equipment you will replace this year, contractor help, accounting, and a modest marketing budget. Do not put your personal rent in the box unless a real portion is a deductible office you would not pay otherwise; mixing household costs into the rate is fine for personal planning but label it so you do not treat it as a business deduction. Owner draws are not an expense. The income box is what you want to keep after tax, so do not also add your draw as a cost or you will double count it."
     },
     {
-     "q": "What tax rate should I enter?",
-     "a": "In the US, self-employed people pay about 15.3% self-employment tax plus federal and state income tax. 25–35% of profit is a common planning range, but your rate depends on your income and state. Estimates only, not tax advice."
-    },
-    {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Is this rate stored anywhere?",
+     "a": "No. Income, costs, tax percent, and hours stay in the browser. Export PDF, Excel, or CSV, or send a note to your phone, from the page itself. There is no profile and no marketplace listing. The rate is a planning figure, not a contract and not tax advice."
     }
    ]
   },
@@ -1332,32 +1276,28 @@
    ],
    "faq": [
     {
-     "q": "Is the logo maker free?",
-     "a": "Yes. The logo maker is 100% free with no limits, no watermark and no paid tier."
+     "q": "What do you actually get, and can you use it commercially?",
+     "a": "You get a simple text-and-icon mark: your words, one of the original icons drawn for this tool, a layout, a font, and colors. You may use that result for your business. The icons are simple geometric shapes, not a clip-art library we licensed from someone else. You still have to make sure the business name does not infringe a trademark. The generator does not search trademarks and does not file a copyright for you. A logo is not a substitute for a registered mark."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "What is in the favicon pack, and which sizes matter?",
+     "a": "The ZIP includes favicon.ico with 16, 32, and 48 pixel images, PNGs at 16, 32, 180 (Apple touch), 192, and 512, a site.webmanifest, and a short HTML snippet for the head of your site. Browsers use the small sizes in tabs. Phones use the touch icon when someone saves your site to a home screen. 512 is the large icon for an installable web app. Put the files on your site and paste the snippet. A logo that is only an SVG on the about page does not become the tab icon until you add these files."
     },
     {
-     "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+     "q": "SVG, PNG, or ICO?",
+     "a": "SVG stays sharp at any size and is the right master for the web and for a printer who can take vectors. PNG is a bitmap at the size you export, with transparency, and it is what many social and marketplace forms demand. ICO is for the browser tab on older stacks and is inside the favicon pack. A JPEG logo is usually the wrong file because of the white or muddy background and the soft edges. If you will print a sign, give the shop the SVG and ask for a proof. A 512-pixel PNG stretched to a storefront banner will look soft."
     },
     {
-     "q": "Can I use the logo commercially?",
-     "a": "Yes. The icons are simple original shapes made for this tool and the text is yours, so you can use the result for your business. Check that your business name does not infringe someone else's trademark."
+     "q": "Why does the font change on another computer?",
+     "a": "The preview uses common system fonts so the page does not download a font file. Another machine may substitute a different face. The PNG and the favicon pack bake the pixels, so they look the same everywhere. Use the PNG or SVG for anything you will hand to a printer or upload as an image. Use live text only on your own site if you are comfortable with the fallback. Keep the name short. A long name in a small icon becomes an unreadable stripe."
     },
     {
-     "q": "What is in the favicon pack?",
-     "a": "A ZIP with favicon.ico (16, 32 and 48 px), favicon-16x16.png, favicon-32x32.png, apple-touch-icon.png (180 px), android-chrome 192 and 512 px PNGs, site.webmanifest and a snippet of HTML tags to paste into your site's head."
+     "q": "How do I pair it with colors and a real brand?",
+     "a": "Pick the mark color from the color palette tool and reuse that hex in the email signature and the site. One icon, one wordmark, one accent. Do not redraw the icon in five colors for five social networks. Test the mark at 16 pixels. If you cannot tell what it is, simplify: fewer words, or the icon alone as the favicon and the full name as the header logo. The transparent background option is what you want on a photo or a colored banner."
     },
     {
-     "q": "Why does the font look different on another computer?",
-     "a": "The logo uses common system fonts. For a pixel-perfect logo everywhere, use the PNG download, which bakes the text in as an image."
-    },
-    {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Is the design uploaded?",
+     "a": "No. The preview is drawn in the browser. There is no account and no gallery. Downloads are local, including the PDF brand sheet and the CSV of colors. We do not receive the business name you typed."
     }
    ]
   },
@@ -1394,32 +1334,28 @@
    ],
    "faq": [
     {
-     "q": "Is the barcode and label maker free?",
-     "a": "Yes. The barcode and label maker is 100% free with no limits, no watermark and no paid tier."
+     "q": "UPC-A, EAN-13, Code 128, or QR: which one goes on the product?",
+     "a": "Use UPC-A for a retail product sold in the United States or Canada when you have a GS1-licensed number. UPC-A is 12 digits, and the last digit is a check digit this tool can compute. Use EAN-13 for international retail; it is 13 digits with its own check digit. Use Code 128 for your own SKUs, bin labels, and packing slips. Code 128 carries letters and numbers and does not require GS1, but a retailer will not treat a homemade Code 128 as a UPC. Use QR for a URL or a longer note, not for a POS barcode the scanner at a grocery lane expects to be a UPC."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "Can I invent a UPC?",
+     "a": "You can draw a symbol that is mathematically valid, including the check digit, from any 11 digits you type. Selling that symbol as if it were your licensed UPC is how you collide with another company's product in a retailer's system. License the number from GS1 US or the GS1 office in your country, then type the number they assigned. Internal warehouse labels should use Code 128 and a prefix you control, such as SKU-10042, so they are obviously not retail UPCs. The tool validates the check digit. It does not validate ownership."
     },
     {
-     "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+     "q": "How do I print Avery-style sheets so they line up?",
+     "a": "Download the label sheet PDF and print at 100 percent or Actual size on US Letter. Do not use Fit to page, which scales the sheet and walks the codes off the labels. Avery 5160 is 30 labels, 2.625 by 1 inch. Avery 5163 is 10 labels, 4 by 2 inches, which is easier to scan. Avery 5167 is 80 labels, 1.75 by 0.5 inches, which is tight for anything but a short code. Print a proof on plain paper and hold it against a label sheet in the light before you use the real stock. Leave the human-readable digits on unless you have a reason to hide them."
     },
     {
-     "q": "Can I make real retail UPC or EAN barcodes here?",
-     "a": "You can generate valid UPC-A and EAN-13 symbols with correct check digits. To sell in most retail stores the number itself must be licensed to your company from GS1, so use the number GS1 assigned you."
+     "q": "What makes a code fail at the scanner?",
+     "a": "Quiet zone too small, bars too thin because the PDF was scaled, lamination glare, a color other than black on white, or a code printed on a curved bottle at a size that is too small. Thermal printers want a high-contrast image and a size the print head can hold. If you use a thermal printer, a single-label PNG or SVG at a known size is often easier than a Letter sheet. Test with the same scanner you will use at the counter, not only with a phone. A phone can read a QR that a laser POS scanner will ignore."
     },
     {
-     "q": "Which barcode type should I use?",
-     "a": "Use Code 128 for your own SKUs, shipping and inventory labels (letters and numbers). Use UPC-A (US/Canada) or EAN-13 (international) for retail products with a GS1 number. Use QR for links and longer text."
+     "q": "How should the text file of codes be prepared?",
+     "a": "One code per line. Optionally add a product name and a price separated by vertical bars: SKU-10042 | Blue mug | $14.00. The name and price print on the label. They are not encoded into a UPC, which can only hold the digits. Copies multiplies each line on the sheet. Export CSV or Excel if you want a manifest of what you printed. The PDF is the print file. Keep the text list so you can reprint without retyping."
     },
     {
-     "q": "How do I print labels so they line up?",
-     "a": "Download the label sheet PDF, open it, and print at 100% or \"Actual size\" on US letter label sheets that match the template (for example Avery 5160). Print one test page on plain paper and hold it against a label sheet first."
-    },
-    {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Are the codes uploaded?",
+     "a": "No. Barcodes are drawn in the browser with the self-hosted library, and the PDF is built locally. There is no account and no registry of your SKUs. A retail UPC is still a public number once you print it on a product. The privacy of the file is separate from the secrecy of a number you put on a shelf."
     }
    ]
   },
@@ -1455,40 +1391,28 @@
    ],
    "faq": [
     {
-     "q": "Is the sales tax calculator free?",
-     "a": "Yes. The sales tax calculator is 100% free with no limits, no watermark and no paid tier."
+     "q": "How do I add sales tax, with a real receipt example?",
+     "a": "Tax equals the taxable amount times the rate as a decimal. At a combined 8.25 percent, tax on $100.00 is $8.25 and the customer pays $108.25. On three taxable items of $24.00, $10.50, and $6.00 the taxable base is $40.50 and the tax is $3.34125, which you should round to the cent the way your state requires, usually $3.34, for a total of $43.84. This tool rounds money to the cent on line amounts and on the tax result. If one line is a gift card or a labor charge your state exempts, untick Taxable so it stays in the total but out of the tax base."
     },
     {
-     "q": "Do I need an account or sign-up?",
-     "a": "No. There is no account, sign-up or email required. Open the page and start using it."
+     "q": "How do I remove tax that is already in the price?",
+     "a": "Divide the tax-inclusive total by 1 plus the rate. A shelf price of $108.25 at 8.25 percent is $108.25 divided by 1.0825 = $100.00 before tax, so the embedded tax is $8.25. A $249.99 total at the same rate is $249.99 divided by 1.0825 = $230.94 before tax and $19.05 of tax, after cent rounding. Choose Tax included in the tool when the number on the tag already contains tax. Do not also multiply that tag price by the rate or you will tax the tax."
     },
     {
-     "q": "Can I export or download my results?",
-     "a": "Yes. Use Save results in the Free forever box to download your inputs and results as PDF, Excel (.xlsx) or CSV, or tap Send to phone to share them as a plain-text note (share sheet, copy, .txt file or QR code). Files are created in your browser and include the date generated."
+     "q": "Why does my city's rate differ from the state average?",
+     "a": "The state rate in the table is the statewide rate. The local figure is a population-weighted average of city, county, and special-district rates published by the Tax Foundation as of July 1, 2026, not the rate at one address. Texas, for example, is 6.25 percent state plus about 1.95 percent average local, or 8.20 percent combined, but a specific city can be higher or lower. Alaska, Delaware, Montana, New Hampshire, and Oregon have no statewide sales tax; Alaska's local average is about 1.82 percent. Choose My exact rate and type the combined rate from your state's rate lookup or from a recent receipt when you are charging a customer."
     },
     {
-     "q": "How do I calculate sales tax?",
-     "a": "Multiply the taxable amount by the rate. At 8.25%, tax on $100.00 is $100.00 × 0.0825 = $8.25, so the total is $108.25."
+     "q": "What should a shop record for sales tax payable?",
+     "a": "Sales tax you collect is not revenue. Book the pre-tax price as sales and the tax as a liability until you remit it. If you give a discount, this tool follows the usual US order: discount reduces the subtotal, then tax is computed on the discounted taxable amount. Exempt sales still belong in gross receipts if your state return asks for them, but they are not in the tax you owe. Use the compare-by-state table only to see how the same basket changes across states. It is not a nexus study. Shipping, freight, and digitally delivered goods are taxable in some states and not others, so confirm the category before you file."
     },
     {
-     "q": "How do I take sales tax out of a total (reverse sales tax)?",
-     "a": "Divide the total by 1 plus the rate. For a $108.25 total at 8.25%: $108.25 ÷ 1.0825 = $100.00 before tax, so the tax was $8.25."
+     "q": "How do state and average local rates get updated?",
+     "a": "Rates in the menu come from the Tax Foundation 2026 sales tax rates midyear update, rates as of July 1, 2026, with state rates cross-checked against the Foundation's state sales tax table. We do not scrape a live rate API at the moment you calculate, which is why an exact city rate belongs in My exact rate. When a state changes its rate, the published table and this page are updated together. The page states the as-of date next to the source link. Food, clothing, and services can be taxed at a different rate or exempt even when the general rate is correct."
     },
     {
-     "q": "Which states have no sales tax?",
-     "a": "Alaska, Delaware, Montana, New Hampshire and Oregon have no statewide sales tax. Alaska lets local governments charge one, averaging about 1.82%."
-    },
-    {
-     "q": "Are these the exact rates for my city?",
-     "a": "No. The state rate is exact, but the local figure is a population-weighted average from the Tax Foundation (as of July 1, 2026). Local rates vary by city, county and district, so use \"My exact rate\" with the rate from your receipt or state revenue department when you need to be precise."
-    },
-    {
-     "q": "Where do the rates come from?",
-     "a": "State and average local rates come from the Tax Foundation, \"2026 Sales Tax Rates, Midyear Update\" (rates as of July 1, 2026). Tax rules on what is taxable (food, clothing, services) also differ by state."
-    },
-    {
-     "q": "Are my files or text uploaded anywhere?",
-     "a": "No. This tool runs entirely in your browser using JavaScript. Nothing you enter or open is sent to our servers or stored by us."
+     "q": "Is the basket I type sent to a server?",
+     "a": "No. Items, quantities, prices, and the rate are processed in the page. You can export the result as PDF, Excel, or CSV, or send a plain-text note to your phone, all created in the browser. There is no account. The rate source link goes to the Tax Foundation; following it leaves this site and is covered by their policy, not by a data upload of your basket."
     }
    ]
   }

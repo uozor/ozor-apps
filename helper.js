@@ -44,9 +44,9 @@ if(k==='business-name'){const kw=toks.filter(w=>!t.words.some(s=>wscore(w,s)>=1.
 return{qs:p.toString(),note}}
 const log=document.getElementById('hlog'),live=document.getElementById('hlive'),inp=document.getElementById('hq'),e=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function ask(q){q=q.trim();if(!q)return;const r=score(q),best=r[0];let html='';
-if(best.sc<1.2){html=`<div class="hres"><p class="hsmall">No clear match. Try:</p><ul class="hrel">${['pdf-tools','image-compress','invoice'].map(k=>`<li><a href="${BASE}${k}/index.html">${TD[k].n}</a></li>`).join('')}</ul></div>`;live.textContent='No clear match.'}
-else{const t=best.t,d=TD[t.k],pr=params(t.k,q,best.toks,t),href=BASE+t.k+'/index.html'+(pr.qs?'?'+pr.qs:'');const rel=[...new Set([...(r[1].sc>=1.5&&r[1].t.k!==t.k?[r[1].t.k]:[]),...t.rel])].filter(k=>k!==t.k).slice(0,2);
-html=`<div class="hres"><div class="hbest"><span class="ico cat-${d.c}">${d.i}</span><div><p class="hname">${d.n}</p><p class="hsmall">${d.d}</p></div></div><a class="btn hopen" href="${href}">Open</a><p class="hsmall">Tip: ${t.tips[0]}</p><p class="hsmall hrelline">Related: ${rel.map(k=>`<a href="${BASE}${k}/index.html">${TD[k].n}</a>`).join(' · ')}</p></div>`;live.textContent=`Best match: ${d.n}.`}
+if(best.sc<1.2){html=`<div class="hres"><p class="hsmall">No clear match. Try:</p><ul class="hrel">${['pdf-tools','image-compress','invoice'].map(k=>`<li><a href="${BASE}${k}/">${TD[k].n}</a></li>`).join('')}</ul></div>`;live.textContent='No clear match.'}
+else{const t=best.t,d=TD[t.k],pr=params(t.k,q,best.toks,t),href=BASE+t.k+'/'+(pr.qs?'?'+pr.qs:'');const rel=[...new Set([...(r[1].sc>=1.5&&r[1].t.k!==t.k?[r[1].t.k]:[]),...t.rel])].filter(k=>k!==t.k).slice(0,2);
+html=`<div class="hres"><div class="hbest"><span class="ico cat-${d.c}">${d.i}</span><div><p class="hname">${d.n}</p><p class="hsmall">${d.d}</p></div></div><a class="btn hopen" href="${href}">Open</a><p class="hsmall">Tip: ${t.tips[0]}</p><p class="hsmall hrelline">Related: ${rel.map(k=>`<a href="${BASE}${k}/">${TD[k].n}</a>`).join(' · ')}</p></div>`;live.textContent=`Best match: ${d.n}.`}
 log.innerHTML=html;window.lastHelper={q,best:best.t.k,score:best.sc};st.q=q;save()}
 const fab=document.getElementById('gwb-fab'),pan=document.getElementById('gwb-panel'),KEY='gwb-helper';let st={};try{st=JSON.parse(sessionStorage.getItem(KEY))||{}}catch(x){}
 function save(){try{sessionStorage.setItem(KEY,JSON.stringify(st))}catch(x){}}

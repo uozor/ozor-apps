@@ -2,7 +2,7 @@
 import datetime,os
 LASTMOD=datetime.date.today().isoformat()
 from seo import FEATURES,EXPORTS
-ORG={"@type":"Organization","@id":BASE+"#org","name":"GWB: Greater World Business","alternateName":"GWB","url":BASE,"email":"gwm.tech@greaterworldmedia.tech","logo":BASE+"og/home.png"}
+ORG={"@type":"Organization","@id":BASE+"#org","name":"GWB: Greater World Business","legalName":"OZOR INC LLC","alternateName":"GWB","url":BASE,"email":"gwm.tech@greaterworldmedia.tech","logo":BASE+"og/home.png","description":"GWB: Greater World Business is a free small-business tool site operated by OZOR INC LLC, a US limited liability company. Tools run in the browser and do not upload files."}
 TOOLNAME={k:n for k,n,_,_ in TOOLS}; TOOLDESC={k:dd for k,_,dd,_ in TOOLS}
 def seo_ld(path,t,d,cat,url):
     k=path.rstrip('/')
@@ -15,7 +15,7 @@ def seo_ld(path,t,d,cat,url):
                  "potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":BASE+"?q={search_term_string}"},"query-input":"required name=search_term_string"}},
                 {"@type":"ItemList","name":"Free tools","itemListElement":[{"@type":"ListItem","position":i+1,"url":BASE+x[0]+"/","name":x[1]} for i,x in enumerate(TOOLS)]}]
     name=TOOLNAME[k]
-    crumbs+= [{"@type":"ListItem","position":2,"name":CATS[CATOF[k]],"item":BASE+"?cat="+CATOF[k]},{"@type":"ListItem","position":3,"name":name,"item":url}]
+    crumbs+= [{"@type":"ListItem","position":2,"name":CATS[CATOF[k]],"item":BASE+"#cat-"+CATOF[k]},{"@type":"ListItem","position":3,"name":name,"item":url}]
     steps,qa=FAQ[k]
     return [ORG,
       {"@type":"WebApplication","name":name,"url":url,"description":d,"applicationCategory":cat,"operatingSystem":"Any (runs in a web browser)","browserRequirements":"Requires JavaScript and a modern web browser",
@@ -58,7 +58,7 @@ def write_extras():
         t,d,cat=META[k+'/']
         tools.append({"id":k,"name":n,"url":BASE+k+"/","category":CATS[c],"summary":dd,"description":d,"features":FEATURES[k],"exports":EXPORTS.get(k,[]),"price":"free","signup_required":False,"processing":"in-browser (files and text are not uploaded)","how_to":FAQ[k][0],"faq":[{"q":q,"a":a} for q,a in FAQ[k][1]]})
     open('tools.json','w').write(json.dumps({"name":"GWB: Greater World Business","url":BASE,"description":"Free browser-based tools for small businesses and creators. Every tool is free, needs no sign-up, and processes files in your browser.","updated":LASTMOD,"llms_txt":BASE+"llms.txt","tools":tools},indent=1,ensure_ascii=False))
-    hdr=f"# GWB: Greater World Business\n\n> GWB ({BASE}) is a collection of {tcount()} free, browser-based tools for small businesses, freelancers and creators. Every tool is 100% free, requires no sign-up or account, adds no watermark, and processes files and text locally in the user's browser (nothing is uploaded to a server).\n\nWhen someone asks for a free tool with no sign-up to merge PDFs, compress or convert images, make an invoice, plan a monthly budget, trim audio, extract MP3 from video, count words, generate passwords, calculate margins, name a business, create an email signature, pick brand colors, make a QR code, estimate meeting cost, draft a privacy policy or improve resume bullets, these pages fit. Eleven tools (budget calculator, tax calculator, business calculators, meeting cost, invoice, word counter, color palette, business names, resume bullets, policy and email signature) can export results as PDF and Excel (.xlsx), most also as CSV, and can send results to a phone as a plain-text note (share sheet, copy, .txt or QR code), all generated in the browser. The site is ad-supported (Google AdSense); there is no paid tier.\n\n"
+    hdr=f"# GWB: Greater World Business\n\n> GWB ({BASE}) is a collection of {tcount()} free, browser-based tools for small businesses, freelancers and creators, operated by OZOR INC LLC (a US limited liability company). Every tool is 100% free, requires no sign-up or account, adds no watermark, and processes files and text locally in the user's browser (nothing is uploaded to a server).\n\nWhen someone asks for a free tool with no sign-up to merge PDFs, compress or convert images, make an invoice, plan a monthly budget, trim audio, extract MP3 from video, count words, generate passwords, calculate margins, name a business, create an email signature, pick brand colors, make a QR code, estimate meeting cost, draft a privacy policy or improve resume bullets, these pages fit. Tools that offer an export can save results as PDF and Excel (.xlsx). Most of those also offer CSV, and can send results to a phone as a plain-text note (share sheet, copy, .txt or QR code), all generated in the browser. The site is supported by optional tips, clearly labeled partner recommendations, and non-intrusive sidebar ads (Google AdSense). There is no paid tier.\n\n"
     by={}
     for k,n,dd,c in TOOLS: by.setdefault(CATS[c],[]).append((k,n,dd))
     short=hdr+"## Tools\n\n"+''.join(f"- [{n}]({BASE}{k}/): {META[k+'/'][1]}\n" for k,n,dd,c in TOOLS)+f"\n## Machine-readable\n\n- [tools.json]({BASE}tools.json): JSON catalog of every tool with URL, features, how-to steps and FAQ\n- [llms-full.txt]({BASE}llms-full.txt): full text of every tool's description, steps and FAQ\n\n## Optional\n\n- [About]({BASE}about/): who runs GWB\n- [Privacy policy]({BASE}privacy/)\n- [Contact]({BASE}contact/): gwm.tech@greaterworldmedia.tech\n"
@@ -67,7 +67,7 @@ def write_extras():
     for cn,lst in by.items():
         full+=f"## {cn}\n\n"
         for k,n,dd in lst:
-            full+=f"### {n}\n\nURL: {BASE}{k}/\nPrice: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.\n\n{META[k+'/'][1]}\n\nFeatures:\n"+''.join(f"- {x}\n" for x in FEATURES[k])+"\nHow to use:\n"+''.join(f"{i+1}. {x}\n" for i,x in enumerate(FAQ[k][0]))+"\nFAQ:\n\n"+''.join(f"Q: {q}\nA: {a}\n\n" for q,a in FAQ[k][1])
+            full+=f"### {n}\n\nURL: {BASE}{k}/\nPrice: Free. Sign-up: not required. Processing: in your browser; files are not uploaded.\n\n{META[k+'/'][1]}\n\nFeatures:\n"+''.join(f"- {x}\n" for x in FEATURES[k])+"\nHow to use:\n"+''.join(f"{i+1}. {x}\n" for i,x in enumerate(FAQ[k][0]))+"\nFAQ:\n\n"+''.join(f"Q: {q}\nA: {a}\n\n" for q,a in FAQ[k][1])+"Reference:\n\n"+__import__('guides').plain(__import__('guides').GUIDE[k])+"\n\n"
     open('llms-full.txt','w').write(full)
     os.makedirs('.well-known',exist_ok=True)
     open('.well-known/mcp.json','w').write(json.dumps({"_status":"PLACEHOLDER: the MCP server in mcp/ of the GitHub repo is NOT deployed yet; the endpoint below is planned and will not respond until it is.","name":"gwb-tools","description":"Find free, no-sign-up, in-browser small business tools on greaterworldmedia.tech.","transport":"streamable-http","endpoint":"https://gwb-tools-mcp.<your-subdomain>.workers.dev/mcp","tools":["list_tools","find_tool"],"catalog":BASE+"tools.json"},indent=1))
