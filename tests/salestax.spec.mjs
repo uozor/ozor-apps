@@ -18,7 +18,7 @@ test.describe('sales tax', () => {
     await page.selectOption('#stst', 'OR'); await expect(page.locator('#stratei')).toContainText('no statewide sales tax'); await expect(sum(page)).toContainText('Total$100.00');
     await page.selectOption('#stmode', 'custom'); await expect(page.locator('#strate')).toBeFocused(); await expect(page.locator('#strate')).not.toHaveAttribute('readonly', '');
     await page.fill('#strate', '8.25'); await expect(sum(page)).toContainText('Sales tax (8.25%)$8.25'); await expect(sum(page)).toContainText('Total$108.25');
-    const r = await page.evaluate(() => ST_RATES.length); expect(r).toBe(51); await expect(page.locator('a[href*="taxfoundation.org"]')).toHaveAttribute('rel', 'noopener');
+    const r = await page.evaluate(() => ST_RATES.length); expect(r).toBe(51); await expect(page.locator('#tool a[href*="taxfoundation.org"]')).toHaveAttribute('rel', 'noopener');
   });
   test('reverse: take tax out of a total', async ({ page, errors }) => {
     await open(page, S); await oneItem(page, '108.20'); await page.selectOption('#stdir', 'remove');

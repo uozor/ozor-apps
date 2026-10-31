@@ -10,10 +10,22 @@ test('internal link audit: every page, link, #anchor, hub tile, mailto and liste
 });
 test('helper links open the right tool; every helper link resolves', async ({ page, request, errors }) => {
   await open(page, 'tax-calculator'); await page.click('#gwb-fab'); await expect(page.locator('#gwb-panel')).toBeVisible();
-  await page.locator('#gwb-panel .chip', { hasText: 'merge PDFs' }).click(); const a = page.locator('#hlog a', { hasText: 'Open' }).last(); await expect(a).toHaveAttribute('href', /pdf-tools\/index\.html/);
+  await page.locator('#gwb-panel .chip', { hasText: 'merge PDFs' }).click(); const a = page.locator('#hlog a', { hasText: 'Open' }).last(); await expect(a).toHaveAttribute('href', /pdf-tools\/(\?|$)/); expect(await a.getAttribute('href')).not.toContain('index.html');
   const hrefs = await page.locator('#gwb-panel a[href]').evaluateAll(x => x.map(e => e.href)); expect(hrefs.length).toBeGreaterThan(0);
   for (const h of new Set(hrefs)) if (h.startsWith(BASE)) expect((await request.get(h)).status(), h).toBe(200);
-  await a.click(); await expect(page).toHaveURL(/\/pdf-tools\/index\.html/); await expect(page.locator('h1')).toContainText('PDF');
+  await a.click(); await expect(page).toHaveURL(/\/pdf-tools\/(\?|$)/); expect(page.url()).not.toContain('index.html'); await expect(page.locator('h1')).toContainText('PDF');
+});
+test('hub category filter accepts #cat- and ?cat= without crawlable query links', async ({ page, errors }) => {
+  await open(page, '', '#cat-business');
+  await expect(page.locator('.chip[data-cat=business]')).toHaveAttribute('aria-pressed', 'true');
+  expect(await page.locator('#all .tile[hidden]').count()).toBeGreaterThan(0);
+  await expect(page.locator('#all .tile[data-cat=business]').first()).toBeVisible();
+  await open(page, '', '?cat=docs#tools');
+  await expect(page.locator('.chip[data-cat=docs]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#all .tile[data-cat=docs]').first()).toBeVisible();
+  expect(await page.locator('a[href*="?cat="]').count()).toBe(0);
+  await open(page, '', '?cat=image#cat-security');
+  await expect(page.locator('.chip[data-cat=security]')).toHaveAttribute('aria-pressed', 'true');
 });
 test('back-to-top returns to the top', async ({ page, errors }) => {
   await open(page, 'sales-tax'); await page.evaluate(() => scrollTo(0, document.body.scrollHeight)); const up = page.locator('#gwb-top'); await expect(up).toBeVisible();
